@@ -10,6 +10,7 @@ class AppIntro extends StatelessWidget {
     final viewModel = AppIntroViewModel();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: HeaderSafe(
         child: Column(
           children: [

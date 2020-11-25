@@ -18,6 +18,7 @@ class UserDetailedInformationViewModel with ChangeNotifier {
   OnboardingStep step;
 
   UserDetailedInformationViewModel() {
+    print("init UserDetailedInformationViewModel");
     email = "";
     postCode = "";
     address = "";
@@ -27,7 +28,7 @@ class UserDetailedInformationViewModel with ChangeNotifier {
   }
 
   void onPressEndEmail(
-      emailMoveAnimationController, addressFadeAnimationController) {
+      context, emailMoveAnimationController, addressFadeAnimationController) {
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
@@ -37,21 +38,25 @@ class UserDetailedInformationViewModel with ChangeNotifier {
       new Future.delayed(const Duration(milliseconds: 200), () {
         step = OnboardingStep.ONBOARDING_ADDRESS;
         addressFadeAnimationController.forward();
+        notifyListeners();
       });
     } else {
       emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   void onPressEndAddress() {}
 
-  void onPressFindPostCode(BuildContext context) {
+  void onPressFindPostCode(
+      BuildContext context, FocusNode detailedAddressNode) {
     Navigator.push(
         context,
         PageTransition(
             type: PageTransitionType.bottomToTop,
-            child: Kopo(callback: onFindPostCode)));
+            child: Kopo(
+                callback: (kopoModel) =>
+                    this.onFindPostCode(kopoModel, detailedAddressNode))));
   }
 
   void onChangeEmail(text) {
@@ -68,9 +73,23 @@ class UserDetailedInformationViewModel with ChangeNotifier {
   void onFindPostCode(KopoModel kopoModel, FocusNode detailedAddressNode) {
     address = kopoModel.address;
     postCode = kopoModel.zonecode;
-    notifyListeners();
 
     detailedAddressNode.requestFocus();
+    notifyListeners();
+  }
+
+  Future<bool> onWillPop(
+      emailMoveAnimationController, addressFadeAnimationController) {
+    print("run");
+    if (step == OnboardingStep.ONBOARDING_ADDRESS) {
+      emailMoveAnimationController.reverse();
+      addressFadeAnimationController.reverse();
+      step = OnboardingStep.ONBOARDING_EMAIL;
+      notifyListeners();
+      return Future.value(false);
+    } else {
+      return Future.value(true);
+    }
   }
 
   bool buttonDisabled() {

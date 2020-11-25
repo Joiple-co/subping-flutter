@@ -21,6 +21,8 @@ class AlwaysDisabledFocusNode extends FocusNode {
 
 class _UserDetailedInformationState extends State<UserDetailedInformation>
     with TickerProviderStateMixin {
+  final viewModelInstance = UserDetailedInformationViewModel();
+
   Animation<Offset> emailMoveAnimation;
   AnimationController emailMoveAnimationController;
   Animation<double> addressFadeAnimation;
@@ -66,39 +68,42 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: UserDetailedInformationViewModel(),
+      value: viewModelInstance,
       child: Builder(builder: (BuildContext context) {
         final viewModel =
             Provider.of<UserDetailedInformationViewModel>(context);
         postCodeController.text = viewModel.postCode;
         addressController.text = viewModel.address;
 
-        return HeaderSafe(
-          child: Scaffold(
-            // resizeToAvoidBottomInset: false,
-            body: Builder(
-              builder: (context) => HorizontalPadding(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                    Text.rich(
-                      TextSpan(text: "섭핑 이용을 위해\n", children: [
-                        TextSpan(
-                            text: viewModel.stepWords[viewModel.step],
-                            style: TextStyle(
-                                color: Color.fromRGBO(0, 224, 197, 1))),
-                        TextSpan(text: "를 입력해 주세요.")
-                      ]),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 21,
-                          height: 1.3),
-                    ),
-                    SizedBox(height: 30),
-                    Expanded(
-                        child: ListView(children: [
-                      Stack(
+        return WillPopScope(
+          onWillPop: () => viewModel.onWillPop(
+              emailMoveAnimationController, addressFadeAnimationController),
+          child: HeaderSafe(
+            child: Scaffold(
+              resizeToAvoidBottomInset: false,
+              body: Builder(
+                builder: (context) => HorizontalPadding(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.04),
+                      Text.rich(
+                        TextSpan(text: "섭핑 이용을 위해\n", children: [
+                          TextSpan(
+                              text: viewModel.stepWords[viewModel.step],
+                              style: TextStyle(
+                                  color: Color.fromRGBO(0, 224, 197, 1))),
+                          TextSpan(text: "를 입력해 주세요.")
+                        ]),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 21,
+                            height: 1.3),
+                      ),
+                      SizedBox(height: 30),
+                      Expanded(
+                          child: Stack(
                         children: [
                           viewModel.step == OnboardingStep.ONBOARDING_ADDRESS
                               ? FadeTransition(
@@ -136,8 +141,10 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
                                             SizedBox(width: 10),
                                             SqaureButton(
                                               text: "우편번호 찾기",
-                                              onPressed: () => viewModel
-                                                  .onPressFindPostCode(context),
+                                              onPressed: () =>
+                                                  viewModel.onPressFindPostCode(
+                                                      context,
+                                                      detailedAddressNode),
                                               width: (MediaQuery.of(context)
                                                               .size
                                                               .width -
@@ -199,6 +206,12 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
                               child: TextField(
                                 autofocus: true,
                                 onChanged: viewModel.onChangeEmail,
+                                onSubmitted: (text) =>
+                                    viewModel.onPressEndEmail(
+                                  context,
+                                  emailMoveAnimationController,
+                                  addressFadeAnimationController,
+                                ),
                                 keyboardType: TextInputType.emailAddress,
                                 decoration: InputDecoration(
                                     labelText: "이메일",
@@ -208,20 +221,22 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
                             ),
                           ),
                         ],
+                      )),
+                      SizedBox(height: 30),
+                      SqaureButton(
+                        text: "다음",
+                        onPressed:
+                            viewModel.step == OnboardingStep.ONBOARDING_EMAIL
+                                ? () => viewModel.onPressEndEmail(
+                                      context,
+                                      emailMoveAnimationController,
+                                      addressFadeAnimationController,
+                                    )
+                                : viewModel.onPressEndAddress,
+                        disabled: viewModel.buttonDisabled(),
                       ),
-                    ])),
-                    SizedBox(height: 30),
-                    SqaureButton(
-                      text: "다음",
-                      onPressed:
-                          viewModel.step == OnboardingStep.ONBOARDING_EMAIL
-                              ? () => viewModel.onPressEndEmail(
-                                  emailMoveAnimationController,
-                                  addressFadeAnimationController)
-                              : viewModel.onPressEndAddress,
-                      disabled: viewModel.buttonDisabled(),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
