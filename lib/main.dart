@@ -1,5 +1,3 @@
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_core/amplify_core.dart';
 import 'amplifyconfiguration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,19 +18,9 @@ class SubpingApp extends StatefulWidget {
 }
 
 class _SubpingAppState extends State<SubpingApp> {
-  Amplify amplifyInstance = Amplify();
-
   @override
   void initState() {
     super.initState();
-    _configureAmplify();
-  }
-
-  void _configureAmplify() async {
-    AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
-    amplifyInstance.addPlugin(authPlugins: [authPlugin]);
-
-    await amplifyInstance.configure(amplifyconfig);
   }
 
   @override

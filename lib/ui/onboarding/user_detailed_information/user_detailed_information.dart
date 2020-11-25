@@ -23,26 +23,19 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
     with TickerProviderStateMixin {
   final viewModelInstance = UserDetailedInformationViewModel();
 
-  Animation<Offset> emailMoveAnimation;
-  AnimationController emailMoveAnimationController;
   Animation<double> addressFadeAnimation;
   AnimationController addressFadeAnimationController;
 
   TextEditingController postCodeController;
   TextEditingController addressController;
+  ScrollController textFormScrollerController;
+
+  FocusNode emailNode;
   FocusNode detailedAddressNode;
 
   @override
   void initState() {
     super.initState();
-
-    emailMoveAnimationController =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
-    emailMoveAnimation =
-        Tween(begin: Offset.zero, end: Offset(0, 3.8)).animate(CurvedAnimation(
-      parent: emailMoveAnimationController,
-      curve: Curves.fastOutSlowIn,
-    ));
 
     addressFadeAnimationController = AnimationController(
         duration: Duration(seconds: 1),
@@ -55,14 +48,22 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
 
     postCodeController = TextEditingController();
     addressController = TextEditingController();
+    emailNode = FocusNode();
     detailedAddressNode = FocusNode();
   }
 
   @override
   void dispose() {
     super.dispose();
-    emailMoveAnimationController.dispose();
     addressFadeAnimationController.dispose();
+  }
+
+  num generatePadding() {
+    if (MediaQuery.of(context).viewInsets.bottom == 0.0 || emailNode.hasFocus) {
+      return 0.0;
+    } else {
+      return MediaQuery.of(context).viewInsets.bottom - 100.0;
+    }
   }
 
   @override
@@ -76,8 +77,7 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
         addressController.text = viewModel.address;
 
         return WillPopScope(
-          onWillPop: () => viewModel.onWillPop(
-              emailMoveAnimationController, addressFadeAnimationController),
+          onWillPop: () => viewModel.onWillPop(addressFadeAnimationController),
           child: HeaderSafe(
             child: Scaffold(
               resizeToAvoidBottomInset: false,
@@ -103,137 +103,149 @@ class _UserDetailedInformationState extends State<UserDetailedInformation>
                       ),
                       SizedBox(height: 30),
                       Expanded(
-                          child: Stack(
-                        children: [
-                          viewModel.step == OnboardingStep.ONBOARDING_ADDRESS
-                              ? FadeTransition(
-                                  opacity: addressFadeAnimation,
-                                  child: Column(
-                                    children: [
-                                      Center(
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              width: (MediaQuery.of(context)
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: ListView(
+                            reverse: true,
+                            shrinkWrap: true,
+                            controller: textFormScrollerController,
+                            padding: EdgeInsets.only(bottom: generatePadding()),
+                            children: [
+                              viewModel.step ==
+                                      OnboardingStep.ONBOARDING_ADDRESS
+                                  ? FadeTransition(
+                                      opacity: addressFadeAnimation,
+                                      child: Column(
+                                        children: [
+                                          Center(
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: (MediaQuery.of(context)
+                                                                  .size
+                                                                  .width -
+                                                              40) *
+                                                          0.5 -
+                                                      10,
+                                                  child: FocusScope(
+                                                    node: FocusScopeNode(),
+                                                    child: TextField(
+                                                      controller:
+                                                          postCodeController,
+                                                      focusNode:
+                                                          AlwaysDisabledFocusNode(),
+                                                      onChanged: viewModel
+                                                          .onChangeEmail,
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .emailAddress,
+                                                      decoration: InputDecoration(
+                                                          labelText: "우편번호",
+                                                          border:
+                                                              OutlineInputBorder()),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 10),
+                                                SqaureButton(
+                                                  text: "우편번호 찾기",
+                                                  onPressed: () => viewModel
+                                                      .onPressFindPostCode(
+                                                          context,
+                                                          detailedAddressNode),
+                                                  width: (MediaQuery.of(context)
                                                               .size
                                                               .width -
                                                           40) *
-                                                      0.5 -
-                                                  10,
-                                              child: FocusScope(
-                                                node: FocusScopeNode(),
-                                                child: TextField(
-                                                  controller:
-                                                      postCodeController,
-                                                  focusNode:
-                                                      AlwaysDisabledFocusNode(),
-                                                  onChanged:
-                                                      viewModel.onChangeEmail,
-                                                  keyboardType: TextInputType
-                                                      .emailAddress,
-                                                  decoration: InputDecoration(
-                                                      labelText: "우편번호",
-                                                      border:
-                                                          OutlineInputBorder()),
+                                                      0.5,
+                                                  height: 60,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 80 * 0.2),
+                                          Center(
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  40,
+                                              child: TextField(
+                                                controller: addressController,
+                                                focusNode:
+                                                    AlwaysDisabledFocusNode(),
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                decoration: InputDecoration(
+                                                    labelText: "주소",
+                                                    border:
+                                                        OutlineInputBorder()),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 80 * 0.2),
+                                          Center(
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  40,
+                                              child: TextField(
+                                                focusNode: detailedAddressNode,
+                                                onChanged: viewModel
+                                                    .onChangeDetailedAddress,
+                                                keyboardType:
+                                                    TextInputType.emailAddress,
+                                                decoration: InputDecoration(
+                                                  labelText: "상세주소",
+                                                  border: OutlineInputBorder(),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: 10),
-                                            SqaureButton(
-                                              text: "우편번호 찾기",
-                                              onPressed: () =>
-                                                  viewModel.onPressFindPostCode(
-                                                      context,
-                                                      detailedAddressNode),
-                                              width: (MediaQuery.of(context)
-                                                              .size
-                                                              .width -
-                                                          40) *
-                                                      0.5 -
-                                                  10,
-                                              height: 60,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(height: 80 * 0.2),
-                                      Center(
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              40,
-                                          child: TextField(
-                                            controller: addressController,
-                                            focusNode:
-                                                AlwaysDisabledFocusNode(),
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            decoration: InputDecoration(
-                                                labelText: "주소",
-                                                border: OutlineInputBorder()),
                                           ),
-                                        ),
+                                        ],
                                       ),
-                                      SizedBox(height: 80 * 0.2),
-                                      Center(
-                                        child: Container(
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width -
-                                              40,
-                                          child: TextField(
-                                            focusNode: detailedAddressNode,
-                                            onChanged: viewModel
-                                                .onChangeDetailedAddress,
-                                            keyboardType:
-                                                TextInputType.emailAddress,
-                                            decoration: InputDecoration(
-                                              labelText: "상세주소",
-                                              border: OutlineInputBorder(),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Container(),
-                          SlideTransition(
-                            position: emailMoveAnimation,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width - 40,
-                              child: TextField(
-                                autofocus: true,
-                                onChanged: viewModel.onChangeEmail,
-                                onSubmitted: (text) =>
-                                    viewModel.onPressEndEmail(
-                                  context,
-                                  emailMoveAnimationController,
-                                  addressFadeAnimationController,
-                                ),
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                    labelText: "이메일",
-                                    border: OutlineInputBorder(),
-                                    errorText: viewModel.emailErrorMessage),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
-                      SizedBox(height: 30),
-                      SqaureButton(
-                        text: "다음",
-                        onPressed:
-                            viewModel.step == OnboardingStep.ONBOARDING_EMAIL
-                                ? () => viewModel.onPressEndEmail(
-                                      context,
-                                      emailMoveAnimationController,
-                                      addressFadeAnimationController,
                                     )
-                                : viewModel.onPressEndAddress,
-                        disabled: viewModel.buttonDisabled(),
+                                  : Container(),
+                              SizedBox(
+                                height: 80 * 0.2,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width - 40,
+                                child: TextField(
+                                  autofocus: true,
+                                  focusNode: emailNode,
+                                  onChanged: viewModel.onChangeEmail,
+                                  onSubmitted: (text) =>
+                                      viewModel.onPressEndEmail(
+                                    context,
+                                    addressFadeAnimationController,
+                                  ),
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: InputDecoration(
+                                      labelText: "이메일",
+                                      border: OutlineInputBorder(),
+                                      errorText: viewModel.emailErrorMessage),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: SqaureButton(
+                          text: "다음",
+                          onPressed:
+                              viewModel.step == OnboardingStep.ONBOARDING_EMAIL
+                                  ? () => viewModel.onPressEndEmail(
+                                        context,
+                                        addressFadeAnimationController,
+                                      )
+                                  : viewModel.onPressEndAddress,
+                          disabled: viewModel.buttonDisabled(),
+                        ),
                       ),
                     ],
                   ),

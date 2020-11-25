@@ -27,14 +27,12 @@ class UserDetailedInformationViewModel with ChangeNotifier {
     step = OnboardingStep.ONBOARDING_EMAIL;
   }
 
-  void onPressEndEmail(
-      context, emailMoveAnimationController, addressFadeAnimationController) {
+  void onPressEndEmail(context, addressFadeAnimationController) {
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(email);
 
     if (emailValid) {
-      emailMoveAnimationController.forward();
       new Future.delayed(const Duration(milliseconds: 200), () {
         step = OnboardingStep.ONBOARDING_ADDRESS;
         addressFadeAnimationController.forward();
@@ -78,11 +76,9 @@ class UserDetailedInformationViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> onWillPop(
-      emailMoveAnimationController, addressFadeAnimationController) {
+  Future<bool> onWillPop(addressFadeAnimationController) {
     print("run");
     if (step == OnboardingStep.ONBOARDING_ADDRESS) {
-      emailMoveAnimationController.reverse();
       addressFadeAnimationController.reverse();
       step = OnboardingStep.ONBOARDING_EMAIL;
       notifyListeners();
