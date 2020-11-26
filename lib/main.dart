@@ -1,9 +1,8 @@
-import 'amplifyconfiguration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
-import 'package:subping/ui/onboarding/user_detailed_information/user_detailed_information.dart';
+import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/splash/splash.dart';
 
 void main() {
@@ -36,7 +35,7 @@ class _SubpingAppState extends State<SubpingApp> {
       initialRoute: "/splash",
       routes: {
         "/splash": (BuildContext context) => Splash(),
-        "/userInformation": (BuildContext context) => UserDetailedInformation()
+        "/userAccount": (BuildContext context) => UserAccount(),
       },
       onGenerateRoute: (settings) {
         print(settings.name);
