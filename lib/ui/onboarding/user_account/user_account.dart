@@ -9,7 +9,6 @@ import 'package:subping/ui/onboarding/user_account/user_account_viewmodel.dart';
 
 class UserAccount extends StatelessWidget {
   final viewModelInstance = UserAccountViewModel();
-  final confirmPasswordInput = WidthFitTextField();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,11 @@ class UserAccount extends StatelessWidget {
                                 SizedBox(height: 30),
                                 WidthFitTextField(
                                   labelText: "이메일",
+                                  errorText: viewModel.emailErrorMessage,
                                   focusNode: viewModel.emailFocusNode,
+                                  onChanged: viewModel.onChangeEmail,
+                                  onSubmitted: (String _) =>
+                                      viewModel.onSubmittedEmail(context),
                                 ),
                                 SizedBox(height: 16),
                                 AnimatedOpacity(
@@ -65,7 +68,9 @@ class UserAccount extends StatelessWidget {
                                       labelText: "비밀번호",
                                       helperText:
                                           "비밀번호는 영문, 숫자, 특수기호를 포함한\n8자리 이상으로 설정해야 합니다.",
+                                      errorText: viewModel.passwordErrorMessage,
                                       focusNode: viewModel.passwordFocusNode,
+                                      onChanged: viewModel.onChangePassword,
                                       obscureText: true,
                                       enableSuggestions: false,
                                       autocorrect: false),
@@ -77,7 +82,13 @@ class UserAccount extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: SqaureButton(
                           text: "다음",
-                          onPressed: viewModel.onPressComplete,
+                          onPressed: viewModel.step ==
+                                  OnboardingStep.ONBOARDING_EMAIL
+                              ? () => viewModel.onPressCompleteEmail(context)
+                              : () =>
+                                  viewModel.onPressCompletePassword(context),
+                          disabled: viewModel.buttonDisabled(),
+                          loading: viewModel.isLoading,
                         ),
                       )
                     ],

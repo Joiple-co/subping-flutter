@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
+import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
+import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
 
 void main() {
@@ -36,12 +38,15 @@ class _SubpingAppState extends State<SubpingApp> {
       routes: {
         "/splash": (BuildContext context) => Splash(),
         "/userAccount": (BuildContext context) => UserAccount(),
+        "/passAuth": (BuildContext context) => PassAuth(),
+        "/login": (BuildContext context) => UserLogin(),
       },
       onGenerateRoute: (settings) {
         print(settings.name);
         switch (settings.name) {
           case "/appIntro":
             return CirclularRevealTransition(
+                name: "/appIntro",
                 page: AppIntro(),
                 maxRadius: 2000,
                 centerAlignment: Alignment.center,

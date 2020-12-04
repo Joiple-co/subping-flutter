@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subping/enum/enum.dart';
+import 'package:subping/modules/cognito/cognito.dart';
+import 'package:subping/modules/error_handler/error_handler.dart';
 
 class UserAccountViewModel with ChangeNotifier {
   final stepWords = {
@@ -9,35 +11,110 @@ class UserAccountViewModel with ChangeNotifier {
 
   FocusNode emailFocusNode;
   FocusNode passwordFocusNode;
-  FocusNode confirmPasswordFocusNode;
 
   String email;
   String password;
-  String confirmPassword;
+  String emailErrorMessage;
+  String passwordErrorMessage;
+  bool isLoading;
+  bool emailConfirmed;
 
   OnboardingStep step;
 
   UserAccountViewModel() {
     email = "";
+    emailErrorMessage = null;
     password = "";
-    confirmPassword = "";
+    passwordErrorMessage = null;
     step = OnboardingStep.ONBOARDING_EMAIL;
+    isLoading = false;
+    emailConfirmed = false;
 
     emailFocusNode = FocusNode();
     passwordFocusNode = FocusNode();
-    confirmPasswordFocusNode = FocusNode();
   }
 
-  void onChangeEmail(String text) {}
+  void onChangeEmail(String text) {
+    email = text;
+    emailErrorMessage = null;
+    notifyListeners();
+  }
 
-  void onChangePassword(String text) {}
+  void onChangePassword(String text) {
+    password = text;
+    passwordErrorMessage = null;
+    notifyListeners();
+  }
 
-  void onChangeConfirmPassword(String text) {}
+  void onPressCompleteEmail(BuildContext context) async {
+    bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
 
-  void onPressComplete() {
-    if (step == OnboardingStep.ONBOARDING_EMAIL) {
-      step = OnboardingStep.ONBOARDING_PASSWORD;
+    if (emailValid) {
+      isLoading = true;
       notifyListeners();
-    } else {}
+
+      final cognito = Cognito();
+      final response = await cognito.emailDuplicate(email);
+
+      isLoading = false;
+      notifyListeners();
+
+      if (response.success) {
+        step = OnboardingStep.ONBOARDING_PASSWORD;
+        notifyListeners();
+
+        passwordFocusNode.requestFocus();
+      } else {
+        if (response.message == "emailExistException") {
+          emailErrorMessage = "이미 사용중인 이메일 입니다.";
+          notifyListeners();
+        } else {
+          ErrorHandler.errorHandler(context, response.message);
+        }
+      }
+    } else {
+      emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
+      notifyListeners();
+    }
+  }
+
+  void onPressCompletePassword(BuildContext context) async {
+    bool passwordValid =
+        RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
+            .hasMatch(password);
+
+    if (passwordValid) {
+      isLoading = true;
+      notifyListeners();
+
+      final cognito = Cognito();
+      final response = await cognito.signUpStart(email, password);
+
+      isLoading = false;
+      notifyListeners();
+
+      if (response.success) {
+        Navigator.pushNamed(context, "/passAuth");
+      } else {
+        ErrorHandler.errorHandler(context, response.message);
+      }
+    } else {
+      passwordErrorMessage = "비밀번호를 양식에 맞게 입력해주세요.";
+      notifyListeners();
+    }
+  }
+
+  void onSubmittedEmail(BuildContext context) {
+    onPressCompleteEmail(context);
+  }
+
+  bool buttonDisabled() {
+    if (step == OnboardingStep.ONBOARDING_EMAIL) {
+      return email.length == 0;
+    } else {
+      return password.length == 0 && email.length == 0;
+    }
   }
 }

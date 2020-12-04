@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:subping/modules/cognito/cognito.dart';
 
 class AppIntroViewModel {
   void onPressStart(BuildContext context) {
-    Navigator.pushNamed(context, "/userInformation");
+    Navigator.pop(context);
+    Navigator.pushNamed(context, "/userAccount");
+  }
+
+  void onPressLogin(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.pushNamed(context, "/login");
+  }
+
+  void onPressLater(BuildContext context) async {
+    final cognito = Cognito();
+    cognito.signOut();
   }
 
   Map<String, String> generateInformation(int index) {

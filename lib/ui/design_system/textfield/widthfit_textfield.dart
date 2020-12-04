@@ -20,6 +20,7 @@ class WidthFitTextField extends StatelessWidget {
   final bool obscureText;
   final String obscuringCharacter;
   final String errorText;
+  final Function onSubmitted;
 
   WidthFitTextField(
       {this.focusNode,
@@ -35,7 +36,8 @@ class WidthFitTextField extends StatelessWidget {
       this.autocorrect = true,
       this.obscureText = false,
       this.obscuringCharacter = "●",
-      this.errorText});
+      this.errorText,
+      this.onSubmitted});
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class WidthFitTextField extends StatelessWidget {
         enableSuggestions: enableSuggestions,
         autocorrect: autocorrect,
         obscureText: obscureText,
+        onSubmitted: onSubmitted,
         obscuringCharacter: obscuringCharacter,
         decoration: InputDecoration(
             labelText: labelText,

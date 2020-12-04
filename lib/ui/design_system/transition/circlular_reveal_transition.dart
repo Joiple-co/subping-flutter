@@ -17,17 +17,18 @@ class CirclularRevealTransition extends PageRouteBuilder {
       @required this.maxRadius,
       this.centerAlignment,
       this.centerOffset,
-      this.transitionDuration})
+      this.transitionDuration,
+      name})
       : assert(centerOffset != null || centerAlignment != null),
         super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) {
-            return page;
-          },
-        );
+            pageBuilder: (
+              BuildContext context,
+              Animation<double> animation,
+              Animation<double> secondaryAnimation,
+            ) {
+              return page;
+            },
+            settings: RouteSettings(name: name));
 
   @override
   Widget buildTransitions(
