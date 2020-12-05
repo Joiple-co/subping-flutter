@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:amazon_cognito_identity_dart_2/sig_v4.dart';
 import 'package:http/http.dart' as http;
 import 'package:device_info/device_info.dart';
 import 'package:package_info/package_info.dart';
-import 'package:subping/model/response/body_model.dart';
+import 'package:subping/modules/cognito/cognito.dart';
 
 class API {
   static final Map<String, String> _endpoint = {
@@ -66,12 +67,22 @@ class API {
     http.Response response;
 
     if (withAuth) {
-      // 코그니토 필요한 요청일 떄
+      final cognito = Cognito();
+      final credentials = await cognito.getCredentials();
+      if (credentials != null) {
+        final awsSigV4Client = AwsSigV4Client(
+            credentials.accessKeyId, credentials.secretAccessKey, endpoint,
+            sessionToken: credentials.sessionToken, region: 'ap-northeast-2');
+        final signedRequest = SigV4Request(awsSigV4Client,
+            method: "GET", path: path, headers: header);
+
+        response = await http.get(url, headers: signedRequest.headers);
+      } else {
+        return null;
+      }
     } else {
       response = await http.get(url, headers: header);
     }
-
-    print(response.body);
 
     return response;
   }
@@ -89,7 +100,20 @@ class API {
     http.Response response;
 
     if (withAuth) {
-      // 코그니토 필요한 요청일 떄
+      final cognito = Cognito();
+      final credentials = await cognito.getCredentials();
+      if (credentials != null) {
+        final awsSigV4Client = AwsSigV4Client(
+            credentials.accessKeyId, credentials.secretAccessKey, endpoint,
+            sessionToken: credentials.sessionToken, region: 'ap-northeast-2');
+        final signedRequest = SigV4Request(awsSigV4Client,
+            method: "GET", path: path, headers: header, body: body);
+
+        response = await http.post(url,
+            headers: signedRequest.headers, body: signedRequest.body);
+      } else {
+        return null;
+      }
     } else {
       response = await http.post(url, headers: header, body: jsonBody);
     }

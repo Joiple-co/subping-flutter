@@ -47,62 +47,69 @@ class UserAccountViewModel with ChangeNotifier {
   }
 
   void onPressCompleteEmail(BuildContext context) async {
-    bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
+    try {
+      bool emailValid = RegExp(
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email);
 
-    if (emailValid) {
-      isLoading = true;
-      notifyListeners();
-
-      final cognito = Cognito();
-      final response = await cognito.emailDuplicate(email);
-
-      isLoading = false;
-      notifyListeners();
-
-      if (response.success) {
-        step = OnboardingStep.ONBOARDING_PASSWORD;
+      if (emailValid) {
+        isLoading = true;
         notifyListeners();
 
-        passwordFocusNode.requestFocus();
-      } else {
-        if (response.message == "emailExistException") {
-          emailErrorMessage = "이미 사용중인 이메일 입니다.";
+        final cognito = Cognito();
+        final response = await cognito.emailDuplicate(email);
+
+        isLoading = false;
+        notifyListeners();
+
+        if (response.success) {
+          step = OnboardingStep.ONBOARDING_PASSWORD;
           notifyListeners();
+
+          passwordFocusNode.requestFocus();
         } else {
-          ErrorHandler.errorHandler(context, response.message);
+          if (response.message == "emailExistException") {
+            emailErrorMessage = "이미 사용중인 이메일 입니다.";
+            notifyListeners();
+          }
         }
+      } else {
+        emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
+        notifyListeners();
       }
-    } else {
-      emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
-      notifyListeners();
+    } catch (e) {
+      ErrorHandler.errorHandler(context, "ApiRequestException");
     }
   }
 
   void onPressCompletePassword(BuildContext context) async {
-    bool passwordValid =
-        RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
-            .hasMatch(password);
+    try {
+      bool passwordValid =
+          RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
+              .hasMatch(password);
 
-    if (passwordValid) {
-      isLoading = true;
-      notifyListeners();
+      if (passwordValid) {
+        isLoading = true;
+        notifyListeners();
 
-      final cognito = Cognito();
-      final response = await cognito.signUpStart(email, password);
+        final cognito = Cognito();
+        final response = await cognito.signUpStart(email, password);
 
-      isLoading = false;
-      notifyListeners();
+        isLoading = false;
+        notifyListeners();
 
-      if (response.success) {
-        Navigator.pushNamed(context, "/passAuth");
+        if (response.success) {
+          Navigator.pushNamed(context, "/passAuth");
+        } else {
+          ErrorHandler.errorHandler(context, response.message);
+        }
       } else {
-        ErrorHandler.errorHandler(context, response.message);
+        passwordErrorMessage = "비밀번호를 양식에 맞게 입력해주세요.";
+        notifyListeners();
       }
-    } else {
-      passwordErrorMessage = "비밀번호를 양식에 맞게 입력해주세요.";
-      notifyListeners();
+    } catch (e) {
+      print(e);
+      ErrorHandler.errorHandler(context, "default");
     }
   }
 

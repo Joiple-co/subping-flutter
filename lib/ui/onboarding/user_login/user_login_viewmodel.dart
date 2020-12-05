@@ -39,36 +39,41 @@ class UserLoginViewModel with ChangeNotifier {
   }
 
   void onPressLogin(BuildContext context) async {
-    bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
+    try {
+      bool emailValid = RegExp(
+              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email);
 
-    bool passwordValid =
-        RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
-            .hasMatch(password);
+      bool passwordValid =
+          RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
+              .hasMatch(password);
 
-    if (emailValid && passwordValid) {
-      final secure = Secure();
-      await secure.saveEmailPassword(email, password);
+      if (emailValid && passwordValid) {
+        final secure = Secure();
+        await secure.saveEmailPassword(email, password);
 
-      final cognito = Cognito();
-      final isLoginSuccess = await cognito.login(email, password);
+        final cognito = Cognito();
+        final isLoginSuccess = await cognito.login(email, password);
 
-      if (isLoginSuccess) {
-        print("loggedIn");
+        if (isLoginSuccess) {
+          print("loggedIn");
+        } else {
+          ErrorHandler.errorHandler(context, "LoginException");
+        }
       } else {
-        ErrorHandler.errorHandler(context, "loginException");
-      }
-    } else {
-      if (!emailValid) {
-        emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
-        notifyListeners();
-      }
+        if (!emailValid) {
+          emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
+          notifyListeners();
+        }
 
-      if (!passwordValid) {
-        passwordErrorMessage = "비밀번호는 소문자, 숫자, 특수문자를 포함한\n8자리 이상으로 입력해야 합니다.";
-        notifyListeners();
+        if (!passwordValid) {
+          passwordErrorMessage = "비밀번호는 소문자, 숫자, 특수문자를 포함한\n8자리 이상으로 입력해야 합니다.";
+          notifyListeners();
+        }
       }
+    } catch (e) {
+      print(e);
+      ErrorHandler.errorHandler(context, "default");
     }
   }
 }

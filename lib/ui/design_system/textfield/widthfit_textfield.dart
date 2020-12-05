@@ -54,6 +54,7 @@ class WidthFitTextField extends StatelessWidget {
         obscureText: obscureText,
         onSubmitted: onSubmitted,
         obscuringCharacter: obscuringCharacter,
+        enableInteractiveSelection: readOnly ? false : true,
         decoration: InputDecoration(
             labelText: labelText,
             helperText: helperText,

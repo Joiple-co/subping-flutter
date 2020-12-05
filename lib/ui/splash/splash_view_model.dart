@@ -36,10 +36,10 @@ class SplashViewModel {
 
         Navigator.pushReplacementNamed(context, "/appIntro");
       } else {
-        ErrorHandler.errorHandler(context, "splashException");
+        ErrorHandler.errorHandler(context, "SplashException");
       }
     } catch (e) {
-      print(e);
+      ErrorHandler.errorHandler(context, "SplashException");
     }
   }
 }

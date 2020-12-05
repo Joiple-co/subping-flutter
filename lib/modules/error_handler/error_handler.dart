@@ -18,7 +18,7 @@ class ErrorHandler {
             });
         break;
 
-      case "splashException":
+      case "SplashException":
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -33,7 +33,22 @@ class ErrorHandler {
             });
         break;
 
-      case "loginException":
+      case "ApiRequestException":
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  title: Text("확인이 필요해요!"),
+                  content: Text("서버와의 통신에 문제가 발생했어요.\n고객센터로 문의 부탁드립니다."),
+                  actions: [
+                    FlatButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text("확인"))
+                  ]);
+            });
+        break;
+
+      case "LoginException":
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -54,7 +69,7 @@ class ErrorHandler {
             builder: (BuildContext context) {
               return AlertDialog(
                   title: Text("확인이 필요해요!"),
-                  content: Text("서버와의 통신에 문제가 발생했어요.\n고객센터로 문의 부탁드립니다."),
+                  content: Text("알 수 없는 문제가 발생했어요.\n고객센터로 문의 부탁드립니다."),
                   actions: [
                     FlatButton(
                         onPressed: () => Navigator.pop(context),

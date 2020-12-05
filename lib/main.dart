@@ -4,6 +4,7 @@ import 'package:subping/ui/design_system/transition/circlular_reveal_transition.
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
+import 'package:subping/ui/onboarding/user_address/user_address.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
 
@@ -40,6 +41,7 @@ class _SubpingAppState extends State<SubpingApp> {
         "/userAccount": (BuildContext context) => UserAccount(),
         "/passAuth": (BuildContext context) => PassAuth(),
         "/login": (BuildContext context) => UserLogin(),
+        "/userAddress": (BuildContext context) => UserAddress()
       },
       onGenerateRoute: (settings) {
         print(settings.name);
