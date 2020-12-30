@@ -63,6 +63,22 @@ class ErrorHandler {
             });
         break;
 
+      case "AuthExpiredException":
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  title: Text("확인이 필요해요!"),
+                  content: Text("회원가입 제한시간이 만료되었어요.\n처음부터 다시 진행해주세요"),
+                  actions: [
+                    FlatButton(
+                        onPressed: () => Navigator.popUntil(
+                            context, ModalRoute.withName("/appIntro")),
+                        child: Text("확인"))
+                  ]);
+            });
+        break;
+
       default:
         showDialog(
             context: context,

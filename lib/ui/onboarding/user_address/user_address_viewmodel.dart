@@ -7,9 +7,9 @@ class UserAddressViewModel with ChangeNotifier {
   TextEditingController postCodeController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  String postCode;
-  String address;
-  String detailedAddress;
+  String postCode = "";
+  String address = "";
+  String detailedAddress = "";
 
   void onPressFindPostCode(BuildContext context) {
     Navigator.push(
@@ -34,5 +34,13 @@ class UserAddressViewModel with ChangeNotifier {
   void onChangeDetailedAddress(String text) {
     detailedAddress = text;
     notifyListeners();
+  }
+
+  void onSubmit() async {}
+
+  bool buttonDisabled() {
+    return !(postCode.length != 0 &&
+        address.length != 0 &&
+        detailedAddress.length != 0);
   }
 }

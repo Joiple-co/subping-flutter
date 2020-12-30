@@ -49,10 +49,8 @@ class UserLoginViewModel with ChangeNotifier {
               .hasMatch(password);
 
       if (emailValid && passwordValid) {
-        final secure = Secure();
-        await secure.saveEmailPassword(email, password);
-
         final cognito = Cognito();
+        await cognito.saveEmailPassword(email, password);
         final isLoginSuccess = await cognito.login(email, password);
 
         if (isLoginSuccess) {

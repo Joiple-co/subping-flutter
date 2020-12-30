@@ -121,7 +121,7 @@ class UserAccountViewModel with ChangeNotifier {
     if (step == OnboardingStep.ONBOARDING_EMAIL) {
       return email.length == 0;
     } else {
-      return password.length == 0 && email.length == 0;
+      return !(password.length != 0 && email.length != 0);
     }
   }
 }

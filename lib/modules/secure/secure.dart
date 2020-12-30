@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:crypton/crypton.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:subping/model/response/rsa_model.dart';
+import 'package:subping/model/rsa_model.dart';
 import 'package:subping/modules/api/api.dart';
 
 class Secure {
@@ -34,11 +34,5 @@ class Secure {
     } else {
       throw Exception("RSAKeyNotExist");
     }
-  }
-
-  Future<void> saveEmailPassword(String email, String password) async {
-    final store = new FlutterSecureStorage();
-    await store.write(key: "email", value: email);
-    await store.write(key: "password", value: password);
   }
 }

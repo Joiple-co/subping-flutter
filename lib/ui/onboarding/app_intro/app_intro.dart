@@ -94,11 +94,7 @@ class AppIntro extends StatelessWidget {
                                         color:
                                             Theme.of(context).primaryColor))),
                             SizedBox(
-                              height: 20,
-                            ),
-                            InkWell(
-                              onTap: () => viewModel.onPressLater(context),
-                              child: Text("우선은 둘러볼래요."),
+                              height: 34,
                             ),
                           ],
                         ))))

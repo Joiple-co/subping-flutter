@@ -7,7 +7,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     new Future.delayed(
-        const Duration(seconds: 1), () => viewModel.goAppIntro(context));
+        const Duration(seconds: 1), () => viewModel.goNextScene(context));
 
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,

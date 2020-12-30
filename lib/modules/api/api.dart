@@ -36,12 +36,16 @@ class API {
       deviceId = deviceInfo.identifierForVendor;
     }
 
+    final cognito = Cognito();
+    final email = await cognito.getUserEmail();
+
     return {
       "appVersion": appVersion,
       "buildNumber": buildNumber,
       "deviceName": deviceName,
       "deviceVersion": deviceVersion,
-      "deviceId": deviceId
+      "deviceId": deviceId,
+      "PK": email
     };
   }
 
@@ -84,6 +88,8 @@ class API {
       response = await http.get(url, headers: header);
     }
 
+    print(response.body);
+
     return response;
   }
 
@@ -102,6 +108,7 @@ class API {
     if (withAuth) {
       final cognito = Cognito();
       final credentials = await cognito.getCredentials();
+
       if (credentials != null) {
         final awsSigV4Client = AwsSigV4Client(
             credentials.accessKeyId, credentials.secretAccessKey, endpoint,
@@ -119,11 +126,5 @@ class API {
     }
 
     return response;
-  }
-
-  static Future<http.Response> sendError(dynamic error) {
-    String errorString = JSON.convert(error);
-
-    // API.post("")
   }
 }

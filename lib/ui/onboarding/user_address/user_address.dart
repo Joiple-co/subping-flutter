@@ -102,6 +102,7 @@ class UserAddress extends StatelessWidget {
                                   labelText: "상세주소",
                                   focusNode: viewModel.detailedAddressFocusNode,
                                   keyboardType: TextInputType.emailAddress,
+                                  onChanged: viewModel.onChangeDetailedAddress,
                                 ),
                               ),
                             ),
@@ -113,6 +114,7 @@ class UserAddress extends StatelessWidget {
                         child: SqaureButton(
                           text: "다음",
                           onPressed: () {},
+                          disabled: viewModel.buttonDisabled(),
                         ),
                       )
                     ],

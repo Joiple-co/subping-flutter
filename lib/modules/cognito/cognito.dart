@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:subping/model/response/body_model.dart';
+import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/cognito/cognito_store.dart';
 import 'package:subping/modules/secure/secure.dart';
 
 class Cognito {
+  static bool _isInit = false;
   final CognitoUserPool _userPool =
       CognitoUserPool("ap-northeast-2_VzCrSsELb", "4p168n12vp9vraftlg9d29hlf2");
   String _identityPoolId =
@@ -17,9 +19,13 @@ class Cognito {
   CognitoUserSession _session;
 
   Future<bool> _init() async {
-    final prefs = await SharedPreferences.getInstance();
-    final storage = CognitoStore(prefs);
-    _userPool.storage = storage;
+    if (!_isInit) {
+      final prefs = await SharedPreferences.getInstance();
+      final storage = CognitoStore(prefs);
+      _userPool.storage = storage;
+      _isInit = true;
+    }
+
     _cognitoUser = await _userPool.getCurrentUser();
 
     if (_cognitoUser == null) {
@@ -57,14 +63,14 @@ class Cognito {
   Future<BodyModel> signUpDone(
       {String name,
       String phoneNumber,
-      String birthDay,
+      String birthday,
       String carrier,
       String ci}) async {
     final response = await API.post("auth", "/signUpDone",
         body: {
           "name": name,
           "phoneNumber": phoneNumber,
-          "birthDay": birthDay,
+          "birthDay": birthday,
           "carrier": carrier,
           "ci": ci
         },
@@ -116,6 +122,25 @@ class Cognito {
 
     final credentials = CognitoCredentials(_identityPoolId, _userPool);
     await credentials.getAwsCredentials(_session.getIdToken().getJwtToken());
+
     return credentials;
+  }
+
+  Future<String> getUserEmail() async {
+    await _init();
+
+    if (_cognitoUser == null || _session == null) {
+      return null;
+    }
+
+    final email = (await _cognitoUser.getUserAttributes())[1].value;
+
+    return email;
+  }
+
+  Future<void> saveEmailPassword(String email, String password) async {
+    final store = new FlutterSecureStorage();
+    await store.write(key: "email", value: email);
+    await store.write(key: "password", value: password);
   }
 }

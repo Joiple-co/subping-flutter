@@ -1,4 +1,4 @@
-import 'package:subping/model/response/body_model.dart';
+import 'package:subping/model/body_model.dart';
 
 class RSAModel extends BodyModel {
   String publicKey;
