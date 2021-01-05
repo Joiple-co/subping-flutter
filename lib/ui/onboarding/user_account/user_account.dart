@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:subping/enum/enum.dart';
+import 'package:subping/const/const.dart';
 import 'package:provider/provider.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
@@ -58,8 +58,7 @@ class UserAccount extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16),
                                 AnimatedOpacity(
-                                  opacity: viewModel.step ==
-                                          OnboardingStep.ONBOARDING_PASSWORD
+                                  opacity: viewModel.step == ONBOARDING_PASSWORD
                                       ? 1
                                       : 0,
                                   duration: Duration(seconds: 1),
@@ -82,8 +81,7 @@ class UserAccount extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: SqaureButton(
                           text: "다음",
-                          onPressed: viewModel.step ==
-                                  OnboardingStep.ONBOARDING_EMAIL
+                          onPressed: viewModel.step == ONBOARDING_EMAIL
                               ? () => viewModel.onPressCompleteEmail(context)
                               : () =>
                                   viewModel.onPressCompletePassword(context),

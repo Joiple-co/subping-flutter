@@ -79,6 +79,21 @@ class ErrorHandler {
             });
         break;
 
+      case "UserAddressNameDuplicatedException":
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                  title: Text("확인이 필요해요!"),
+                  content: Text("같은 이름의 주소가 이미 있어요!\n주소의 이름을 바꿔주세요"),
+                  actions: [
+                    FlatButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text("확인"))
+                  ]);
+            });
+        break;
+
       default:
         showDialog(
             context: context,

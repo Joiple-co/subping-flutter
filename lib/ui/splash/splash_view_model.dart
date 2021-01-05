@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:subping/model/body_model.dart';
-import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/modules/secure/secure.dart';
@@ -40,18 +36,11 @@ class SplashViewModel {
 
       if (isInitSucess) {
         if (isLoggedIn) {
-          print("loggedIn");
-          final userOnboardingStepResponse =
-              await API.get("auth", "/onboardingStep");
-
-          final jsonBody = jsonDecode(userOnboardingStepResponse.body);
-          final body = BodyModel.fromJson(jsonBody);
-
-          if (body.message == "UserAddressNotExistException") {
-            Navigator.pushReplacementNamed(context, "/onboardingUserAddress");
-          } else {
-            Navigator.pushReplacementNamed(context, "/home");
-          }
+          final cognito = Cognito();
+          print("logged in");
+          String nextScene = await cognito.checkCurrentUserOnboardingStatus();
+          print(nextScene);
+          Navigator.pushReplacementNamed(context, nextScene);
         } else {
           Navigator.pushReplacementNamed(context, "/appIntro");
         }
@@ -59,7 +48,13 @@ class SplashViewModel {
         ErrorHandler.errorHandler(context, "SplashException");
       }
     } catch (e) {
-      ErrorHandler.errorHandler(context, "SplashException");
+      switch (e.code) {
+        case "UserNotFoundException":
+          Navigator.pushReplacementNamed(context, "/appIntro");
+          break;
+        default:
+          ErrorHandler.errorHandler(context, "SplashException");
+      }
     }
   }
 }

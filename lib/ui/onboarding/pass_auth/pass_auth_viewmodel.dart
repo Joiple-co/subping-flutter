@@ -12,7 +12,7 @@ class PassAuthViewModel with ChangeNotifier {
           phoneNumber: "01088812173",
           carrier: "SKT",
           ci: "testCI",
-          birthDay: "19980803");
+          birthday: "19980803");
 
       if (response.success) {
         Navigator.pushNamedAndRemoveUntil(

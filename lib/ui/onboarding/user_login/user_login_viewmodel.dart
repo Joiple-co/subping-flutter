@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
-import 'package:subping/modules/secure/secure.dart';
 
 class UserLoginViewModel with ChangeNotifier {
   FocusNode emailFocusNode;
@@ -50,11 +49,11 @@ class UserLoginViewModel with ChangeNotifier {
 
       if (emailValid && passwordValid) {
         final cognito = Cognito();
-        await cognito.saveEmailPassword(email, password);
         final isLoginSuccess = await cognito.login(email, password);
 
         if (isLoginSuccess) {
-          print("loggedIn");
+          Navigator.pushNamedAndRemoveUntil(
+              context, "/splash", (Route<dynamic> route) => false);
         } else {
           ErrorHandler.errorHandler(context, "LoginException");
         }

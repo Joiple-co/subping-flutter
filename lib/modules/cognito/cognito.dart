@@ -1,30 +1,25 @@
 import 'dart:convert';
 
 import 'package:amazon_cognito_identity_dart_2/cognito.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:subping/const/const.dart';
 import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/cognito/cognito_store.dart';
 import 'package:subping/modules/secure/secure.dart';
 
 class Cognito {
-  static bool _isInit = false;
-  final CognitoUserPool _userPool =
-      CognitoUserPool("ap-northeast-2_VzCrSsELb", "4p168n12vp9vraftlg9d29hlf2");
-  String _identityPoolId =
-      "ap-northeast-2:399e170b-7fa8-47d7-b5b8-1b4d1a8dd55e";
+  final CognitoUserPool _userPool = CognitoUserPool(USER_POOL_ID, CLIENT_ID);
+  String _identityPoolId = IDENTITIY_POOL_ID;
   CognitoUser _cognitoUser;
   AuthenticationDetails _authenticationDetails;
   CognitoUserSession _session;
 
+  // 반드시 로그인 된 상태에서 호출되어야 함.
   Future<bool> _init() async {
-    if (!_isInit) {
-      final prefs = await SharedPreferences.getInstance();
-      final storage = CognitoStore(prefs);
-      _userPool.storage = storage;
-      _isInit = true;
-    }
+    final prefs = await SharedPreferences.getInstance();
+    final storage = CognitoStore(prefs);
+    _userPool.storage = storage;
 
     _cognitoUser = await _userPool.getCurrentUser();
 
@@ -138,9 +133,27 @@ class Cognito {
     return email;
   }
 
-  Future<void> saveEmailPassword(String email, String password) async {
-    final store = new FlutterSecureStorage();
-    await store.write(key: "email", value: email);
-    await store.write(key: "password", value: password);
+  Future<String> checkCurrentUserOnboardingStatus() async {
+    await _init();
+
+    if (_cognitoUser == null || _session == null) {
+      return null;
+    }
+
+    try {
+      final userOnboardingStepResponse =
+          await API.get("auth", "/onboardingStep");
+
+      final jsonBody = jsonDecode(userOnboardingStepResponse.body);
+      final body = BodyModel.fromJson(jsonBody);
+
+      if (body.message == "UserAddressNotExistException") {
+        return "/onboardingUserAddress";
+      } else {
+        return "/home";
+      }
+    } catch (e) {
+      throw e;
+    }
   }
 }

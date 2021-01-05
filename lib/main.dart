@@ -46,7 +46,6 @@ class _SubpingAppState extends State<SubpingApp> {
         "/home": (BuildContext context) => Home(),
       },
       onGenerateRoute: (settings) {
-        print(settings.name);
         switch (settings.name) {
           case "/appIntro":
             return CirclularRevealTransition(

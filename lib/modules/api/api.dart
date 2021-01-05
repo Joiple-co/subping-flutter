@@ -9,11 +9,14 @@ import 'package:subping/modules/cognito/cognito.dart';
 
 class API {
   static final Map<String, String> _endpoint = {
-    "auth": 'https://6d6943fwn7.execute-api.ap-northeast-2.amazonaws.com/dev'
+    'auth': 'https://6d6943fwn7.execute-api.ap-northeast-2.amazonaws.com/dev',
+    'user': 'https://ceeynm3z5j.execute-api.ap-northeast-2.amazonaws.com/dev'
   };
+
   static final JSON = JsonEncoder();
 
-  static Future<Map<String, String>> _makeHeader() async {
+  static Future<Map<String, String>> _makeHeader({bool withAuth = true}) async {
+    Map<String, String> header = {};
     final PackageInfo packageInfo = PackageInfo();
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
     final String appVersion = packageInfo.version;
@@ -36,21 +39,27 @@ class API {
       deviceId = deviceInfo.identifierForVendor;
     }
 
-    final cognito = Cognito();
-    final email = await cognito.getUserEmail();
+    if (withAuth) {
+      final cognito = Cognito();
+      String email = await cognito.getUserEmail();
+      header["PK"] = email;
+    }
 
-    return {
-      "appVersion": appVersion,
-      "buildNumber": buildNumber,
-      "deviceName": deviceName,
-      "deviceVersion": deviceVersion,
-      "deviceId": deviceId,
-      "PK": email
+    header = {
+      ...header,
+      'appVersion': appVersion,
+      'buildNumber': buildNumber,
+      'deviceName': deviceName,
+      'deviceVersion': deviceVersion,
+      'deviceId': deviceId,
+      'Content-Type': 'application/json; charset=utf-8'
     };
+
+    return header;
   }
 
   static String _makeFullUrl(String endpoint, String path) {
-    String fullUrl = "";
+    String fullUrl = '';
 
     fullUrl += endpoint;
     fullUrl += path;
@@ -62,7 +71,7 @@ class API {
   static Future<http.Response> get(String service, String path,
       {bool withAuth = true}) async {
     // 서비스 명 검증
-    assert(_endpoint.keys.contains(service), "[Error] Service not defined");
+    assert(_endpoint.keys.contains(service), '[Error] Service not defined');
 
     String endpoint = _endpoint[service];
     Map header = await _makeHeader();
@@ -73,12 +82,13 @@ class API {
     if (withAuth) {
       final cognito = Cognito();
       final credentials = await cognito.getCredentials();
+
       if (credentials != null) {
         final awsSigV4Client = AwsSigV4Client(
             credentials.accessKeyId, credentials.secretAccessKey, endpoint,
             sessionToken: credentials.sessionToken, region: 'ap-northeast-2');
         final signedRequest = SigV4Request(awsSigV4Client,
-            method: "GET", path: path, headers: header);
+            method: 'GET', path: path, headers: header);
 
         response = await http.get(url, headers: signedRequest.headers);
       } else {
@@ -87,7 +97,6 @@ class API {
     } else {
       response = await http.get(url, headers: header);
     }
-
     print(response.body);
 
     return response;
@@ -96,10 +105,10 @@ class API {
   static Future<http.Response> post(String service, String path,
       {bool withAuth = true, Map body}) async {
     // 서비스 명 검증
-    assert(_endpoint.keys.contains(service), "[Error] Service not defined");
+    assert(_endpoint.keys.contains(service), '[Error] Service not defined');
 
+    Map header = await _makeHeader(withAuth: withAuth);
     String endpoint = _endpoint[service];
-    Map header = await _makeHeader();
     String url = _makeFullUrl(endpoint, path);
     String jsonBody = JSON.convert(body);
 
@@ -111,10 +120,14 @@ class API {
 
       if (credentials != null) {
         final awsSigV4Client = AwsSigV4Client(
-            credentials.accessKeyId, credentials.secretAccessKey, endpoint,
-            sessionToken: credentials.sessionToken, region: 'ap-northeast-2');
+          credentials.accessKeyId,
+          credentials.secretAccessKey,
+          endpoint,
+          sessionToken: credentials.sessionToken,
+          region: 'ap-northeast-2',
+        );
         final signedRequest = SigV4Request(awsSigV4Client,
-            method: "GET", path: path, headers: header, body: body);
+            method: 'POST', path: path, headers: header, body: body);
 
         response = await http.post(url,
             headers: signedRequest.headers, body: signedRequest.body);
@@ -122,8 +135,11 @@ class API {
         return null;
       }
     } else {
+      print("run");
       response = await http.post(url, headers: header, body: jsonBody);
     }
+
+    print(response.body);
 
     return response;
   }

@@ -113,7 +113,7 @@ class UserAddress extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: SqaureButton(
                           text: "다음",
-                          onPressed: () {},
+                          onPressed: () => viewModel.onSubmit(context),
                           disabled: viewModel.buttonDisabled(),
                         ),
                       )

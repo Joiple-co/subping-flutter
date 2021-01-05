@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:subping/enum/enum.dart';
+import 'package:subping/const/const.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 
 class UserAccountViewModel with ChangeNotifier {
-  final stepWords = {
-    OnboardingStep.ONBOARDING_EMAIL: "이메일 주소",
-    OnboardingStep.ONBOARDING_PASSWORD: "비밀번호"
-  };
+  final stepWords = {ONBOARDING_EMAIL: "이메일 주소", ONBOARDING_PASSWORD: "비밀번호"};
 
   FocusNode emailFocusNode;
   FocusNode passwordFocusNode;
@@ -19,14 +16,14 @@ class UserAccountViewModel with ChangeNotifier {
   bool isLoading;
   bool emailConfirmed;
 
-  OnboardingStep step;
+  String step;
 
   UserAccountViewModel() {
     email = "";
     emailErrorMessage = null;
     password = "";
     passwordErrorMessage = null;
-    step = OnboardingStep.ONBOARDING_EMAIL;
+    step = ONBOARDING_EMAIL;
     isLoading = false;
     emailConfirmed = false;
 
@@ -57,13 +54,14 @@ class UserAccountViewModel with ChangeNotifier {
         notifyListeners();
 
         final cognito = Cognito();
+        print("cognito run");
         final response = await cognito.emailDuplicate(email);
 
         isLoading = false;
         notifyListeners();
 
         if (response.success) {
-          step = OnboardingStep.ONBOARDING_PASSWORD;
+          step = ONBOARDING_PASSWORD;
           notifyListeners();
 
           passwordFocusNode.requestFocus();
@@ -78,6 +76,10 @@ class UserAccountViewModel with ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
+      print(e);
+
+      isLoading = false;
+      notifyListeners();
       ErrorHandler.errorHandler(context, "ApiRequestException");
     }
   }
@@ -118,7 +120,7 @@ class UserAccountViewModel with ChangeNotifier {
   }
 
   bool buttonDisabled() {
-    if (step == OnboardingStep.ONBOARDING_EMAIL) {
+    if (step == ONBOARDING_EMAIL) {
       return email.length == 0;
     } else {
       return !(password.length != 0 && email.length != 0);
