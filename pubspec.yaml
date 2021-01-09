@@ -34,6 +34,9 @@ dependencies:
   crypton: ^1.1.3
   flutter_secure_storage: ^3.3.5
   shared_preferences: ^0.5.12+4
+  flutter_icons: ^1.1.0
+  flutter_screenutil: ^4.0.2+3
+  intl: ^0.16.1
   kopo: 
     git:
       url: https://github.com/W1nU/kopo.git
@@ -66,6 +69,7 @@ flutter:
     - assets/appIntro2.png
     - assets/appIntro3.png
     - assets/appIntro4.png
+    - assets/bannerTest.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -78,17 +82,19 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+    - family: NanumSQR
+      fonts:
+        - asset: assets/fonts/NanumSquareRoundB.ttf
+          weight: 900
+        - asset: assets/fonts/NanumSquareRoundEB.ttf
+          weight: 600
+        - asset: assets/fonts/NanumSquareRoundR.ttf
+          weight: 500
+        - asset: assets/fonts/NanumSquareRoundL.ttf
+          weight: 400
+       
+
+  
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
