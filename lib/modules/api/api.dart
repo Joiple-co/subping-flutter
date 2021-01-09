@@ -10,7 +10,8 @@ import 'package:subping/modules/cognito/cognito.dart';
 class API {
   static final Map<String, String> _endpoint = {
     'auth': 'https://6d6943fwn7.execute-api.ap-northeast-2.amazonaws.com/dev',
-    'user': 'https://ceeynm3z5j.execute-api.ap-northeast-2.amazonaws.com/dev'
+    'user': 'https://ceeynm3z5j.execute-api.ap-northeast-2.amazonaws.com/dev',
+    'service': 'https://bdr325go91.execute-api.ap-northeast-2.amazonaws.com/dev'
   };
 
   static final JSON = JsonEncoder();
@@ -97,7 +98,6 @@ class API {
     } else {
       response = await http.get(url, headers: header);
     }
-    print(response.body);
 
     return response;
   }

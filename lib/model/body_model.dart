@@ -1,6 +1,6 @@
 class BodyModel {
   bool success;
-  String message;
+  dynamic message;
 
   BodyModel({this.success, this.message});
 

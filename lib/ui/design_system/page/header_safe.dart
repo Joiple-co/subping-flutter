@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeaderSafe extends StatelessWidget {
   final Widget child;
+  final bool hasBottomSafe;
 
-  HeaderSafe({Key key, this.child}) : super(key: key);
+  HeaderSafe({Key key, this.child, this.hasBottomSafe = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class HeaderSafe extends StatelessWidget {
         bottom: false,
         child: Container(
           child: child,
-          padding: EdgeInsets.only(bottom: 34),
+          padding: EdgeInsets.only(bottom: hasBottomSafe ? 34.h : 0),
         ),
       ),
     );

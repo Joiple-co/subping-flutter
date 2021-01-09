@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
-import 'package:subping/ui/design_system/textfield/widthfit_textfield.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro_viewmodel.dart';
 
 class AppIntro extends StatelessWidget {
@@ -26,7 +25,7 @@ class AppIntro extends StatelessWidget {
                       children: [
                         Image(
                           image: AssetImage(information["illustImage"]),
-                          height: MediaQuery.of(context).size.height * 0.4,
+                          height: MediaQuery.of(context).size.height * 0.4 + 24,
                         ),
                         SizedBox(
                           height: 50,

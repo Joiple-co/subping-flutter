@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:subping/ui/splash/splash_view_model.dart';
+import 'package:subping/ui/splash/splash_viewmodel.dart';
 
 class Splash extends StatelessWidget {
   final viewModel = new SplashViewModel();
