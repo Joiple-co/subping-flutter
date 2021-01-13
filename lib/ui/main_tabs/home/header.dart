@@ -42,35 +42,40 @@ class Header extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 360.w,
-            height: 200.h,
-            child: Swiper(
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(
-                        image: AssetImage("assets/bannerTest.png"),
-                        height: 200.h,
-                      ),
-                    ],
-                  ),
-                );
-              },
-              itemCount: 3,
-              loop: true,
-              autoplay: true,
-              pagination: SwiperPagination(
-                  margin: EdgeInsets.all(10),
-                  alignment: Alignment.bottomCenter,
-                  builder: DotSwiperPaginationBuilder(
-                      color: Theme.of(context).disabledColor,
-                      activeColor: Theme.of(context).primaryColor,
-                      size: 5,
-                      activeSize: 5)),
-            ),
-          )
+            height: 20.h,
+          ),
+          ConstrainedBox(
+              child: Swiper(
+                autoplay: true,
+                outer: false,
+                itemBuilder: (context, index) {
+                  return SizedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image(
+                          width: 360.w,
+                          height:
+                              200 * (MediaQuery.of(context).size.width / 360),
+                          image: AssetImage("assets/bannerTest.png"),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                pagination: SwiperPagination(
+                    margin: EdgeInsets.all(5.h),
+                    alignment: Alignment.bottomCenter,
+                    builder: DotSwiperPaginationBuilder(
+                        color: Theme.of(context).disabledColor,
+                        activeColor: Theme.of(context).primaryColor,
+                        size: 5,
+                        activeSize: 5)),
+                itemCount: 3,
+              ),
+              constraints: BoxConstraints.loose(Size(
+                  360.w, 200 * (MediaQuery.of(context).size.width / 360)))),
         ],
       ),
     );

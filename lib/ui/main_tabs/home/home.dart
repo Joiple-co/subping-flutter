@@ -36,11 +36,11 @@ class Home extends StatelessWidget {
                       height: 16.h,
                     ),
                     Header(),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 20.h),
                     RealTimeChart(
                       currentHotServices: viewModel.currentHotServices,
                     ),
-                    SizedBox(height: 16.h),
+                    SizedBox(height: 20.h),
                     RecommendServices(
                       userRecommendServices: viewModel.userRecommendServices,
                     )

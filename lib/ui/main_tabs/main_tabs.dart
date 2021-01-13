@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:subping/ui/main_tabs/home/home.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class MainTabs extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class MainTabs extends StatefulWidget {
 
 class _MainTabsState extends State<MainTabs> {
   int _selectedIndex = 0;
-  List<Widget> _pages = [Home(), Home(), Home(), Home()];
+  List<Widget> _pages = [Home(), null, null, null];
 
   void _onItemTapped(int index) {
     setState(() {
