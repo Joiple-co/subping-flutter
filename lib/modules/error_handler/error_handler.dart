@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ErrorHandler {
   static errorHandler(BuildContext context, String error) {
     switch (error) {
-      case "userExistException":
+      case "UserExistException":
         showDialog(
             context: context,
             builder: (BuildContext context) {

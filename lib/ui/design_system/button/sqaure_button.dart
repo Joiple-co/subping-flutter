@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SqaureButton extends StatelessWidget {
   final String text;
@@ -13,7 +14,7 @@ class SqaureButton extends StatelessWidget {
       @required this.text,
       @required this.onPressed,
       this.width,
-      this.height = 50,
+      this.height = 40,
       this.loading = false,
       this.disabled = false})
       : super(key: key);
@@ -37,7 +38,7 @@ class SqaureButton extends StatelessWidget {
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       onPressed: disabled || loading ? null : onPressed,
       minWidth: width != null ? width : MediaQuery.of(context).size.width - 40,
-      height: height,
+      height: height.h,
       color: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       disabledColor: Theme.of(context).disabledColor,

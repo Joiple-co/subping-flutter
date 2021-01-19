@@ -11,7 +11,7 @@ class CognitoStore extends CognitoStorage {
   Future getItem(String key) async {
     String item;
     try {
-      item = json.decode(_prefs.getString(key));
+      item = json.decode(_prefs.getString("cognito:${key}"));
     } catch (e) {
       return null;
     }
@@ -20,15 +20,15 @@ class CognitoStore extends CognitoStorage {
 
   @override
   Future setItem(String key, value) async {
-    await _prefs.setString(key, json.encode(value));
+    await _prefs.setString("cognito:${key}", json.encode(value));
     return getItem(key);
   }
 
   @override
   Future removeItem(String key) async {
-    final item = getItem(key);
+    final item = getItem("cognito:${key}");
     if (item != null) {
-      await _prefs.remove(key);
+      await _prefs.remove("cognito:${key}");
       return item;
     }
     return null;

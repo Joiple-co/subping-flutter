@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subping/const/const.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/page/horizontal_padding.dart';
@@ -39,7 +40,7 @@ class UserAccount extends StatelessWidget {
                         ]),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 21,
+                            fontSize: 21.nsp,
                             height: 1.3),
                       ),
                       Expanded(

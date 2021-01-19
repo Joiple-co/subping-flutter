@@ -66,7 +66,7 @@ class UserAccountViewModel with ChangeNotifier {
 
           passwordFocusNode.requestFocus();
         } else {
-          if (response.message == "emailExistException") {
+          if (response.message == "EmailExistException") {
             emailErrorMessage = "이미 사용중인 이메일 입니다.";
             notifyListeners();
           }

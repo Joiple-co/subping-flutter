@@ -49,6 +49,7 @@ class UserLoginViewModel with ChangeNotifier {
 
       if (emailValid && passwordValid) {
         final cognito = Cognito();
+        print("run'${email}', '${password}'");
         final isLoginSuccess = await cognito.login(email, password);
 
         if (isLoginSuccess) {
@@ -70,7 +71,7 @@ class UserLoginViewModel with ChangeNotifier {
       }
     } catch (e) {
       print(e);
-      ErrorHandler.errorHandler(context, "default");
+      ErrorHandler.errorHandler(context, "LoginException");
     }
   }
 }

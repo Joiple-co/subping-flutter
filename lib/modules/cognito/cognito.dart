@@ -15,7 +15,6 @@ class Cognito {
   AuthenticationDetails _authenticationDetails;
   CognitoUserSession _session;
 
-  // 반드시 로그인 된 상태에서 호출되어야 함.
   Future<bool> _init() async {
     final prefs = await SharedPreferences.getInstance();
     final storage = CognitoStore(prefs);
@@ -86,6 +85,7 @@ class Cognito {
     try {
       _session = await _cognitoUser.authenticateUser(_authenticationDetails);
     } catch (e) {
+      print(e);
       return false;
     }
 

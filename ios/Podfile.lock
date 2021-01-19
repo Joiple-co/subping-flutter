@@ -1,94 +1,59 @@
 PODS:
-  - Amplify (1.1.1):
-    - Amplify/Default (= 1.1.1)
-  - Amplify/Default (1.1.1)
-  - amplify_auth_cognito (0.0.1):
-    - Amplify
-    - AmplifyPlugins/AWSCognitoAuthPlugin
+  - device_info (0.0.1):
     - Flutter
-    - ObjectMapper
-  - amplify_core (0.0.1):
-    - Amplify
-    - AmplifyPlugins/AWSCognitoAuthPlugin
-    - AWSPluginsCore (= 1.1.1)
-    - Flutter
-  - AmplifyPlugins/AWSCognitoAuthPlugin (1.1.1):
-    - AWSAuthCore (~> 2.15.0)
-    - AWSCore (~> 2.15.0)
-    - AWSMobileClient (~> 2.15.0)
-    - AWSPluginsCore (= 1.1.1)
-  - AWSAuthCore (2.15.3):
-    - AWSCore (= 2.15.3)
-  - AWSCognitoIdentityProvider (2.15.3):
-    - AWSCognitoIdentityProviderASF (= 1.0.2)
-    - AWSCore (= 2.15.3)
-  - AWSCognitoIdentityProviderASF (1.0.2)
-  - AWSCore (2.15.3)
-  - AWSMobileClient (2.15.3):
-    - AWSAuthCore (= 2.15.3)
-    - AWSCognitoIdentityProvider (= 2.15.3)
-  - AWSPluginsCore (1.1.1):
-    - Amplify (= 1.1.1)
-    - AWSCore (~> 2.15.0)
-    - AWSMobileClient (~> 2.15.0)
   - Flutter (1.0.0)
+  - flutter_secure_storage (3.3.1):
+    - Flutter
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
-  - ObjectMapper (4.2.0)
+  - package_info (0.0.1):
+    - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
   - Toast (4.0.0)
   - webview_flutter (0.0.1):
     - Flutter
 
 DEPENDENCIES:
-  - amplify_auth_cognito (from `.symlinks/plugins/amplify_auth_cognito/ios`)
-  - amplify_core (from `.symlinks/plugins/amplify_core/ios`)
+  - device_info (from `.symlinks/plugins/device_info/ios`)
   - Flutter (from `Flutter`)
+  - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - package_info (from `.symlinks/plugins/package_info/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   trunk:
-    - Amplify
-    - AmplifyPlugins
-    - AWSAuthCore
-    - AWSCognitoIdentityProvider
-    - AWSCognitoIdentityProviderASF
-    - AWSCore
-    - AWSMobileClient
-    - AWSPluginsCore
-    - ObjectMapper
     - Toast
 
 EXTERNAL SOURCES:
-  amplify_auth_cognito:
-    :path: ".symlinks/plugins/amplify_auth_cognito/ios"
-  amplify_core:
-    :path: ".symlinks/plugins/amplify_core/ios"
+  device_info:
+    :path: ".symlinks/plugins/device_info/ios"
   Flutter:
     :path: Flutter
+  flutter_secure_storage:
+    :path: ".symlinks/plugins/flutter_secure_storage/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
+  package_info:
+    :path: ".symlinks/plugins/package_info/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
   webview_flutter:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  Amplify: e23b610dde2539d67ec29843c7f01010b44b98ba
-  amplify_auth_cognito: 21e6e4acd861653d73875ee7d8ddce1a404e23cf
-  amplify_core: c13855678f4701fa81096949a56be6a1d489d982
-  AmplifyPlugins: 9e1e1bff2a8b1676307101ca7d768a7be49c0456
-  AWSAuthCore: 598e8eb56e12799877414d10b04598de12a15992
-  AWSCognitoIdentityProvider: 4a721292eda37a8c3ef451e8fec28abe14aff18e
-  AWSCognitoIdentityProviderASF: 0fb6ea671c05a63276e320726f680cd880522442
-  AWSCore: 5a8f9d7461dbe5ea6a5473c41cf113b687e19136
-  AWSMobileClient: 5c29678413764ee3bcd528421331deb0a35b72fb
-  AWSPluginsCore: 4e98e284fff7763470ef94f7538449f20d891f70
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_secure_storage: 7953c38a04c3fdbb00571bcd87d8e3b5ceb9daec
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
-  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   webview_flutter: d2b4d6c66968ad042ad94cbb791f5b72b4678a96
 
-PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+PODFILE CHECKSUM: 0fe8a36e72c7f87d63ee598793e246460cb37d7e
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.1

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/page/horizontal_padding.dart';
@@ -38,7 +39,7 @@ class UserAddress extends StatelessWidget {
                         ]),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 21,
+                            fontSize: 21.sp,
                             height: 1.3),
                       ),
                       SizedBox(
@@ -53,10 +54,7 @@ class UserAddress extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Container(
-                                    width: (MediaQuery.of(context).size.width -
-                                                40) *
-                                            0.5 -
-                                        10,
+                                    width: 155.w,
                                     child: FocusScope(
                                       node: FocusScopeNode(),
                                       child: WidthFitTextField(
@@ -69,15 +67,12 @@ class UserAddress extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  SizedBox(width: 10.w),
                                   SqaureButton(
                                     text: "우편번호 찾기",
                                     onPressed: () =>
                                         viewModel.onPressFindPostCode(context),
-                                    width: (MediaQuery.of(context).size.width -
-                                            40) *
-                                        0.5,
-                                    height: 60,
+                                    width: 155.w,
                                   ),
                                 ],
                               ),
@@ -85,7 +80,7 @@ class UserAddress extends StatelessWidget {
                             SizedBox(height: 80 * 0.2),
                             Center(
                               child: Container(
-                                width: MediaQuery.of(context).size.width - 40,
+                                width: 320.w,
                                 child: WidthFitTextField(
                                   readOnly: true,
                                   labelText: "주소",
@@ -97,7 +92,7 @@ class UserAddress extends StatelessWidget {
                             SizedBox(height: 80 * 0.2),
                             Center(
                               child: Container(
-                                width: MediaQuery.of(context).size.width - 40,
+                                width: 320.w,
                                 child: WidthFitTextField(
                                   labelText: "상세주소",
                                   focusNode: viewModel.detailedAddressFocusNode,

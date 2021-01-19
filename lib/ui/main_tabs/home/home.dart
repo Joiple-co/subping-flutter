@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/main_tabs/home/header.dart';
 import 'package:subping/ui/main_tabs/home/home_viewmodel.dart';
+import 'package:subping/ui/main_tabs/home/live_review.dart';
 import 'package:subping/ui/main_tabs/home/real_time_chart.dart';
 import 'package:subping/ui/main_tabs/home/recommand_services.dart';
 import 'package:subping/ui/main_tabs/home/subscribe_reminder.dart';
@@ -43,7 +44,9 @@ class Home extends StatelessWidget {
                     SizedBox(height: 20.h),
                     RecommendServices(
                       userRecommendServices: viewModel.userRecommendServices,
-                    )
+                    ),
+                    SizedBox(height: 20.h),
+                    LiveReview()
                   ],
                 ),
               ),

@@ -9,6 +9,7 @@ import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_address/user_address.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
+import 'package:subping/ui/webview/pure_webview.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -49,6 +50,7 @@ class _SubpingAppState extends State<SubpingApp> {
           "/login": (BuildContext context) => UserLogin(),
           "/onboardingUserAddress": (BuildContext context) => UserAddress(),
           "/home": (BuildContext context) => MainTabs(),
+          "/webview": (BuildContext context) => PureWebView()
         },
         onGenerateRoute: (settings) {
           switch (settings.name) {
