@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
@@ -28,7 +29,7 @@ class AppIntro extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.4 + 24,
                         ),
                         SizedBox(
-                          height: 50,
+                          height: 50.h,
                         ),
                         Text.rich(
                             TextSpan(
@@ -41,14 +42,13 @@ class AppIntro extends StatelessWidget {
                                               Color.fromRGBO(0, 224, 197, 1)))
                                 ]),
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 21)),
+                                fontWeight: FontWeight.bold, fontSize: 18.nsp)),
                         SizedBox(
-                          height: 15,
+                          height: 15.h,
                         ),
-                        Text(
-                          information["subTitle"],
-                          textAlign: TextAlign.center,
-                        ),
+                        Text(information["subTitle"],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 13.nsp)),
                       ],
                     ),
                   );
@@ -74,16 +74,16 @@ class AppIntro extends StatelessWidget {
                             topRight: Radius.circular(15.0))),
                     context: context,
                     builder: (BuildContext context) => Container(
-                        height: 170,
+                        height: 130.h,
                         child: Column(
                           children: [
-                            SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                             SqaureButton(
                                 text: "지금 가입하고 사용할래요!",
                                 onPressed: () =>
                                     viewModel.onPressStart(context)),
                             SizedBox(
-                              height: 20,
+                              height: 20.h,
                             ),
                             InkWell(
                                 onTap: () => viewModel.onPressLogin(context),
@@ -92,9 +92,6 @@ class AppIntro extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         color:
                                             Theme.of(context).primaryColor))),
-                            SizedBox(
-                              height: 34,
-                            ),
                           ],
                         ))))
           ],

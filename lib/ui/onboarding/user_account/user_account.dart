@@ -40,7 +40,7 @@ class UserAccount extends StatelessWidget {
                         ]),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 21.nsp,
+                            fontSize: 18.nsp,
                             height: 1.3),
                       ),
                       Expanded(
@@ -48,7 +48,7 @@ class UserAccount extends StatelessWidget {
                             alignment: Alignment.topCenter,
                             child: Column(
                               children: [
-                                SizedBox(height: 30),
+                                SizedBox(height: 30.h),
                                 WidthFitTextField(
                                   labelText: "이메일",
                                   errorText: viewModel.emailErrorMessage,
@@ -57,7 +57,7 @@ class UserAccount extends StatelessWidget {
                                   onSubmitted: (String _) =>
                                       viewModel.onSubmittedEmail(context),
                                 ),
-                                SizedBox(height: 16),
+                                SizedBox(height: 16.h),
                                 AnimatedOpacity(
                                   opacity: viewModel.step == ONBOARDING_PASSWORD
                                       ? 1

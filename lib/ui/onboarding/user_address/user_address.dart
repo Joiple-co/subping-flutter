@@ -39,7 +39,7 @@ class UserAddress extends StatelessWidget {
                         ]),
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 21.sp,
+                            fontSize: 18.nsp,
                             height: 1.3),
                       ),
                       SizedBox(
