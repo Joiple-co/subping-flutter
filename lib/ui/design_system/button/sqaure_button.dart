@@ -14,7 +14,7 @@ class SqaureButton extends StatelessWidget {
       @required this.text,
       @required this.onPressed,
       this.width,
-      this.height = 40,
+      this.height = 110,
       this.loading = false,
       this.disabled = false})
       : super(key: key);

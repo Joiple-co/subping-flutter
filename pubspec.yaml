@@ -94,8 +94,16 @@ flutter:
           weight: 500
         - asset: assets/fonts/NanumSquareRoundL.ttf
           weight: 400
-       
-
+    - family : NotoSansKR
+      fonts:
+        - asset: assets/fonts/NotoSansCJKkr-Bold.ttf
+          weight: 900
+        - asset: assets/fonts/NotoSansCJKkr-Medium.ttf
+          weight: 600
+        - asset: assets/fonts/NotoSansCJKkr-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSansCJKkr-Light.ttf
+          weight: 400
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
