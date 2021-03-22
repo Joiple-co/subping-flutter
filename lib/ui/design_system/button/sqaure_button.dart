@@ -37,7 +37,7 @@ class SqaureButton extends StatelessWidget {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: ScreenUtil().setSp(34))),
+                  fontSize: 34.sp)),
       onPressed: disabled || loading ? null : onPressed,
       minWidth: width != null ? width : MediaQuery.of(context).size.width - 40,
       height: height.h,

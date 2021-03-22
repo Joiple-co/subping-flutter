@@ -26,12 +26,12 @@ class AppIntro extends StatelessWidget {
                 children: [
                   Text("구독의 바다를 섭핑!",
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(60),
+                          fontSize: 60.sp,
                           fontWeight: FontWeight.bold,
                           color: Theme.of(context).primaryColor)),
                   Container(height: 10),
                   Text("구독에 대한 정보부터 구매, 관리까지 한번에!\n간단한 구독 생활을 즐겨보세요!",
-                      style: TextStyle(fontSize: ScreenUtil().setSp(30))),
+                      style: TextStyle(fontSize: 30.sp)),
                 ],
               ),
             ),
