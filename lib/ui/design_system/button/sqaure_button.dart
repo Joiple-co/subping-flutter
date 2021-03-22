@@ -14,7 +14,7 @@ class SqaureButton extends StatelessWidget {
       @required this.text,
       @required this.onPressed,
       this.width,
-      this.height = 40,
+      this.height = 110,
       this.loading = false,
       this.disabled = false})
       : super(key: key);
@@ -34,8 +34,10 @@ class SqaureButton extends StatelessWidget {
               ),
             )
           : Text(text,
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 34.sp)),
       onPressed: disabled || loading ? null : onPressed,
       minWidth: width != null ? width : MediaQuery.of(context).size.width - 40,
       height: height.h,
