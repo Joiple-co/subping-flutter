@@ -18,7 +18,8 @@ class SubpingApp extends StatelessWidget {
                 fontFamily: 'NotoSansKR',
                 backgroundColor: Colors.white,
                 primaryColor: Color.fromRGBO(80, 110, 225, 1),
-                disabledColor: Color.fromARGB(1, 250, 60, 90)),
+                disabledColor: Color.fromARGB(1, 250, 60, 90),
+                canvasColor: Colors.transparent),
             home: Scaffold(backgroundColor: Colors.blue),
             initialRoute: '/appIntro',
             routes: {'/appIntro': (BuildContext context) => AppIntro()}));
