@@ -71,13 +71,55 @@ class AppIntro extends StatelessWidget {
             ),
             Center(
                 child: SqaureButton(
-                    text: "섭핑 시작하기", height: 110, onPressed: () => {})),
+                    text: "섭핑 시작하기",
+                    height: 110,
+                    onPressed: () => showBottomSheet(context))),
             Container(
               height: 50.h,
-            )
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void showBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 304.h,
+            padding: EdgeInsets.fromLTRB(40.h, 43.h, 40.h, 0),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10))),
+            child: Column(
+              children: [
+                SqaureButton(
+                  text: "지금 가입하고 사용할래요",
+                  onPressed: () => {},
+                ),
+                FlatButton(
+                    onPressed: null,
+                    child: Text.rich(TextSpan(
+                        text: "이미 회원이에요.",
+                        style: TextStyle(fontSize: 30.sp),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: "로그인 ",
+                              style: TextStyle(
+                                  fontSize: 30.sp,
+                                  decoration: TextDecoration.underline)),
+                          TextSpan(
+                            text: "할래요",
+                            style: TextStyle(fontSize: 30.sp),
+                          )
+                        ])))
+              ],
+            ),
+          );
+        });
   }
 }
