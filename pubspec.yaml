@@ -23,7 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fluttertoast: ^7.1.1
+  amplify_flutter: '<1.0.0'
+  amplify_auth_cognito: '<1.0.0'
+  amplify_api: '<1.0.0'
   provider: 4.3.2+2
   flutter_swiper : ^1.1.6
   page_transition: "^1.1.7+2"
