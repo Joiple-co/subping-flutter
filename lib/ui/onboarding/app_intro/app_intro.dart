@@ -26,7 +26,7 @@ class AppIntro extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SubpingText("qwkdpoqw",
+                  SubpingText("구독의 바다를 섭핑!",
                       size: FontSize.title2,
                       color: SubpingColor.warning100,
                       fontWeight: SubpingFontWeight.regular),

@@ -1,4 +1,16 @@
-enum Size { large, regular, small, tiny, xTiny }
+enum Size {
+  large64,
+  large50,
+  large48,
+  large40,
+  large30,
+  medium24,
+  medium20,
+  medium16,
+  tiny14,
+  tiny12,
+  tiny10,
+}
 
 enum SubpingColor {
   subping100,
