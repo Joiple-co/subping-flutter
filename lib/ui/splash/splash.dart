@@ -3,7 +3,7 @@ import 'package:subping/ui/splash/splash_viewmodel.dart';
 
 class Splash extends StatelessWidget {
   final viewModel = new SplashViewModel();
-
+  
   @override
   Widget build(BuildContext context) {
     new Future.delayed(
