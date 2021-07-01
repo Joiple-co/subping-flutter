@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/modules/secure/secure.dart';
@@ -6,46 +8,39 @@ import 'package:subping/modules/secure/secure.dart';
 class SplashViewModel {
   void validateLogin() {}
 
-  Future<bool> _init() async {
+  Future<bool> initSecure() async {
     final secure = Secure();
     final isInitRSA = await secure.initRSA();
 
-    if (isInitRSA) {
-      return true;
-    } else {
-      return false;
-    }
+    return isInitRSA;
   }
 
   Future<bool> _checkLoggedIn() async {
-    final cognito = Cognito();
-    final isLogin = await cognito.getCredentials();
-
-    return isLogin != null;
+    return false;
   }
 
   void goNextScene(BuildContext context) async {
-    bool isInitSucess;
+    bool isSecureInitSucess;
     bool isLoggedIn;
 
     try {
-      await Future.wait([_init(), _checkLoggedIn()]).then((value) {
-        isInitSucess = value[0];
+      await Future.wait([initSecure(), _checkLoggedIn()]).then((value) {
+        isSecureInitSucess = value[0];
         isLoggedIn = value[1];
       });
 
-      if (isInitSucess) {
+      if (isSecureInitSucess) {
         if (isLoggedIn) {
-          final cognito = Cognito();
-          print("logged in");
-          String nextScene = await cognito.checkCurrentUserOnboardingStatus();
-          print(nextScene);
-          Navigator.pushReplacementNamed(context, nextScene);
+          // final cognito = Cognito();
+          // print("logged in");
+          // String nextScene = await cognito.checkCurrentUserOnboardingStatus();
+          // print(nextScene);
+          // Navigator.pushReplacementNamed(context, nextScene);
         } else {
-          Navigator.pushReplacementNamed(context, "/appIntro");
+          Get.offAndToNamed('/appIntro');
         }
       } else {
-        ErrorHandler.errorHandler(context, "SplashException");
+        ErrorHandler.errorHandler("SplashException");
       }
     } catch (e) {
       switch (e.code) {
@@ -53,7 +48,7 @@ class SplashViewModel {
           Navigator.pushReplacementNamed(context, "/appIntro");
           break;
         default:
-          ErrorHandler.errorHandler(context, "SplashException");
+          ErrorHandler.errorHandler("SplashException");
       }
     }
   }
