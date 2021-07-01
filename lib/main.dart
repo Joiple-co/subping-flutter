@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:amplify_flutter/amplify.dart';
@@ -6,8 +7,11 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
 
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
+import 'package:subping/ui/onboarding/user_account/user_account.dart';
+import 'package:subping/ui/splash/splash.dart';
 
 void main() => runApp(SubpingApp());
 
@@ -44,7 +48,7 @@ class _SubpingAppState extends State<SubpingApp> {
     return ScreenUtilInit(
         designSize: Size(828, 1792),
         allowFontScaling: true,
-        child: MaterialApp(
+        child: GetMaterialApp(
             title: 'subping',
             theme: ThemeData(
                 fontFamily: 'NotoSansKR',
@@ -53,7 +57,12 @@ class _SubpingAppState extends State<SubpingApp> {
                 disabledColor: Color.fromARGB(1, 250, 60, 90),
                 canvasColor: Colors.transparent),
             home: Scaffold(backgroundColor: Colors.blue),
-            initialRoute: '/appIntro',
-            routes: {'/appIntro': (BuildContext context) => AppIntro()}));
+            initialRoute: '/splash',
+            getPages: [
+              GetPage(name: "/splash", page: () => Splash()),
+              GetPage(name: "/appIntro", page: () => AppIntro()),
+            ],
+        )
+    );
   }
 }
