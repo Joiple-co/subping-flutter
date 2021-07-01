@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:subping/ui/design_system/text/text.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro_viewmodel.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/ui/design_system/subping_ui.dart';
 
 class AppIntro extends StatelessWidget {
   final appIntroViewModal = AppIntroViewModel();
@@ -24,11 +26,10 @@ class AppIntro extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("구독의 바다를 섭핑!",
-                      style: TextStyle(
-                          fontSize: 60.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).primaryColor)),
+                  SubpingText("구독의 바다를 섭핑!",
+                      size: FontSize.title2,
+                      color: SubpingColor.warning100,
+                      fontWeight: SubpingFontWeight.regular),
                   Container(height: 10),
                   Text("구독에 대한 정보부터 구매, 관리까지 한번에!\n간단한 구독 생활을 즐겨보세요!",
                       style: TextStyle(fontSize: 30.sp)),
