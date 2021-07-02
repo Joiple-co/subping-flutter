@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/cognito/cognito.dart';
+import 'package:subping/modules/error_handler/error_handler.dart';
 
 class UserAccountViewModel extends GetxController{
   final itemArray = {
@@ -70,25 +71,7 @@ class UserAccountViewModel extends GetxController{
     });
 
     debounce(email, (text) async {
-      if(GetUtils.isEmail(text)) {
-        Cognito cognito = Cognito();
-        final duplicateEmailResponse = await cognito.isDuplicateEmail(text);
-        print(duplicateEmailResponse.message);
-        if(duplicateEmailResponse.message != "EmailExistException") {
-          emailValid.value = true;
-          emailError.value = "";
-        }
-
-        else {
-          emailValid.value = false;
-          emailError.value = "이미 사용중인 이메일입니다.";
-        }
-      }
-      
-      else {
-        emailValid.value = false;
-        emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
-      }
+      checkEmailVaild();
     },
     time: Duration(milliseconds: 500));
 
@@ -101,6 +84,31 @@ class UserAccountViewModel extends GetxController{
       checkPasswordValid();
     },
     time: Duration(milliseconds: 500));
+  }
+
+  Future<bool> checkEmailVaild() async {
+    if(GetUtils.isEmail(email.value)) {
+      Cognito cognito = Cognito();
+      final duplicateEmailResponse = await cognito.isDuplicateEmail(email.value);
+
+      if(duplicateEmailResponse.message != "EmailExistException") {
+        emailValid.value = true;
+        emailError.value = "";
+        return true;
+      }
+
+      else {
+        emailValid.value = false;
+        emailError.value = "이미 사용중인 이메일입니다.";
+      }
+    }
+    
+    else {
+      emailValid.value = false;
+      emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
+    }
+
+    return false;
   }
 
   bool checkPasswordValid() {
@@ -121,6 +129,7 @@ class UserAccountViewModel extends GetxController{
           if(password.value == passwordCheck.value) {
             passwordCheckValid.value = true;
             passwordCheckError.value = "";
+            return true;
           }
 
           else {
@@ -133,6 +142,21 @@ class UserAccountViewModel extends GetxController{
       else {
         passwordError.value = "비밀번호를 양식에 맞게 입력해주세요.";
       }
+
+      return false;
+  }
+
+  void onPressNext() async {
+    if(await checkEmailVaild() && checkPasswordValid()) {
+      Cognito cognito = Cognito();
+      cognito.signUpStart(email.value, password.value);
+      
+
+    }
+
+    else {
+      ErrorHandler.errorHandler("UserAccountException");
+    }
   }
 
   void onChangeEmail(String newEmail) {
@@ -156,6 +180,6 @@ class UserAccountViewModel extends GetxController{
   }
 
   void onPressPasswordCheckDone(String _) {
-    
+    onPressNext();
   }
 }
