@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify.dart';
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/api/api.dart';
-import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/modules/secure/secure.dart';
 
 
@@ -26,11 +27,7 @@ class Cognito {
     }
   }
 
-  String test() {
-    return _awsConfig['api']['plugins']['awsAPIPlugin']['auth']['endpoint'];
-  }
-
-  void signUpStart(String email, String password) async {
+  Future<BodyModel> signUpStart(String email, String password) async {
     final secure = Secure();
     final encryptedPassword = await secure.encrpytRSA(password);
     password = "";
@@ -41,15 +38,37 @@ class Cognito {
 
     Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
     BodyModel data = BodyModel.fromJson(response);
-    print(data.message);
-    if(data.success) {
-    
-    }
 
-    else {
-      ErrorHandler.errorHandler("default");
-    }
+    return data;
   } 
+
+  Future<BodyModel> signUpDone({String name, String phoneNumber, String carrier, String ci, String birthday}) async{
+    final rawResponse = await API.post("auth", "/signUpDone",
+        body: {
+          "name": name,
+          "phoneNumber": phoneNumber,
+          "birthDay": birthday,
+          "carrier": carrier,
+          "ci": ci
+        });
+
+    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
+    BodyModel body = BodyModel.fromJson(response);
+
+    return body;
+  }
+
+  Future<BodyModel> signIn(String email, String password) async {
+    try {
+      SignInResult result = await Amplify.Auth.signIn(
+        username: email.trim(), 
+        password: password.trim());
+
+      
+    } on AuthException catch(e) {
+      print(e.message);
+    }
+  }
 
   Future<BodyModel> isDuplicateEmail(String email) async {
     final rawResponse = await API.post("auth", "/emailDuplicate", body: {
