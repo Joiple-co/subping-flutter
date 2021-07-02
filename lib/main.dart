@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
 
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
+import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/splash/splash.dart';
 
 void main() => runApp(SubpingApp());
@@ -54,13 +55,14 @@ class _SubpingAppState extends State<SubpingApp> {
               fontFamily: 'NotoSansKR',
               backgroundColor: Colors.white,
               primaryColor: Color.fromRGBO(80, 110, 225, 1),
-              disabledColor: Color.fromARGB(1, 250, 60, 90),
+              disabledColor: Color.fromRGBO(173, 178, 198, 0.5),
               canvasColor: Colors.transparent),
           home: Scaffold(backgroundColor: Colors.blue),
           initialRoute: '/splash',
           getPages: [
             GetPage(name: "/splash", page: () => Splash()),
             GetPage(name: "/appIntro", page: () => AppIntro()),
+            GetPage(name: "/userAccount", page: () => UserAccount())
           ],
         ));
   }
