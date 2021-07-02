@@ -14,13 +14,10 @@ class AppIntro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        color: Theme.of(context).backgroundColor,
+      body: HeaderSafe(
         child: Column(
           children: [
-            Container(
-              height: 200.h,
-            ),
+            Space(size: Size.large64),
             Container(
               margin: EdgeInsets.fromLTRB(40.w, 0, 0, 0),
               child: Column(
@@ -75,8 +72,8 @@ class AppIntro extends StatelessWidget {
                     text: "섭핑 시작하기",
                     height: 110,
                     onPressed: () => showBottomSheet(context))),
-            Container(
-              height: 50.h,
+            Space(
+              size: Size.large40,
             ),
           ],
         ),
@@ -100,7 +97,7 @@ class AppIntro extends StatelessWidget {
               children: [
                 SqaureButton(
                   text: "지금 가입하고 사용할래요",
-                  onPressed: () => {},
+                  onPressed: () => appIntroViewModal.onPressStart(),
                 ),
                 FlatButton(
                     onPressed: null,
