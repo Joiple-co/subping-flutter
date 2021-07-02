@@ -19,7 +19,7 @@ class SplashViewModel {
     return false;
   }
 
-  void goNextScene(BuildContext context) async {
+  void goNextScene() async {
     bool isSecureInitSucess;
     bool isLoggedIn;
 
@@ -28,7 +28,7 @@ class SplashViewModel {
         isSecureInitSucess = value[0];
         isLoggedIn = value[1];
       });
-
+      
       if (isSecureInitSucess) {
         if (isLoggedIn) {
           // final cognito = Cognito();
@@ -43,13 +43,7 @@ class SplashViewModel {
         ErrorHandler.errorHandler("SplashException");
       }
     } catch (e) {
-      switch (e.code) {
-        case "UserNotFoundException":
-          Navigator.pushReplacementNamed(context, "/appIntro");
-          break;
-        default:
-          ErrorHandler.errorHandler("SplashException");
-      }
+      ErrorHandler.errorHandler("SplashException");
     }
   }
 }
