@@ -11,7 +11,7 @@ class SubpingTextSpan extends TextSpan {
   final SubpingFontWeight fontWeight;
 
   SubpingTextSpan(
-      {@required this.text,
+      {this.text,
       this.children,
       this.color,
       this.fontWeight,
