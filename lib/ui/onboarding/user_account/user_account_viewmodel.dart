@@ -1,4 +1,3 @@
-
 import 'dart:ffi';
 
 import 'package:get/get.dart';
@@ -7,13 +6,9 @@ import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 
-class UserAccountViewModel extends GetxController{
+class UserAccountViewModel extends GetxController {
   final itemArray = {
-    "email": {
-      "preTitle": "회원가입을 위해",
-      "accent": "이메일",
-      "postTitle": "을 입력해주세요"
-    },
+    "email": {"preTitle": "회원가입을 위해", "accent": "이메일", "postTitle": "을 입력해주세요"},
     "password": {
       "preTitle": "회원가입을 위해",
       "accent": "비밀번호",
@@ -40,7 +35,7 @@ class UserAccountViewModel extends GetxController{
   FocusNode emailFocus = FocusNode();
   FocusNode passwordFocus = FocusNode();
   FocusNode passwordCheckFocus = FocusNode();
-  
+
   void onInit() {
     super.onInit();
 
@@ -49,19 +44,19 @@ class UserAccountViewModel extends GetxController{
     emailFocus.requestFocus();
 
     emailFocus.addListener(() {
-      if(emailFocus.hasFocus) {
+      if (emailFocus.hasFocus) {
         focusField.value = "email";
       }
     });
 
     passwordFocus.addListener(() {
-      if(passwordFocus.hasFocus) {
+      if (passwordFocus.hasFocus) {
         focusField.value = "password";
       }
     });
 
     passwordCheckFocus.addListener(() {
-      if(passwordCheckFocus.hasFocus) {
+      if (passwordCheckFocus.hasFocus) {
         focusField.value = "passwordCheck";
       }
     });
@@ -72,89 +67,87 @@ class UserAccountViewModel extends GetxController{
 
     debounce(email, (text) async {
       checkEmailVaild();
-    },
-    time: Duration(milliseconds: 500));
+    }, time: Duration(milliseconds: 500));
 
     debounce(password, (text) {
       checkPasswordValid();
-    },
-    time: Duration(milliseconds: 500));
+    }, time: Duration(milliseconds: 500));
 
     debounce(passwordCheck, (text) {
       checkPasswordValid();
-    },
-    time: Duration(milliseconds: 500));
+    }, time: Duration(milliseconds: 500));
   }
 
   Future<bool> checkEmailVaild() async {
-    if(GetUtils.isEmail(email.value)) {
-      Cognito cognito = Cognito();
-      final duplicateEmailResponse = await cognito.isDuplicateEmail(email.value);
+    try {
+      if (GetUtils.isEmail(email.value)) {
+        Cognito cognito = Cognito();
+        final duplicateEmailResponse =
+            await cognito.isDuplicateEmail(email.value);
 
-      if(duplicateEmailResponse.message != "EmailExistException") {
-        emailValid.value = true;
-        emailError.value = "";
-        return true;
-      }
-
-      else {
+        if (duplicateEmailResponse.message != "EmailExistException") {
+          emailValid.value = true;
+          emailError.value = "";
+          return true;
+        } else {
+          emailValid.value = false;
+          emailError.value = "이미 사용중인 이메일입니다.";
+        }
+      } else {
         emailValid.value = false;
-        emailError.value = "이미 사용중인 이메일입니다.";
+        emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
       }
+
+      return false;
+    } catch (e) {
+      ErrorHandler.errorHandler("default");
     }
-    
-    else {
-      emailValid.value = false;
-      emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
+  }
+
+  bool checkPasswordValid() {
+    bool passwordValidCheck =
+        RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
+            .hasMatch(password.value);
+
+    passwordError.value = "";
+    passwordCheckError.value = "";
+    passwordValid.value = false;
+    passwordCheckValid.value = false;
+
+    if (passwordValidCheck) {
+      passwordValid.value = true;
+      passwordError.value = "";
+
+      if (passwordCheck.value != "") {
+        if (password.value == passwordCheck.value) {
+          passwordCheckValid.value = true;
+          passwordCheckError.value = "";
+          return true;
+        } else {
+          passwordCheckError.value = "비밀번호 확인을 정확하게 입력해주세요.";
+          passwordCheckValid.value = false;
+        }
+      }
+    } else {
+      passwordError.value = "비밀번호를 양식에 맞게 입력해주세요.";
     }
 
     return false;
   }
 
-  bool checkPasswordValid() {
-      bool passwordValidCheck =
-          RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
-              .hasMatch(password.value);
+  void onPressNext() async {
+    if (await checkEmailVaild() && checkPasswordValid()) {
+      Cognito cognito = Cognito();
+      BodyModel response = await cognito.signUpStart(email.value, password.value);
 
-      passwordError.value = "";
-      passwordCheckError.value = "";
-      passwordValid.value = false;
-      passwordCheckValid.value = false;
-
-      if(passwordValidCheck) {
-        passwordValid.value = true;
-        passwordError.value = "";
-
-        if(passwordCheck.value != "") {
-          if(password.value == passwordCheck.value) {
-            passwordCheckValid.value = true;
-            passwordCheckError.value = "";
-            return true;
-          }
-
-          else {
-            passwordCheckError.value = "비밀번호 확인을 정확하게 입력해주세요.";
-            passwordCheckValid.value = false;
-          }
-        }
+      if(response.success) {
+        Get.toNamed('/passAuth');
       }
 
       else {
-        passwordError.value = "비밀번호를 양식에 맞게 입력해주세요.";
+        ErrorHandler.errorHandler(response.message);
       }
-
-      return false;
-  }
-
-  void onPressNext() async {
-    if(await checkEmailVaild() && checkPasswordValid()) {
-      Cognito cognito = Cognito();
-      cognito.signUpStart(email.value, password.value);
-      
-
-    }
-
-    else {
+    } else {
       ErrorHandler.errorHandler("UserAccountException");
     }
   }
