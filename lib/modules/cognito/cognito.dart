@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/model/body_model.dart';
+import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/secure/secure.dart';
 
 
@@ -31,6 +32,16 @@ class Cognito {
   Future<BodyModel> signUpStart(String email, String password) async {
     final secure = Secure();
     final encryptedPassword = await secure.encrpytRSA(password);
+  }
+
+  Future<BodyModel> isDuplicateEmail(String email) async {
+    final rawResponse = await API.post("auth", "/emailDuplicate", body: {
+      "email": email
+    });
+
+    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
+    BodyModel body = BodyModel.fromJson(response);
+    return body;
   }
 }
 

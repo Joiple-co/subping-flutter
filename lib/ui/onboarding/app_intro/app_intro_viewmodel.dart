@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 class AppIntroViewModel {
-  void onPressStart(BuildContext context) {
+  void onPressStart() {
     Get.toNamed("/userAccount");
   }
 
