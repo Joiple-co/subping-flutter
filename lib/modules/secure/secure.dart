@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_flutter/amplify.dart';
 import 'package:crypton/crypton.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:subping/model/rsa_model.dart';
