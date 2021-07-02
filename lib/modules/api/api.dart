@@ -64,10 +64,13 @@ class API {
     Map<String, String> header = await _makeHeader();
 
     try {
+      String jsonBody = JSON.convert(body);
+      Uint8List encoded = utf8.encode(jsonBody);
+
       RestOptions options = RestOptions(
           path: path,
           headers: header,
-          body: Uint8List.fromList(jsonEncode(body).codeUnits));
+          body: encoded);
       RestOperation restOperation = Amplify.API.post(restOptions: options);
       
       return restOperation.response;
