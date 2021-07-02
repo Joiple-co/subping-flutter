@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:subping/ui/design_system/text/text.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro_viewmodel.dart';
 import 'package:subping/ui/design_system/button/sqaure_button.dart';
 import 'package:flutter_screenutil/screenutil.dart';
