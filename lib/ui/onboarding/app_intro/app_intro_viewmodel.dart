@@ -6,9 +6,8 @@ class AppIntroViewModel {
     Get.toNamed("/userAccount");
   }
 
-  void onPressLogin(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.pushNamed(context, "/login");
+  void onPressLogin() {
+    Get.toNamed("/userLogin");
   }
 
   Map<String, String> generateInformation(int index) {

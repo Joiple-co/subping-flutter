@@ -100,8 +100,8 @@ class AppIntro extends StatelessWidget {
                   text: "지금 가입하고 사용할래요",
                   onPressed: () => appIntroViewModal.onPressStart(),
                 ),
-                FlatButton(
-                    onPressed: null,
+                TextButton(
+                    onPressed: () => appIntroViewModal.onPressLogin(),
                     child: Text.rich(TextSpan(
                         text: "이미 회원이에요.",
                         style: TextStyle(fontSize: 30.sp),
