@@ -10,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
 
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
+import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
+import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
 
 void main() => runApp(SubpingApp());
@@ -62,7 +64,9 @@ class _SubpingAppState extends State<SubpingApp> {
           getPages: [
             GetPage(name: "/splash", page: () => Splash()),
             GetPage(name: "/appIntro", page: () => AppIntro()),
-            GetPage(name: "/userAccount", page: () => UserAccount())
+            GetPage(name: "/userAccount", page: () => UserAccount()),
+            GetPage(name: "/passAuth", page: () => PassAuth()),
+            GetPage(name: "/userLogin", page: () => UserLogin())
           ],
         ));
   }
