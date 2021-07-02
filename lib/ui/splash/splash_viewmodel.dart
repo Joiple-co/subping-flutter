@@ -37,7 +37,7 @@ class SplashViewModel {
           // print(nextScene);
           // Navigator.pushReplacementNamed(context, nextScene);
         } else {
-          Get.offAndToNamed('/appIntro');
+          Get.offAllNamed("/appIntro");
         }
       } else {
         ErrorHandler.errorHandler("SplashException");
