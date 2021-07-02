@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubpingText extends StatelessWidget {
   final String text;
-  final FontSize size;
+  final SubpingFontSize size;
   final SubpingFontWeight fontWeight;
   final SubpingColor color;
   final StrutStyle strutStyle;

@@ -27,7 +27,7 @@ enum SubpingColor {
   white100,
 }
 
-enum FontSize {
+enum SubpingFontSize {
   title1,
   title2,
   title3,
@@ -56,19 +56,19 @@ Map<SubpingColor, Color> colorSet = {
   SubpingColor.white100: Color.fromRGBO(0, 0, 0, 1)
 };
 
-Map<FontSize, double> fontSizeSet = {
-  FontSize.title1: 62.nsp,
-  FontSize.title2: 60.nsp,
-  FontSize.title3: 52.nsp,
-  FontSize.title4: 46.nsp,
-  FontSize.title5: 42.nsp,
-  FontSize.title6: 36.nsp,
-  FontSize.body1: 32.nsp,
-  FontSize.body2: 30.nsp,
-  FontSize.body3: 28.nsp,
-  FontSize.body4: 26.nsp,
-  FontSize.body5: 24.nsp,
-  FontSize.tiny1: 22.nsp,
+Map<SubpingFontSize, double> fontSizeSet = {
+  SubpingFontSize.title1: 62.nsp,
+  SubpingFontSize.title2: 60.nsp,
+  SubpingFontSize.title3: 52.nsp,
+  SubpingFontSize.title4: 46.nsp,
+  SubpingFontSize.title5: 42.nsp,
+  SubpingFontSize.title6: 36.nsp,
+  SubpingFontSize.body1: 32.nsp,
+  SubpingFontSize.body2: 30.nsp,
+  SubpingFontSize.body3: 28.nsp,
+  SubpingFontSize.body4: 26.nsp,
+  SubpingFontSize.body5: 24.nsp,
+  SubpingFontSize.tiny1: 22.nsp,
 };
 
 Map<SubpingFontWeight, FontWeight> fontWeightSet = {

@@ -7,7 +7,7 @@ class SubpingTextSpan extends TextSpan {
   final List<SubpingTextSpan> children;
   final String text;
   final SubpingColor color;
-  final FontSize fontSize;
+  final SubpingFontSize fontSize;
   final SubpingFontWeight fontWeight;
 
   SubpingTextSpan(
