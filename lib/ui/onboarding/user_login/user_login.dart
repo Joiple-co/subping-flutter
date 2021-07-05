@@ -59,7 +59,11 @@ class UserLogin extends StatelessWidget {
                     obscureText: true,
                   ),
                 ],)),
-                SqaureButton(text: "확인", onPressed: viewModel.onPressNext, disabled: !(viewModel.emailValid.value && viewModel.passwordValid.value),),
+                SqaureButton(
+                  text: "확인", 
+                  onPressed: viewModel.onPressNext, 
+                  disabled: !(viewModel.emailValid.value && viewModel.passwordValid.value),
+                  loading: viewModel.loading.value),
                 Space(size: SubpingSize.large40)
               ],
             )),

@@ -21,7 +21,7 @@ class SqaureButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double indicatorSize = height - height / 2;
+    double indicatorSize = height.h - height.h / 2;
 
     return FlatButton(
       child: loading
@@ -37,7 +37,7 @@ class SqaureButton extends StatelessWidget {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 34.sp)),
+                  fontSize: 34.nsp)),
       onPressed: disabled || loading ? null : onPressed,
       minWidth: width != null ? width : MediaQuery.of(context).size.width - 40,
       height: height.h,
