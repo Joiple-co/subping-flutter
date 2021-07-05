@@ -26,7 +26,7 @@ class UserAccount extends StatelessWidget {
                   SubpingTextSpan(text: viewModel.currentTitle['accent'], fontSize: SubpingFontSize.title4, fontWeight: SubpingFontWeight.bold, color: SubpingColor.subping100),
                   SubpingTextSpan(text: viewModel.currentTitle['postTitle'], fontSize: SubpingFontSize.title4, fontWeight: SubpingFontWeight.bold),
               ])),
-              Space(size: Size.large64),
+              Space(size: SubpingSize.large64),
               Expanded(
                   child: Column(
                 children: [
@@ -39,7 +39,7 @@ class UserAccount extends StatelessWidget {
                         ? viewModel.emailError.value
                         : null,
                   ),
-                  Space(size: Size.large30),
+                  Space(size: SubpingSize.large30),
                   SubpingTextField(
                     labelText: "비밀번호",
                     focusNode: viewModel.passwordFocus,
@@ -50,7 +50,7 @@ class UserAccount extends StatelessWidget {
                         : null,
                     obscureText: true,
                   ),
-                  Space(size: Size.large30),
+                  Space(size: SubpingSize.large30),
                   SubpingTextField(
                     labelText: "비밀번호 확인",
                     focusNode: viewModel.passwordCheckFocus,
@@ -69,7 +69,7 @@ class UserAccount extends StatelessWidget {
                   disabled: !(viewModel.emailValid.value &&
                       viewModel.passwordValid.value &&
                       viewModel.passwordCheckValid.value)),
-              Space(size: Size.large40)
+              Space(size: SubpingSize.large40)
             ])))))) ;
   }
 }

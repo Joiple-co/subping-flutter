@@ -38,7 +38,7 @@ class PassAuth extends StatelessWidget {
                 ])),
                 Expanded(child: Container()),
                 SqaureButton(text: "확인", onPressed: viewModel.onPressNext),
-                Space(size: Size.large40)
+                Space(size: SubpingSize.large40)
               ],
             )),
           ),
