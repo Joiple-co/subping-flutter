@@ -73,7 +73,7 @@ class AppIntro extends StatelessWidget {
                       height: 110,
                       onPressed: () => showBottomSheet(context))),
               Space(
-                size: Size.large40,
+                size: SubpingSize.large40,
               ),
             ],
           ),

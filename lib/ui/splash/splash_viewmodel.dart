@@ -16,7 +16,8 @@ class SplashViewModel {
   }
 
   Future<bool> _checkLoggedIn() async {
-    return false;
+    Cognito cognito = Cognito();
+    return await cognito.checkLoggedIn();
   }
 
   void goNextScene() async {
@@ -31,11 +32,7 @@ class SplashViewModel {
       
       if (isSecureInitSucess) {
         if (isLoggedIn) {
-          // final cognito = Cognito();
-          // print("logged in");
-          // String nextScene = await cognito.checkCurrentUserOnboardingStatus();
-          // print(nextScene);
-          // Navigator.pushReplacementNamed(context, nextScene);
+          print("logged in");
         } else {
           Get.offAllNamed("/appIntro");
         }

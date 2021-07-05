@@ -36,7 +36,7 @@ class UserLogin extends StatelessWidget {
                       fontSize: SubpingFontSize.title4,
                       fontWeight: SubpingFontWeight.bold),
                 ])),
-                Space(size: Size.large64),
+                Space(size: SubpingSize.large64),
                 Expanded(child: Column(children: [
                   SubpingTextField(
                     labelText: "이메일",
@@ -47,7 +47,7 @@ class UserLogin extends StatelessWidget {
                         ? viewModel.emailError.value
                         : null,
                   ),
-                  Space(size: Size.large30),
+                  Space(size: SubpingSize.large30),
                   SubpingTextField(
                     labelText: "비밀번호",
                     focusNode: viewModel.passwordFocus,
@@ -59,8 +59,8 @@ class UserLogin extends StatelessWidget {
                     obscureText: true,
                   ),
                 ],)),
-                SqaureButton(text: "확인", onPressed: viewModel.onPressNext),
-                Space(size: Size.large40)
+                SqaureButton(text: "확인", onPressed: viewModel.onPressNext, disabled: !(viewModel.emailValid.value && viewModel.passwordValid.value),),
+                Space(size: SubpingSize.large40)
               ],
             )),
           ),
