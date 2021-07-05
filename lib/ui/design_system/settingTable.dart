@@ -15,7 +15,7 @@ enum SubpingSize {
   tiny10,
 }
 
-enum SubpingColor {
+enum SubpingColorExtension {
   subping100,
   subping50,
   subping30,
@@ -23,11 +23,12 @@ enum SubpingColor {
   black100,
   black80,
   black60,
+  black30,
   back20,
   white100,
 }
 
-enum SubpingFontSize {
+enum SubpingFontSizeExtension {
   title1,
   title2,
   title3,
@@ -42,37 +43,110 @@ enum SubpingFontSize {
   tiny1,
 }
 
-enum SubpingFontWeight { bold, medium, regular }
+enum SubpingFontWeightExtionsion { bold, medium, regular }
 
-Map<SubpingColor, Color> colorSet = {
-  SubpingColor.subping100: Color.fromRGBO(80, 110, 225, 1),
-  SubpingColor.subping50: Color.fromRGBO(80, 140, 255, 1),
-  SubpingColor.subping30: Color.fromRGBO(180, 209, 255, 1),
-  SubpingColor.warning100: Color.fromRGBO(250, 60, 90, 1),
-  SubpingColor.black100: Color.fromRGBO(20, 20, 20, 1),
-  SubpingColor.black60: Color.fromRGBO(170, 176, 195, 1),
-  SubpingColor.black80: Color.fromRGBO(85, 85, 95, 1),
-  SubpingColor.back20: Color.fromRGBO(246, 246, 247, 1),
-  SubpingColor.white100: Color.fromRGBO(0, 0, 0, 1)
-};
+extension SubpingFontSize on SubpingFontSizeExtension {
+  static double get title1 {
+    return 62.nsp;
+  }
 
-Map<SubpingFontSize, double> fontSizeSet = {
-  SubpingFontSize.title1: 62.nsp,
-  SubpingFontSize.title2: 60.nsp,
-  SubpingFontSize.title3: 52.nsp,
-  SubpingFontSize.title4: 46.nsp,
-  SubpingFontSize.title5: 42.nsp,
-  SubpingFontSize.title6: 36.nsp,
-  SubpingFontSize.body1: 32.nsp,
-  SubpingFontSize.body2: 30.nsp,
-  SubpingFontSize.body3: 28.nsp,
-  SubpingFontSize.body4: 26.nsp,
-  SubpingFontSize.body5: 24.nsp,
-  SubpingFontSize.tiny1: 22.nsp,
-};
+  static double get title2 {
+    return 60.nsp;
+  }
 
-Map<SubpingFontWeight, FontWeight> fontWeightSet = {
-  SubpingFontWeight.bold: FontWeight.bold,
-  SubpingFontWeight.medium: FontWeight.w500,
-  SubpingFontWeight.regular: FontWeight.w400
-};
+  static double get title3 {
+    return 52.nsp;
+  }
+
+  static double get title4 {
+    return 46.nsp;
+  }
+
+  static double get title5 {
+    return 42.nsp;
+  }
+
+  static double get title6 {
+    return 36.nsp;
+  }
+
+  static double get body1 {
+    return 32.nsp;
+  }
+
+  static double get body2 {
+    return 30.nsp;
+  }
+
+  static double get body3 {
+    return 28.nsp;
+  }
+
+  static double get body4 {
+    return 26.nsp;
+  }
+
+  static double get body5 {
+    return 24.nsp;
+  }
+
+  static double get tiny1 {
+    return 22.nsp;
+  }
+}
+
+extension SubpingColor on SubpingColorExtension {
+  static Color get subping100 {
+    return Color.fromRGBO(80, 110, 225, 1);
+  }
+
+  static Color get subping50 {
+    return Color.fromRGBO(80, 140, 255, 1);
+  }
+
+  static Color get subping30 {
+    return Color.fromRGBO(180, 209, 255, 1);
+  }
+
+  static Color get warning100 {
+    return Color.fromRGBO(250, 60, 90, 1);
+  }
+
+  static Color get black100 {
+    return Color.fromRGBO(20, 20, 20, 1);
+  }
+
+  static Color get black80 {
+    return Color.fromRGBO(85, 85, 95, 1);
+  }
+
+  static Color get black60 {
+    return Color.fromRGBO(170, 176, 195, 1);
+  }
+
+  static Color get black30 {
+    return Color.fromRGBO(85, 85, 95, 1);
+  }
+
+  static Color get back20 {
+    return Color.fromRGBO(246, 246, 247, 1);
+  }
+
+  static Color get white100 {
+    return Color.fromRGBO(0, 0, 0, 1);
+  }
+}
+
+extension SubpingFontWeight on SubpingFontWeightExtionsion {
+  static FontWeight get bold {
+    return FontWeight.bold;
+  }
+
+  static FontWeight get medium {
+    return FontWeight.w500;
+  }
+
+  static FontWeight get regular {
+    return FontWeight.w400;
+  }
+}
