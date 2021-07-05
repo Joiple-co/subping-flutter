@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../settingTable.dart';
 
-class SqaureButton extends StatelessWidget {
+class SquareButton extends StatelessWidget {
   final String text;
   final String type;
   final bool twoButton;
@@ -16,7 +16,7 @@ class SqaureButton extends StatelessWidget {
   final bool loading;
   final bool warning;
 
-  SqaureButton(
+  SquareButton(
       {Key key,
       @required this.text,
       @required this.onPressed,

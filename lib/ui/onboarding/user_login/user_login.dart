@@ -62,7 +62,7 @@ class UserLogin extends StatelessWidget {
                     ),
                   ],
                 )),
-                SqaureButton(
+                SquareButton(
                     text: "확인",
                     onPressed: viewModel.onPressNext,
                     disabled: !(viewModel.emailValid.value &&
