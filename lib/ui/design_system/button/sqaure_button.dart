@@ -68,8 +68,8 @@ class SqaureButton extends StatelessWidget {
   Widget build(BuildContext context) {
     double indicatorSize = height.h - height.h / 2;
     double buttonWidth = this.twoButton
-        ? (MediaQuery.of(context).size.width - 40) / 2 - 17.5
-        : MediaQuery.of(context).size.width - 40;
+        ? (MediaQuery.of(context).size.width - 100.w) / 2
+        : MediaQuery.of(context).size.width - 80.w;
 
     return TextButton(
       child: loading
