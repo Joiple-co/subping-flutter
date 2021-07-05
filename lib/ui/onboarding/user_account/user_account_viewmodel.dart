@@ -20,7 +20,8 @@ class UserAccountViewModel extends GetxController {
       "postTitle": "를 다시 입력해주세요"
     }
   };
-
+  
+  RxBool loading = false.obs;
   RxBool emailValid = false.obs;
   RxBool passwordValid = false.obs;
   RxBool passwordCheckValid = false.obs;
@@ -136,10 +137,14 @@ class UserAccountViewModel extends GetxController {
   }
 
   void onPressNext() async {
+    loading.value = true;
+
     if (await checkEmailVaild() && checkPasswordValid()) {
       Cognito cognito = Cognito();
       BodyModel response = await cognito.signUpStart(email.value, password.value);
 
+      loading.value = false;
+      
       if(response.success) {
         Get.toNamed('/passAuth');
       }

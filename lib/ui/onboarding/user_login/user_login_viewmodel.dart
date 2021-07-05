@@ -11,6 +11,7 @@ class UserLoginViewModel extends GetxController{
     "postTitle": "를 입력해주세요"
   }.obs;
   
+  RxBool loading = false.obs;
   RxBool emailValid = false.obs;
   RxBool passwordValid = false.obs;
   RxString emailError = "".obs;
@@ -65,15 +66,27 @@ class UserLoginViewModel extends GetxController{
   }
 
   void onPressNext() async {
-    Cognito cognito = Cognito();
-    final result = await cognito.signIn(email.value, password.value);
+    try {
+      loading.value = true;
 
-    if(result.isSignedIn) {
-      // 홈으로 보냄
-    }
+      Cognito cognito = Cognito();
 
-    else {
-      ErrorHandler.errorHandler("LoginException");
+      final result = await cognito.signIn(email.value, password.value);
+      final isSignedIn = await cognito.checkLoggedIn();
+
+      loading.value = false;
+
+      if(isSignedIn) {
+        // 홈으로 보냄
+        print("logged in");
+      }
+
+      else {
+        ErrorHandler.errorHandler("LoginException");
+      }
+    } catch(e) {
+      print(e);
+      ErrorHandler.errorHandler("default");
     }
   }
 

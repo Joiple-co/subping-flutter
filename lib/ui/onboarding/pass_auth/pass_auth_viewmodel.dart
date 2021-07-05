@@ -10,13 +10,16 @@ class PassAuthViewModel extends GetxController{
     "accent": "본인인증",
     "postTitle": "이 필요해요"
   }.obs;
-  
+  RxBool loading = false.obs;
+
   void onInit() {
     super.onInit();
   }
 
   void onPressNext() async {
     try {
+      loading.value = true;
+
       final cognito = Cognito();
 
       final response = await cognito.signUpDone(
@@ -26,8 +29,8 @@ class PassAuthViewModel extends GetxController{
           ci: "testCI",
           birthday: "19980803");
 
-      print(response.message);
-
+      loading.value = false;
+      
       if (response.success) {
         Get.offNamedUntil("/userLogin", ModalRoute.withName("/appIntro"));
       } else {

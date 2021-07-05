@@ -66,6 +66,7 @@ class UserAccount extends StatelessWidget {
               SqaureButton(
                   text: "다음",
                   onPressed: () => viewModel.onPressNext(),
+                  loading: viewModel.loading.value,
                   disabled: !(viewModel.emailValid.value &&
                       viewModel.passwordValid.value &&
                       viewModel.passwordCheckValid.value)),
