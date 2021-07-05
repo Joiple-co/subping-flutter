@@ -27,6 +27,11 @@ class Cognito {
     }
   }
 
+  Future<bool> checkLoggedIn() async {
+    final user = await Amplify.Auth.fetchAuthSession();
+    return user.isSignedIn;
+  }
+
   Future<BodyModel> signUpStart(String email, String password) async {
     final secure = Secure();
     final encryptedPassword = await secure.encrpytRSA(password);
@@ -58,13 +63,13 @@ class Cognito {
     return body;
   }
 
-  Future<BodyModel> signIn(String email, String password) async {
+  Future<SignInResult> signIn(String email, String password) async {
     try {
       SignInResult result = await Amplify.Auth.signIn(
         username: email.trim(), 
         password: password.trim());
 
-      
+      return result;
     } on AuthException catch(e) {
       print(e.message);
     }
