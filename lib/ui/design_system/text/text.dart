@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubpingText extends StatelessWidget {
   final String text;
-  final SubpingFontSize size;
-  final SubpingFontWeight fontWeight;
-  final SubpingColor color;
+  final double size;
+  final FontWeight fontWeight;
+  final Color color;
   final StrutStyle strutStyle;
   final TextDirection textDirection;
   final TextAlign textAlign;
@@ -43,9 +43,9 @@ class SubpingText extends StatelessWidget {
   Widget build(BuildContext context) {
     return (Text(text,
         style: TextStyle(
-            fontSize: fontSizeSet[this.size],
-            color: colorSet[this.color],
-            fontWeight: fontWeightSet[this.fontWeight]),
+            fontSize: this.size,
+            color: this.color,
+            fontWeight: this.fontWeight),
         locale: this.locale,
         strutStyle: this.strutStyle,
         textAlign: this.textAlign,

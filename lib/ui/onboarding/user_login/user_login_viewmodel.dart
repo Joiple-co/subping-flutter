@@ -22,11 +22,59 @@ class UserLoginViewModel extends GetxController{
 
   void onInit() {
     super.onInit();
+
+    debounce(email, (text) async {
+      checkEmailVaild();
+    }, time: Duration(milliseconds: 500));
+
+    debounce(password, (text) {
+      checkPasswordValid();
+    }, time: Duration(milliseconds: 500));
+  }
+
+  Future<bool> checkEmailVaild() async {
+    if (GetUtils.isEmail(email.value)) {
+        emailValid.value = true;
+        emailError.value = "";
+        return true;
+    } else {
+      emailValid.value = false;
+      emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
+    }
+
+    return false;
+  }
+
+  bool checkPasswordValid() {
+    bool passwordValidCheck =
+        RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
+            .hasMatch(password.value);
+
+    passwordError.value = "";
+    passwordValid.value = false;
+
+    if (passwordValidCheck) {
+      passwordValid.value = true;
+      passwordError.value = "";
+
+    } else {
+      passwordError.value = "비밀번호를 양식에 맞게 입력해주세요.";
+    }
+
+    return false;
   }
 
   void onPressNext() async {
     Cognito cognito = Cognito();
-    cognito.signIn(email.value, password.value);
+    final result = await cognito.signIn(email.value, password.value);
+
+    if(result.isSignedIn) {
+      // 홈으로 보냄
+    }
+
+    else {
+      ErrorHandler.errorHandler("LoginException");
+    }
   }
 
   void onChangeEmail(String newEmail) {
@@ -42,10 +90,7 @@ class UserLoginViewModel extends GetxController{
   }
 
   void onPressPasswordDone(String _) {
-
-  }
-
-  void onPressPasswordCheckDone(String _) {
     onPressNext();
   }
+
 }

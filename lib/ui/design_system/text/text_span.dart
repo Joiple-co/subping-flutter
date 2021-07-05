@@ -6,24 +6,20 @@ import '../settingTable.dart';
 class SubpingTextSpan extends TextSpan {
   final List<SubpingTextSpan> children;
   final String text;
-  final SubpingColor color;
-  final SubpingFontSize fontSize;
-  final SubpingFontWeight fontWeight;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color color;
 
   SubpingTextSpan(
-      {this.text,
-      this.children,
-      this.color,
-      this.fontWeight,
-      this.fontSize});
+      {this.text, this.children, this.color, this.fontWeight, this.fontSize});
 
   @override
   void build(ParagraphBuilder builder,
       {double textScaleFactor = 1.0, List<PlaceholderDimensions> dimensions}) {
     final TextStyle style = TextStyle(
-        fontSize: fontSizeSet[this.fontSize],
-        fontWeight: fontWeightSet[this.fontWeight],
-        color: colorSet[this.color]);
+        fontSize: this.fontSize,
+        fontWeight: this.fontWeight,
+        color: this.color);
     final bool hasStyle = style != null;
     if (hasStyle)
       builder.pushStyle(style.getTextStyle(textScaleFactor: textScaleFactor));
