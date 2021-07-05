@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class AppIntroViewModel {
-  void onPressStart(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.pushNamed(context, "/userAccount");
+  void onPressStart() {
+    Get.toNamed("/userAccount");
   }
 
-  void onPressLogin(BuildContext context) {
-    Navigator.pop(context);
-    Navigator.pushNamed(context, "/login");
+  void onPressLogin() {
+    Get.toNamed("/userLogin");
   }
 
   Map<String, String> generateInformation(int index) {

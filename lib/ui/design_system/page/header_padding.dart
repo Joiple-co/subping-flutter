@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HorizontalPadding extends StatelessWidget {
+class HeaderPadding extends StatelessWidget {
   final Widget child;
 
-  HorizontalPadding({Key key, this.child}) : super(key: key);
+  HeaderPadding({Key key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(40.w, 0, 40.w, 0),
+      padding: EdgeInsets.fromLTRB(0, 64.h, 0, 0),
       child: child,
     );
   }

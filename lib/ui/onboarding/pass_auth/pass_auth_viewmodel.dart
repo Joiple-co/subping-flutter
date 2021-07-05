@@ -1,9 +1,21 @@
-import 'package:flutter/material.dart';
+
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 
-class PassAuthViewModel with ChangeNotifier {
-  void onPressComplete(BuildContext context) async {
+class PassAuthViewModel extends GetxController{
+  RxMap<String, String> currentTitle = {
+    "preTitle": "서비스 이용을 위해\n",
+    "accent": "본인인증",
+    "postTitle": "이 필요해요"
+  }.obs;
+  
+  void onInit() {
+    super.onInit();
+  }
+
+  void onPressNext() async {
     try {
       final cognito = Cognito();
 
@@ -14,14 +26,16 @@ class PassAuthViewModel with ChangeNotifier {
           ci: "testCI",
           birthday: "19980803");
 
+      print(response.message);
+
       if (response.success) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, "/login", ModalRoute.withName("/appIntro"));
+        Get.offNamedUntil("/userLogin", ModalRoute.withName("/appIntro"));
       } else {
-        ErrorHandler.errorHandler(context, response.message);
+        ErrorHandler.errorHandler(response.message);
       }
     } catch (e) {
-      ErrorHandler.errorHandler(context, "default");
+      print(e);
+      ErrorHandler.errorHandler("default");
     }
   }
 }

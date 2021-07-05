@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:amplify_api/amplify_api.dart';
 import 'package:crypton/crypton.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:subping/model/rsa_model.dart';
@@ -7,10 +8,10 @@ import 'package:subping/modules/api/api.dart';
 
 class Secure {
   Future<bool> initRSA() async {
-    final response = await API.get("auth", "/rsa", withAuth: false);
-    final decodedResponse = jsonDecode(response.body);
+    RestResponse rawResponse = await API.get("auth", "/rsa");
+    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
 
-    RSAModel data = RSAModel.fromJson(decodedResponse);
+    RSAModel data = RSAModel.fromJson(response);
 
     if (data.success) {
       final store = new FlutterSecureStorage();

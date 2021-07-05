@@ -1,77 +1,51 @@
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 
-class UserLoginViewModel with ChangeNotifier {
-  FocusNode emailFocusNode;
-  FocusNode passwordFocusNode;
+class UserLoginViewModel extends GetxController{
+  RxMap<String, String> currentTitle = {
+    "preTitle": "로그인을 위해\n",
+    "accent": "계정정보",
+    "postTitle": "를 입력해주세요"
+  }.obs;
+  
+  RxBool emailValid = false.obs;
+  RxBool passwordValid = false.obs;
+  RxString emailError = "".obs;
+  RxString passwordError = "".obs;
+  RxString email = "".obs;
+  RxString password = "".obs;
+  FocusNode emailFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
 
-  String email;
-  String password;
-  String emailErrorMessage;
-  String passwordErrorMessage;
-  bool isLoading;
-
-  UserLoginViewModel() {
-    email = "";
-    password = "";
-    isLoading = false;
-
-    emailFocusNode = FocusNode();
-    passwordFocusNode = FocusNode();
+  void onInit() {
+    super.onInit();
   }
 
-  void onChangeEmail(String text) {
-    email = text;
-    emailErrorMessage = null;
-    notifyListeners();
+  void onPressNext() async {
+    Cognito cognito = Cognito();
+    cognito.signIn(email.value, password.value);
   }
 
-  void onChangePassword(String text) {
-    password = text;
-    passwordErrorMessage = null;
-    notifyListeners();
+  void onChangeEmail(String newEmail) {
+    email.value = newEmail;
   }
 
-  void onSubmittedEmail() {
-    passwordFocusNode.requestFocus();
+  void onChangePassword(String newPassword) {
+    password.value = newPassword;
   }
 
-  void onPressLogin(BuildContext context) async {
-    try {
-      bool emailValid = RegExp(
-              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-          .hasMatch(email);
+  void onPressEmailDone(String _) {
+    passwordFocus.requestFocus();
+  }
 
-      bool passwordValid =
-          RegExp(r"^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$")
-              .hasMatch(password);
+  void onPressPasswordDone(String _) {
 
-      if (emailValid && passwordValid) {
-        final cognito = Cognito();
-        print("run'${email}', '${password}'");
-        final isLoginSuccess = await cognito.login(email, password);
+  }
 
-        if (isLoginSuccess) {
-          Navigator.pushNamedAndRemoveUntil(
-              context, "/splash", (Route<dynamic> route) => false);
-        } else {
-          ErrorHandler.errorHandler(context, "LoginException");
-        }
-      } else {
-        if (!emailValid) {
-          emailErrorMessage = "이메일 주소를 양식에 맞게 입력해주세요.";
-          notifyListeners();
-        }
-
-        if (!passwordValid) {
-          passwordErrorMessage = "비밀번호는 소문자, 숫자, 특수문자를 포함한\n8자리 이상으로 입력해야 합니다.";
-          notifyListeners();
-        }
-      }
-    } catch (e) {
-      print(e);
-      ErrorHandler.errorHandler(context, "LoginException");
-    }
+  void onPressPasswordCheckDone(String _) {
+    onPressNext();
   }
 }

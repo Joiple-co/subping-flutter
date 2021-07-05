@@ -5,7 +5,7 @@ class AlwaysDisabledFocusNode extends FocusNode {
   bool get hasFocus => false;
 }
 
-class WidthFitTextField extends StatelessWidget {
+class SubpingTextField extends StatelessWidget {
   final FocusNode focusNode;
   final Function onChanged;
   final bool readOnly;
@@ -22,7 +22,7 @@ class WidthFitTextField extends StatelessWidget {
   final String errorText;
   final Function onSubmitted;
 
-  WidthFitTextField(
+  SubpingTextField(
       {this.focusNode,
       this.onChanged,
       this.readOnly = false,
@@ -43,7 +43,6 @@ class WidthFitTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: key,
-      width: MediaQuery.of(context).size.width - 40,
       child: TextField(
         onTap: onTab,
         controller: controller,
