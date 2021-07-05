@@ -1,16 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 
-class UserLoginViewModel extends GetxController{
-  RxMap<String, String> currentTitle = {
-    "preTitle": "로그인을 위해\n",
-    "accent": "계정정보",
-    "postTitle": "를 입력해주세요"
-  }.obs;
-  
+class UserLoginViewModel extends GetxController {
+  RxMap<String, String> currentTitle =
+      {"preTitle": "로그인을 위해\n", "accent": "계정정보", "postTitle": "를 입력해주세요"}.obs;
+
+  RxBool loading = false.obs;
   RxBool emailValid = false.obs;
   RxBool passwordValid = false.obs;
   RxString emailError = "".obs;
@@ -34,9 +31,9 @@ class UserLoginViewModel extends GetxController{
 
   Future<bool> checkEmailVaild() async {
     if (GetUtils.isEmail(email.value)) {
-        emailValid.value = true;
-        emailError.value = "";
-        return true;
+      emailValid.value = true;
+      emailError.value = "";
+      return true;
     } else {
       emailValid.value = false;
       emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
@@ -56,7 +53,6 @@ class UserLoginViewModel extends GetxController{
     if (passwordValidCheck) {
       passwordValid.value = true;
       passwordError.value = "";
-
     } else {
       passwordError.value = "비밀번호를 양식에 맞게 입력해주세요.";
     }
@@ -65,15 +61,25 @@ class UserLoginViewModel extends GetxController{
   }
 
   void onPressNext() async {
-    Cognito cognito = Cognito();
-    final result = await cognito.signIn(email.value, password.value);
+    try {
+      loading.value = true;
 
-    if(result.isSignedIn) {
-      // 홈으로 보냄
-    }
+      Cognito cognito = Cognito();
 
-    else {
-      ErrorHandler.errorHandler("LoginException");
+      final result = await cognito.signIn(email.value, password.value);
+      final isSignedIn = await cognito.checkLoggedIn();
+
+      loading.value = false;
+
+      if (isSignedIn) {
+        // 홈으로 보냄
+        print("logged in");
+      } else {
+        ErrorHandler.errorHandler("LoginException");
+      }
+    } catch (e) {
+      print(e);
+      ErrorHandler.errorHandler("default");
     }
   }
 
@@ -92,5 +98,4 @@ class UserLoginViewModel extends GetxController{
   void onPressPasswordDone(String _) {
     onPressNext();
   }
-
 }
