@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:subping/ui/design_system/page/header_padding.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro_viewmodel.dart';
-import 'package:subping/ui/design_system/button/sqaure_button.dart';
-import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 
@@ -68,7 +66,7 @@ class AppIntro extends StatelessWidget {
                 height: 50.h,
               ),
               Center(
-                  child: SqaureButton(
+                  child: SquareButton(
                       text: "섭핑 시작하기",
                       height: 110,
                       onPressed: () => showBottomSheet(context))),
@@ -96,7 +94,7 @@ class AppIntro extends StatelessWidget {
                     topRight: Radius.circular(10))),
             child: Column(
               children: [
-                SqaureButton(
+                SquareButton(
                   text: "지금 가입하고 사용할래요",
                   onPressed: () => appIntroViewModal.onPressStart(),
                 ),
