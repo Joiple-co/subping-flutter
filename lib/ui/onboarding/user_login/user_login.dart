@@ -37,33 +37,37 @@ class UserLogin extends StatelessWidget {
                       fontWeight: SubpingFontWeight.bold),
                 ])),
                 Space(size: SubpingSize.large64),
-                Expanded(child: Column(children: [
-                  SubpingTextField(
-                    labelText: "이메일",
-                    focusNode: viewModel.emailFocus,
-                    onChanged: viewModel.onChangeEmail,
-                    onSubmitted: viewModel.onPressEmailDone,
-                    errorText: viewModel.emailError.value != ""
-                        ? viewModel.emailError.value
-                        : null,
-                  ),
-                  Space(size: SubpingSize.large30),
-                  SubpingTextField(
-                    labelText: "비밀번호",
-                    focusNode: viewModel.passwordFocus,
-                    onChanged: viewModel.onChangePassword,
-                    onSubmitted: viewModel.onPressPasswordDone,
-                    errorText: viewModel.passwordError.value != ""
-                        ? viewModel.passwordError.value
-                        : null,
-                    obscureText: true,
-                  ),
-                ],)),
-                SqaureButton(
-                  text: "확인", 
-                  onPressed: viewModel.onPressNext, 
-                  disabled: !(viewModel.emailValid.value && viewModel.passwordValid.value),
-                  loading: viewModel.loading.value),
+                Expanded(
+                    child: Column(
+                  children: [
+                    SubpingTextField(
+                      labelText: "이메일",
+                      focusNode: viewModel.emailFocus,
+                      onChanged: viewModel.onChangeEmail,
+                      onSubmitted: viewModel.onPressEmailDone,
+                      errorText: viewModel.emailError.value != ""
+                          ? viewModel.emailError.value
+                          : null,
+                    ),
+                    Space(size: SubpingSize.large30),
+                    SubpingTextField(
+                      labelText: "비밀번호",
+                      focusNode: viewModel.passwordFocus,
+                      onChanged: viewModel.onChangePassword,
+                      onSubmitted: viewModel.onPressPasswordDone,
+                      errorText: viewModel.passwordError.value != ""
+                          ? viewModel.passwordError.value
+                          : null,
+                      obscureText: true,
+                    ),
+                  ],
+                )),
+                SquareButton(
+                    text: "확인",
+                    onPressed: viewModel.onPressNext,
+                    disabled: !(viewModel.emailValid.value &&
+                        viewModel.passwordValid.value),
+                    loading: viewModel.loading.value),
                 Space(size: SubpingSize.large40)
               ],
             )),

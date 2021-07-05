@@ -125,7 +125,7 @@ extension SubpingColor on SubpingColorExtension {
   }
 
   static Color get black30 {
-    return Color.fromRGBO(85, 85, 95, 1);
+    return Color.fromRGBO(233, 233, 238, 1);
   }
 
   static Color get back20 {
