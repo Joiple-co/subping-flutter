@@ -133,7 +133,7 @@ extension SubpingColor on SubpingColorExtension {
   }
 
   static Color get white100 {
-    return Color.fromRGBO(0, 0, 0, 1);
+    return Color.fromRGBO(255, 255, 255, 1);
   }
 }
 
