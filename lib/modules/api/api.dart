@@ -50,7 +50,7 @@ class API {
     Map<String, String> header = await _makeHeader();
 
     try {
-      RestOptions options = RestOptions(path: path, headers: header);
+      RestOptions options = RestOptions(apiName: service, path: path, headers: header);
       RestOperation restOperation = Amplify.API.get(restOptions: options);
 
       return restOperation.response;
@@ -68,6 +68,7 @@ class API {
       Uint8List encoded = utf8.encode(jsonBody);
 
       RestOptions options = RestOptions(
+          apiName: service,
           path: path,
           headers: header,
           body: encoded);
