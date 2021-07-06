@@ -9,3 +9,4 @@ export './space/space.dart';
 export './settingTable.dart';
 export 'text/text.dart';
 export 'text/text_span.dart';
+export './shape/chart_rank.dart';
