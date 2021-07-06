@@ -7,7 +7,9 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
+import 'package:subping/ui/main_tabs/category/category.dart';
 
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
@@ -66,7 +68,8 @@ class _SubpingAppState extends State<SubpingApp> {
             GetPage(name: "/appIntro", page: () => AppIntro()),
             GetPage(name: "/userAccount", page: () => UserAccount()),
             GetPage(name: "/passAuth", page: () => PassAuth()),
-            GetPage(name: "/userLogin", page: () => UserLogin())
+            GetPage(name: "/userLogin", page: () => UserLogin()),
+            GetPage(name: "/category", page: () => Category())
           ],
         ));
   }
