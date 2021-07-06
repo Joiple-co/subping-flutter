@@ -5,35 +5,28 @@ import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/api/api.dart';
 
 class ServiceRepository {
-  Future<List<ServiceModel>> getCurrentHotChart(num page) async {
-    List<ServiceModel> result = [];
-    final response =
-        await API.post("service", "/currentHotChart", body: {"page": page});
 
-    final decodeData = utf8.decode(response.bodyBytes);
-    final jsonBody = jsonDecode(decodeData);
-    BodyModel body = BodyModel.fromJson(jsonBody);
+  Future<Map<String, List<ServiceModel>>> getServices() async {
+    Map<String, List<ServiceModel>> services = <String, List<ServiceModel>>{};
 
-    for (final item in body.message) {
-      result.add(ServiceModel.fromJson(item));
+    try {
+      final rawResponse = await API.post("service", "/getServices", body: {});
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse)); 
+
+      response.message.forEach((key, value) { 
+        List<ServiceModel> servicesOfKey = [];
+
+        value.forEach((element) {
+          servicesOfKey.add(ServiceModel.fromJson(element));
+        });
+
+        services[key] = servicesOfKey;
+      });
+
+      return services;
+    } catch(e) {
+      print(e);
     }
-
-    return result;
-  }
-
-  Future<List<ServiceModel>> getUserRecommendServices(num page) async {
-    List<ServiceModel> result = [];
-    final response =
-        await API.post("service", "/recommendServices", body: {"page": page});
-
-    final decodeData = utf8.decode(response.bodyBytes);
-    final jsonBody = jsonDecode(decodeData);
-    BodyModel body = BodyModel.fromJson(jsonBody);
-
-    for (final item in body.message) {
-      result.add(ServiceModel.fromJson(item));
-    }
-
-    return result;
   }
 }

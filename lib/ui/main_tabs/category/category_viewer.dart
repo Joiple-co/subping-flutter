@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/model/service_model.dart';
 import 'package:subping/ui/design_system/settingTable.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/category/category_service_item.dart';
 
 class CategoryViewer extends StatelessWidget {
-  final Map items;
+  final List<ServiceModel> items;
 
   const CategoryViewer({this.items}) : super();
 
@@ -25,7 +26,7 @@ class CategoryViewer extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SubpingText("전체 500개", size: SubpingFontSize.tiny1),
+                        SubpingText("전체 ${items.length}개", size: SubpingFontSize.tiny1),
                         TextButton(
                             child:
                                 SubpingText("추천순", size: SubpingFontSize.tiny1),
@@ -42,26 +43,9 @@ class CategoryViewer extends StatelessWidget {
                     childAspectRatio: (360.w / 530.h),
                     crossAxisSpacing: 28.w,
                     mainAxisSpacing: 20.h,
-                    crossAxisCount: 2, children: [
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                      CategoryServiceItem(),
-                  ],)
+                    crossAxisCount: 2, children: List.generate(items.length, (index) {
+                      return CategoryServiceItem(item: items[index]);
+                    }),)
                 ]),
               ),
             ),
