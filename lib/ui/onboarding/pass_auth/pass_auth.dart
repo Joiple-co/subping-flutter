@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/ui/design_system/button/sqaure_button.dart';
+import 'package:subping/ui/design_system/button/square_button.dart';
 import 'package:subping/ui/design_system/page/header_padding.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/page/horizontal_padding.dart';
@@ -38,7 +38,7 @@ class PassAuth extends StatelessWidget {
                       fontWeight: SubpingFontWeight.bold),
                 ])),
                 Expanded(child: Container()),
-                SqaureButton(
+                SquareButton(
                   text: "확인", 
                   onPressed: viewModel.onPressNext,
                   loading: viewModel.loading.value),
