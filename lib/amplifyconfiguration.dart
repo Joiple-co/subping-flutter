@@ -47,6 +47,12 @@ const devAmplifyconfig = ''' {
                     "endpoint": "https://6d6943fwn7.execute-api.ap-northeast-2.amazonaws.com/dev",
                     "region": "ap-northeast-2",
                     "authorizationType": "AWS_IAM"
+                },
+                "service": {
+                    "endpointType": "REST",
+                    "endpoint": "https://bdr325go91.execute-api.ap-northeast-2.amazonaws.com/dev",
+                    "region": "ap-northeast-2",
+                    "authorizationType": "AWS_IAM"
                 }
             }
         }
