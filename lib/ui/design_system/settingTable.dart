@@ -1,13 +1,16 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
-enum SubpingSize {
+enum SubpingSizeExtension {
+  large80,
+  large70,
   large64,
   large50,
   large48,
   large40,
   large30,
   medium24,
+  medium22,
   medium20,
   medium16,
   tiny14,
@@ -44,6 +47,64 @@ enum SubpingFontSizeExtension {
 }
 
 enum SubpingFontWeightExtionsion { bold, medium, regular }
+
+extension SubpingSize on SubpingSizeExtension {
+  static double get large80 {
+    return 80.0;
+  }
+
+  static double get large70 {
+    return 70.0;
+  }
+
+  static double get large64 {
+    return 64.0;
+  }
+
+  static double get large50 {
+    return 50.0;
+  }
+
+  static double get large48 {
+    return 48.0;
+  }
+
+  static double get large40 {
+    return 40.0;
+  }
+
+  static double get large30 {
+    return 30.0;
+  }
+
+  static double get medium24 {
+    return 24.0;
+  }
+
+  static double get medium22 {
+    return 22.0;
+  }
+
+  static double get medium20 {
+    return 20.0;
+  }
+
+  static double get medium16 {
+    return 16.0;
+  }
+
+  static double get tiny14 {
+    return 14.0;
+  }
+
+  static double get tiny12 {
+    return 12.0;
+  }
+
+  static double get tiny10 {
+    return 10.0;
+  }
+}
 
 extension SubpingFontSize on SubpingFontSizeExtension {
   static double get title1 {

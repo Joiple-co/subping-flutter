@@ -25,7 +25,7 @@ class SubpingText extends StatelessWidget {
     @required this.size,
     Key key,
     this.color,
-    this.fontWeight,
+    this.fontWeight = FontWeight.w500,
     this.strutStyle,
     this.textAlign,
     this.textDirection,

@@ -76,6 +76,10 @@ flutter:
     - assets/bannerTest.png
     - assets/rankColored.png
     - assets/rankUnColored.png
+    - assets/icon/notificBell.png
+    - assets/icon/search.png
+    - assets/icon/middleRightArrow.png
+    - assets/recommand.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

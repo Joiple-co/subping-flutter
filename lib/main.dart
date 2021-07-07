@@ -16,6 +16,7 @@ import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
+import 'package:subping/ui/main_tabs/home.dart';
 
 void main() => runApp(SubpingApp());
 
@@ -69,7 +70,8 @@ class _SubpingAppState extends State<SubpingApp> {
             GetPage(name: "/userAccount", page: () => UserAccount()),
             GetPage(name: "/passAuth", page: () => PassAuth()),
             GetPage(name: "/userLogin", page: () => UserLogin()),
-            GetPage(name: "/category", page: () => Category())
+            GetPage(name: "/category", page: () => Category()),
+            GetPage(name: "/home", page: () => Home())
           ],
         ));
   }
