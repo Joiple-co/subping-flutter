@@ -18,7 +18,7 @@ class CategoryServiceItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20.h),
             child: Image.network(
-              item.serviceSqaureLogoUrl, 
+              item.serviceSquareLogoUrl, 
               fit: BoxFit.fill,
               height: 360.h,
               width: 360.w,)),

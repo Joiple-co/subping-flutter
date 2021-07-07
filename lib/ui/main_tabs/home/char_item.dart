@@ -7,14 +7,14 @@ class ChartItem extends StatelessWidget {
   final int rank;
   final String serviceName;
   final String servicSummary;
-  final String serviceSqaureLogoUrl;
+  final String serviceSquareLogoUrl;
   final List<dynamic> serviceTags;
 
   ChartItem(
       {this.rank,
       this.serviceName,
       this.servicSummary,
-      this.serviceSqaureLogoUrl,
+      this.serviceSquareLogoUrl,
       this.serviceTags});
 
   @override
@@ -46,7 +46,7 @@ class ChartItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: NetworkImage(this.serviceSqaureLogoUrl)),
+                            image: NetworkImage(this.serviceSquareLogoUrl)),
                         color: Colors.amberAccent),
                   ),
                   Space(size: SubpingSize.large30),
