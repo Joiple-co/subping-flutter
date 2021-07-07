@@ -27,7 +27,7 @@ class CategoryServiceItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             SubpingText(item.serviceName, size: SubpingFontSize.body5, color: SubpingColor.black60),
-            SubpingText(item.servicSummary, size: SubpingFontSize.body2, maxLines: 2,)
+            SubpingText(item.serviceSummary, size: SubpingFontSize.body2, maxLines: 2,)
           ],)
         ],
       ),

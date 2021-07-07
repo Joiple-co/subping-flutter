@@ -13,8 +13,8 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     ServiceModel dummy = new ServiceModel(
         serviceName: "넷플릭스",
-        servicSummary: '지금바로 시청하세요',
-        serviceSqaureLogoUrl:
+        serviceSummary: '지금바로 시청하세요',
+        serviceSquareLogoUrl:
             'http://t1.daumcdn.net/brunch/service/user/owx/image/MNLdnERLFoNSc6LD8yTvfRAsdFI.jpg',
         serviceTags: ["미디어", "음악"]);
 
@@ -36,8 +36,8 @@ class Chart extends StatelessWidget {
               return ChartItem(
                   rank: index + 1,
                   serviceName: test[index].serviceName,
-                  servicSummary: test[index].servicSummary,
-                  serviceSqaureLogoUrl: test[index].serviceSqaureLogoUrl,
+                  serviceSummary: test[index].serviceSummary,
+                  serviceSquareLogoUrl: test[index].serviceSquareLogoUrl,
                   serviceTags: test[index].serviceTags);
             })),
           ),

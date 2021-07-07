@@ -6,14 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ChartItem extends StatelessWidget {
   final int rank;
   final String serviceName;
-  final String servicSummary;
+  final String serviceSummary;
   final String serviceSquareLogoUrl;
   final List<dynamic> serviceTags;
 
   ChartItem(
       {this.rank,
       this.serviceName,
-      this.servicSummary,
+      this.serviceSummary,
       this.serviceSquareLogoUrl,
       this.serviceTags});
 
@@ -55,7 +55,7 @@ class ChartItem extends StatelessWidget {
                     children: [
                       SubpingText(this.serviceName,
                           size: SubpingFontSize.body1),
-                      SubpingText(this.servicSummary,
+                      SubpingText(this.serviceSummary,
                           size: SubpingFontSize.body4),
                       Space(size: SubpingSize.medium22),
                       Row(
