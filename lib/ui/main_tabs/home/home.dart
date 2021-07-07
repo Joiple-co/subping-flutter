@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
-import 'package:subping/ui/main_tabs/homeWidget/recommand.dart';
-import 'homeWidget/tool_bar.dart';
-import 'homeWidget/expected.dart';
-import 'homeWidget/recommand.dart';
-import 'homeWidget/chart.dart';
+import 'package:subping/ui/main_tabs/home/recommand.dart';
+import '../../design_system/toolbar/tool_bar.dart';
+import './expected.dart';
+import './recommand.dart';
+import './chart.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -15,8 +15,9 @@ class Home extends StatelessWidget {
         child: HorizontalPadding(
           child: ListView(
             children: [
-              ToolBar(),
               Space(size: SubpingSize.tiny10),
+              ToolBar(),
+              Space(size: SubpingSize.medium20),
               Expected(),
               Space(size: SubpingSize.large80),
               Recommand(),

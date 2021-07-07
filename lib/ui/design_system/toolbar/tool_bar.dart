@@ -7,22 +7,27 @@ class ToolBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return (Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IconButton(
+          padding: EdgeInsets.zero,
+          constraints: BoxConstraints(
+            minHeight: 50.h,
+            minWidth: 50.w
+          ),
           icon: Image.asset(
             "assets/icon/search.png",
-            height: 50.nsp,
-            width: 50.nsp,
           ),
           onPressed: () {},
         ),
-        Space(size: SubpingSize.large40),
+        Space(size: SubpingSize.large40,),
         IconButton(
+          padding: EdgeInsets.zero,
+          constraints: BoxConstraints(
+            minHeight: 60.h,
+            minWidth: 60.w
+          ),
           icon: Image.asset(
             "assets/icon/notificBell.png",
-            height: 60.nsp,
-            width: 60.nsp,
           ),
           onPressed: () {},
         )

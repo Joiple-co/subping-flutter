@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
-import 'package:subping/ui/main_tabs/homeWidget/char_item.dart';
-import 'package:subping/ui/main_tabs/homeWidget/more_chart.dart';
+import 'package:subping/ui/main_tabs/home/char_item.dart';
+import 'package:subping/ui/main_tabs/home/more_chart.dart';
 
 class Chart extends StatelessWidget {
   final int limitItem;

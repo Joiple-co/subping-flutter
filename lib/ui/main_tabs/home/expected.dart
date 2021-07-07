@@ -19,7 +19,7 @@ class Expected extends StatelessWidget {
         ),
         SubpingText("오늘 결제 예정인 상품이 ${item.length}개 있어요",
             size: SubpingFontSize.body1),
-        Space(size: SubpingSize.medium20),
+        Space(size: SubpingSize.large40),
         Container(
           width: MediaQuery.of(context).size.width - 80.w,
           height: 178.h,
