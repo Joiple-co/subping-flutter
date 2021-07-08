@@ -11,4 +11,4 @@ export './settingTable.dart';
 export 'text/text.dart';
 export 'text/text_span.dart';
 export './shape/chart_rank.dart';
-export './toolbar/tool_bar.dart';
+export '../main_tabs/home/tool_bar.dart';

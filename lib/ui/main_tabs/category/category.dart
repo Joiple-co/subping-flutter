@@ -40,15 +40,10 @@ class Category extends StatelessWidget {
                             collapseMode: CollapseMode.pin,
                           ),
                           centerTitle: false,
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SubpingText("카테고리",
-                                color: SubpingColor.black100,
-                                fontWeight: SubpingFontWeight.bold,
-                                size: SubpingFontSize.title5),
-                              ToolBar()]
-                          ),
+                          title: SubpingText("카테고리",
+                            color: SubpingColor.black100,
+                            fontWeight: SubpingFontWeight.bold,
+                            size: SubpingFontSize.title5),
                           leadingWidth: 0.w,
                           
                           elevation: 0,

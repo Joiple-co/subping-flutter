@@ -32,7 +32,7 @@ class SplashViewModel {
       
       if (isSecureInitSucess) {
         if (isLoggedIn) {
-          Get.offAllNamed("/category");
+          Get.offAllNamed("/mainTabs");
         } else {
           Get.offAllNamed("/appIntro");
         }

@@ -3,16 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:subping/ui/design_system/settingTable.dart';
 
-import 'main_tabs_controller.dart';
+import 'main_tabs_viewmodel.dart';
 
 class BottomNavBar extends StatelessWidget {
-  final MainTabsController controller;
+  final MainTabsViewModel controller;
 
   BottomNavBar(this.controller);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MainTabsController());
+    final controller = Get.put(MainTabsViewModel());
 
     TextStyle labelStyle = TextStyle(
         color: SubpingColor.black80,
