@@ -12,19 +12,21 @@ class ToolBar extends StatelessWidget {
           padding: EdgeInsets.zero,
           constraints: BoxConstraints(
             minHeight: 50.h,
-            minWidth: 50.w
+            minWidth: 50.w,
           ),
           icon: Image.asset(
             "assets/icon/search.png",
           ),
           onPressed: () {},
         ),
-        Space(size: SubpingSize.large40,),
+        Space(
+          size: SubpingSize.large40,
+        ),
         IconButton(
           padding: EdgeInsets.zero,
           constraints: BoxConstraints(
-            minHeight: 60.h,
-            minWidth: 60.w
+            minHeight: 50.h,
+            minWidth: 50.w,
           ),
           icon: Image.asset(
             "assets/icon/notificBell.png",
