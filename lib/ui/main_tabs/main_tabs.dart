@@ -14,6 +14,7 @@ class MainTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(MainTabsViewModel());
+
     List<Widget> pageList = [Home(), Category(), Home(), Category()];
 
     return GetBuilder<MainTabsViewModel>(
@@ -25,6 +26,14 @@ class MainTabs extends StatelessWidget {
               ),
             ),
             bottomNavigationBar: Container(
-              child: BottomNavBar(controller)))));
+              child: BottomNavBar(controller),
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: SubpingColor.black60,
+                    offset: Offset(0, 3.h),
+                    spreadRadius: 2,
+                    blurRadius: 5)
+              ]),
+            ))));
   }
 }

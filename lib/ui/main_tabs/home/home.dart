@@ -23,7 +23,8 @@ class Home extends StatelessWidget {
               Space(size: SubpingSize.large80),
               Recommand(),
               Space(size: SubpingSize.large80),
-              Chart(limitItem: 3)
+              Chart(limitItem: 3),
+              Space(size: SubpingSize.large80),
             ],
           ),
         ),
