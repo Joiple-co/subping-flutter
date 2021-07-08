@@ -7,16 +7,15 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
-import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
-import 'package:subping/ui/main_tabs/category/category.dart';
 
+import 'package:subping/ui/main_tabs/category/category.dart';
+import 'package:subping/ui/main_tabs/main_tabs.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
-import 'package:subping/ui/main_tabs/home.dart';
+import 'package:subping/ui/main_tabs/home/home.dart';
 
 void main() => runApp(SubpingApp());
 
@@ -65,7 +64,7 @@ class _SubpingAppState extends State<SubpingApp> {
           home: Scaffold(backgroundColor: Colors.blue),
           initialRoute: '/splash',
           getPages: [
-            GetPage(name: "/splash", page: () => Splash()),
+            GetPage(name: "/splash", page: () => MainTabs()),
             GetPage(name: "/appIntro", page: () => AppIntro()),
             GetPage(name: "/userAccount", page: () => UserAccount()),
             GetPage(name: "/passAuth", page: () => PassAuth()),
