@@ -42,7 +42,7 @@ class Chart extends StatelessWidget {
             })),
           ),
           Space(size: SubpingSize.large80),
-          Center(child: MoreChart())
+          Center(child: MoreChart()),
         ],
       ),
     );

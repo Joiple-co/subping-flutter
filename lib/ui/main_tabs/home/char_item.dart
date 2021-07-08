@@ -25,8 +25,11 @@ class ChartItem extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.fromLTRB(0, 40.h, 0, 40.h),
               decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(width: 2, color: SubpingColor.black30)),
+                border: rank != 3
+                    ? Border(
+                        bottom:
+                            BorderSide(width: 2, color: SubpingColor.black30))
+                    : null,
               ),
               child: Row(
                 children: [
@@ -43,11 +46,11 @@ class ChartItem extends StatelessWidget {
                     width: 150.w,
                     height: 150.h,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(this.serviceSquareLogoUrl)),
-                        color: Colors.amberAccent),
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(this.serviceSquareLogoUrl)),
+                    ),
                   ),
                   Space(size: SubpingSize.large30),
                   Column(

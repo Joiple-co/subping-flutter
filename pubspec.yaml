@@ -78,6 +78,16 @@ flutter:
     - assets/icon/search.png
     - assets/icon/middleRightArrow.png
     - assets/recommand.png
+    - assets/tabIcon/selectedCatagoryIcon.png
+    - assets/tabIcon/selectedHomeIcon.png
+    - assets/tabIcon/selectedMyPageIcon.png
+    - assets/tabIcon/selectedSubIcon.png
+    - assets/tabIcon/unselectedCatagoryIcon.png
+    - assets/tabIcon/unselectedHomeIcon.png
+    - assets/tabIcon/unselectedMyPageIcon.png
+    - assets/tabIcon/unselectedSubIcon.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
