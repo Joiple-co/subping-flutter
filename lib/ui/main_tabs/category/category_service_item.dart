@@ -13,7 +13,7 @@ class CategoryServiceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20.h),
