@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:amplify_flutter/amplify.dart';
@@ -10,15 +11,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/design_system/transition/circlular_reveal_transition.dart';
 import 'package:subping/ui/main_tabs/category/category.dart';
+import 'package:subping/ui/main_tabs/home/home.dart';
 
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/splash/splash.dart';
-import 'package:subping/ui/main_tabs/home.dart';
 
-void main() => runApp(SubpingApp());
+void main() async {
+  await GetStorage.init();
+  runApp(SubpingApp());
+}
 
 class SubpingApp extends StatefulWidget {
   const SubpingApp() : super();
@@ -55,6 +59,7 @@ class _SubpingAppState extends State<SubpingApp> {
         designSize: Size(828, 1792),
         allowFontScaling: true,
         child: GetMaterialApp(
+          smartManagement: SmartManagement.keepFactory,
           title: 'subping',
           theme: ThemeData(
               fontFamily: 'NotoSansKR',
