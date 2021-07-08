@@ -32,7 +32,7 @@ class SplashViewModel {
       
       if (isSecureInitSucess) {
         if (isLoggedIn) {
-          print("logged in");
+          Get.offAllNamed("/category");
         } else {
           Get.offAllNamed("/appIntro");
         }

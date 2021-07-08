@@ -13,12 +13,12 @@ class CategoryServiceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20.h),
             child: Image.network(
-              item.serviceSqaureLogoUrl, 
+              item.serviceSquareLogoUrl, 
               fit: BoxFit.fill,
               height: 360.h,
               width: 360.w,)),
@@ -27,7 +27,7 @@ class CategoryServiceItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             SubpingText(item.serviceName, size: SubpingFontSize.body5, color: SubpingColor.black60),
-            SubpingText(item.servicSummary, size: SubpingFontSize.body2, maxLines: 2,)
+            SubpingText(item.serviceSummary, size: SubpingFontSize.body2, maxLines: 2,)
           ],)
         ],
       ),
