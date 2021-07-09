@@ -59,7 +59,6 @@ class _SubpingAppState extends State<SubpingApp> {
         designSize: Size(828, 1792),
         allowFontScaling: true,
         child: GetMaterialApp(
-          smartManagement: SmartManagement.keepFactory,
           title: 'subping',
           theme: ThemeData(
               fontFamily: 'NotoSansKR',
