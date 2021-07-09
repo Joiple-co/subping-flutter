@@ -13,8 +13,7 @@ class Category extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = Get.put(CategoryViewModel());
 
-    ScrollController _scrollViewController;
-    TabController _tabController;
+
 
     return GetX<CategoryViewModel>(
       builder: (viewModel) => DefaultTabController(
@@ -23,7 +22,7 @@ class Category extends StatelessWidget {
           child: Scaffold(
               backgroundColor: SubpingColor.back20,
               body: NestedScrollView(
-                controller: _scrollViewController,
+                controller: viewModel.scrollViewController,
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
                   return [
@@ -75,16 +74,16 @@ class Category extends StatelessWidget {
                       tabs: List.generate(viewModel.services.length, (index) => 
                         Tab(child: SubpingText(viewModel.services.keys.elementAt(index))),
                       ),
-                      controller: _tabController,
+                      controller: viewModel.tabController,
                     ),
                   ),
                   Expanded(
                     child: TabBarView(
-                      controller: _tabController,
+                      controller: viewModel.tabController,
                       children: List.generate(viewModel.services.value.length, (index) {
                         String key = viewModel.services.keys.elementAt(index);
 
-                        return CategoryViewer(items: viewModel.services.value[key]);                    
+                        return CategoryViewer(key, items: viewModel.services.value[key]);                    
                       }),
                     ),
                   ),

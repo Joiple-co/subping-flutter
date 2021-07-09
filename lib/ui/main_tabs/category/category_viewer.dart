@@ -6,9 +6,10 @@ import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/category/category_service_item.dart';
 
 class CategoryViewer extends StatelessWidget {
+  final String index;
   final List<ServiceModel> items;
 
-  const CategoryViewer({this.items}) : super();
+  const CategoryViewer(this.index, {this.items}) : super();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,9 @@ class CategoryViewer extends StatelessWidget {
             child: Container(
               color: SubpingColor.white100,
               child: HorizontalPadding(
-                child: CustomScrollView(slivers: [
+                child: CustomScrollView(
+                  key: PageStorageKey("category_viewer_${index}"),
+                  slivers: [
                   SliverList(
                       delegate: SliverChildListDelegate([
                     Row(
@@ -43,7 +46,8 @@ class CategoryViewer extends StatelessWidget {
                     childAspectRatio: (360.w / 530.h),
                     crossAxisSpacing: 28.w,
                     mainAxisSpacing: 20.h,
-                    crossAxisCount: 2, children: List.generate(items.length, (index) {
+                    crossAxisCount: 2, 
+                    children: List.generate(items.length, (index) {
                       return CategoryServiceItem(item: items[index]);
                     }),)
                 ]),

@@ -5,7 +5,6 @@ import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/api/api.dart';
 
 class ServiceRepository {
-
   Future<Map<String, List<ServiceModel>>> getServices() async {
     Map<String, List<ServiceModel>> services = <String, List<ServiceModel>>{};
 
