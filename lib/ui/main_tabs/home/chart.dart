@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:subping/model/current_hot_chart_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/home/char_item.dart';
@@ -6,39 +9,68 @@ import 'package:subping/ui/main_tabs/home/more_chart.dart';
 
 class Chart extends StatelessWidget {
   final int limitItem;
+  final CurrentHotChartModel hotChartData;
 
-  Chart({this.limitItem});
+  Chart({this.limitItem, this.hotChartData});
 
   @override
   Widget build(BuildContext context) {
-    ServiceModel dummy = new ServiceModel(
-        serviceName: "넷플릭스",
-        serviceSummary: '지금바로 시청하세요',
-        serviceSquareLogoUrl:
-            'http://t1.daumcdn.net/brunch/service/user/owx/image/MNLdnERLFoNSc6LD8yTvfRAsdFI.jpg',
-        serviceTags: ["미디어", "음악"]);
-
-    List<ServiceModel> test = [dummy, dummy, dummy, dummy];
-
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubpingText(
-            "인기차트",
-            size: SubpingFontSize.title6,
-            fontWeight: SubpingFontWeight.medium,
-            textAlign: TextAlign.start,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SubpingText(
+                "인기차트",
+                size: SubpingFontSize.title6,
+                fontWeight: SubpingFontWeight.medium,
+                textAlign: TextAlign.start,
+              ),
+              Container(
+                padding: EdgeInsets.fromLTRB(15.w, 10.h, 15.w, 10.h),
+                decoration: BoxDecoration(
+                  color: SubpingColor.back20,
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      color: Colors.amber,
+                      width: 27.w,
+                      height: 27.h,
+                      child: Image.asset(
+                        "assets/icon/clock.png",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Container(
+                      color: Colors.black12,
+                      child: SubpingText(hotChartData?.standardTime,
+                          height: 1,
+                          fontWeight: SubpingFontWeight.medium,
+                          size: SubpingFontSize.body3,
+                          color: SubpingColor.subping50),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
           Container(
             child: Column(
                 children: List.generate(limitItem, (index) {
               return ChartItem(
-                  rank: index + 1,
-                  serviceName: test[index].serviceName,
-                  serviceSummary: test[index].serviceSummary,
-                  serviceSquareLogoUrl: test[index].serviceSquareLogoUrl,
-                  serviceTags: test[index].serviceTags);
+                  rank: hotChartData?.serviceRank[index].rank,
+                  serviceName: hotChartData?.serviceRank[index].serviceName,
+                  serviceSummary:
+                      hotChartData?.serviceRank[index].serviceSummary,
+                  serviceSquareLogoUrl:
+                      hotChartData?.serviceRank[index].serviceSquareLogoUrl,
+                  serviceTags: hotChartData?.serviceRank[index].serviceTags);
             })),
           ),
           Space(size: SubpingSize.large80),
