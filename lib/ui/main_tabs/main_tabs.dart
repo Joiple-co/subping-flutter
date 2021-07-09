@@ -27,13 +27,6 @@ class MainTabs extends StatelessWidget {
             ),
             bottomNavigationBar: Container(
               child: BottomNavBar(controller),
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                    color: SubpingColor.black60,
-                    offset: Offset(0, 3.h),
-                    spreadRadius: 2,
-                    blurRadius: 5)
-              ]),
             ))));
   }
 }

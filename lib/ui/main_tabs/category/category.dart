@@ -11,13 +11,11 @@ class Category extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Get.put(CategoryViewModel());
-
-
+    Get.put(CategoryViewModel());
 
     return GetX<CategoryViewModel>(
       builder: (viewModel) => DefaultTabController(
-        length: viewModel.services.length,
+        length: viewModel.categories.length,
         child: HeaderSafe(
           child: Scaffold(
               backgroundColor: SubpingColor.back20,
@@ -71,8 +69,8 @@ class Category extends StatelessWidget {
                           SubpingColor.subping100, // Tab Bar directive
                       indicatorWeight: 0,
                       isScrollable: true,
-                      tabs: List.generate(viewModel.services.length, (index) => 
-                        Tab(child: SubpingText(viewModel.services.keys.elementAt(index))),
+                      tabs: List.generate(viewModel.categories.length, (index) => 
+                        Tab(child: SubpingText(viewModel.categories[index].category)),
                       ),
                       controller: viewModel.tabController,
                     ),
@@ -80,10 +78,10 @@ class Category extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                       controller: viewModel.tabController,
-                      children: List.generate(viewModel.services.value.length, (index) {
+                      children: List.generate(viewModel.categories.value.length, (index) {
                         String key = viewModel.services.keys.elementAt(index);
 
-                        return CategoryViewer(key, items: viewModel.services.value[key]);                    
+                        return CategoryViewer(index.toString(), viewModel.getServices, viewModel.categories.value[index] ,items: viewModel.services.value[key]);                    
                       }),
                     ),
                   ),
