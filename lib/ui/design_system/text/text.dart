@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/text.dart' as SubText;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubpingText extends StatelessWidget {
+  final double height;
   final String text;
   final double size;
   final FontWeight fontWeight;
@@ -25,6 +26,7 @@ class SubpingText extends StatelessWidget {
     @required this.size,
     Key key,
     this.color,
+    this.height = null,
     this.fontWeight = FontWeight.w500,
     this.strutStyle,
     this.textAlign,
@@ -43,6 +45,7 @@ class SubpingText extends StatelessWidget {
   Widget build(BuildContext context) {
     return (Text(text,
         style: TextStyle(
+            height: height,
             fontSize: this.size,
             color: this.color,
             fontWeight: this.fontWeight),

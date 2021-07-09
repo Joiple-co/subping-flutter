@@ -62,7 +62,7 @@ class ChartItem extends StatelessWidget {
                           size: SubpingFontSize.body4),
                       Space(size: SubpingSize.medium22),
                       Row(
-                          children: this.serviceTags.map((category) {
+                          children: this.serviceTags?.map((category) {
                         bool marginFlag = serviceTags.indexOf(category) != 0;
                         return PoundButton(category, marginFlag: marginFlag);
                       }).toList())
