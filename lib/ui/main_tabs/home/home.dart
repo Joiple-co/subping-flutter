@@ -16,16 +16,16 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewModel = Get.put(HomeViewModel());
 
-    return GetX<HomeViewModel>(
-        builder: (viewModel) => Scaffold(
-              body: HeaderSafe(
-                hasBottomSafe: false,
-                child: HorizontalPadding(
-                    child: FutureBuilder(
-                  future: viewModel.charts.value,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return ListView(
+    return Scaffold(
+      body: HeaderSafe(
+        hasBottomSafe: false,
+        child: HorizontalPadding(
+            child: FutureBuilder(
+          future: viewModel.getChartData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return GetX<HomeViewModel>(
+                  builder: (viewModel) => ListView(
                         children: [
                           Space(size: SubpingSize.large30),
                           ToolBar(),
@@ -34,16 +34,18 @@ class Home extends StatelessWidget {
                           Space(size: SubpingSize.large80),
                           Recommand(),
                           Space(size: SubpingSize.large80),
-                          Chart(limitItem: 3, hotChartData: snapshot.data),
+                          Chart(
+                              limitItem: 3,
+                              hotChartData: viewModel.charts.value),
                           Space(size: SubpingSize.large80),
                         ],
-                      );
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                  },
-                )),
-              ),
-            ));
+                      ));
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        )),
+      ),
+    );
   }
 }
