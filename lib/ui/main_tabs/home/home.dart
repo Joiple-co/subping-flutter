@@ -17,26 +17,33 @@ class Home extends StatelessWidget {
     final viewModel = Get.put(HomeViewModel());
 
     return GetX<HomeViewModel>(
-      builder: (viewModel) => Scaffold(
-        body: HeaderSafe(
-          hasBottomSafe: false,
-          child: HorizontalPadding(
-            child: ListView(
-              children: [
-                Space(size: SubpingSize.large30),
-                ToolBar(),
-                Space(size: SubpingSize.medium20),
-                Expected(),
-                Space(size: SubpingSize.large80),
-                Recommand(),
-                Space(size: SubpingSize.large80),
-                Chart(limitItem: 3, hotChartData: viewModel.charts.value),
-                Space(size: SubpingSize.large80),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        builder: (viewModel) => Scaffold(
+              body: HeaderSafe(
+                hasBottomSafe: false,
+                child: HorizontalPadding(
+                    child: FutureBuilder(
+                  future: viewModel.charts.value,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView(
+                        children: [
+                          Space(size: SubpingSize.large30),
+                          ToolBar(),
+                          Space(size: SubpingSize.medium20),
+                          Expected(),
+                          Space(size: SubpingSize.large80),
+                          Recommand(),
+                          Space(size: SubpingSize.large80),
+                          Chart(limitItem: 3, hotChartData: snapshot.data),
+                          Space(size: SubpingSize.large80),
+                        ],
+                      );
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                  },
+                )),
+              ),
+            ));
   }
 }

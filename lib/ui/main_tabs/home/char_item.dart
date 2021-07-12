@@ -54,20 +54,22 @@ class ChartItem extends StatelessWidget {
                   ),
                   Space(size: SubpingSize.large30),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SubpingText(this.serviceName,
-                          size: SubpingFontSize.body1),
-                      SubpingText(this.serviceSummary,
-                          size: SubpingFontSize.body4),
-                      Space(size: SubpingSize.medium22),
-                      Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SubpingText(this.serviceName,
+                            size: SubpingFontSize.body1),
+                        SubpingText(this.serviceSummary,
+                            size: SubpingFontSize.body4),
+                        Space(size: SubpingSize.medium22),
+                        Row(
                           children: this.serviceTags?.map((category) {
-                        bool marginFlag = serviceTags.indexOf(category) != 0;
-                        return PoundButton(category, marginFlag: marginFlag);
-                      }).toList())
-                    ],
-                  )
+                            bool marginFlag =
+                                serviceTags.indexOf(category) != 0;
+                            return PoundButton(category,
+                                marginFlag: marginFlag);
+                          }).toList(),
+                        )
+                      ])
                 ],
               ),
             )));
