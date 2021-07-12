@@ -23,50 +23,56 @@ class CategoryViewer extends StatefulWidget {
 }
 
 class _CategoryViewerState extends State<CategoryViewer> {
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Space(size: SubpingSize.medium20),
-          Expanded(
-            child: Container(
-              color: SubpingColor.white100,
-              child: HorizontalPadding(
-                child: CustomScrollView(
-                  key: PageStorageKey("category_viewer_${widget.index}"),
-                  slivers: [
-                  SliverList(
-                      delegate: SliverChildListDelegate([
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubpingText("전체 ${widget.items.length}개", size: SubpingFontSize.tiny1),
-                        TextButton(
-                            child:
-                                SubpingText("추천순", size: SubpingFontSize.tiny1),
-                            style: TextButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                                alignment: Alignment.centerRight,
-                                tapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap)),
-                      ],
-                    ),
-                    Space(size: SubpingSize.medium20,)
-                  ])),
-                  SliverGrid.count(
-                    childAspectRatio: (360.w / 530.h),
-                    crossAxisSpacing: 28.w,
-                    mainAxisSpacing: 20.h,
-                    crossAxisCount: 2, 
-                    children: List.generate(widget.items.length, (index) {
-                      return CategoryServiceItem(item: widget.items[index]);
-                    }),)
-                ]),
+    return RefreshIndicator(
+      color: SubpingColor.subping100,
+      backgroundColor: SubpingColor.white100,
+      onRefresh: () => widget.getServices(widget.categoryModel),
+      child: Container(
+        child: Column(
+          children: [
+            Space(size: SubpingSize.medium20),
+            Expanded(
+              child: Container(
+                color: SubpingColor.white100,
+                child: HorizontalPadding(
+                  child: CustomScrollView(
+                    key: PageStorageKey("category_viewer_${widget.index}"),
+                    slivers: [
+                    SliverList(
+                        delegate: SliverChildListDelegate([
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SubpingText("전체 ${widget.items.length}개", size: SubpingFontSize.tiny1),
+                          TextButton(
+                              child:
+                                  SubpingText("추천순", size: SubpingFontSize.tiny1),
+                              style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  alignment: Alignment.centerRight,
+                                  tapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap)),
+                        ],
+                      ),
+                      Space(size: SubpingSize.medium20,)
+                    ])),
+                    SliverGrid.count(
+                      childAspectRatio: (360.w / 530.h),
+                      crossAxisSpacing: 28.w,
+                      mainAxisSpacing: 20.h,
+                      crossAxisCount: 2, 
+                      children: List.generate(widget.items.length, (index) {
+                        return CategoryServiceItem(item: widget.items[index]);
+                      }),)
+                  ]),
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

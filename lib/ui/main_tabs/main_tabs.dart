@@ -1,7 +1,5 @@
-import 'package:subping/ui/design_system/settingTable.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/bottom_nav_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage.dart';
 
 import 'main_tabs_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +13,7 @@ class MainTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(MainTabsViewModel());
 
-    List<Widget> pageList = [Home(), Category(), Home(), Category()];
+    List<Widget> pageList = [Home(), Category(), SubscribeManage(), Category()];
 
     return GetBuilder<MainTabsViewModel>(
         builder: (controller) => Obx(() => Scaffold(
