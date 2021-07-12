@@ -29,7 +29,7 @@ class Chart extends StatelessWidget {
                 textAlign: TextAlign.start,
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(15.w, 10.h, 15.w, 10.h),
+                padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
                 decoration: BoxDecoration(
                   color: SubpingColor.back20,
                   borderRadius: BorderRadius.circular(7),
@@ -39,7 +39,6 @@ class Chart extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      color: Colors.amber,
                       width: 27.w,
                       height: 27.h,
                       child: Image.asset(
@@ -48,9 +47,8 @@ class Chart extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      color: Colors.black12,
+                      margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
                       child: SubpingText(hotChartData?.standardTime,
-                          height: 1,
                           fontWeight: SubpingFontWeight.medium,
                           size: SubpingFontSize.body3,
                           color: SubpingColor.subping50),
