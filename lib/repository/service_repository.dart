@@ -38,7 +38,7 @@ class ServiceRepository {
           await API.post("service", "/currentHotChart", body: {});
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-      print(response.message);
+
       return CurrentHotChartModel.fromJson(response.message);
     } catch (e) {
       print(e);

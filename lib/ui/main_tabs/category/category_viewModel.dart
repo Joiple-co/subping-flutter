@@ -24,8 +24,6 @@ class CategoryViewModel extends GetxController {
   }
 
   Future<void> getServices(CategoryModel categoryModel, {String repeatKey}) async {
-    print("run ${categoryModel.category}");
-
     final nextServices = services.value;
     
     if(repeatKey == null) {
