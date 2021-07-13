@@ -54,7 +54,7 @@ class SquareButton extends StatelessWidget {
       }
     } else {
       if (this.disabled) {
-        return SubpingColor.black80;
+        return SubpingColor.black30;
       } else {
         if (this.warning) {
           return SubpingColor.warning100;
