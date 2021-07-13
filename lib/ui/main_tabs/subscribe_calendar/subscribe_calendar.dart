@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,19 +6,19 @@ import 'package:sticky_headers/sticky_headers.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
-import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage_viewmodel.dart';
+import 'package:subping/ui/main_tabs/subscribe_calendar/subscribe_calendar_viewmodel.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class SubscribeManage extends StatelessWidget {
+class SubscribeCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final viewModel = Get.put(SubscribeManageViewModel());
+    final viewModel = Get.put(SubscribeCalendarViewModel());
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       viewModel.jumpTo(viewModel.calcIndex(viewModel.currentDate.value));
     });
 
-    return GetX<SubscribeManageViewModel>(
+    return GetX<SubscribeCalendarViewModel>(
       builder: (viewModel) => HeaderSafe(
           hasBottomSafe: false,
           child: Scaffold(
@@ -31,7 +29,7 @@ class SubscribeManage extends StatelessWidget {
                 collapseMode: CollapseMode.pin,
               ),
               centerTitle: false,
-              title: SubpingText("구독캘린더",
+              title: SubpingText("구독 캘린더",
                   color: SubpingColor.black100,
                   fontWeight: SubpingFontWeight.bold,
                   size: SubpingFontSize.title5),
@@ -55,8 +53,30 @@ class SubscribeManage extends StatelessWidget {
                   return Center(
                     child: SubpingText(date[day.weekday - 1]),
                   );
-                }),
-                headerStyle: HeaderStyle(formatButtonVisible: false, headerPadding: EdgeInsets.fromLTRB(0, 0, 0, 10.h)),
+                },
+                todayBuilder: (context, day, _) {
+                  return Center(child: SubpingText('${day.day}'));
+                },
+                // selectedBuilder: (context, day, _) {
+                //   return Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Center(child: 
+                //         SubpingText("${day.day}")
+                //       ,),
+                //       SizedBox(
+                //         height: 10.h,
+                //         child: Container(
+                //           color: SubpingColor.subping100
+                //         ),
+                //       )
+                //     ],
+                //   );
+                // }
+                ),
+                headerStyle: HeaderStyle(
+                    formatButtonVisible: false,
+                    headerPadding: EdgeInsets.fromLTRB(0, 0, 0, 10.h)),
                 firstDay: viewModel.startDate.value,
                 lastDay: viewModel.endDate.value,
                 focusedDay: viewModel.focusedDate.value,
@@ -75,7 +95,8 @@ class SubscribeManage extends StatelessWidget {
                   itemScrollController: viewModel.itemScrollController,
                   itemPositionsListener: viewModel.itemPositionsListener,
                   itemBuilder: (context, index) {
-                    final dateOfIndex = viewModel.startDate.value.add(Duration(days: index));
+                    final dateOfIndex =
+                        viewModel.startDate.value.add(Duration(days: index));
                     final dateFormatter = DateFormat("yyyy년 MM월 dd일");
                     List<String> date = ["월", "화", "수", "목", "금", "토", "일"];
 

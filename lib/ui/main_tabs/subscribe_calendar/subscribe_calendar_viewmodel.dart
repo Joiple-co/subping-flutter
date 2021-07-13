@@ -3,18 +3,17 @@ import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class SubscribeManageViewModel extends GetxController{
+class SubscribeCalendarViewModel extends GetxController{
   Rx<DateTime> currentDate = DateTime.now().obs;
   Rx<DateTime> focusedDate = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endDate = DateTime.now().obs;
   Rx<CalendarFormat> format = CalendarFormat.month.obs;
 
-  num prevNumIndex = 0;
   ItemScrollController itemScrollController = ItemScrollController();
   ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   
-  SubscribeManageViewModel() {
+  SubscribeCalendarViewModel() {
     startDate.value = DateTime.utc(currentDate.value.year, currentDate.value.month - 1, 1);
     endDate.value = DateTime.utc(currentDate.value.year, currentDate.value.month + 1, 31);
   }
