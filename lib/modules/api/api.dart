@@ -48,9 +48,6 @@ class API {
       "Content-Type": "application/json; charset=utf-8"
     };
 
-    print(header);
-
-
     return header;
   }
 
