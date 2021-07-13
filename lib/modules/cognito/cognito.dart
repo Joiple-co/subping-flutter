@@ -84,4 +84,20 @@ class Cognito {
     BodyModel body = BodyModel.fromJson(response);
     return body;
   }
+
+  Future<String> currentUserEmail() async {
+    String email = "";
+
+    if(await checkLoggedIn()) {
+      final userAttr = await Amplify.Auth.fetchUserAttributes();
+
+      await Future.forEach(userAttr, (element) { 
+        if(element.userAttributeKey == "email") {
+          email = element.value;
+        }
+      });
+    }
+
+    return email;
+  }
 }

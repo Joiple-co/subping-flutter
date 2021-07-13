@@ -10,6 +10,7 @@ import "package:subping/modules/cognito/cognito.dart";
 
 class API {
   static final JSON = JsonEncoder();
+  static final cognito = Cognito();
 
   static Future<Map<String, String>> _makeHeader() async {
     Map<String, String> header = {};
@@ -21,6 +22,7 @@ class API {
     String deviceName;
     String deviceVersion;
     String deviceId;
+    String email;
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo deviceInfo = await deviceInfoPlugin.androidInfo;
@@ -34,7 +36,10 @@ class API {
       deviceId = deviceInfo.identifierForVendor;
     }
 
+    email = await cognito.currentUserEmail();
+
     header = {
+      "email": email,
       "deviceName": deviceName,
       "deviceVersion": deviceVersion,
       "buildNumber": buildNumber,
@@ -42,6 +47,9 @@ class API {
       "deviceId": deviceId,
       "Content-Type": "application/json; charset=utf-8"
     };
+
+    print(header);
+
 
     return header;
   }
