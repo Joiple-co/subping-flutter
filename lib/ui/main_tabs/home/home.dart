@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
     final viewModel = Get.put(HomeViewModel());
 
     return Scaffold(
-      appBar: TitleAppBar("홈", hasBackButton: false,),
+      appBar: TitleAppBar("홈", hasBackButton: false, hasToolBar: true),
       body: HeaderSafe(
           hasBottomSafe: false,
           child: GetX<HomeViewModel>(
