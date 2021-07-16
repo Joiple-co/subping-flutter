@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:subping/model/category_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class SubscribeCalendarViewModel extends GetxController{
+class SubscribeManageViewModel extends GetxController{
   Rx<DateTime> currentDate = DateTime.now().obs;
   Rx<DateTime> focusedDate = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endDate = DateTime.now().obs;
   Rx<CalendarFormat> format = CalendarFormat.month.obs;
+  RxList<String> categories = ["관리", "캘린더"].obs;
 
+  TabController tabController;
+  ScrollController scrollViewController;
   ItemScrollController itemScrollController = ItemScrollController();
   ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
   
-  SubscribeCalendarViewModel() {
+  SubscribeManageViewModel() {
     startDate.value = DateTime.utc(currentDate.value.year, currentDate.value.month - 1, 1);
     endDate.value = DateTime.utc(currentDate.value.year, currentDate.value.month + 1, 31);
   }
@@ -53,7 +57,6 @@ class SubscribeCalendarViewModel extends GetxController{
   }
 
   DateTime calcDate(num index) {
-    print(startDate.value.add(Duration(days: index)));
     return startDate.value.add(Duration(days: index));
   }
 
