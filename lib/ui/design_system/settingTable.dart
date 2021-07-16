@@ -10,6 +10,7 @@ enum SubpingSizeExtension {
   large48,
   large40,
   large30,
+  medium28,
   medium24,
   medium22,
   medium20,
@@ -79,6 +80,10 @@ extension SubpingSize on SubpingSizeExtension {
   }
 
   static double get large30 {
+    return 30.0;
+  }
+
+  static double get medium28 {
     return 30.0;
   }
 

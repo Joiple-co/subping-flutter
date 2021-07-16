@@ -14,8 +14,8 @@ class AddressRepository {
       'isDefault': address.isDefault
     });
 
-    final jsonBody = jsonDecode(response.body);
-    BodyModel body = BodyModel.fromJson(jsonBody);
+    final jsonBody = utf8.decode(response.data);
+    BodyModel body = BodyModel.fromJson(jsonDecode(jsonBody));
 
     return body;
   }
