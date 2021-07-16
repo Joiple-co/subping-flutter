@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:subping/ui/design_system/subping_ui.dart';
 
 class AlwaysDisabledFocusNode extends FocusNode {
   @override
@@ -43,6 +44,7 @@ class SubpingTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: key,
+      color: this.readOnly ? SubpingColor.back20 : null,
       child: TextField(
         onTap: onTab,
         controller: controller,
