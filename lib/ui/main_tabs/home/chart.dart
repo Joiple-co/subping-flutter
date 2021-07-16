@@ -80,7 +80,7 @@ class Chart extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () => Get.toNamed("/hotChart", arguments: hotChartData),
+                  onTap: () => Get.toNamed("/hotChart"),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(
                         SubpingSize.medium24.w,

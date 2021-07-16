@@ -4,7 +4,6 @@ import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/main_tabs/category/category_viewer.dart';
-import 'package:subping/ui/main_tabs/category/category_viewmodel.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_calendar.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
