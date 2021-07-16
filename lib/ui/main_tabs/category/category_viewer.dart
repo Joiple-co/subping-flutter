@@ -5,7 +5,7 @@ import 'package:subping/model/category_model.dart';
 import 'package:subping/ui/design_system/settingTable.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/category/category_service_item.dart';
-import 'package:subping/viewmodel/service_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class CategoryViewer extends StatefulWidget {
   final String index;
@@ -17,13 +17,15 @@ class CategoryViewer extends StatefulWidget {
   _CategoryViewerState createState() => _CategoryViewerState();
 }
 
-class _CategoryViewerState extends State<CategoryViewer> { 
+class _CategoryViewerState extends State<CategoryViewer> {
   @override
   Widget build(BuildContext context) {
-    final serviceViewModel = Get.put(ServiceViewModel(), tag: widget.categoryModel.category);
+    final serviceViewModel =
+        Get.put(ServiceViewModel(), tag: widget.categoryModel.category);
     serviceViewModel.updateServices(widget.categoryModel);
-    
-    return Obx(() => RefreshIndicator(
+
+    return Obx(
+      () => RefreshIndicator(
         color: SubpingColor.subping100,
         backgroundColor: SubpingColor.white100,
         onRefresh: () => serviceViewModel.updateServices(widget.categoryModel),
@@ -36,35 +38,42 @@ class _CategoryViewerState extends State<CategoryViewer> {
                   color: SubpingColor.white100,
                   child: HorizontalPadding(
                     child: CustomScrollView(
-                      key: PageStorageKey("category_viewer_${widget.index}"),
-                      slivers: [
-                      SliverList(
-                          delegate: SliverChildListDelegate([
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SubpingText("전체 ${serviceViewModel.services.length}개", size: SubpingFontSize.tiny1),
-                            TextButton(
-                                child:
-                                    SubpingText("추천순", size: SubpingFontSize.tiny1),
-                                style: TextButton.styleFrom(
-                                    padding: EdgeInsets.zero,
-                                    alignment: Alignment.centerRight,
-                                    tapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap)),
-                          ],
-                        ),
-                        Space(size: SubpingSize.medium20,)
-                      ])),
-                      SliverGrid.count(
-                        childAspectRatio: (360.w / 530.h),
-                        crossAxisSpacing: 28.w,
-                        mainAxisSpacing: 20.h,
-                        crossAxisCount: 2, 
-                        children: List.generate(serviceViewModel.services.length, (index) {
-                          return CategoryServiceItem(item: serviceViewModel.services[index]);
-                        }),)
-                    ]),
+                        key: PageStorageKey("category_viewer_${widget.index}"),
+                        slivers: [
+                          SliverList(
+                              delegate: SliverChildListDelegate([
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SubpingText(
+                                    "전체 ${serviceViewModel.services.length}개",
+                                    size: SubpingFontSize.tiny1),
+                                TextButton(
+                                    child: SubpingText("추천순",
+                                        size: SubpingFontSize.tiny1),
+                                    style: TextButton.styleFrom(
+                                        padding: EdgeInsets.zero,
+                                        alignment: Alignment.centerRight,
+                                        tapTargetSize:
+                                            MaterialTapTargetSize.shrinkWrap)),
+                              ],
+                            ),
+                            Space(
+                              size: SubpingSize.medium20,
+                            )
+                          ])),
+                          SliverGrid.count(
+                            childAspectRatio: (360.w / 530.h),
+                            crossAxisSpacing: 28.w,
+                            mainAxisSpacing: 20.h,
+                            crossAxisCount: 2,
+                            children: List.generate(
+                                serviceViewModel.services.length, (index) {
+                              return CategoryServiceItem(
+                                  item: serviceViewModel.services[index]);
+                            }),
+                          )
+                        ]),
                   ),
                 ),
               )

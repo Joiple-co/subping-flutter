@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:subping/ui/design_system/page/header_padding.dart';
-import 'package:subping/ui/onboarding/app_intro/app_intro_viewmodel.dart';
+import 'package:subping/viewmodel/local/onboarding/app_intro_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 

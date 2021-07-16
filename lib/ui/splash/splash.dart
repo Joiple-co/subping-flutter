@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:subping/ui/splash/splash_viewmodel.dart';
+import 'package:subping/viewmodel/local/splash/splash_viewmodel.dart';
 
 class Splash extends StatelessWidget {
   final viewModel = new SplashViewModel();
-  
+
   @override
   Widget build(BuildContext context) {
     new Future.delayed(

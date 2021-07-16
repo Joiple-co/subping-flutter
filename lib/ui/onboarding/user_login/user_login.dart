@@ -4,7 +4,7 @@ import 'package:subping/ui/design_system/page/header_padding.dart';
 import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/page/horizontal_padding.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
-import 'package:subping/ui/onboarding/user_login/user_login_viewmodel.dart';
+import 'package:subping/viewmodel/local/onboarding/user_login_viewmodel.dart';
 
 class UserLogin extends StatelessWidget {
   const UserLogin() : super();

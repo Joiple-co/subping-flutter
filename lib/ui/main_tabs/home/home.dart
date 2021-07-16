@@ -5,8 +5,8 @@ import 'package:subping/ui/design_system/page/header_safe.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
-import 'package:subping/viewmodel/hot_chart_viewmodel.dart';
-import 'home_view_model.dart';
+import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
+import '../../../viewmodel/local/main_tabs/home/home_view_model.dart';
 import './expected.dart';
 import './recommand.dart';
 import './chart.dart';
@@ -23,7 +23,8 @@ class Home extends StatelessWidget {
         "홈",
         hasBackButton: false,
       ),
-      body: Obx(() => HeaderSafe(
+      body: Obx(
+        () => HeaderSafe(
             hasBottomSafe: false,
             child: ListView(
               children: [
@@ -33,9 +34,10 @@ class Home extends StatelessWidget {
                 Recommand(),
                 Space(size: SubpingSize.large80),
                 Chart(
-                    limitItem: serviceChartViewModel.chart.serviceRank.length >= 3
-                        ? 3
-                        : serviceChartViewModel.chart.serviceRank.length,
+                    limitItem:
+                        serviceChartViewModel.chart.serviceRank.length >= 3
+                            ? 3
+                            : serviceChartViewModel.chart.serviceRank.length,
                     hotChartData: serviceChartViewModel.chart),
                 Space(size: SubpingSize.large80),
                 RecentReview(),

@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:subping/ui/design_system/page/header_padding.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/ui/main_tabs/mypage/address_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/my_page/address_viewModel.dart';
 
 class Address extends StatelessWidget {
-  final controller = Get.put(AddressViewModel());
+  final controller = Get.put(AddAddressViewModel());
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Address extends StatelessWidget {
       body: HeaderSafe(
           child: HorizontalPadding(
         child: HeaderPadding(
-            child: GetBuilder<AddressViewModel>(
+            child: GetBuilder<AddAddressViewModel>(
                 builder: (controller) => Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

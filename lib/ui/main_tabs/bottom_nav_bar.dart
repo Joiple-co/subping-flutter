@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:subping/ui/design_system/settingTable.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'main_tabs_viewmodel.dart';
+import '../../viewmodel/local/main_tabs/main_tabs_viewmodel.dart';
 
 class BottomNavBar extends StatelessWidget {
   final MainTabsViewModel controller;
