@@ -3,14 +3,14 @@ import 'package:subping/ui/design_system/shape/chart_rank.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ChartItem extends StatelessWidget {
+class RankChartItem extends StatelessWidget {
   final int rank;
   final String serviceName;
   final String serviceSummary;
   final String serviceSquareLogoUrl;
   final List<dynamic> serviceTags;
 
-  ChartItem(
+  RankChartItem(
       {this.rank,
       this.serviceName,
       this.serviceSummary,

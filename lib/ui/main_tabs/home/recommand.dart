@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:subping/ui/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,26 +7,35 @@ class Recommand extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: SubpingColor.warning100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SubpingText(
-            "당신을 위한 추천",
-            size: SubpingFontSize.title6,
-            fontWeight: SubpingFontWeight.medium,
-          ),
-          Space(size: SubpingSize.medium20),
-          GestureDetector(
-            child: Stack(
-              children: [
-                Container(
-                  height: 500.h,
-                  width: double.infinity,
-                  child: Image.asset(
-                    "assets/appIntro1.png",
+          SizedBox(
+            height: 500.h,
+            child: Swiper(
+              itemCount: 3,
+              pagination: SwiperPagination(builder: new DotSwiperPaginationBuilder(
+                color: SubpingColor.black60,
+                size: 20.w,
+                activeSize: 20.w
+              )),
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 500.h,
+                        width: double.infinity,
+                        child: Image.network(
+                          "https://img4.daumcdn.net/thumb/R658x0.q70/?fname=http://t1.daumcdn.net/news/201707/22/MONSTERZYM/20170722043419774lrai.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                );
+              },
             ),
           )
         ],

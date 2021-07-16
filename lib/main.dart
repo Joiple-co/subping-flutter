@@ -7,6 +7,7 @@ import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/ui/hot_chart/hot_chart.dart';
 
 import 'package:subping/ui/main_tabs/category/category.dart';
 import 'package:subping/ui/main_tabs/main_tabs.dart';
@@ -75,6 +76,7 @@ class _SubpingAppState extends State<SubpingApp> {
             GetPage(name: "/passAuth", page: () => PassAuth()),
             GetPage(name: "/userLogin", page: () => UserLogin()),
             GetPage(name: "/mainTabs", page: () => MainTabs()),
+            GetPage(name: "/hotChart", page: () => HotChart())
           ],
         ));
   }

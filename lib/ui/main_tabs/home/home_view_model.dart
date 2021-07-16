@@ -15,5 +15,6 @@ class HomeViewModel extends GetxController {
   @override
   onInit() async {
     super.onInit();
+    getChartData();
   }
 }
