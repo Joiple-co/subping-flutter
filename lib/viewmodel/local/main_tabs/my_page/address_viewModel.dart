@@ -5,7 +5,7 @@ import 'package:subping/model/address_model.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/address_repository.dart';
 
-class AddressViewModel extends GetxController {
+class AddAddressViewModel extends GetxController {
   String zipCode = "";
   String address = "";
   String detailAddress = "";

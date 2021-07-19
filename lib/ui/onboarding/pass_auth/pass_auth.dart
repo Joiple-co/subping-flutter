@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/ui/design_system/button/square_button.dart';
-import 'package:subping/ui/design_system/page/header_padding.dart';
-import 'package:subping/ui/design_system/page/header_safe.dart';
-import 'package:subping/ui/design_system/page/horizontal_padding.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
-import 'package:subping/ui/onboarding/pass_auth/pass_auth_viewmodel.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/viewmodel/local/onboarding/pass_auth_viewmodel.dart';
 
 class PassAuth extends StatelessWidget {
   const PassAuth() : super();
@@ -39,9 +35,9 @@ class PassAuth extends StatelessWidget {
                 ])),
                 Expanded(child: Container()),
                 SquareButton(
-                  text: "확인", 
-                  onPressed: viewModel.onPressNext,
-                  loading: viewModel.loading.value),
+                    text: "확인",
+                    onPressed: viewModel.onPressNext,
+                    loading: viewModel.loading.value),
                 Space(size: SubpingSize.large40)
               ],
             )),

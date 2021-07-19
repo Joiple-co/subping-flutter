@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/model/service_model.dart';
-import 'package:subping/ui/design_system/settingTable.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 
 class CategoryServiceItem extends StatelessWidget {
   final ServiceModel item;

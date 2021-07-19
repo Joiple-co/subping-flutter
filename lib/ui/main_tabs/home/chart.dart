@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/current_hot_chart_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/model/service_model.dart';
-import 'package:subping/ui/design_system/chart/rank_chart_item.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 
 class Chart extends StatelessWidget {
   final int limitItem;
@@ -80,7 +78,7 @@ class Chart extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: () => Get.toNamed("/hotChart", arguments: hotChartData),
+                  onTap: () => Get.toNamed("/hotChart"),
                   child: Container(
                     padding: EdgeInsets.fromLTRB(
                         SubpingSize.medium24.w,
