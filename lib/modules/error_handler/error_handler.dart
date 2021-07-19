@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 
 class ErrorHandler {
   static errorHandler(String error) {

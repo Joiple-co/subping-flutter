@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/ui/design_system/appbar/title_appbar.dart';
-import 'package:subping/ui/design_system/page/header_safe.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
 import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
-import '../../../viewmodel/local/main_tabs/home/home_view_model.dart';
 import './expected.dart';
 import './recommand.dart';
 import './chart.dart';

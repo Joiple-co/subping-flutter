@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/category_model.dart';
-import 'package:subping/ui/design_system/settingTable.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/category/category_service_item.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 

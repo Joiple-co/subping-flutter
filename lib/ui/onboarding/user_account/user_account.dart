@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/ui/design_system/page/header_padding.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/local/onboarding/user_account_viewmodel.dart';
 
 class UserAccount extends StatelessWidget {

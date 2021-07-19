@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:subping/viewmodel/local/main_tabs/subscribe/subscribe_manage_viewModel.dart';
 import 'package:table_calendar/table_calendar.dart';

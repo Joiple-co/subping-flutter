@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/ui/design_system/appbar/title_appbar.dart';
-import 'package:subping/ui/design_system/chart/rank_chart_item.dart';
-import 'package:subping/ui/design_system/page/header_safe.dart';
-import 'package:subping/ui/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
 
 class HotChart extends StatelessWidget {
