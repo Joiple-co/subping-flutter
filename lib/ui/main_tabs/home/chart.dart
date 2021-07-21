@@ -28,34 +28,7 @@ class Chart extends StatelessWidget {
                   ),
                 ])),
                 Space(size: SubpingSize.medium20),
-                Container(
-                  padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
-                  decoration: BoxDecoration(
-                    color: SubpingColor.back20,
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 27.w,
-                        height: 27.h,
-                        child: Image.asset(
-                          "assets/icon/clock.png",
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
-                        child: SubpingText(hotChartData?.standardTime,
-                            fontWeight: SubpingFontWeight.medium,
-                            size: SubpingFontSize.body3,
-                            color: SubpingColor.subping50),
-                      )
-                    ],
-                  ),
-                ),
+                TimeDisplay(hotChartData.standardTime)
               ],
             ),
             Container(
@@ -63,6 +36,7 @@ class Chart extends StatelessWidget {
                   children: List.generate(limitItem, (index) {
                 return RankChartItem(
                     rank: hotChartData?.serviceRank[index].rank,
+                    lastRank: limitItem,
                     serviceName: hotChartData?.serviceRank[index].serviceName,
                     serviceSummary:
                         hotChartData?.serviceRank[index].serviceSummary,
