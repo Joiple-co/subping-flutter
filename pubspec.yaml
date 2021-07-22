@@ -91,6 +91,12 @@ flutter:
     - assets/tabIcon/unselectedHomeIcon.png
     - assets/tabIcon/unselectedMyPageIcon.png
     - assets/tabIcon/unselectedSubIcon.png
+    - assets/alarmIcon/delivery.png
+    - assets/alarmIcon/info.png
+    - assets/alarmIcon/important.png
+    - assets/alarmIcon/expiration.png
+    - assets/alarmIcon/payment.png
+
 
 
 

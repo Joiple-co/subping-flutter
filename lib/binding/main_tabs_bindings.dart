@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:subping/viewmodel/global/category_viewmodel.dart';
 import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
 import 'package:subping/viewmodel/local/main_tabs/home/home_view_model.dart';
@@ -10,6 +11,7 @@ class MainTabsBindings implements Bindings {
     Get.put(HotChartViewModel());
     Get.put(CategoryViewModel());
     Get.put(SubscribeManageViewModel());
+    Get.put(AlarmsViewModel());
     // Get.put(HomeViewModel());
   }
 }
