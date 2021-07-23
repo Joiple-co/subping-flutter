@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_block.dart';
 import 'package:subping/viewmodel/local/main_tabs/subscribe/subscribe_manage_viewModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -14,64 +15,96 @@ class SubscribeCalendar extends StatelessWidget {
     return GetX<SubscribeManageViewModel>(
       builder: (viewModel) => Container(
         margin: EdgeInsets.fromLTRB(0, 20.h, 0, 0),
-        color: SubpingColor.white100,
         child: Column(children: [
-          TableCalendar(
-            key: PageStorageKey("subscribe_calendar_table_calendar"),
-            calendarFormat: viewModel.format.value,
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarBuilders: CalendarBuilders(
-              headerTitleBuilder: (context, day) {
-                return Center(
-                    child: SubpingText(
-                  '${day.month}월',
-                  fontWeight: SubpingFontWeight.bold,
-                ));
-              },
-              dowBuilder: (context, day) {
-                List<String> date = ["월", "화", "수", "목", "금", "토", "일"];
+          Container(
+              decoration: BoxDecoration(
+                  color: SubpingColor.white100,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20))),
+              child: Column(
+                children: [
+                  TableCalendar(
+                    key: PageStorageKey("subscribe_calendar_table_calendar"),
+                    calendarFormat: viewModel.format.value,
+                    startingDayOfWeek: StartingDayOfWeek.monday,
+                    calendarBuilders: CalendarBuilders(
+                      headerTitleBuilder: (context, day) {
+                        return Center(
+                            child: SubpingText(
+                          '${day.month}월',
+                          fontWeight: SubpingFontWeight.bold,
+                        ));
+                      },
+                      dowBuilder: (context, day) {
+                        List<Map<String, dynamic>> date = [
+                          {"day": "일", "color": SubpingColor.warning100},
+                          {"day": "월", "color": SubpingColor.black100},
+                          {"day": "화", "color": SubpingColor.black100},
+                          {"day": "수", "color": SubpingColor.black100},
+                          {"day": "목", "color": SubpingColor.black100},
+                          {"day": "금", "color": SubpingColor.black100},
+                          {"day": "토", "color": SubpingColor.subping100},
+                        ];
 
-                return Center(
-                  child: SubpingText(date[day.weekday - 1]),
-                );
-              },
-              todayBuilder: (context, day, _) {
-                return Center(child: SubpingText('${day.day}'));
-              },
-              // selectedBuilder: (context, day, _) {
-              //   return Column(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Center(child:
-              //         SubpingText("${day.day}")
-              //       ,),
-              //       SizedBox(
-              //         height: 10.h,
-              //         child: Container(
-              //           color: SubpingColor.subping100
-              //         ),
-              //       )
-              //     ],
-              //   );
-              // }
-            ),
-            headerStyle: HeaderStyle(
-                formatButtonVisible: false,
-                headerPadding: EdgeInsets.fromLTRB(0, 0, 0, 10.h)),
-            firstDay: viewModel.startDate.value,
-            lastDay: viewModel.endDate.value,
-            focusedDay: viewModel.focusedDate.value,
-            onDaySelected: viewModel.onDaySelected,
-            onFormatChanged: viewModel.onFormatChanged,
-            onHeaderTapped: viewModel.onHeaderTapped,
-            selectedDayPredicate: viewModel.selectedDayPredicate,
-            availableGestures: AvailableGestures.all,
-            availableCalendarFormats: const {
-              CalendarFormat.month: 'Month',
-              CalendarFormat.week: 'Week',
-            },
+                        return Center(
+                          child: SubpingText(date[day.weekday - 1]["day"],
+                              size: SubpingFontSize.body5,
+                              color: date[day.weekday - 1]["color"]),
+                        );
+                      },
+                      todayBuilder: (context, day, _) {
+                        return Center(child: SubpingText('${day.day}'));
+                      },
+                      // selectedBuilder: (context, day, _) {
+                      //   return Column(
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     children: [
+                      //       Center(child:
+                      //         SubpingText("${day.day}")
+                      //       ,),
+                      //       SizedBox(
+                      //         height: 10.h,
+                      //         child: Container(
+                      //           color: SubpingColor.subping100
+                      //         ),
+                      //       )
+                      //     ],
+                      //   );
+                      // }
+                    ),
+                    headerStyle: HeaderStyle(
+                        formatButtonVisible: false,
+                        headerPadding: EdgeInsets.fromLTRB(0, 0, 0, 10.h)),
+                    firstDay: viewModel.startDate.value,
+                    lastDay: viewModel.endDate.value,
+                    focusedDay: viewModel.focusedDate.value,
+                    onDaySelected: viewModel.onDaySelected,
+                    onFormatChanged: viewModel.onFormatChanged,
+                    onHeaderTapped: viewModel.onHeaderTapped,
+                    selectedDayPredicate: viewModel.selectedDayPredicate,
+                    availableGestures: AvailableGestures.all,
+                    availableCalendarFormats: const {
+                      CalendarFormat.month: 'Month',
+                      CalendarFormat.week: 'Week',
+                    },
+                  ),
+                  // Space(
+                  //   size: SubpingSize.large30,
+                  // ),
+                  // Container(
+                  //   margin: EdgeInsets.only(bottom: SubpingSize.medium16),
+                  //   width: 101.w,
+                  //   height: 5.h,
+                  //   color: SubpingColor.black30,
+                  // ),
+                ],
+              )),
+          Space(
+            size: SubpingSize.large30,
           ),
           Expanded(
+              child: HorizontalPadding(
             child: ScrollablePositionedList.builder(
               key: PageStorageKey("subscribe_calendar_list"),
               initialScrollIndex:
@@ -85,12 +118,28 @@ class SubscribeCalendar extends StatelessWidget {
                 List<String> date = ["월", "화", "수", "목", "금", "토", "일"];
 
                 return StickyHeader(
-                    header: Center(
-                      child: SubpingText(
-                          '${dateFormatter.format(dateOfIndex)} ${date[dateOfIndex.weekday - 1]}요일'),
+                    header: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (dateOfIndex.day == 1)
+                          Container(
+                              margin:
+                                  EdgeInsets.only(bottom: SubpingSize.medium20),
+                              child: SubpingText(
+                                '${dateOfIndex.month}월',
+                                size: SubpingFontSize.title5,
+                                fontWeight: SubpingFontWeight.bold,
+                              )),
+                        SubpingText(
+                          '${dateFormatter.format(dateOfIndex)} ${date[dateOfIndex.weekday - 1]}요일',
+                          size: SubpingFontSize.body4,
+                          fontWeight: SubpingFontWeight.bold,
+                          color: SubpingColor.subping100,
+                        )
+                      ],
                     ),
                     content: SizedBox(
-                      height: 100,
+                      child: SubscribeBlock(),
                     ));
               },
               itemCount: viewModel.endDate.value
@@ -98,7 +147,7 @@ class SubscribeCalendar extends StatelessWidget {
                       .inDays +
                   1,
             ),
-          ),
+          )),
           ValueListenableBuilder(
               valueListenable: viewModel.itemPositionsListener.itemPositions,
               builder: (context, positions, child) {

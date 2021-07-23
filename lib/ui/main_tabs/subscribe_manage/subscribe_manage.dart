@@ -11,10 +11,12 @@ class SubscribeManage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SubscribeManageViewModel());
     return GetX<SubscribeManageViewModel>(
       builder: (viewModel) => DefaultTabController(
         length: viewModel.categories.length,
         child: HeaderSafe(
+          hasBottomSafe: false,
           child: Scaffold(
               backgroundColor: SubpingColor.back20,
               body: NestedScrollView(
@@ -77,7 +79,7 @@ class SubscribeManage extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                         controller: viewModel.tabController,
-                        children: [Container(), SubscribeCalendar()]),
+                        children: [SubscribeCalendar(), Container()]),
                   ),
                 ]),
               )),
