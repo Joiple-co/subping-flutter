@@ -8,11 +8,9 @@ class ServiceViewModel extends GetxController {
   ServiceRepository _serviceRepository = ServiceRepository();
   RxList<ServiceModel> _services = <ServiceModel>[].obs;
 
-
   Future<void> updateServices(CategoryModel categoryModel, {String repeatKey}) async {
     if(repeatKey == null && _services.length == 0) {
-      print("rin");
-      _services.value = (await _serviceRepository.getServices(categoryModel))[categoryModel.category];
+      _services.value = (await _serviceRepository.getServices(categoryModel))[categoryModel.name];
     }
 
     else {

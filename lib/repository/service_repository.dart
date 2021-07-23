@@ -12,7 +12,7 @@ class ServiceRepository {
 
     try {
       final rawResponse = await API.post("service", "/getServices", body: {
-        'category': categoryModel.category
+        'category': categoryModel.name
       });
       
       final decodedResponse = utf8.decode(rawResponse.data);
