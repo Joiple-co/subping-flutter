@@ -28,6 +28,7 @@ class Chart extends StatelessWidget {
                     fontWeight: SubpingFontWeight.bold,
                   ),
                 ])),
+
                 Space(size: SubpingSize.tiny10),
                 Container(
                     padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
@@ -76,6 +77,7 @@ class Chart extends StatelessWidget {
                   children: List.generate(limitItem, (index) {
                 return RankChartItem(
                     rank: hotChartData?.serviceRank[index].rank,
+                    lastRank: limitItem,
                     serviceName: hotChartData?.serviceRank[index].serviceName,
                     serviceSummary:
                         hotChartData?.serviceRank[index].serviceSummary,

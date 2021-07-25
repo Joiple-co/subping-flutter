@@ -4,6 +4,7 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 
 class RankChartItem extends StatelessWidget {
   final int rank;
+  final int lastRank;
   final String serviceName;
   final String serviceSummary;
   final String serviceSquareLogoUrl;
@@ -11,6 +12,7 @@ class RankChartItem extends StatelessWidget {
 
   RankChartItem(
       {this.rank,
+      this.lastRank,
       this.serviceName,
       this.serviceSummary,
       this.serviceSquareLogoUrl,
@@ -24,7 +26,7 @@ class RankChartItem extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.fromLTRB(0, 40.h, 0, 40.h),
               decoration: BoxDecoration(
-                border: rank != 3
+                border: rank != lastRank
                     ? Border(
                         bottom:
                             BorderSide(width: 2, color: SubpingColor.black30))

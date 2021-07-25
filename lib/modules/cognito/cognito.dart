@@ -47,14 +47,15 @@ class Cognito {
     return data;
   } 
 
-  Future<BodyModel> signUpDone({String name, String phoneNumber, String carrier, String ci, String birthday}) async{
+  Future<BodyModel> signUpDone({String name, String phoneNumber, String carrier, String ci, String birthday, String gender}) async{
     final rawResponse = await API.post("auth", "/signUpDone",
         body: {
           "name": name,
           "phoneNumber": phoneNumber,
           "birthDay": birthday,
           "carrier": carrier,
-          "ci": ci
+          "ci": ci,
+          "gender": gender,
         });
 
     Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));

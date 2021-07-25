@@ -14,3 +14,4 @@ export 'text/text_span.dart';
 export './shape/chart_rank.dart';
 export './appbar/title_appbar.dart';
 export './chart/rank_chart_item.dart';
+export './chart/time_display.dart';
