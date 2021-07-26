@@ -10,7 +10,8 @@ class ServiceViewModel extends GetxController {
 
   Future<void> updateServices(CategoryModel categoryModel, {String repeatKey}) async {
     if(repeatKey == null && _services.length == 0) {
-      _services.value = (await _serviceRepository.getServices(categoryModel))[categoryModel.name];
+      _services.value = (await _serviceRepository.getServices(categoryModel));
+      print(_services.value);
     }
 
     else {

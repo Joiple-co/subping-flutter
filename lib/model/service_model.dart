@@ -1,22 +1,28 @@
 class ServiceModel {
-  String serviceCode;
-  String serviceName;
-  String serviceSquareLogoUrl;
-  String serviceSummary;
-  List<dynamic> serviceTags;
+  String id;
+  String category;
+  String name;
+  String type;
+  String serviceLogoUrl;
+  String summary;
+  String sellerEmail;
 
   ServiceModel(
-      {this.serviceCode,
-      this.serviceName,
-      this.serviceSquareLogoUrl,
-      this.serviceSummary,
-      this.serviceTags});
+      {this.id,
+      this.category,
+      this.name,
+      this.type,
+      this.serviceLogoUrl,
+      this.summary,
+      this.sellerEmail});
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
-    serviceCode = json['serviceCode'];
-    serviceName = json['serviceName'];
-    serviceSquareLogoUrl = json['serviceSquareLogoUrl'];
-    serviceSummary = json['serviceSummary'];
-    serviceTags = json['serviceTags'];
+    id = json['id'];
+    category = json['category'];
+    name = json['name'];
+    type = json['type'];
+    serviceLogoUrl = json['serviceLogoUrl'];
+    summary = json['summary'];
+    sellerEmail = json['sellerEmail'];
   }
 }
