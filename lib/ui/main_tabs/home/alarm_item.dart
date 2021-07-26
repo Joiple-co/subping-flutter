@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/modules/helper/helper.dart';
 
 class AlarmItem extends StatelessWidget {
   @override
@@ -18,9 +19,10 @@ class AlarmItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            margin: EdgeInsets.only(top: 3.h),
             width: 40.w,
             height: 40.h,
-            child: Image.asset("assets/alarmIcon/info.png"),
+            child: Image.asset("assets/alarmIcon/delivery.png"),
           ),
           Space(size: SubpingSize.tiny10),
           Flexible(
@@ -42,7 +44,7 @@ class AlarmItem extends StatelessWidget {
                               color: SubpingColor.warning100),
                         ],
                       ),
-                      SubpingText("7월 10일",
+                      SubpingText(Helper.refineDate("2021-07-26T14:58"),
                           size: SubpingFontSize.body3,
                           color: SubpingColor.black60)
                     ],
