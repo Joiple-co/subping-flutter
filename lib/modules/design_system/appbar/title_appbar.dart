@@ -7,12 +7,12 @@ import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final String title;
+  final Widget rear;
   final bool hasBackButton;
   final bool hasToolBar;
   final Size preferredSize;
 
-  TitleAppBar(this.title,
-      {this.hasBackButton = false, Key key, this.hasToolBar = false})
+  TitleAppBar(this.title, {this.hasBackButton = false, this.rear, Key key , this.hasToolBar = false})
       : preferredSize = Size.fromHeight(100.0.h),
         super(key: key);
 
@@ -40,6 +40,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
             fontWeight: SubpingFontWeight.bold,
             size: SubpingFontSize.title5),
         this.hasToolBar ? ToolBar() : Container()
+        rear != null ? rear : Container()
       ]),
       leadingWidth: hasBackButton ? null : 0.w,
       elevation: 0,
