@@ -1,9 +1,14 @@
 import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class Helper {
   static String setComma(num price) {
     return NumberFormat("###,###,###,###").format(price).replaceAll(" ", "");
+  }
+
+  static bool isSameDay(DateTime to, DateTime from) {
+    return (to.year == from.year &&
+        to.month == from.month &&
+        to.day == from.day);
   }
 
   static String refineDate(String date) {

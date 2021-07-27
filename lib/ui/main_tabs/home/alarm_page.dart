@@ -12,7 +12,6 @@ class AlarmPage extends StatelessWidget {
       appBar: TitleAppBar(
         "알림",
         hasBackButton: true,
-        hasToolBar: false,
       ),
       body: HeaderSafe(
           child: RefreshIndicator(
