@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:subping/model/alarms/alarm_content_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/modules/helper/helper.dart';
 
 class AlarmItem extends StatelessWidget {
+  final bool isLastItem;
+  final AlarmContentsModel alarmContent;
+
+  AlarmItem({
+    this.isLastItem,
+    this.alarmContent,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,9 +20,10 @@ class AlarmItem extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(
           0, SubpingSize.large40.h, 0, SubpingSize.large40.h),
       decoration: BoxDecoration(
-        border: true
-            ? Border(bottom: BorderSide(width: 2, color: SubpingColor.black30))
-            : Border(bottom: BorderSide(width: 20, color: SubpingColor.back20)),
+        border: !isLastItem
+            ? Border(
+                bottom: BorderSide(width: 1.h, color: SubpingColor.black30))
+            : null,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

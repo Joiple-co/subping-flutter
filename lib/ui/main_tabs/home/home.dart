@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
       appBar: TitleAppBar(
         "홈",
         hasBackButton: false,
-        toolBar: ToolBar(),
+        rear: ToolBar(),
       ),
       body: Obx(
         () => HeaderSafe(

@@ -3,7 +3,7 @@ import 'package:subping/modules/design_system/page/header_padding.dart';
 import 'package:subping/modules/design_system/page/header_safe.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/ui/main_tabs/home/alarm_item.dart';
+import 'package:subping/ui/alarm/alarm_item.dart';
 
 class AlarmPage extends StatelessWidget {
   @override
@@ -15,6 +15,7 @@ class AlarmPage extends StatelessWidget {
       ),
       body: HeaderSafe(
           child: RefreshIndicator(
+        backgroundColor: SubpingColor.white100,
         onRefresh: () async {
           await Future.delayed(Duration(seconds: 3));
           print(3);
@@ -37,7 +38,9 @@ class AlarmPage extends StatelessWidget {
             AlarmItem(),
             AlarmItem(),
             AlarmItem(),
-            AlarmItem(),
+            AlarmItem(
+              isLastItem: true,
+            ),
           ],
         ),
       )),
