@@ -22,7 +22,7 @@ import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
-import 'package:subping/ui/main_tabs/home/alarm_page.dart';
+import 'package:subping/ui/alarm/alarm_page.dart';
 
 import 'binding/alarms_bindings.dart';
 

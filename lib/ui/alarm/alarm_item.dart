@@ -9,7 +9,7 @@ class AlarmItem extends StatelessWidget {
   final AlarmContentsModel alarmContent;
 
   AlarmItem({
-    this.isLastItem,
+    this.isLastItem = false,
     this.alarmContent,
   });
 
