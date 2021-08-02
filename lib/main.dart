@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import 'package:subping/amplifyconfiguration.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/ui/hot_chart/hot_chart.dart';
 
+import 'package:subping/amplifyconfiguration.dart';
+
+import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/main_tabs/main_tabs.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
@@ -21,6 +21,10 @@ import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
+
+import 'package:subping/ui/main_tabs/home/alarm_page.dart';
+
+import 'binding/alarms_bindings.dart';
 
 void main() async {
   await GetStorage.init();
@@ -93,7 +97,11 @@ class _SubpingAppState extends State<SubpingApp> {
             GetPage(
                 name: "/hotChart",
                 page: () => HotChart(),
-                binding: HotChartBindings())
+                binding: HotChartBindings()),
+            GetPage(
+                name: "/alarmPage",
+                page: () => AlarmPage(),
+                binding: AlarmsBinding()),
           ],
         ));
   }

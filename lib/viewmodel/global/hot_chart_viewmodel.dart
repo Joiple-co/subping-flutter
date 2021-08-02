@@ -9,6 +9,7 @@ class HotChartViewModel extends GetxController {
   @override
   void onClose() {
     print("close");
+    super.onClose();
   }
 
   Future<void> updateCharts() async {
@@ -20,5 +21,3 @@ class HotChartViewModel extends GetxController {
     return charts.value;
   }
 }
-
-

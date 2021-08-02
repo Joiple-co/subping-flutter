@@ -8,11 +8,10 @@ class CategoryViewModel extends GetxController {
   ServiceRepository _serviceRepository = ServiceRepository();
 
   RxList<CategoryModel> _categories = <CategoryModel>[].obs;
-  
+
   @override
   onInit() async {
     _categories.value = await _serviceRepository.getCategories();
-
     super.onInit();
   }
 

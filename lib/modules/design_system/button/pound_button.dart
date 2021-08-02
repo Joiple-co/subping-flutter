@@ -5,11 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PoundButton extends StatelessWidget {
   final String text;
   final bool marginFlag;
+  final String clickTo;
 
   PoundButton(
     this.text, {
     this.marginFlag,
-    String goTo,
+    this.clickTo,
   });
 
   @override
