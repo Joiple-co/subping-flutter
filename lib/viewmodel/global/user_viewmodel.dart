@@ -1,9 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:subping/model/category_model.dart';
-import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/cognito/cognito.dart';
-import 'package:subping/repository/service_repository.dart';
 
 class UserViewModel extends GetxController {
   Cognito _cognito = Cognito();
