@@ -42,12 +42,14 @@ class Home extends StatelessWidget {
                   Space(size: SubpingSize.large80),
                   Recommand(),
                   Space(size: SubpingSize.large80),
-                  Chart(
-                      limitItem:
-                          serviceChartViewModel.chart.serviceRank.length >= 3
-                              ? 3
-                              : serviceChartViewModel.chart.serviceRank.length,
-                      hotChartData: serviceChartViewModel.chart),
+                  serviceChartViewModel.chart.serviceRank.length != 0 ?
+                    Chart(
+                        limitItem:
+                            serviceChartViewModel.chart.serviceRank.length >= 3
+                                ? 3
+                                : serviceChartViewModel.chart.serviceRank.length,
+                        hotChartData: serviceChartViewModel.chart) :
+                    Container(),
                   Space(size: SubpingSize.large80),
                   RecentReview(),
                   Space(size: SubpingSize.large80),

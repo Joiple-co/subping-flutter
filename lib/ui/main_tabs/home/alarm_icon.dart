@@ -6,6 +6,7 @@ import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 
 class AlramIcon extends StatelessWidget {
   final alarmViewModel = Get.find<AlarmsViewModel>();
+  
   @override
   Widget build(BuildContext context) {
     return Stack(
