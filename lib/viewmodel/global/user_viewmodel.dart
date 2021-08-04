@@ -4,7 +4,7 @@ import 'package:subping/modules/cognito/cognito.dart';
 
 class UserViewModel extends GetxController {
   Cognito _cognito = Cognito();
-  Rx<String> _username = "".obs;
+  Rx<String> _username = "사용자".obs;
   Rx<String> _email = "".obs;
 
   UserViewModel()  {
