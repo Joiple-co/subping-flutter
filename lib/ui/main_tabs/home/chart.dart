@@ -74,7 +74,6 @@ class Chart extends StatelessWidget {
                 ),
               ],
             ),
-            Space(size: SubpingSize.large40),
             Container(
               child:
                 Column(

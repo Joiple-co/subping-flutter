@@ -74,7 +74,12 @@ class Cognito {
       return result;
     } on AuthException catch(e) {
       print(e.message);
+      return SignInResult(isSignedIn: false);
     }
+  }
+
+  Future<void> signOut() async {
+    await Amplify.Auth.signOut();
   }
 
   Future<BodyModel> isDuplicateEmail(String email) async {

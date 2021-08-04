@@ -32,20 +32,36 @@ class RecentReview extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               SubpingText(
                 "섭퍼님들의 리뷰 😀",
-                size: SubpingFontSize.title4,
+                size: SubpingFontSize.title6,
                 fontWeight: SubpingFontWeight.bold,
                 textAlign: TextAlign.start,
               ),
+              GestureDetector(
+                  onTap: () => Get.toNamed("/hotChart"),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(SubpingSize.medium20.w, 5.h,
+                        SubpingSize.medium20.w, 5.h),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: SubpingColor.back20),
+                    child: SubpingText(
+                      '더보기',
+                      color: SubpingColor.subping50,
+                      size: SubpingFontSize.body3,
+                      fontWeight: SubpingFontWeight.bold,
+                    ),
+                  ),
+                ),
             ]),
-            Space(size: SubpingSize.large30,),
+            Space(size: SubpingSize.large48,),
             Column(
-              children: List.generate(5, (index) {
+              children: List.generate(3, (index) {
                 return Column(
                   children: [Row(
                     children: [
                       Container(
                         width: 210.w,
-                        height: 210.h,
+                        height: 210.w,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
@@ -62,7 +78,7 @@ class RecentReview extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SubpingText(serviceName,
-                                    size: SubpingFontSize.title6),
+                                    size: SubpingFontSize.body1),
                                 RatingBar.builder(
                                     updateOnDrag: false,
                                     ignoreGestures: true,
@@ -78,7 +94,10 @@ class RecentReview extends StatelessWidget {
                             Space(size: SubpingSize.tiny10),
                             Container(height: 2, color: SubpingColor.black30),
                             Space(size: SubpingSize.tiny10),
-                            SubpingText(reviewContent, textAlign: TextAlign.left, maxLines: 3,),
+                            SubpingText(reviewContent, 
+                              size: SubpingFontSize.body3,
+                              textAlign: TextAlign.left, 
+                              maxLines: 3,),
                           ],
                         ),
                       )
