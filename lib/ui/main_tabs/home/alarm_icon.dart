@@ -5,8 +5,9 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 
 class AlramIcon extends StatelessWidget {
-  final alarmViewModel = Get.find<AlarmsViewModel>();
-  
+  final int unreadAlarmCount;
+
+  AlramIcon({this.unreadAlarmCount});
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,7 +25,7 @@ class AlramIcon extends StatelessWidget {
             Get.toNamed("/alarmPage");
           },
         ),
-        alarmViewModel.alarms.value?.unreadAlarms != 0
+        unreadAlarmCount != 0
             ? Positioned(
                 right: 0,
                 top: 0,

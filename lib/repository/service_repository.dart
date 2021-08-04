@@ -61,7 +61,7 @@ class ServiceRepository {
       });
 
       return categories;
-    } catch(e) {
+    } catch (e) {
       print(e);
       return [];
     }
