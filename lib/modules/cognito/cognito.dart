@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
@@ -73,7 +74,12 @@ class Cognito {
       return result;
     } on AuthException catch(e) {
       print(e.message);
+      return SignInResult(isSignedIn: false);
     }
+  }
+
+  Future<void> signOut() async {
+    await Amplify.Auth.signOut();
   }
 
   Future<BodyModel> isDuplicateEmail(String email) async {
@@ -86,19 +92,29 @@ class Cognito {
     return body;
   }
 
-  Future<String> currentUserEmail() async {
-    String email = "";
+  Future<Map<String, String>> currentUser({
+    email: bool,
+    name: bool
+  }) async {
+    var result = {
+      "email": "",
+      "name": ""
+    };
 
     if(await checkLoggedIn()) {
       final userAttr = await Amplify.Auth.fetchUserAttributes();
 
       await Future.forEach(userAttr, (element) { 
-        if(element.userAttributeKey == "email") {
-          email = element.value;
+        if(email == true && element.userAttributeKey == "email") {
+          result["email"] = element.value;
+        }
+
+        if(name == true && element.userAttributeKey == "name") {
+          result["name"] = element.value;
         }
       });
     }
 
-    return email;
+    return result;
   }
 }

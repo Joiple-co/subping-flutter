@@ -8,7 +8,6 @@ class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
 
   AlramIcon({this.unreadAlarmCount});
-
   @override
   Widget build(BuildContext context) {
     return Stack(

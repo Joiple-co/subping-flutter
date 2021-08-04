@@ -70,32 +70,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logoWithName.png
-    - assets/appIntro1.png
-    - assets/appIntro2.png
-    - assets/appIntro3.png
-    - assets/appIntro4.png
-    - assets/bannerTest.png
-    - assets/rankColored.png
-    - assets/rankUnColored.png
-    - assets/icon/notificBell.png
-    - assets/icon/search.png
-    - assets/icon/middleRightArrow.png
-    - assets/icon/clock.png
-    - assets/recommand.png
-    - assets/tabIcon/selectedCatagoryIcon.png
-    - assets/tabIcon/selectedHomeIcon.png
-    - assets/tabIcon/selectedMyPageIcon.png
-    - assets/tabIcon/selectedSubIcon.png
-    - assets/tabIcon/unselectedCatagoryIcon.png
-    - assets/tabIcon/unselectedHomeIcon.png
-    - assets/tabIcon/unselectedMyPageIcon.png
-    - assets/tabIcon/unselectedSubIcon.png
-    - assets/alarmIcon/delivery.png
-    - assets/alarmIcon/info.png
-    - assets/alarmIcon/important.png
-    - assets/alarmIcon/expiration.png
-    - assets/alarmIcon/payment.png
+    - assets/
+    - assets/icon/
+    - assets/tabIcon/
+    - assets/alarmIcon/
 
 
 

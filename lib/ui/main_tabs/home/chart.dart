@@ -47,7 +47,7 @@ class Chart extends StatelessWidget {
                             ),
                             Container(
                               margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
-                              child: SubpingText(hotChartData?.standardTime,
+                              child: SubpingText(hotChartData.standardTime,
                                   fontWeight: SubpingFontWeight.medium,
                                   size: SubpingFontSize.body3,
                                   color: SubpingColor.black60),
@@ -74,20 +74,20 @@ class Chart extends StatelessWidget {
                 ),
               ],
             ),
-            Space(size: SubpingSize.large40),
             Container(
-              child: Column(
-                  children: List.generate(limitItem, (index) {
-                return RankChartItem(
-                    rank: hotChartData?.serviceRank[index].rank,
-                    lastRank: limitItem,
-                    serviceName: hotChartData?.serviceRank[index].serviceName,
-                    serviceSummary:
-                        hotChartData?.serviceRank[index].serviceSummary,
-                    serviceSquareLogoUrl:
-                        hotChartData?.serviceRank[index].serviceSquareLogoUrl,
-                    serviceTags: hotChartData?.serviceRank[index].serviceTags);
-              })),
+              child:
+                Column(
+                    children: List.generate(limitItem, (index) {
+                  return RankChartItem(
+                      rank: hotChartData?.serviceRank[index].rank,
+                      lastRank: limitItem,
+                      serviceName: hotChartData?.serviceRank[index].serviceName,
+                      serviceSummary:
+                          hotChartData?.serviceRank[index].serviceSummary,
+                      serviceLogoUrl:
+                          hotChartData?.serviceRank[index].serviceLogoUrl,
+                      serviceTags: hotChartData?.serviceRank[index].serviceTags);
+                }))
             )
           ],
         ),
