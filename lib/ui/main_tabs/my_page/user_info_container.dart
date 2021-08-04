@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
@@ -27,7 +28,8 @@ class UserInfoContainer extends StatelessWidget {
       Space(
         size: SubpingSize.medium20,
       ),
-      Column(
+      Obx(()=>
+            Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,6 +41,7 @@ class UserInfoContainer extends StatelessWidget {
             size: SubpingFontSize.tiny1,
           )
         ],
+      ),
       ),
       Expanded(
         child: Container(

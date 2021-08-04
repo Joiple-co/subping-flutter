@@ -15,8 +15,6 @@ class MyPage extends StatelessWidget {
 
     final userViewModel = Get.find<UserViewModel>();
     
-    userViewModel.updateInfo();
-    
     return HeaderSafe(
         hasBottomSafe: false,
         child: Scaffold(
