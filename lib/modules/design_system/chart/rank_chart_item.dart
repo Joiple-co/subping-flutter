@@ -63,12 +63,13 @@ class RankChartItem extends StatelessWidget {
                             size: SubpingFontSize.body4),
                         Space(size: SubpingSize.medium22),
                         Row(
-                          children: this.serviceTags?.map((category) {
-                            bool marginFlag =
-                                serviceTags.indexOf(category) != 0;
-                            return PoundButton(category,
-                                marginFlag: marginFlag);
-                          }).toList(),
+                          children: List.generate(serviceTags.length, (index) {
+                            bool marginFlag = index == serviceTags.length;
+                            return PoundButton(
+                              serviceTags[index],
+                              marginFlag: marginFlag,
+                            );
+                          }),
                         )
                       ])
                 ],

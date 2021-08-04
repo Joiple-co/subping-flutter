@@ -3,13 +3,13 @@ class AlarmContentsModel {
   String content;
   String createdAt;
   String title;
-  bool read;
+  int read;
 
   AlarmContentsModel({
     this.type,
     this.title,
-    this.content,
     this.createdAt,
+    this.content,
     this.read,
   });
 

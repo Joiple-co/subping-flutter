@@ -9,7 +9,6 @@ class AlarmsModel {
   AlarmsModel.fromJson(Map<String, dynamic> json) {
     List<AlarmContentsModel> temp = [];
     unreadAlarms = json["unReadCount"];
-
     json["alarms"].forEach((element) {
       temp.add(AlarmContentsModel.fromJson(element));
     });

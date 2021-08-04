@@ -6,6 +6,10 @@ import 'package:subping/repository/alarm_repository.dart';
 import 'alarm_icon.dart';
 
 class ToolBar extends StatelessWidget {
+  final int unreadAlarmCount;
+
+  ToolBar({this.unreadAlarmCount = 0});
+
   @override
   Widget build(BuildContext context) {
     return (Row(
@@ -25,7 +29,7 @@ class ToolBar extends StatelessWidget {
         Space(
           size: SubpingSize.large40,
         ),
-        AlramIcon(),
+        AlramIcon(unreadAlarmCount: unreadAlarmCount),
       ],
     ));
   }

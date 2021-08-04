@@ -11,13 +11,12 @@ class ServiceRepository {
     List<ServiceModel> services = <ServiceModel>[];
 
     try {
-      final rawResponse = await API.post("service", "/getServices", body: {
-        'category': categoryModel.name
-      });
-      
+      final rawResponse = await API.post("service", "/getServices",
+          body: {'category': categoryModel.name});
+
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-      
+
       List<ServiceModel> servicesOfKey = [];
 
       response.message.forEach((value) {
@@ -59,7 +58,7 @@ class ServiceRepository {
       });
 
       return categories;
-    } catch(e) {
+    } catch (e) {
       print(e);
     }
   }
