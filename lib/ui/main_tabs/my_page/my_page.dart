@@ -58,8 +58,7 @@ class MyPage extends StatelessWidget {
                   thickness: 20.h,
                 ),
               ),
-              Expanded(child: MyPageServiceListContainer()),
-              
+              MyPageServiceListContainer(),
             ])));
   }
 }

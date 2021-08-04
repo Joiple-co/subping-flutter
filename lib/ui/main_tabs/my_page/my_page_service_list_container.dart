@@ -69,7 +69,7 @@ class MyPageServiceListContainer extends StatelessWidget {
           Space(size: SubpingSize.large40),
           GestureDetector(
             child: SubpingText(
-              "장금 및 보안",
+              "잠금 및 보안",
               size: SubpingFontSize.body1,
               color: SubpingColor.black100,
             ),
