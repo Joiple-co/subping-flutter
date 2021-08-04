@@ -69,8 +69,6 @@ class UserLoginViewModel extends GetxController {
       final result = await cognito.signIn(email.value, password.value);
       final isSignedIn = await cognito.checkLoggedIn();
 
-      print(isSignedIn);
-
       loading.value = false;
 
       if (isSignedIn) {
