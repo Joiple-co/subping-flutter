@@ -7,24 +7,21 @@ import 'package:subping/model/current_hot_chart_model.dart';
 import 'package:subping/modules/api/api.dart';
 
 class ServiceRepository {
-  Future<List<ServiceModel>> getServices(CategoryModel categoryModel) async {
+  Future<List<ServiceModel>> getServicesByCategory(CategoryModel categoryModel) async {
     List<ServiceModel> services = <ServiceModel>[];
 
     try {
       final rawResponse = await API.post("service", "/getServices", body: {
         'category': categoryModel.name
       });
-      
+
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-      
-      List<ServiceModel> servicesOfKey = [];
 
       response.message.forEach((value) {
-        servicesOfKey.add(ServiceModel.fromJson(value));
-
-        services = servicesOfKey;
+        services.add(ServiceModel.fromJson(value));
       });
+      
       return services;
     } catch (e) {
       print(e);
@@ -39,9 +36,14 @@ class ServiceRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      return CurrentHotChartModel.fromJson(response.message);
+      if(response.success) {
+        return CurrentHotChartModel.fromJson(response.message);
+      } else {
+        return CurrentHotChartModel();
+      }
     } catch (e) {
       print(e);
+      return CurrentHotChartModel();
     }
   }
 
@@ -61,6 +63,7 @@ class ServiceRepository {
       return categories;
     } catch(e) {
       print(e);
+      return [];
     }
   }
 }

@@ -30,8 +30,8 @@ class HotChart extends StatelessWidget {
                             .chart.serviceRank[index].serviceName,
                         serviceSummary: hotChartViewModel
                             .chart.serviceRank[index].serviceSummary,
-                        serviceSquareLogoUrl: hotChartViewModel
-                            .chart.serviceRank[index].serviceSquareLogoUrl,
+                        serviceLogoUrl: hotChartViewModel
+                            .chart.serviceRank[index].serviceLogoUrl,
                         serviceTags: hotChartViewModel
                             .chart.serviceRank[index].serviceTags);
                   }),

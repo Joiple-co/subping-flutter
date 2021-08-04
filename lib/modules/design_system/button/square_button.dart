@@ -30,6 +30,7 @@ class SquareButton extends StatelessWidget {
       : super(key: key);
 
   Color _setTextColor() {
+    //Button Type에 따라 Text Color 변경
     if (this.type == "outline") {
       if (this.disabled) {
         return SubpingColor.black60;
@@ -46,6 +47,7 @@ class SquareButton extends StatelessWidget {
   }
 
   Color _setBackColor() {
+    ////Button Type에 따라 Background Color 변경
     if (this.type == "outline") {
       if (this.disabled) {
         return SubpingColor.black60;

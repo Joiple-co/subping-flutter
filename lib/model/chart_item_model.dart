@@ -3,23 +3,23 @@ class ChartItemModel {
   String serviceName;
   String serviceSummary;
   String serviceCode;
-  String serviceSquareLogoUrl;
+  String serviceLogoUrl;
   List<dynamic> serviceTags;
 
   ChartItemModel(
       {this.rank,
       this.serviceName,
       this.serviceSummary,
-      this.serviceSquareLogoUrl,
+      this.serviceLogoUrl,
       this.serviceCode,
       this.serviceTags});
 
   ChartItemModel.fromJson(Map<String, dynamic> json) {
     rank = json['rank'];
-    serviceCode = json['serviceCode'];
-    serviceName = json['serviceName'];
-    serviceSquareLogoUrl = json['serviceSquareLogoUrl'];
-    serviceSummary = json['serviceSummary'];
-    serviceTags = json['serviceTags'];
+    serviceCode = json['id'];
+    serviceName = json['name'];
+    serviceLogoUrl = json['serviceLogoUrl'];
+    serviceSummary = json['summary'];
+    serviceTags = json['tag'];
   }
 }

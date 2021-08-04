@@ -8,8 +8,10 @@ class CurrentHotChartModel {
 
   CurrentHotChartModel.fromJson(Map<String, dynamic> json) {
     List<ChartItemModel> items = [];
-    standardTime = json['time'].toString() + " : 00";
+    standardTime = json['time'].toString();
+
     json['serviceRank'].forEach((element) {
+      print("rank : ${element}");
       items.add(ChartItemModel.fromJson(element));
     });
     serviceRank = items;

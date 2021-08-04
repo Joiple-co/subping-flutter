@@ -7,7 +7,7 @@ class RankChartItem extends StatelessWidget {
   final int lastRank;
   final String serviceName;
   final String serviceSummary;
-  final String serviceSquareLogoUrl;
+  final String serviceLogoUrl;
   final List<dynamic> serviceTags;
 
   RankChartItem(
@@ -15,7 +15,7 @@ class RankChartItem extends StatelessWidget {
       this.lastRank,
       this.serviceName,
       this.serviceSummary,
-      this.serviceSquareLogoUrl,
+      this.serviceLogoUrl,
       this.serviceTags});
 
   @override
@@ -50,7 +50,7 @@ class RankChartItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: NetworkImage(this.serviceSquareLogoUrl)),
+                          image: NetworkImage(this.serviceLogoUrl)),
                     ),
                   ),
                   Space(size: SubpingSize.large30),
