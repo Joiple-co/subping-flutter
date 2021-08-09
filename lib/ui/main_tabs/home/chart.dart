@@ -77,16 +77,10 @@ class Chart extends StatelessWidget {
             Container(
               child:
                 Column(
-                    children: List.generate(limitItem, (index) {
+                    children: List.generate(limitItem, (index) { 
                   return RankChartItem(
-                      rank: hotChartData?.serviceRank[index].rank,
                       lastRank: limitItem,
-                      serviceName: hotChartData?.serviceRank[index].serviceName,
-                      serviceSummary:
-                          hotChartData?.serviceRank[index].serviceSummary,
-                      serviceLogoUrl:
-                          hotChartData?.serviceRank[index].serviceLogoUrl,
-                      serviceTags: hotChartData?.serviceRank[index].serviceTags);
+                      service: hotChartData?.serviceRank[index]);
                 }))
             )
           ],

@@ -24,6 +24,7 @@ class AlarmRepository {
       }
     } catch (e) {
       ErrorHandler.errorHandler("default");
+      return AlarmsModel();
     }
   }
 

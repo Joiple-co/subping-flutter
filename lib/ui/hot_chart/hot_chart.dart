@@ -24,16 +24,7 @@ class HotChart extends StatelessWidget {
                   itemCount: hotChartViewModel.chart.serviceRank.length,
                   itemBuilder: (context, index) {
                     return RankChartItem(
-                        rank: hotChartViewModel.chart.serviceRank[index].rank,
-                        lastRank: hotChartViewModel.chart.serviceRank.length,
-                        serviceName: hotChartViewModel
-                            .chart.serviceRank[index].serviceName,
-                        serviceSummary: hotChartViewModel
-                            .chart.serviceRank[index].serviceSummary,
-                        serviceLogoUrl: hotChartViewModel
-                            .chart.serviceRank[index].serviceLogoUrl,
-                        serviceTags: hotChartViewModel
-                            .chart.serviceRank[index].serviceTags);
+                        service: hotChartViewModel.chart.serviceRank[index]);
                   }),
             ),
           )),
