@@ -27,7 +27,8 @@ class PassAuthViewModel extends GetxController{
           phoneNumber: "01088812173",
           carrier: "SKT",
           ci: "testCI",
-          birthday: "19980803");
+          birthday: "1998-08-03",
+          gender: "M");
 
       loading.value = false;
       
@@ -37,6 +38,7 @@ class PassAuthViewModel extends GetxController{
         ErrorHandler.errorHandler(response.message);
       }
     } catch (e) {
+      loading.value = false;
       print(e);
       ErrorHandler.errorHandler("default");
     }

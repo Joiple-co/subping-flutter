@@ -82,7 +82,7 @@ class ErrorHandler {
             content: Text("알 수 없는 문제가 발생했어요.\n고객센터로 문의 부탁드립니다."),
             actions: [
               TextButton(
-                  onPressed: () => Get.back, child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
             ]));
     }
   }

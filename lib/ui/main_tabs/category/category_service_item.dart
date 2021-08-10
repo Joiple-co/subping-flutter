@@ -17,7 +17,7 @@ class CategoryServiceItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20.h),
             child: Image.network(
-              item.serviceSquareLogoUrl, 
+              item.serviceLogoUrl, 
               fit: BoxFit.fill,
               height: 360.h,
               width: 360.w,)),
@@ -25,8 +25,8 @@ class CategoryServiceItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            SubpingText(item.serviceName, size: SubpingFontSize.body5, color: SubpingColor.black60),
-            SubpingText(item.serviceSummary, size: SubpingFontSize.body2, maxLines: 2,)
+            SubpingText(item.name, size: SubpingFontSize.body5, color: SubpingColor.black60),
+            SubpingText(item.summary, size: SubpingFontSize.body2, maxLines: 2,)
           ],)
         ],
       ),

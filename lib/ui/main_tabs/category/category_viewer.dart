@@ -20,7 +20,7 @@ class _CategoryViewerState extends State<CategoryViewer> {
   @override
   Widget build(BuildContext context) {
     final serviceViewModel =
-        Get.put(ServiceViewModel(), tag: widget.categoryModel.category);
+        Get.put(ServiceViewModel(), tag: widget.categoryModel.name);
     serviceViewModel.updateServices(widget.categoryModel);
 
     return Obx(

@@ -36,7 +36,8 @@ class API {
       deviceId = deviceInfo.identifierForVendor;
     }
 
-    email = await cognito.currentUserEmail();
+    final user = await cognito.currentUser(email: true);
+    email = user['email'];
 
     header = {
       "email": email,

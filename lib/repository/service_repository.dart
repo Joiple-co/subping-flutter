@@ -7,28 +7,25 @@ import 'package:subping/model/current_hot_chart_model.dart';
 import 'package:subping/modules/api/api.dart';
 
 class ServiceRepository {
-  Future<Map<String, List<ServiceModel>>> getServices(CategoryModel categoryModel) async {
-    Map<String, List<ServiceModel>> services = <String, List<ServiceModel>>{};
+  Future<List<ServiceModel>> getServicesByCategory(CategoryModel categoryModel) async {
+    List<ServiceModel> services = <ServiceModel>[];
 
     try {
       final rawResponse = await API.post("service", "/getServices", body: {
-        'category': categoryModel.category
+        'category': categoryModel.name
       });
-      
+
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-      response.message.forEach((key, value) {
-        List<ServiceModel> servicesOfKey = [];
 
-        value.forEach((element) {
-          servicesOfKey.add(ServiceModel.fromJson(element));
-        });
-
-        services[key] = servicesOfKey;
+      response.message.forEach((value) {
+        services.add(ServiceModel.fromJson(value));
       });
+      
       return services;
     } catch (e) {
       print(e);
+      return [];
     }
   }
 
@@ -39,9 +36,14 @@ class ServiceRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      return CurrentHotChartModel.fromJson(response.message);
+      if(response.success) {
+        return CurrentHotChartModel.fromJson(response.message);
+      } else {
+        return CurrentHotChartModel();
+      }
     } catch (e) {
       print(e);
+      return CurrentHotChartModel();
     }
   }
 
@@ -59,8 +61,9 @@ class ServiceRepository {
       });
 
       return categories;
-    } catch(e) {
+    } catch (e) {
       print(e);
+      return [];
     }
   }
 }

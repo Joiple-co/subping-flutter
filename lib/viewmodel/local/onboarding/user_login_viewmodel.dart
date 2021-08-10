@@ -72,7 +72,7 @@ class UserLoginViewModel extends GetxController {
       loading.value = false;
 
       if (isSignedIn) {
-        // 홈으로 보냄
+        Get.offAllNamed("/mainTabs");
         print("logged in");
       } else {
         ErrorHandler.errorHandler("LoginException");

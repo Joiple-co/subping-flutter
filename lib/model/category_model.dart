@@ -1,13 +1,11 @@
 class CategoryModel {
-  String category;
-  String categoryCode;
-  String categorySummary;
+  String name;
+  String summary;
 
-  CategoryModel({this.category, this.categoryCode, this.categorySummary});
+  CategoryModel({this.name, this.summary});
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
-    category = json['category'];
-    categoryCode = json['categoryCode'];
-    categorySummary = json['categorySummary'];
+    name = json['name'];
+    summary = json['summary'];
   }
 }

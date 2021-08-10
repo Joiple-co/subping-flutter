@@ -77,7 +77,7 @@ class _CategoryState extends State<Category> {
                         categoryViewModel.categories.length,
                         (index) => Tab(
                             child: SubpingText(
-                                categoryViewModel.categories[index].category)),
+                                categoryViewModel.categories[index].name)),
                       ),
                       controller: tabController,
                     ),
