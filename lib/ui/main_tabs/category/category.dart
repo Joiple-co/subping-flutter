@@ -59,10 +59,10 @@ class _CategoryState extends State<Category> {
                   Container(
                     color: SubpingColor.white100,
                     alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.fromLTRB(20.w, 0, 0, 20.h),
-                    constraints: BoxConstraints(maxHeight: 70.h),
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    constraints: BoxConstraints(maxHeight: 35),
                     child: TabBar(
-                      labelStyle: TextStyle(fontSize: 28.nsp),
+                      labelStyle: TextStyle(fontSize: 14),
                       labelColor: SubpingColor.white100,
                       unselectedLabelColor: SubpingColor.black100,
                       indicator: BoxDecoration(

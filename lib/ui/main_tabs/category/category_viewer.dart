@@ -62,7 +62,7 @@ class _CategoryViewerState extends State<CategoryViewer> {
                             )
                           ])),
                           SliverGrid.count(
-                            childAspectRatio: (360.w / 530.h),
+                            childAspectRatio: 360 / 550,
                             crossAxisSpacing: 28.w,
                             mainAxisSpacing: 20.h,
                             crossAxisCount: 2,

@@ -21,7 +21,7 @@ class ServiceDetail extends StatelessWidget {
           child: Column(
             children: [
               Image.network(service.serviceLogoUrl,
-                  width: 828.h, height: 828.h, fit: BoxFit.fill),
+                  width: 828.w, height: 828.w, fit: BoxFit.fill),
               HorizontalPadding(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
