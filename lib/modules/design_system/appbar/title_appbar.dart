@@ -12,7 +12,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   TitleAppBar(this.title, {this.hasBackButton = false, this.rear, Key key})
-      : preferredSize = Size.fromHeight(100.0.h),
+      : preferredSize = Size.fromHeight(50),
         super(key: key);
 
   @override
