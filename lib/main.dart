@@ -14,6 +14,7 @@ import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
+import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
 
 import 'package:subping/binding/hot_chart_bindings.dart';
@@ -65,7 +66,7 @@ class _SubpingAppState extends State<SubpingApp> {
     return ScreenUtilInit(
         designSize: Size(828, 1792),
         allowFontScaling: true,
-        child: GetMaterialApp(
+        builder: () =>  GetMaterialApp(
           title: 'subping',
           theme: ThemeData(
               fontFamily: 'NotoSansKR',
@@ -102,6 +103,10 @@ class _SubpingAppState extends State<SubpingApp> {
                 name: "/alarmPage",
                 page: () => AlarmPage(),
                 binding: AlarmsBinding()),
+            GetPage(
+                name: "/serviceDetail/:param",
+                page: () => ServiceDetail(),
+            )
           ],
         ));
   }
