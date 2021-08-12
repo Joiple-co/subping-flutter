@@ -41,7 +41,7 @@ class SubscribeBlockItem extends StatelessWidget {
                   SubpingText(
                     "구매상품",
                     size: SubpingFontSize.tiny1,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: SubpingFontWeight.medium,
                   ),
                   Space(size: 10.w),
                   SubpingText(

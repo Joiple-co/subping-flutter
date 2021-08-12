@@ -15,11 +15,11 @@ class Recommand extends StatelessWidget {
             height: 500.h,
             child: Swiper(
               itemCount: 3,
-              pagination: SwiperPagination(builder: new DotSwiperPaginationBuilder(
-                color: SubpingColor.black60,
-                size: 20.w,
-                activeSize: 20.w
-              )),
+              pagination: SwiperPagination(
+                  builder: new DotSwiperPaginationBuilder(
+                      color: SubpingColor.black60,
+                      size: 20.w,
+                      activeSize: 20.w)),
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   child: Stack(

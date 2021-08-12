@@ -15,19 +15,26 @@ class CategoryServiceItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(20.h),
-            child: Image.network(
-              item.serviceLogoUrl, 
-              fit: BoxFit.fill,
-              height: 360.h,
-              width: 360.w,)),
+              borderRadius: BorderRadius.circular(20.h),
+              child: Image.network(
+                item.serviceLogoUrl,
+                fit: BoxFit.fill,
+                height: 360.w,
+                width: 360.w,
+              )),
           Space(size: SubpingSize.medium20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            SubpingText(item.name, size: SubpingFontSize.body5, color: SubpingColor.black60),
-            SubpingText(item.summary, size: SubpingFontSize.body2, maxLines: 2,)
-          ],)
+              SubpingText(item.name,
+                  size: SubpingFontSize.body5, color: SubpingColor.black60),
+              SubpingText(
+                item.summary,
+                size: SubpingFontSize.body2,
+                maxLines: 2,
+              )
+            ],
+          )
         ],
       ),
     );

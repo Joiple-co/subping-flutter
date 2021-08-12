@@ -28,6 +28,7 @@ class PoundButton extends StatelessWidget {
           child: Center(
             child: SubpingText(
               '#${this.text}',
+              size: SubpingFontSize.body4,
               color: SubpingColor.black60,
             ),
           )),
