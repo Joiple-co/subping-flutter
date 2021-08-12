@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../settingTable.dart';
+import '../setting_table.dart';
 
 class SquareButton extends StatelessWidget {
   final String text;

@@ -8,7 +8,7 @@ export './page/header_padding.dart';
 export './textfield/textfield.dart';
 export './transition/circlular_reveal_transition.dart';
 export './space/space.dart';
-export './settingTable.dart';
+export 'setting_table.dart';
 export 'text/text.dart';
 export 'text/text_span.dart';
 export './shape/chart_rank.dart';
