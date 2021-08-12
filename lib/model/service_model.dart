@@ -13,6 +13,7 @@ class ServiceModel {
       {this.id,
       this.category,
       this.name,
+      this.rank,
       this.type,
       this.serviceLogoUrl,
       this.summary,
@@ -21,7 +22,7 @@ class ServiceModel {
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    category = json['category'];
+    category = json['category'] ?? [];
     rank = json['rank'];
     name = json['name'];
     type = json['type'];

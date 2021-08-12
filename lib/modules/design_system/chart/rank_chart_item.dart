@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/ui/service_datail/service_detail.dart';
 
 class RankChartItem extends StatelessWidget {
   final ServiceModel service;
@@ -13,7 +15,9 @@ class RankChartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         child: InkWell(
-            onTap: () {},
+            onTap: () => Get.to(ServiceDetail(
+                  service: service,
+                )),
             child: Container(
               padding: EdgeInsets.fromLTRB(0, 40.h, 0, 40.h),
               decoration: BoxDecoration(

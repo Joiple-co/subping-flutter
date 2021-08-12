@@ -39,7 +39,7 @@ class Chart extends StatelessWidget {
                           children: [
                             Container(
                               width: 27.w,
-                              height: 27.h,
+                              height: 27.w,
                               child: Image.asset(
                                 "assets/icon/clock.png",
                                 fit: BoxFit.fill,

@@ -12,7 +12,7 @@ class Recommand extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 500.h,
+            height: 250,
             child: Swiper(
               itemCount: 3,
               pagination: SwiperPagination(
@@ -25,7 +25,7 @@ class Recommand extends StatelessWidget {
                   child: Stack(
                     children: [
                       Container(
-                        height: 500.h,
+                        height: 250,
                         width: double.infinity,
                         child: Image.network(
                           "https://img4.daumcdn.net/thumb/R658x0.q70/?fname=http://t1.daumcdn.net/news/201707/22/MONSTERZYM/20170722043419774lrai.jpg",

@@ -5,51 +5,48 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 
 class UserInfoContainer extends StatelessWidget {
-
   final UserViewModel userData;
 
-  UserInfoContainer({
-    this.userData
-  });
+  UserInfoContainer({this.userData});
 
   @override
   Widget build(BuildContext context) {
     return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
       GestureDetector(
         child: CircleAvatar(
-          radius: 40.w,
+          radius: 20,
           backgroundImage: Image.network(
             "https://i.pinimg.com/474x/e6/c6/2b/e6c62bcd002903348d117782fea403ab.jpg",
-            width: 81.w,
-            height: 81.h,
+            width: 40,
+            height: 40,
           ).image,
         ),
       ),
       Space(
         size: SubpingSize.medium20,
       ),
-      Obx(()=>
-            Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SubpingText("${userData.name}님",
-              fontWeight: FontWeight.bold, size: SubpingFontSize.body2),
-          SubpingText(
-            "${userData.email}",
-            color: SubpingColor.black60,
-            size: SubpingFontSize.tiny1,
-          )
-        ],
-      ),
+      Obx(
+        () => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SubpingText("${userData.name}님",
+                fontWeight: FontWeight.bold, size: SubpingFontSize.body2),
+            SubpingText(
+              "${userData.email}",
+              color: SubpingColor.black60,
+              size: SubpingFontSize.tiny1,
+            )
+          ],
+        ),
       ),
       Expanded(
         child: Container(
           alignment: Alignment.topRight,
           child: Image.asset(
             'assets/icon/black_middleRightArrow.png',
-            height: 40.h,
-            width: 40.w,
+            height: 20,
+            width: 20,
           ),
         ),
       )

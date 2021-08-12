@@ -31,7 +31,7 @@ class SubpingText extends StatelessWidget {
     this.locale,
     this.softWrap,
     this.overflow,
-    this.textScaleFactor,
+    this.textScaleFactor = 1.0,
     this.maxLines,
     this.semanticsLabel,
     this.textWidthBasis,

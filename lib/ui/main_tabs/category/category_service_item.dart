@@ -15,13 +15,12 @@ class CategoryServiceItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.circular(20.h),
-              child: Image.network(
-                item.serviceLogoUrl,
-                fit: BoxFit.fill,
-                height: 360.w,
-                width: 360.w,
-              )),
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              item.serviceLogoUrl, 
+              fit: BoxFit.fill,
+              height: 360.w,
+              width: 360.w,)),
           Space(size: SubpingSize.medium20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

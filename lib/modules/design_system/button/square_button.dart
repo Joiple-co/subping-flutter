@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../settingTable.dart';
+import '../setting_table.dart';
 
 class SquareButton extends StatelessWidget {
   final String text;
@@ -23,7 +23,7 @@ class SquareButton extends StatelessWidget {
       this.type = "inline",
       this.twoButton = false,
       this.width,
-      this.height = 110,
+      this.height = 55,
       this.loading = false,
       this.warning = false,
       this.disabled = false})
@@ -68,10 +68,10 @@ class SquareButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double indicatorSize = height.h - height.h / 2;
+    double indicatorSize = height - height / 2;
     double buttonWidth = this.twoButton
-        ? (MediaQuery.of(context).size.width - 100.w) / 2
-        : MediaQuery.of(context).size.width - 80.w;
+        ? (MediaQuery.of(context).size.width - 50) / 2
+        : MediaQuery.of(context).size.width - 40;
 
     return TextButton(
       child: loading
@@ -87,7 +87,7 @@ class SquareButton extends StatelessWidget {
               style: TextStyle(
                   color: _setTextColor(),
                   fontWeight: FontWeight.bold,
-                  fontSize: 34.nsp)),
+                  fontSize: 17)),
       onPressed: disabled || loading ? null : onPressed,
       style: TextButton.styleFrom(
           side: this.type == "outline"
@@ -96,7 +96,7 @@ class SquareButton extends StatelessWidget {
                   color: SubpingColor.subping100,
                 )
               : null,
-          minimumSize: Size(buttonWidth, this.height.h),
+          minimumSize: Size(buttonWidth, this.height),
           backgroundColor: _setBackColor()),
     );
   }
