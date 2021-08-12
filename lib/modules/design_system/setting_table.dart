@@ -118,51 +118,51 @@ extension SubpingSize on SubpingSizeExtension {
 
 extension SubpingFontSize on SubpingFontSizeExtension {
   static double get title1 {
-    return 62.nsp;
+    return 31;
   }
 
   static double get title2 {
-    return 60.nsp;
+    return 30;
   }
 
   static double get title3 {
-    return 52.nsp;
+    return 26;
   }
 
   static double get title4 {
-    return 46.nsp;
+    return 23;
   }
 
   static double get title5 {
-    return 42.nsp;
+    return 21;
   }
 
   static double get title6 {
-    return 36.nsp;
+    return 18;
   }
 
   static double get body1 {
-    return 32.nsp;
+    return 16;
   }
 
   static double get body2 {
-    return 30.nsp;
+    return 15;
   }
 
   static double get body3 {
-    return 28.nsp;
+    return 14;
   }
 
   static double get body4 {
-    return 26.nsp;
+    return 13;
   }
 
   static double get body5 {
-    return 24.nsp;
+    return 12;
   }
 
   static double get tiny1 {
-    return 22.nsp;
+    return 11;
   }
 }
 
