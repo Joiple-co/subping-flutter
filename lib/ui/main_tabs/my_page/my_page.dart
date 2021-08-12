@@ -24,27 +24,27 @@ class MyPage extends StatelessWidget {
                 child: Column(children: [
                   Space(size: SubpingSize.large30),
                   Container(
-                    margin: EdgeInsets.fromLTRB(30.w, 0.0, 30.w, 30.h),
+                    margin: EdgeInsets.fromLTRB(15, 0.0, 15, 15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
                         color: SubpingColor.white100,
                         boxShadow: [
                           BoxShadow(
                               color: SubpingColor.black30,
-                              offset: Offset(0.w, 0.h),
+                              offset: Offset(0, 0),
                               blurRadius: 20)
                         ]),
                     child: Column(
                       children: [
                         Container(
-                          height: 139.h,
+                          height: 70,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.fromLTRB(40.w, 30.h, 40.w, 30.h),
+                          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                           child: UserInfoContainer(userData: userViewModel),
                         ),
                         Container(
-                          height: 167.h,
-                          padding: EdgeInsets.fromLTRB(40.w, 30.h, 40.w, 30.h),
+                          height: 80,
+                          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                           child: UserHistoryContainer(),
                         ),
                       ],
