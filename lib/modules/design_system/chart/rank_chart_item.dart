@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
@@ -19,7 +18,7 @@ class RankChartItem extends StatelessWidget {
                   service: service,
                 )),
             child: Container(
-              padding: EdgeInsets.fromLTRB(0, 40.h, 0, 40.h),
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
               decoration: BoxDecoration(
                 border: service.rank != lastRank
                     ? Border(
@@ -39,8 +38,8 @@ class RankChartItem extends StatelessWidget {
                   ),
                   Space(size: SubpingSize.large30),
                   Container(
-                    width: 150.w,
-                    height: 150.w,
+                    width: 75,
+                    height: 75,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(

@@ -9,7 +9,7 @@ class SubscribeManageViewModel extends GetxController {
   Rx<DateTime> focusedDate = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endDate = DateTime.now().obs;
-  Rx<CalendarFormat> format = CalendarFormat.month.obs;
+  Rx<CalendarFormat> format = CalendarFormat.week.obs;
   RxList<String> categories = ["캘린더", "나의 구독관리"].obs;
 
   TabController tabController;

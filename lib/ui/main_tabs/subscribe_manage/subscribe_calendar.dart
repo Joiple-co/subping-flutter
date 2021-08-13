@@ -56,22 +56,6 @@ class SubscribeCalendar extends StatelessWidget {
                       todayBuilder: (context, day, _) {
                         return Center(child: SubpingText('${day.day}'));
                       },
-                      // selectedBuilder: (context, day, _) {
-                      //   return Column(
-                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //     children: [
-                      //       Center(child:
-                      //         SubpingText("${day.day}")
-                      //       ,),
-                      //       SizedBox(
-                      //         height: 10.h,
-                      //         child: Container(
-                      //           color: SubpingColor.subping100
-                      //         ),
-                      //       )
-                      //     ],
-                      //   );
-                      // }
                     ),
                     headerStyle: HeaderStyle(
                         formatButtonVisible: false,
@@ -89,20 +73,20 @@ class SubscribeCalendar extends StatelessWidget {
                       CalendarFormat.week: 'Week',
                     },
                   ),
-                  // Space(
-                  //   size: SubpingSize.large30,
-                  // ),
-                  // Container(
-                  //   margin: EdgeInsets.only(bottom: SubpingSize.medium16),
-                  //   width: 101.w,
-                  //   height: 5.h,
-                  //   color: SubpingColor.black30,
-                  // ),
+                  Space(size: SubpingSize.tiny10),
+                  Container(
+                    height: 5,
+                    color: SubpingColor.white100,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: SubpingColor.black30),
+                      width: 50,
+                    ),
+                  ),
+                  Space(size: SubpingSize.tiny10)
                 ],
               )),
-          Space(
-            size: SubpingSize.large30,
-          ),
           Expanded(
               child: HorizontalPadding(
             child: ScrollablePositionedList.builder(
@@ -117,30 +101,31 @@ class SubscribeCalendar extends StatelessWidget {
                 final dateFormatter = DateFormat("yyyy년 MM월 dd일");
                 List<String> date = ["월", "화", "수", "목", "금", "토", "일"];
 
-                return StickyHeader(
-                    header: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (dateOfIndex.day == 1)
-                          Container(
-                              margin:
-                                  EdgeInsets.only(bottom: SubpingSize.medium20),
-                              child: SubpingText(
-                                '${dateOfIndex.month}월',
-                                size: SubpingFontSize.title5,
-                                fontWeight: SubpingFontWeight.bold,
-                              )),
-                        SubpingText(
-                          '${dateFormatter.format(dateOfIndex)} ${date[dateOfIndex.weekday - 1]}요일',
-                          size: SubpingFontSize.body4,
-                          fontWeight: SubpingFontWeight.bold,
-                          color: SubpingColor.subping100,
-                        )
-                      ],
-                    ),
-                    content: SizedBox(
-                      child: SubscribeBlock(),
-                    ));
+                return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (dateOfIndex.day == 1)
+                            Container(
+                                margin: EdgeInsets.only(
+                                    bottom: SubpingSize.medium20),
+                                child: SubpingText(
+                                  '${dateOfIndex.month}월',
+                                  size: SubpingFontSize.title5,
+                                  fontWeight: SubpingFontWeight.bold,
+                                )),
+                          SubpingText(
+                            '${dateFormatter.format(dateOfIndex)} ${date[dateOfIndex.weekday - 1]}요일',
+                            size: SubpingFontSize.body4,
+                            fontWeight: SubpingFontWeight.bold,
+                            color: SubpingColor.subping100,
+                          )
+                        ],
+                      ),
+                      SubscribeBlock()
+                    ]);
               },
               itemCount: viewModel.endDate.value
                       .difference(viewModel.startDate.value)

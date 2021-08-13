@@ -65,7 +65,6 @@ class _SubpingAppState extends State<SubpingApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: Size(828, 1792),
-        allowFontScaling: true,
         builder: () =>  GetMaterialApp(
           title: 'subping',
           theme: ThemeData(

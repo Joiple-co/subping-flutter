@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 
 class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -12,7 +11,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   TitleAppBar(this.title, {this.hasBackButton = false, this.rear, Key key})
-      : preferredSize = Size.fromHeight(50),
+      : preferredSize = Size.fromHeight(56),
         super(key: key);
 
   @override
@@ -29,7 +28,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: Get.back,
               icon: Icon(
                 Icons.chevron_left,
-                size: 60.nsp,
+                size: 60.sp,
                 color: SubpingColor.black100,
               ))
           : null,
@@ -40,7 +39,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: SubpingFontSize.title5),
         rear != null ? rear : Container(),
       ]),
-      leadingWidth: hasBackButton ? null : 0.w,
+      leadingWidth: hasBackButton ? null : 0,
       elevation: 0,
     );
   }
