@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/ui/main_tabs/category/category_viewer.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_calendar.dart';
 import 'package:subping/viewmodel/local/main_tabs/subscribe/subscribe_manage_viewModel.dart';
 
@@ -11,44 +9,16 @@ class SubscribeManage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SubscribeManageViewModel());
     return GetX<SubscribeManageViewModel>(
       builder: (viewModel) => DefaultTabController(
         length: viewModel.categories.length,
         child: HeaderSafe(
+          hasBottomSafe: false,
           child: Scaffold(
+              appBar: TitleAppBar("구독관리"),
               backgroundColor: SubpingColor.back20,
-              body: NestedScrollView(
-                controller: viewModel.scrollViewController,
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  return [
-                    SliverOverlapAbsorber(
-                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                          context),
-                      sliver: SliverSafeArea(
-                        top: false,
-                        bottom: false,
-                        sliver: SliverAppBar(
-                          backgroundColor: SubpingColor.white100,
-                          flexibleSpace: FlexibleSpaceBar(
-                            centerTitle: true,
-                            collapseMode: CollapseMode.pin,
-                          ),
-                          centerTitle: false,
-                          title: SubpingText("구독관리",
-                              color: SubpingColor.black100,
-                              fontWeight: SubpingFontWeight.bold,
-                              size: SubpingFontSize.title5),
-                          leadingWidth: 0.w,
-                          elevation: 0,
-                          pinned: false,
-                          forceElevated: innerBoxIsScrolled,
-                        ),
-                      ),
-                    ),
-                  ];
-                },
-                body: Column(children: [
+              body: Column(children: [
                   Container(
                     color: SubpingColor.white100,
                     alignment: Alignment.centerLeft,
@@ -77,12 +47,11 @@ class SubscribeManage extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                         controller: viewModel.tabController,
-                        children: [Container(), SubscribeCalendar()]),
+                        children: [SubscribeCalendar(), Container()]),
                   ),
                 ]),
               )),
         ),
-      ),
-    );
+      );
   }
 }

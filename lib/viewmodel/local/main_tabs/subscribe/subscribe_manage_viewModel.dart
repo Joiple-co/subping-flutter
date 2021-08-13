@@ -9,7 +9,7 @@ class SubscribeManageViewModel extends GetxController {
   Rx<DateTime> focusedDate = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endDate = DateTime.now().obs;
-  Rx<DateTime> preFocusedDate = DateTime.now().obs;
+  Rx<DateTime> prevFocusedDate = DateTime.now().obs;
   Rx<CalendarFormat> format = CalendarFormat.month.obs;
   RxList<String> categories = ["관리", "캘린더"].obs;
 
@@ -27,7 +27,7 @@ class SubscribeManageViewModel extends GetxController {
 
   void onChangeViewItem(num minIndex) {
     if (preFocusedDate.value != calcDate(minIndex)) {
-      preFocusedDate.value = focusedDate.value;
+      prevFocusedDate.value = focusedDate.value;
       focusedDate.value = calcDate(minIndex);
     }
   }

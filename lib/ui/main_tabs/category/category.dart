@@ -32,25 +32,17 @@ class _CategoryState extends State<Category> {
                     SliverOverlapAbsorber(
                       handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                           context),
-                      sliver: SliverSafeArea(
-                        top: false,
-                        bottom: false,
-                        sliver: SliverAppBar(
-                          backgroundColor: SubpingColor.white100,
-                          flexibleSpace: FlexibleSpaceBar(
-                            centerTitle: true,
-                            collapseMode: CollapseMode.pin,
-                          ),
-                          centerTitle: false,
-                          title: SubpingText("카테고리",
-                              color: SubpingColor.black100,
-                              fontWeight: SubpingFontWeight.bold,
-                              size: SubpingFontSize.title5),
-                          leadingWidth: 0.w,
-                          elevation: 0,
-                          pinned: false,
-                          forceElevated: innerBoxIsScrolled,
-                        ),
+                      sliver: SliverAppBar(
+                        backgroundColor: SubpingColor.white100,
+                        centerTitle: false,
+                        title: SubpingText("카테고리",
+                            color: SubpingColor.black100,
+                            fontWeight: SubpingFontWeight.bold,
+                            size: SubpingFontSize.title5),
+                        leadingWidth: 0.w,
+                        elevation: 0,
+                        pinned: false,
+                        forceElevated: innerBoxIsScrolled,
                       ),
                     ),
                   ];
