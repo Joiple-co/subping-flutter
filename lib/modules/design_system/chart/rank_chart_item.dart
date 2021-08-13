@@ -58,14 +58,11 @@ class RankChartItem extends StatelessWidget {
                         Space(size: SubpingSize.medium22),
                         Row(
                           children: List.generate(service.tag.length, (index) {
-                            bool marginFlag = index == service.tag.length;
-                            return Row(children: [
-                              PoundButton(
-                                service.tag[index],
-                                marginFlag: marginFlag,
-                              ),
-                              Space(size: SubpingSize.tiny14)
-                            ]);
+                            bool marginFlag = (index != 0);
+                            return PoundButton(
+                              service.tag[index],
+                              marginFlag: marginFlag,
+                            );
                           }),
                         )
                       ])
