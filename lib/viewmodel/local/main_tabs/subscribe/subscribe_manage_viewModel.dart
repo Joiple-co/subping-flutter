@@ -26,7 +26,7 @@ class SubscribeManageViewModel extends GetxController {
   }
 
   void onChangeViewItem(num minIndex) {
-    if (preFocusedDate.value != calcDate(minIndex)) {
+    if (prevFocusedDate.value != calcDate(minIndex)) {
       prevFocusedDate.value = focusedDate.value;
       focusedDate.value = calcDate(minIndex);
     }
