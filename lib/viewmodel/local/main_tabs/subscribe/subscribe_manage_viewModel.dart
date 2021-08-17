@@ -9,8 +9,9 @@ class SubscribeManageViewModel extends GetxController {
   Rx<DateTime> focusedDate = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endDate = DateTime.now().obs;
-  Rx<CalendarFormat> format = CalendarFormat.week.obs;
-  RxList<String> categories = ["캘린더", "나의 구독관리"].obs;
+  Rx<DateTime> prevFocusedDate = DateTime.now().obs;
+  Rx<CalendarFormat> format = CalendarFormat.month.obs;
+  RxList<String> categories = ["관리", "캘린더"].obs;
 
   TabController tabController;
   ScrollController scrollViewController;
@@ -25,7 +26,10 @@ class SubscribeManageViewModel extends GetxController {
   }
 
   void onChangeViewItem(num minIndex) {
-    focusedDate.value = calcDate(minIndex);
+    if (preFocusedDate.value != calcDate(minIndex)) {
+      prevFocusedDate.value = focusedDate.value;
+      focusedDate.value = calcDate(minIndex);
+    }
   }
 
   void onDaySelected(DateTime selectedDate, DateTime prevFocusedDate) {
