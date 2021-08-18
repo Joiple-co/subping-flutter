@@ -37,7 +37,7 @@ class AlramIcon extends StatelessWidget {
                       borderRadius: BorderRadius.circular(4)),
                 ),
               )
-            : Space(size: SubpingSize.large40)
+            : Space(size: SubpingSize.large20)
       ],
     );
   }

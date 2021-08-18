@@ -33,7 +33,7 @@ class UserLogin extends StatelessWidget {
                       fontSize: SubpingFontSize.title4,
                       fontWeight: SubpingFontWeight.bold),
                 ])),
-                Space(size: SubpingSize.large64),
+                Space(size: SubpingSize.large32),
                 Expanded(
                     child: Column(
                   children: [
@@ -46,7 +46,7 @@ class UserLogin extends StatelessWidget {
                           ? viewModel.emailError.value
                           : null,
                     ),
-                    Space(size: SubpingSize.large30),
+                    Space(size: SubpingSize.large15),
                     SubpingTextField(
                       labelText: "비밀번호",
                       focusNode: viewModel.passwordFocus,
@@ -65,7 +65,7 @@ class UserLogin extends StatelessWidget {
                     disabled: !(viewModel.emailValid.value &&
                         viewModel.passwordValid.value),
                     loading: viewModel.loading.value),
-                Space(size: SubpingSize.large40)
+                Space(size: SubpingSize.large20)
               ],
             )),
           ),

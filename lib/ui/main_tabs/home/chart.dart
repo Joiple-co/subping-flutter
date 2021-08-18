@@ -29,7 +29,7 @@ class Chart extends StatelessWidget {
                         fontWeight: SubpingFontWeight.bold,
                       ),
                     ])),
-                    Space(size: SubpingSize.tiny10),
+                    Space(size: SubpingSize.tiny5),
                     Container(
                         padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
                         decoration: BoxDecoration(),
@@ -59,8 +59,8 @@ class Chart extends StatelessWidget {
                 GestureDetector(
                   onTap: () => Get.toNamed("/hotChart"),
                   child: Container(
-                    padding: EdgeInsets.fromLTRB(SubpingSize.medium20.w, 5.h,
-                        SubpingSize.medium20.w, 5.h),
+                    padding: EdgeInsets.fromLTRB(SubpingSize.medium10, 5,
+                        SubpingSize.medium10, 5),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                         color: SubpingColor.back20),

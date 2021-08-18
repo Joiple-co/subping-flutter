@@ -73,7 +73,7 @@ class SubscribeCalendar extends StatelessWidget {
                       CalendarFormat.week: 'Week',
                     },
                   ),
-                  Space(size: SubpingSize.tiny10),
+                  Space(size: SubpingSize.tiny5),
                   Container(
                     height: 5,
                     color: SubpingColor.white100,
@@ -84,7 +84,7 @@ class SubscribeCalendar extends StatelessWidget {
                       width: 50,
                     ),
                   ),
-                  Space(size: SubpingSize.tiny10)
+                  Space(size: SubpingSize.tiny5)
                 ],
               )),
           Expanded(
@@ -110,7 +110,7 @@ class SubscribeCalendar extends StatelessWidget {
                           if (dateOfIndex.day == 1)
                             Container(
                                 margin: EdgeInsets.only(
-                                    bottom: SubpingSize.medium20),
+                                    bottom: SubpingSize.medium10),
                                 child: SubpingText(
                                   '${dateOfIndex.month}월',
                                   size: SubpingFontSize.title5,

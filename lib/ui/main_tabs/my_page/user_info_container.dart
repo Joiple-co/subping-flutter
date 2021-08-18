@@ -23,7 +23,7 @@ class UserInfoContainer extends StatelessWidget {
         ),
       ),
       Space(
-        size: SubpingSize.medium20,
+        size: SubpingSize.medium10,
       ),
       Obx(
         () => Column(

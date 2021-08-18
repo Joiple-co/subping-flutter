@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/model/review_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/ui/service_datail/service_review.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class ServiceDetail extends StatelessWidget {
@@ -17,7 +19,8 @@ class ServiceDetail extends StatelessWidget {
         service.name,
         hasBackButton: true,
       ),
-      body: ListView(children: [
+      body: ListView(
+        children: [
         HeaderSafe(
           child: Column(
             children: [
@@ -27,7 +30,7 @@ class ServiceDetail extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Space(size: SubpingSize.large30),
+                      Space(size: SubpingSize.large15),
                       Row(
                         children: [
                           SubpingText(
@@ -46,31 +49,35 @@ class ServiceDetail extends StatelessWidget {
                         ],
                       ),
                       Space(
-                        size: SubpingSize.medium20,
+                        size: SubpingSize.medium10,
                       ),
                       SubpingText(service.summary),
-                      Space(size: SubpingSize.large40),
+                      Space(size: SubpingSize.large20),
                       SubpingText("9,000원 ~", size: SubpingFontSize.title6, fontWeight: SubpingFontWeight.bold,),
-                      Space(size: SubpingSize.large40),
+                      Space(size: SubpingSize.large20),
                       Divider(),
-                      Space(size: SubpingSize.large30,),
+                      Space(size: SubpingSize.large15,),
                       Row(children: [
                         SubpingText("카테고리", color: SubpingColor.black60),
-                        Space(size: SubpingSize.large50,),
+                        Space(size: SubpingSize.large25,),
                         SubpingText(service.category.join(","))
                       ],),
-                      Space(size: SubpingSize.large30,),
+                      Space(size: SubpingSize.large15,),
                       Divider(),
-                      Space(size: SubpingSize.large30,),
+                      Space(size: SubpingSize.large15,),
                       Row(children: [
                         SubpingText("제품설명", color: SubpingColor.black60),
-                        Space(size: SubpingSize.large50,),
+                        Space(size: SubpingSize.large25,),
                         Wrap(children: [
                           SubpingText(service.summary, size: null,)
                         ])
                       ],),
+                      Space(size: SubpingSize.large15)
                     ]),
-              )
+              ),
+              Container(height: SubpingSize.medium10, color: SubpingColor.back20),
+              ServiceReview(reviews: [],),
+              Container(height: SubpingSize.medium10, color: SubpingColor.back20),
             ],
           ),
         ),

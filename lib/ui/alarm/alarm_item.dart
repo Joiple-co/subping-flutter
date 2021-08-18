@@ -34,7 +34,7 @@ class AlarmItem extends StatelessWidget {
             height: 40.h,
             child: Image.asset("assets/alarmIcon/${alarmContent.type}.png"),
           ),
-          Space(size: SubpingSize.tiny10),
+          Space(size: SubpingSize.tiny5),
           Flexible(
               flex: 1,
               child: Column(
@@ -48,7 +48,7 @@ class AlarmItem extends StatelessWidget {
                           SubpingText(alarmContent.title,
                               size: SubpingFontSize.body3,
                               color: SubpingColor.black100),
-                          Space(size: SubpingSize.tiny10),
+                          Space(size: SubpingSize.tiny5),
                           // SubpingText("결제 실패",
                           //     size: SubpingFontSize.body3,
                           //     color: SubpingColor.warning100),
@@ -59,7 +59,7 @@ class AlarmItem extends StatelessWidget {
                           color: SubpingColor.black60)
                     ],
                   ),
-                  Space(size: SubpingSize.tiny10),
+                  Space(size: SubpingSize.tiny5),
                   SubpingText(alarmContent.content,
                       color: SubpingColor.black80, size: SubpingFontSize.body4)
                 ],

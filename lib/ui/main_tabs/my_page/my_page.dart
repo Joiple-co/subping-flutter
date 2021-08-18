@@ -22,7 +22,7 @@ class MyPage extends StatelessWidget {
             body: ListView(children: <Widget>[
               Container(
                 child: Column(children: [
-                  Space(size: SubpingSize.large30),
+                  Space(size: SubpingSize.large15),
                   Container(
                     margin: EdgeInsets.fromLTRB(15, 0.0, 15, 15),
                     decoration: BoxDecoration(

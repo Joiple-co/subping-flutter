@@ -43,11 +43,11 @@ class Home extends StatelessWidget {
                       physics: const BouncingScrollPhysics(
                           parent: AlwaysScrollableScrollPhysics()),
                       children: [
-                        Space(size: SubpingSize.large40),
+                        Space(size: SubpingSize.large20),
                         Expected(),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                         Recommand(),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                         Chart(
                             limitItem: serviveViewModel
                                         .chart.serviceRank.length >=
@@ -56,9 +56,9 @@ class Home extends StatelessWidget {
                                 : serviveViewModel
                                     .chart.serviceRank.length,
                             hotChartData: serviveViewModel.chart),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                         RecentReview(),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                       ],
                     ),
             ),

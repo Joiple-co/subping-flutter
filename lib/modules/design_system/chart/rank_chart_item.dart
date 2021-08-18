@@ -29,11 +29,11 @@ class RankChartItem extends StatelessWidget {
                     children: [
                       RankShape(service.rank),
                       Space(
-                        size: SubpingSize.medium16,
+                        size: SubpingSize.medium8,
                       )
                     ],
                   ),
-                  Space(size: SubpingSize.large30),
+                  Space(size: SubpingSize.large15),
                   Container(
                     width: 75,
                     height: 75,
@@ -44,14 +44,14 @@ class RankChartItem extends StatelessWidget {
                           image: NetworkImage(service.serviceLogoUrl)),
                     ),
                   ),
-                  Space(size: SubpingSize.large30),
+                  Space(size: SubpingSize.large15),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SubpingText(service.name, size: SubpingFontSize.body1),
                         SubpingText(service.summary,
                             size: SubpingFontSize.body4),
-                        Space(size: SubpingSize.medium22),
+                        Space(size: SubpingSize.medium11),
                         Row(
                           children: List.generate(service.tag.length, (index) {
                             bool marginFlag = (index != 0);

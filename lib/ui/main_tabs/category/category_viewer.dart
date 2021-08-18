@@ -28,7 +28,7 @@ class CategoryViewer extends StatelessWidget {
         child: Container(
           child: Column(
             children: [
-              Space(size: SubpingSize.medium20),
+              Space(size: SubpingSize.medium10),
               Expanded(
                 child: Container(
                   color: SubpingColor.white100,
@@ -55,7 +55,7 @@ class CategoryViewer extends StatelessWidget {
                               ],
                             ),
                             Space(
-                              size: SubpingSize.medium20,
+                              size: SubpingSize.medium10,
                             )
                           ])),
                           SliverGrid.count(

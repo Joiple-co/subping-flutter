@@ -31,7 +31,7 @@ class SubscribeBlockItem extends StatelessWidget {
                       "https://pds.joins.com/news/component/htmlphoto_mmdata/202107/06/21ce34aa-c1e6-4b62-a5d5-568fe81334c4.jpg")),
             ),
           ),
-          Space(size: SubpingSize.medium20),
+          Space(size: SubpingSize.medium10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -43,7 +43,7 @@ class SubscribeBlockItem extends StatelessWidget {
                     size: SubpingFontSize.tiny1,
                     fontWeight: SubpingFontWeight.medium,
                   ),
-                  Space(size: 10.w),
+                  Space(size: SubpingSize.tiny5),
                   SubpingText(
                     "구매 서비스",
                     size: SubpingFontSize.tiny1,
