@@ -51,6 +51,13 @@ class ServiceViewModel extends GetxController {
     }
   }
   
+  Future<void> updateService(String serviceId) async {
+    final service = await _serviceRepository.getService(serviceId);
+
+    _services.value[service.id] = service;
+    _services.refresh();
+  }
+
   ServiceModel getService(String serviceId) {
     if(_services.value[serviceId] != null) {
       return _services.value[serviceId];
