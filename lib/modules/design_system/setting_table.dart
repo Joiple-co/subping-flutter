@@ -75,7 +75,7 @@ extension SubpingSize on SubpingSizeExtension {
   }
 
   static double get large20 {
-    return 30;
+    return 20;
   }
 
   static double get large15 {
