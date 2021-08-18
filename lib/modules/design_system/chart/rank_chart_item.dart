@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/ui/service_datail/service_detail.dart';
 
 class RankChartItem extends StatelessWidget {
   final ServiceModel service;
@@ -14,9 +13,7 @@ class RankChartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
         child: InkWell(
-            onTap: () => Get.to(ServiceDetail(
-                  service: service,
-                )),
+            onTap: () => Get.toNamed("/serviceDetail/${service.id}"),
             child: Container(
               padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
               decoration: BoxDecoration(

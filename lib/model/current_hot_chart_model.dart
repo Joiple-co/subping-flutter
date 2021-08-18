@@ -11,7 +11,6 @@ class CurrentHotChartModel {
     standardTime = json['time'].toString();
 
     json['serviceRank'].forEach((element) {
-      print("rank : ${element}");
       items.add(ServiceModel.fromJson(element));
     });
     serviceRank = items;

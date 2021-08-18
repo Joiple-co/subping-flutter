@@ -2,32 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/category_model.dart';
+import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/category/category_service_item.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
-class CategoryViewer extends StatefulWidget {
+
+class CategoryViewer extends StatelessWidget {
   final String index;
   final CategoryModel categoryModel;
+  final ServiceViewModel serviceViewModel;
+  final List<ServiceModel> services;
 
-  CategoryViewer(this.index, this.categoryModel);
+  CategoryViewer(this.index, this.categoryModel, this.serviceViewModel, this.services);
 
-  @override
-  _CategoryViewerState createState() => _CategoryViewerState();
-}
-
-class _CategoryViewerState extends State<CategoryViewer> {
   @override
   Widget build(BuildContext context) {
-    final serviceViewModel =
-        Get.put(ServiceViewModel(), tag: widget.categoryModel.name);
-    serviceViewModel.updateServices(widget.categoryModel);
+    serviceViewModel.updateCategoryServices(categoryModel);
 
     return Obx(
       () => RefreshIndicator(
         color: SubpingColor.subping100,
         backgroundColor: SubpingColor.white100,
-        onRefresh: () => serviceViewModel.updateServices(widget.categoryModel),
+        onRefresh: () => serviceViewModel.updateCategoryServices(categoryModel),
         child: Container(
           child: Column(
             children: [
@@ -37,7 +34,7 @@ class _CategoryViewerState extends State<CategoryViewer> {
                   color: SubpingColor.white100,
                   child: HorizontalPadding(
                     child: CustomScrollView(
-                        key: PageStorageKey("category_viewer_${widget.index}"),
+                        key: PageStorageKey("category_viewer_${index}"),
                         slivers: [
                           SliverList(
                               delegate: SliverChildListDelegate([
@@ -45,7 +42,7 @@ class _CategoryViewerState extends State<CategoryViewer> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SubpingText(
-                                    "전체 ${serviceViewModel.services.length}개",
+                                    "전체 ${(serviceViewModel.categoryServices[categoryModel.name] ?? []).length}개",
                                     size: SubpingFontSize.tiny1),
                                 TextButton(
                                     child: SubpingText("추천순",
@@ -67,9 +64,9 @@ class _CategoryViewerState extends State<CategoryViewer> {
                             mainAxisSpacing: 20.h,
                             crossAxisCount: 2,
                             children: List.generate(
-                                serviceViewModel.services.length, (index) {
+                                (services ?? []).length, (index) {
                               return CategoryServiceItem(
-                                  item: serviceViewModel.services[index]);
+                                  item: (services ?? [])[index]);
                             }),
                           )
                         ]),

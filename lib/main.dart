@@ -7,6 +7,7 @@ import 'package:amplify_api/amplify_api.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
+import 'package:subping/binding/init_bindings.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/main_tabs/main_tabs.dart';
@@ -17,7 +18,6 @@ import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
 
-import 'package:subping/binding/hot_chart_bindings.dart';
 import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
@@ -66,6 +66,7 @@ class _SubpingAppState extends State<SubpingApp> {
     return ScreenUtilInit(
         designSize: Size(828, 1792),
         builder: () =>  GetMaterialApp(
+          initialBinding: InitBindings(),
           title: 'subping',
           theme: ThemeData(
               fontFamily: 'NotoSansKR',
@@ -96,12 +97,11 @@ class _SubpingAppState extends State<SubpingApp> {
                 binding: MainTabsBindings()),
             GetPage(
                 name: "/hotChart",
-                page: () => HotChart(),
-                binding: HotChartBindings()),
+                page: () => HotChart()),
             GetPage(
                 name: "/alarmPage",
                 page: () => AlarmPage(),
-                binding: AlarmsBinding()),
+                binding: AlarmsBindings()),
             GetPage(
                 name: "/serviceDetail/:param",
                 page: () => ServiceDetail(),

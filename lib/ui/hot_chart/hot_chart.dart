@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class HotChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final hotChartViewModel = Get.find<HotChartViewModel>();
+    final hotChartViewModel = Get.find<ServiceViewModel>();
 
     return HeaderSafe(
       hasBottomSafe: false,

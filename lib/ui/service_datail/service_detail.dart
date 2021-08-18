@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class ServiceDetail extends StatelessWidget {
-  final ServiceModel service;
-
-  ServiceDetail({this.service});
-
+  final serviceId = Get.parameters['param'];
+  
   @override
   Widget build(BuildContext context) {
+    final serviceViewModel = Get.find<ServiceViewModel>();
+    final service = serviceViewModel.getService(serviceId);
+
     return Scaffold(
       appBar: TitleAppBar(
         service.name,
@@ -20,7 +21,7 @@ class ServiceDetail extends StatelessWidget {
         HeaderSafe(
           child: Column(
             children: [
-              Image.network(service.serviceLogoUrl,
+              Image.network(service.serviceLogoUrl ?? "https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png",
                   width: 828.w, height: 828.w, fit: BoxFit.fill),
               HorizontalPadding(
                 child: Column(

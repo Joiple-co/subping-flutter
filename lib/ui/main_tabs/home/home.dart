@@ -6,7 +6,7 @@ import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
 import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
-import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 import './expected.dart';
 import './recommand.dart';
 import './chart.dart';
@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final serviceChartViewModel = Get.find<HotChartViewModel>();
+    final serviveViewModel = Get.find<ServiceViewModel>();
     final alarmViewModel = Get.find<AlarmsViewModel>();
 
     return Obx(() => Scaffold(
@@ -34,10 +34,10 @@ class Home extends StatelessWidget {
             hasBottomSafe: false,
             child: RefreshIndicator(
               onRefresh: () async {
-                await serviceChartViewModel.updateCharts();
+                await serviveViewModel.updateCharts();
                 await alarmViewModel.updateAlarm();
               },
-              child: serviceChartViewModel.isLoading
+              child: serviveViewModel.chartLoading
                   ? SubpingLoading()
                   : ListView(
                       physics: const BouncingScrollPhysics(
@@ -49,13 +49,13 @@ class Home extends StatelessWidget {
                         Recommand(),
                         Space(size: SubpingSize.large80),
                         Chart(
-                            limitItem: serviceChartViewModel
+                            limitItem: serviveViewModel
                                         .chart.serviceRank.length >=
                                     3
                                 ? 3
-                                : serviceChartViewModel
+                                : serviveViewModel
                                     .chart.serviceRank.length,
-                            hotChartData: serviceChartViewModel.chart),
+                            hotChartData: serviveViewModel.chart),
                         Space(size: SubpingSize.large80),
                         RecentReview(),
                         Space(size: SubpingSize.large80),
