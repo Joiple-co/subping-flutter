@@ -7,7 +7,7 @@ class UserViewModel extends GetxController {
   Rx<String> _username = "사용자".obs;
   Rx<String> _email = "".obs;
 
-  UserViewModel()  {
+  UserViewModel() {
     updateInfo();
   }
 

@@ -3,7 +3,7 @@ class AlarmContentsModel {
   String content;
   String createdAt;
   String title;
-  int read;
+  bool read;
 
   AlarmContentsModel({
     this.type,
@@ -18,6 +18,6 @@ class AlarmContentsModel {
     content = json["content"];
     createdAt = json["createdAt"];
     title = json["title"];
-    read = json["read"];
+    read = json["read"] == 1 ? false : true;
   }
 }

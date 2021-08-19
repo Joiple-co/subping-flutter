@@ -15,10 +15,8 @@ class SubscribeBlock extends StatelessWidget {
       ),
       child: Column(
         children: List.generate(2, (index) {
-          print(index);
           bool hasborder = true;
           if (index == 0) hasborder = false;
-          print(hasborder);
           return SubscribeBlockItem(
             hasborder: hasborder,
           );

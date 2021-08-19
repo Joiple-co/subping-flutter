@@ -16,10 +16,12 @@ class AlarmItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(40.w, 0, 40.w, 0),
       padding: EdgeInsets.fromLTRB(
-          0, SubpingSize.large40.h, 0, SubpingSize.large40.h),
+          40.w, SubpingSize.large40.h, 40.w, SubpingSize.large40.h),
       decoration: BoxDecoration(
+        color: alarmContent.read
+            ? SubpingColor.subpingAlpha
+            : SubpingColor.white100,
         border: !isLastItem
             ? Border(
                 bottom: BorderSide(width: 1.h, color: SubpingColor.black30))

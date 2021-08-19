@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum BlankType { alarm }
+
 enum SubpingSizeExtension {
   large80,
   large70,
@@ -48,6 +50,15 @@ enum SubpingFontSizeExtension {
 }
 
 enum SubpingFontWeightExtionsion { bold, medium, regular }
+
+extension BlankTypeStatus on BlankType {
+  static Map<String, dynamic> get alarm {
+    return {
+      "resource": "assets/alarmIcon/blank_alarm.png",
+      "shortPhrases": "아직 알람이 없어요",
+    };
+  }
+}
 
 extension SubpingSize on SubpingSizeExtension {
   static double get large80 {
@@ -168,6 +179,10 @@ extension SubpingFontSize on SubpingFontSizeExtension {
 extension SubpingColor on SubpingColorExtension {
   static Color get subping100 {
     return Color.fromRGBO(80, 110, 225, 1);
+  }
+
+  static Color get subpingAlpha {
+    return Color.fromRGBO(80, 110, 225, 0.1);
   }
 
   static Color get subping50 {
