@@ -22,6 +22,19 @@ class ServiceModel {
       this.serviceExplainUrl,
       this.tag});
 
+  void updateServiceModel(ServiceModel service) {
+    id = service.id ?? this.id;
+    category = service.category ?? this.category;
+    rank = service.rank ?? this.rank;
+    name = service.name ?? this.name;
+    type = service.type ?? this.type;
+    serviceLogoUrl = service.serviceLogoUrl ?? this.serviceLogoUrl;
+    summary = service.summary ?? this.summary;
+    sellerEmail = service.sellerEmail ?? this.sellerEmail;
+    tag = service.tag ?? this.tag;
+    serviceExplainUrl = service.serviceExplainUrl ?? this.serviceExplainUrl;
+  }
+
   ServiceModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     category = json['category'] ?? [];

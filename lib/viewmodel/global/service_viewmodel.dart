@@ -24,6 +24,9 @@ class ServiceViewModel extends GetxController {
       });
 
       _chartLoading.value = false;
+      
+      _services.refresh();
+      _chart.refresh();
     } catch (e) {
       print(e);
     }
@@ -33,6 +36,7 @@ class ServiceViewModel extends GetxController {
     final response = await _serviceRepository.getCategories();
 
     _categories.value = response;
+    _categories.refresh();
 
     response.forEach((item) {
       updateCategoryServices(item);
@@ -42,8 +46,9 @@ class ServiceViewModel extends GetxController {
   Future<void> updateCategoryServices(CategoryModel categoryModel, {String repeatKey}) async {
     if(repeatKey == null && (_categoryServices.value[categoryModel.name] ?? []).length == 0) {
       final response = (await _serviceRepository.getServicesByCategory(categoryModel));
-      print(response);
       _categoryServices.value[categoryModel.name] = response;
+
+      _categoryServices.refresh();
     }
 
     else {
@@ -54,7 +59,7 @@ class ServiceViewModel extends GetxController {
   Future<void> updateService(String serviceId) async {
     final service = await _serviceRepository.getService(serviceId);
 
-    _services.value[service.id] = service;
+    _services.value[service.id].updateServiceModel(service);
     _services.refresh();
   }
 
