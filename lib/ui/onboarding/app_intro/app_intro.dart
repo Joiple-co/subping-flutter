@@ -69,7 +69,7 @@ class AppIntro extends StatelessWidget {
                       text: "섭핑 시작하기",
                       onPressed: () => showBottomSheet(context))),
               Space(
-                size: SubpingSize.large40,
+                size: SubpingSize.large20,
               ),
             ],
           ),

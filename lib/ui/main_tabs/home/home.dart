@@ -6,7 +6,7 @@ import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
 import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
-import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 import './expected.dart';
 import './recommand.dart';
 import './chart.dart';
@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final serviceChartViewModel = Get.find<HotChartViewModel>();
+    final serviveViewModel = Get.find<ServiceViewModel>();
     final alarmViewModel = Get.find<AlarmsViewModel>();
 
     return Obx(() => Scaffold(
@@ -34,31 +34,31 @@ class Home extends StatelessWidget {
             hasBottomSafe: false,
             child: RefreshIndicator(
               onRefresh: () async {
-                await serviceChartViewModel.updateCharts();
+                await serviveViewModel.updateCharts();
                 await alarmViewModel.updateAlarm();
               },
-              child: serviceChartViewModel.isLoading
+              child: serviveViewModel.chartLoading
                   ? SubpingLoading()
                   : ListView(
                       physics: const BouncingScrollPhysics(
                           parent: AlwaysScrollableScrollPhysics()),
                       children: [
-                        Space(size: SubpingSize.large40),
+                        Space(size: SubpingSize.large20),
                         Expected(),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                         Recommand(),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                         Chart(
-                            limitItem: serviceChartViewModel
+                            limitItem: serviveViewModel
                                         .chart.serviceRank.length >=
                                     3
                                 ? 3
-                                : serviceChartViewModel
+                                : serviveViewModel
                                     .chart.serviceRank.length,
-                            hotChartData: serviceChartViewModel.chart),
-                        Space(size: SubpingSize.large80),
+                            hotChartData: serviveViewModel.chart),
+                        Space(size: SubpingSize.large40),
                         RecentReview(),
-                        Space(size: SubpingSize.large80),
+                        Space(size: SubpingSize.large40),
                       ],
                     ),
             ),

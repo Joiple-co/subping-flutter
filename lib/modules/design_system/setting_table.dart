@@ -61,68 +61,68 @@ extension BlankTypeStatus on BlankType {
 }
 
 extension SubpingSize on SubpingSizeExtension {
-  static double get large80 {
-    return 80.0;
-  }
-
-  static double get large70 {
-    return 70.0;
-  }
-
-  static double get large64 {
-    return 64.0;
-  }
-
-  static double get large56 {
-    return 56.0;
-  }
-
-  static double get large50 {
-    return 50.0;
-  }
-
-  static double get large48 {
-    return 48.0;
-  }
-
   static double get large40 {
-    return 40.0;
+    return 40;
   }
 
-  static double get large30 {
-    return 30.0;
+  static double get large35 {
+    return 35;
   }
 
-  static double get medium28 {
-    return 30.0;
+  static double get large32 {
+    return 32;
   }
 
-  static double get medium24 {
-    return 24.0;
+  static double get large28 {
+    return 28;
   }
 
-  static double get medium22 {
-    return 22.0;
+  static double get large25 {
+    return 25;
   }
 
-  static double get medium20 {
-    return 20.0;
+  static double get large24 {
+    return 24;
   }
 
-  static double get medium16 {
-    return 16.0;
+  static double get large20 {
+    return 20;
   }
 
-  static double get tiny14 {
-    return 14.0;
+  static double get large15 {
+    return 15;
   }
 
-  static double get tiny12 {
-    return 12.0;
+  static double get medium14 {
+    return 14;
   }
 
-  static double get tiny10 {
-    return 10.0;
+  static double get medium12 {
+    return 12;
+  }
+
+  static double get medium11 {
+    return 11;
+  }
+
+  static double get medium10 {
+    return 10;
+  }
+
+  static double get medium8 {
+    return 8;
+  }
+
+  static double get tiny7 {
+    return 7;
+  }
+
+  static double get tiny6 {
+    return 6;
+  }
+
+  static double get tiny5 {
+    return 5;
   }
 }
 

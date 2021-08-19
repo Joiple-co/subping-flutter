@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/main_tabs/category/category_viewer.dart';
-import 'package:subping/viewmodel/global/category_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -16,11 +16,11 @@ class _CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
-    final categoryViewModel = Get.find<CategoryViewModel>();
+    final serviceViewModel = Get.find<ServiceViewModel>();
 
     return Obx(
       () => DefaultTabController(
-        length: categoryViewModel.categories.length,
+        length: serviceViewModel.categories.length,
         child: HeaderSafe(
           child: Scaffold(
               backgroundColor: SubpingColor.back20,
@@ -66,10 +66,10 @@ class _CategoryState extends State<Category> {
                       indicatorWeight: 0,
                       isScrollable: true,
                       tabs: List.generate(
-                        categoryViewModel.categories.length,
+                        serviceViewModel.categories.length,
                         (index) => Tab(
                             child: SubpingText(
-                                categoryViewModel.categories[index].name)),
+                                serviceViewModel.categories[index].name)),
                       ),
                       controller: tabController,
                     ),
@@ -78,9 +78,9 @@ class _CategoryState extends State<Category> {
                     child: TabBarView(
                       controller: tabController,
                       children: List.generate(
-                          categoryViewModel.categories.length, (index) {
+                          serviceViewModel.categories.length, (index) {
                         return CategoryViewer(index.toString(),
-                            categoryViewModel.categories[index]);
+                            serviceViewModel.categories[index], serviceViewModel, serviceViewModel.categoryServices[serviceViewModel.categories[index].name]);
                       }),
                     ),
                   ),

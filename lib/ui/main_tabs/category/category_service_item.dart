@@ -21,7 +21,7 @@ class CategoryServiceItem extends StatelessWidget {
               fit: BoxFit.fill,
               height: 360.w,
               width: 360.w,)),
-          Space(size: SubpingSize.medium20),
+          Space(size: SubpingSize.medium10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

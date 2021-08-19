@@ -1,13 +1,7 @@
 import 'dart:convert';
-import 'dart:developer';
 
-import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:subping/model/alarms/alarms_model.dart';
 import 'package:subping/model/body_model.dart';
-import 'package:subping/model/category_model.dart';
-import 'package:subping/model/service_model.dart';
-import 'package:subping/model/current_hot_chart_model.dart';
 import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 

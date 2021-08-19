@@ -41,7 +41,7 @@ class RecentReview extends StatelessWidget {
                 onTap: () => Get.toNamed("/hotChart"),
                 child: Container(
                   padding: EdgeInsets.fromLTRB(
-                      SubpingSize.medium20.w, 5.h, SubpingSize.medium20.w, 5.h),
+                      SubpingSize.medium10, 5, SubpingSize.medium10, 5),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: SubpingColor.back20),
@@ -55,7 +55,7 @@ class RecentReview extends StatelessWidget {
               ),
             ]),
             Space(
-              size: SubpingSize.large48,
+              size: SubpingSize.large24
             ),
             Column(
               children: List.generate(3, (index) {
@@ -73,7 +73,7 @@ class RecentReview extends StatelessWidget {
                         ),
                       ),
                       Space(
-                        size: SubpingSize.medium20,
+                        size: SubpingSize.medium10,
                       ),
                       Expanded(
                         child: Column(
@@ -97,9 +97,9 @@ class RecentReview extends StatelessWidget {
                                     onRatingUpdate: (rating) => print(rating))
                               ],
                             ),
-                            Space(size: SubpingSize.tiny10),
+                            Space(size: SubpingSize.tiny5),
                             Container(height: 2, color: SubpingColor.black30),
-                            Space(size: SubpingSize.tiny10),
+                            Space(size: SubpingSize.tiny5),
                             SubpingText(
                               reviewContent,
                               size: SubpingFontSize.body3,

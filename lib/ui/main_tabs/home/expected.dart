@@ -41,7 +41,7 @@ class Expected extends StatelessWidget {
                                 color: SubpingColor.white100,
                                 fontWeight: SubpingFontWeight.regular,
                                 size: SubpingFontSize.body1),
-                            Space(size: SubpingSize.tiny10),
+                            Space(size: SubpingSize.tiny5),
                             SubpingText(
                               Helper.setComma(22121211) + " 원",
                               fontWeight: FontWeight.bold,

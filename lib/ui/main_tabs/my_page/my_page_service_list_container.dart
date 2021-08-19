@@ -17,7 +17,7 @@ class MyPageServiceListContainer extends StatelessWidget {
             size: SubpingFontSize.body5,
             color: SubpingColor.black60,
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "구독상품 관리",
@@ -25,7 +25,7 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "정기배송 상품관리",
@@ -33,7 +33,7 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "구독 해지 상품 조회",
@@ -41,15 +41,15 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large30),
+          Space(size: SubpingSize.large15),
           SubpingDivider(),          
-          Space(size: SubpingSize.large30),
+          Space(size: SubpingSize.large15),
           SubpingText(
             "결제 정보 및 보안 관리",
             size: SubpingFontSize.body5,
             color: SubpingColor.black60,
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "등록 카드",
@@ -57,7 +57,7 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "등록 은행",
@@ -66,7 +66,7 @@ class MyPageServiceListContainer extends StatelessWidget {
               //fontWeight : SubpingFontWeight.bold
             ),
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "잠금 및 보안",
@@ -74,15 +74,15 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large30),
+          Space(size: SubpingSize.large15),
           SubpingDivider(),
-          Space(size: SubpingSize.large30),
+          Space(size: SubpingSize.large15),
           SubpingText(
             "공지사항",
             size: SubpingFontSize.body5,
             color: SubpingColor.black60,
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "이용약관",
@@ -90,7 +90,7 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "개인정보처리방침",
@@ -98,15 +98,15 @@ class MyPageServiceListContainer extends StatelessWidget {
               color: SubpingColor.black100,
             ),
           ),
-          Space(size: SubpingSize.large30),
+          Space(size: SubpingSize.large15),
           SubpingDivider(),
-          Space(size: SubpingSize.large30),
+          Space(size: SubpingSize.large15),
           SubpingText(
             "고객센터",
             size: SubpingFontSize.body1,
             color: SubpingColor.black60,
           ),
-          Space(size: SubpingSize.large40),
+          Space(size: SubpingSize.large20),
           GestureDetector(
             child: SubpingText(
               "앱 문의 및 건의",

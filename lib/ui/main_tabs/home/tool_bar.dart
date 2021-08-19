@@ -27,7 +27,7 @@ class ToolBar extends StatelessWidget {
           onPressed: () {},
         ),
         Space(
-          size: SubpingSize.large40,
+          size: SubpingSize.large20,
         ),
         AlramIcon(unreadAlarmCount: unreadAlarmCount),
       ],

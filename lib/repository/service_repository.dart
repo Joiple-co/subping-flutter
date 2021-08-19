@@ -66,4 +66,19 @@ class ServiceRepository {
       return [];
     }
   }
+
+  Future<ServiceModel> getService(String serviceId) async {
+    try {
+      final rawResponse = await API.post("service", "/getService", body: {"service": serviceId});
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      ServiceModel service = ServiceModel.fromJson(response.message);
+
+      return service;
+    }
+    catch(e) {
+      print(e);
+    }
+  }
 }
