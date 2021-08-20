@@ -8,6 +8,7 @@ class ServiceModel {
   String summary;
   String sellerEmail;
   String serviceExplainUrl;
+  bool like;
   List<dynamic> tag;
 
   ServiceModel(
@@ -20,6 +21,7 @@ class ServiceModel {
       this.summary,
       this.sellerEmail,
       this.serviceExplainUrl,
+      this.like,
       this.tag});
 
   void updateServiceModel(ServiceModel service) {
@@ -33,6 +35,7 @@ class ServiceModel {
     sellerEmail = service.sellerEmail ?? this.sellerEmail;
     tag = service.tag ?? this.tag;
     serviceExplainUrl = service.serviceExplainUrl ?? this.serviceExplainUrl;
+    like = service.like ?? this.like;
   }
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -46,5 +49,6 @@ class ServiceModel {
     sellerEmail = json['sellerEmail'];
     tag = json['tag'];
     serviceExplainUrl = json['serviceExplainUrl'];
+    like = json['like'] == 1 ? true : false;
   }
 }

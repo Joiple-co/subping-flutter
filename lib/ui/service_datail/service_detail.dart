@@ -125,7 +125,7 @@ class ServiceDetail extends StatelessWidget {
                 ),
               ]),
             ),
-            ServiceFooter()
+            ServiceFooter(userLike: service.like, toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId))
           ]),
         ),
       );}
