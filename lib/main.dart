@@ -4,10 +4,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/init_bindings.dart';
+import 'package:subping/binding/write_review_bindings.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/main_tabs/main_tabs.dart';
@@ -24,6 +26,7 @@ import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
 import 'package:subping/ui/alarm/alarm_page.dart';
+import 'package:subping/ui/write_review/write_review.dart';
 
 import 'binding/alarms_bindings.dart';
 
@@ -49,9 +52,11 @@ class _SubpingAppState extends State<SubpingApp> {
   void _configureAmplify() async {
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
     AmplifyAPI apiPlugin = AmplifyAPI();
+    AmplifyStorageS3 s3Plugin = new AmplifyStorageS3();
 
     Amplify.addPlugin(authPlugin);
     Amplify.addPlugin(apiPlugin);
+    Amplify.addPlugin(s3Plugin);
 
     try {
       await Amplify.configure(getAmplifyCongig("dev"));
@@ -65,48 +70,50 @@ class _SubpingAppState extends State<SubpingApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
         designSize: Size(828, 1792),
-        builder: () =>  GetMaterialApp(
-          initialBinding: InitBindings(),
-          title: 'subping',
-          theme: ThemeData(
-              fontFamily: 'NotoSansKR',
-              backgroundColor: Colors.white,
-              primaryColor: Color.fromRGBO(80, 110, 225, 1),
-              disabledColor: Color.fromRGBO(173, 178, 198, 0.5),
-              canvasColor: Colors.transparent),
-          home: Scaffold(backgroundColor: Colors.blue),
-          initialRoute: '/splash',
-          getPages: [
-            GetPage(name: "/splash", page: () => Splash()),
-            GetPage(name: "/appIntro", page: () => AppIntro()),
-            GetPage(
-                name: "/userAccount",
-                page: () => UserAccount(),
-                binding: UserAccuntBindings()),
-            GetPage(
-                name: "/passAuth",
-                page: () => PassAuth(),
-                binding: PassAuthBindings()),
-            GetPage(
-                name: "/userLogin",
-                page: () => UserLogin(),
-                binding: UserLoginBindings()),
-            GetPage(
-                name: "/mainTabs",
-                page: () => MainTabs(),
-                binding: MainTabsBindings()),
-            GetPage(
-                name: "/hotChart",
-                page: () => HotChart()),
-            GetPage(
-                name: "/alarmPage",
-                page: () => AlarmPage(),
-                binding: AlarmsBindings()),
-            GetPage(
-                name: "/serviceDetail/:param",
-                page: () => ServiceDetail(),
-            )
-          ],
-        ));
+        builder: () => GetMaterialApp(
+              initialBinding: InitBindings(),
+              title: 'subping',
+              theme: ThemeData(
+                  fontFamily: 'NotoSansKR',
+                  backgroundColor: Colors.white,
+                  primaryColor: Color.fromRGBO(80, 110, 225, 1),
+                  disabledColor: Color.fromRGBO(173, 178, 198, 0.5),
+                  canvasColor: Colors.transparent),
+              home: Scaffold(backgroundColor: Colors.blue),
+              initialRoute: '/writeReview',
+              getPages: [
+                GetPage(name: "/splash", page: () => Splash()),
+                GetPage(name: "/appIntro", page: () => AppIntro()),
+                GetPage(
+                    name: "/userAccount",
+                    page: () => UserAccount(),
+                    binding: UserAccuntBindings()),
+                GetPage(
+                    name: "/passAuth",
+                    page: () => PassAuth(),
+                    binding: PassAuthBindings()),
+                GetPage(
+                    name: "/userLogin",
+                    page: () => UserLogin(),
+                    binding: UserLoginBindings()),
+                GetPage(
+                    name: "/mainTabs",
+                    page: () => MainTabs(),
+                    binding: MainTabsBindings()),
+                GetPage(name: "/hotChart", page: () => HotChart()),
+                GetPage(
+                    name: "/alarmPage",
+                    page: () => AlarmPage(),
+                    binding: AlarmsBindings()),
+                GetPage(
+                  name: "/serviceDetail/:param",
+                  page: () => ServiceDetail(),
+                ),
+                GetPage(
+                    name: "/writeReview",
+                    page: () => WriteReview(),
+                    binding: WriteReviewBindings())
+              ],
+            ));
   }
 }
