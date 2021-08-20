@@ -26,6 +26,7 @@ dependencies:
   amplify_flutter: '<1.0.0'
   amplify_auth_cognito: '<1.0.0'
   amplify_api: '<1.0.0'
+  amplify_storage_s3: '<1.0.0'
   get: '^4.1.4'
   get_storage: ^2.0.2
   table_calendar: ^3.0.1
@@ -38,9 +39,7 @@ dependencies:
   flutter_icons: ^1.1.0
   flutter_screenutil: ^5.0.0+2
   scrollable_positioned_list: ^0.1.10
-  sticky_headers: ^0.2.0
   webview_flutter: ^1.0.7
-  intl: ^0.17.0
   flutter_rating_bar: ^4.0.0
   image_picker: ^0.8.3
   kopo: 
