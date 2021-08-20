@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:sticky_headers/sticky_headers.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_block.dart';
