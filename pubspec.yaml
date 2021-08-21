@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.0
   image_picker: ^0.8.3
+  lottie : ^1.0.0
   kopo: 
     git:
       url: https://github.com/W1nU/kopo.git
@@ -74,6 +75,7 @@ flutter:
     - assets/icon/
     - assets/tabIcon/
     - assets/alarmIcon/
+    - assets/lottie/
 
 
 
