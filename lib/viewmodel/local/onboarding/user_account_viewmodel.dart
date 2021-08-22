@@ -149,9 +149,11 @@ class UserAccountViewModel extends GetxController {
 
       else {
         ErrorHandler.errorHandler(response.message);
+        loading.value = false;
       }
     } else {
       ErrorHandler.errorHandler("UserAccountException");
+      loading.value = false;
     }
   }
 
