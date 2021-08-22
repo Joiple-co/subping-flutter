@@ -18,6 +18,8 @@ class AlarmsViewModel extends GetxController {
   }
 
   Future<void> readAlarm() async {
+    alarms.value.unreadAlarms = 0;
+    
     await _alarmRepository.readAlarm();
   }
 

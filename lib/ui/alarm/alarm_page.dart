@@ -12,7 +12,6 @@ class AlarmPage extends StatelessWidget {
     final alarmViewModel = Get.find<AlarmsViewModel>();
     
     alarmViewModel.readAlarm();
-    alarmViewModel.alarms.value.unreadAlarms = 0;
 
     return Scaffold(
       backgroundColor: SubpingColor.white100,
