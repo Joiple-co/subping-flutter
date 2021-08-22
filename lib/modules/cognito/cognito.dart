@@ -28,8 +28,12 @@ class Cognito {
   }
 
   Future<bool> checkLoggedIn() async {
-    final user = await Amplify.Auth.fetchAuthSession();
-    return user.isSignedIn;
+    try {
+      final user = await Amplify.Auth.fetchAuthSession();
+      return user.isSignedIn;
+    } catch(e) {
+      return false;
+    }
   }
 
   Future<BodyModel> signUpStart(String email, String password) async {
