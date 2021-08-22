@@ -75,6 +75,36 @@ class ErrorHandler {
                   onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
             ]));
         break;
+      
+      case "GetUserException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("유저 정보를 가져오는데 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
+      
+      case "NickNameDuplicateException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("닉네임 중복 여부를 확인하넨데 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
+      
+      case "NickNameUpdateException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("닉네임 업데이트에 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
 
       default:
         Get.dialog(AlertDialog(

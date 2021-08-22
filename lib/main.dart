@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/init_bindings.dart';
+import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
@@ -17,6 +18,7 @@ import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
+import 'package:subping/ui/onboarding/user_nickname/create_nickname.dart';
 import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
 
@@ -31,6 +33,7 @@ import 'package:subping/ui/write_review/write_review.dart';
 import 'binding/alarms_bindings.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(SubpingApp());
 }
@@ -52,11 +55,11 @@ class _SubpingAppState extends State<SubpingApp> {
   void _configureAmplify() async {
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
     AmplifyAPI apiPlugin = AmplifyAPI();
-    AmplifyStorageS3 s3Plugin = new AmplifyStorageS3();
+    AmplifyStorageS3 s3Plugin = AmplifyStorageS3();
 
-    Amplify.addPlugin(authPlugin);
-    Amplify.addPlugin(apiPlugin);
-    Amplify.addPlugin(s3Plugin);
+    await Amplify.addPlugin(authPlugin);
+    await Amplify.addPlugin(apiPlugin);
+    await Amplify.addPlugin(s3Plugin);
 
     try {
       await Amplify.configure(getAmplifyCongig("dev"));
@@ -96,6 +99,10 @@ class _SubpingAppState extends State<SubpingApp> {
                     name: "/userLogin",
                     page: () => UserLogin(),
                     binding: UserLoginBindings()),
+                GetPage(
+                    name: "/createNickName",
+                    page: () => CreateNickName(),
+                    binding: CreateNickNameBindings()),
                 GetPage(
                     name: "/mainTabs",
                     page: () => MainTabs(),

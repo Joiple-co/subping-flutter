@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 
 class UserInfoContainer extends StatelessWidget {
@@ -30,7 +29,7 @@ class UserInfoContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SubpingText("${userData.name}님",
+            SubpingText("${userData.name}님 / ${userData.nickName}",
                 fontWeight: FontWeight.bold, size: SubpingFontSize.body2),
             SubpingText(
               "${userData.email}",

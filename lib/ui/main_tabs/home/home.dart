@@ -7,6 +7,7 @@ import 'package:subping/ui/main_tabs/home/recommand.dart';
 import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
+import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import './expected.dart';
 import './recommand.dart';
 import './chart.dart';
@@ -18,6 +19,10 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final serviveViewModel = Get.find<ServiceViewModel>();
     final alarmViewModel = Get.find<AlarmsViewModel>();
+    final userViewModel = Get.find<UserViewModel>();
+    
+    userViewModel.updateInfo();
+    serviveViewModel.updateCharts();
 
     return Obx(() => Scaffold(
           backgroundColor: SubpingColor.white100,
