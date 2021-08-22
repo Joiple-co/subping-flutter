@@ -12,6 +12,7 @@ class UserLogin extends StatelessWidget {
 
     return GetX<UserLoginViewModel>(
       builder: (viewModel) => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: HeaderSafe(
           child: HorizontalPadding(
             child: HeaderPadding(
