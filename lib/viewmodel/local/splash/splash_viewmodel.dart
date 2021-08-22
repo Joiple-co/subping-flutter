@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:subping/modules/cognito/cognito.dart';
@@ -23,13 +23,13 @@ class SplashViewModel {
   void goNextScene() async {
     bool isSecureInitSucess;
     bool isLoggedIn;
-
+      
     try {
       await Future.wait([initSecure(), _checkLoggedIn()]).then((value) {
         isSecureInitSucess = value[0];
         isLoggedIn = value[1];
       });
-      
+ 
       if (isSecureInitSucess) {
         if (isLoggedIn) {
           Get.offAllNamed("/mainTabs");
@@ -39,7 +39,9 @@ class SplashViewModel {
       } else {
         ErrorHandler.errorHandler("SplashException");
       }
-    } catch (e) {
+    } on UnknownException {
+      Get.offAllNamed("/appIntro");
+    } catch(e) {
       ErrorHandler.errorHandler("SplashException");
     }
   }
