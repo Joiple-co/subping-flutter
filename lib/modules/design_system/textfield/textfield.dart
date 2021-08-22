@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class AlwaysDisabledFocusNode extends FocusNode {
@@ -22,6 +23,7 @@ class SubpingTextField extends StatelessWidget {
   final String obscuringCharacter;
   final String errorText;
   final Function onSubmitted;
+  final List<TextInputFormatter> inputFormatters;
 
   SubpingTextField(
       {this.focusNode,
@@ -38,7 +40,8 @@ class SubpingTextField extends StatelessWidget {
       this.obscureText = false,
       this.obscuringCharacter = "●",
       this.errorText,
-      this.onSubmitted});
+      this.onSubmitted,
+      this.inputFormatters});
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +59,7 @@ class SubpingTextField extends StatelessWidget {
         onSubmitted: onSubmitted,
         obscuringCharacter: obscuringCharacter,
         enableInteractiveSelection: readOnly ? false : true,
+        inputFormatters: inputFormatters,
         style: TextStyle(
           fontSize: 15,
         ),
