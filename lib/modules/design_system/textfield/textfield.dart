@@ -56,10 +56,14 @@ class SubpingTextField extends StatelessWidget {
         onSubmitted: onSubmitted,
         obscuringCharacter: obscuringCharacter,
         enableInteractiveSelection: readOnly ? false : true,
+        style: TextStyle(
+          fontSize: 15,
+        ),
         decoration: InputDecoration(
             labelText: labelText,
             helperText: helperText,
             errorText: errorText,
+            isDense: true,
             border: OutlineInputBorder()),
       ),
     );
