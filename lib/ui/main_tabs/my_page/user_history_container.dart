@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +10,9 @@ class UserHistoryContainer extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         GestureDetector(
+          onTap: () {
+            Get.toNamed("/likeService");
+          },
           child: Column(
             children: [
               IconButton(
@@ -20,7 +24,6 @@ class UserHistoryContainer extends StatelessWidget {
                 icon: Image.asset(
                   "assets/icon/mypage1.png",
                 ),
-                onPressed: () {},
               ),
               SubpingText("찜한 상품")
             ],
@@ -57,7 +60,9 @@ class UserHistoryContainer extends StatelessWidget {
                   "assets/icon/mypage3.png",
                 ),
                 onPressed: () {},
-              ),SubpingText("최근 본 상품")],
+              ),
+              SubpingText("최근 본 상품")
+            ],
           ),
         )
       ],

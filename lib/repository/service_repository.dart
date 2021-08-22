@@ -83,6 +83,26 @@ class ServiceRepository {
     }
   }
 
+  Future<List<ServiceModel>> getLikeServices() async {
+    List<ServiceModel> services = <ServiceModel>[];
+
+    try {
+      final rawResponse = await API.get("user", "/getUserLikeServices");
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      response.message.forEach((value) {
+        services.add(ServiceModel.fromJson(value));
+      });
+
+      return services;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
   Future<bool> toggleUserLike(String serviceId, bool toggle) async {
     try {
       final rawResponse = await API
