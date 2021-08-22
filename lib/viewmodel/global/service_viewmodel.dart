@@ -154,7 +154,5 @@ class ServiceViewModel extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    updateCharts();
-    updateCategory();
   }
 }
