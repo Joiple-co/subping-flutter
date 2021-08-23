@@ -81,7 +81,7 @@ class ServiceDetail extends StatelessWidget {
                                   Space(
                                     size: SubpingSize.large25,
                                   ),
-                                  SubpingText(service.category.join(","))
+                                  SubpingText(service.category != null ? service.category.join(",") : "")
                                 ],
                               ),
                               Space(

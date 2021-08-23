@@ -40,7 +40,7 @@ class ServiceModel {
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    category = json['category'] ?? [];
+    category = json['category'];
     rank = json['rank'];
     name = json['name'];
     type = json['type'];

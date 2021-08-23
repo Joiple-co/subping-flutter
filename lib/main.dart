@@ -78,7 +78,6 @@ class _SubpingAppState extends State<SubpingApp> {
     return ScreenUtilInit(
         designSize: Size(828, 1792),
         builder: () => GetMaterialApp(
-              initialBinding: InitBindings(),
               title: 'subping',
               theme: ThemeData(
                   fontFamily: 'NotoSansKR',
@@ -115,7 +114,6 @@ class _SubpingAppState extends State<SubpingApp> {
                 GetPage(
                     name: "/alarm",
                     page: () => Alarm(),
-                    binding: AlarmsBindings(),
                     middlewares: [AlarmMiddleWare()]),
                 GetPage(
                     name: "/serviceDetail/:param",
