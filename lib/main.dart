@@ -11,6 +11,7 @@ import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/init_bindings.dart';
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
+import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
 
@@ -30,7 +31,7 @@ import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
-import 'package:subping/ui/alarm/alarm_page.dart';
+import 'package:subping/ui/alarm/alarm.dart';
 import 'package:subping/ui/write_review/write_review.dart';
 
 import 'binding/alarms_bindings.dart';
@@ -112,9 +113,10 @@ class _SubpingAppState extends State<SubpingApp> {
                     binding: MainTabsBindings()),
                 GetPage(name: "/hotChart", page: () => HotChart()),
                 GetPage(
-                    name: "/alarmPage",
-                    page: () => AlarmPage(),
-                    binding: AlarmsBindings()),
+                    name: "/alarm",
+                    page: () => Alarm(),
+                    binding: AlarmsBindings(),
+                    middlewares: [AlarmMiddleWare()]),
                 GetPage(
                     name: "/serviceDetail/:param",
                     page: () => ServiceDetail(),

@@ -21,12 +21,12 @@ class AlarmsViewModel extends GetxController {
   }
 
   Future<void> readAlarm() async {
+    await _alarmRepository.readAlarm();
     alarms.value.unreadAlarms = 0;
     alarms.refresh();
-    await _alarmRepository.readAlarm();
   }
 
-  bool get alarmIsLoading {
+  bool get isLoading {
     return _isLoading.value;
   }
 

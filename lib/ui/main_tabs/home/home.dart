@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
     final serviveViewModel = Get.find<ServiceViewModel>();
     final alarmViewModel = Get.find<AlarmsViewModel>();
     final userViewModel = Get.find<UserViewModel>();
-    
+
     userViewModel.updateInfo();
     serviveViewModel.updateCharts();
 
@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
             "홈",
             hasBackButton: false,
             rear: ToolBar(
-              unreadAlarmCount: alarmViewModel.alarmIsLoading
+              unreadAlarmCount: alarmViewModel.isLoading
                   ? 0
                   : alarmViewModel.alarms.value.unreadAlarms,
             ),
