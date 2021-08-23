@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
-import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
 import './expected.dart';
@@ -23,8 +22,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: TitleAppBar(
         "홈",
-        hasBackButton: false,
-        rear: ToolBar(),
+        rear: ToolBar(hasSearchIcon: true, hasAlarmIcon: true),
       ),
       body: Obx(
         () => HeaderSafe(

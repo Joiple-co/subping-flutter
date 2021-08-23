@@ -23,6 +23,7 @@ import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
 import 'package:subping/ui/alarm/alarm_page.dart';
+import 'package:subping/ui/search/search_page.dart';
 
 import 'binding/alarms_bindings.dart';
 
@@ -102,6 +103,11 @@ class _SubpingAppState extends State<SubpingApp> {
                 name: "/alarmPage",
                 page: () => AlarmPage(),
                 binding: AlarmsBinding()),
+
+            //광이가 건든거,
+            GetPage(
+              name: "/searchBar", page: () => SearchPage(),
+            ),
           ],
         ));
   }

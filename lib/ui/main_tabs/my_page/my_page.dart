@@ -4,21 +4,28 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/main_tabs/my_page/user_history_container.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
+import 'my_page_alarm_icon.dart';
 import 'user_info_container.dart';
 import 'my_page_service_list_container.dart';
 
 class MyPage extends StatelessWidget {
   const MyPage() : super();
 
-
   Widget build(BuildContext context) {
-
     final userViewModel = Get.find<UserViewModel>();
-    
+
     return HeaderSafe(
         hasBottomSafe: false,
         child: Scaffold(
-            appBar: TitleAppBar("마이 페이지"),
+            appBar: TitleAppBar("마이 페이지",
+                rear: Container(
+                    child: ToolBar(hasAlarmIcon: true),
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                          color: SubpingColor.black30,
+                          offset: Offset(0.w, 0.h),
+                          blurRadius: 14)
+                    ]))),
             body: ListView(children: <Widget>[
               Container(
                 child: Column(children: [
