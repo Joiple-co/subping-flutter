@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/model/review_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/service_datail/service_footer.dart';
 import 'package:subping/ui/service_datail/service_info.dart';
@@ -17,7 +16,7 @@ class ServiceDetail extends StatelessWidget {
     serviceViewModel.updateService(serviceId);
 
     return Obx(() {
-      final service = serviceViewModel.services[serviceId];
+      final service = serviceViewModel.services[serviceId].value;
       
       return Scaffold(
         appBar: TitleAppBar(
@@ -82,7 +81,7 @@ class ServiceDetail extends StatelessWidget {
                                   Space(
                                     size: SubpingSize.large25,
                                   ),
-                                  SubpingText(service.category.join(","))
+                                  SubpingText(service.category != null ? service.category.join(",") : "")
                                 ],
                               ),
                               Space(
@@ -125,7 +124,7 @@ class ServiceDetail extends StatelessWidget {
                 ),
               ]),
             ),
-            ServiceFooter()
+            ServiceFooter(userLike: service.like, toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId))
           ]),
         ),
       );}

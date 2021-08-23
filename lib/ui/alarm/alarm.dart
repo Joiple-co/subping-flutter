@@ -8,14 +8,10 @@ import 'package:subping/ui/alarm/alarm_item.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AlarmPage extends StatelessWidget {
+class Alarm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final alarmViewModel = Get.find<AlarmsViewModel>();
-    final isBlank = alarmViewModel.alarms.value.contents.length == 0;
-
-    alarmViewModel.readAlarm();
-    alarmViewModel.alarms.value.unreadAlarms = 0;
 
     return Scaffold(
       backgroundColor: SubpingColor.white100,
@@ -30,7 +26,7 @@ class AlarmPage extends StatelessWidget {
                 await alarmViewModel.updateAlarm();
               },
               child: Obx(
-                () => alarmViewModel.alarmIsLoading
+                () => alarmViewModel.isLoading
                     ? SubpingLoading()
                     : ListView(
                         shrinkWrap: isBlank ? true : false,

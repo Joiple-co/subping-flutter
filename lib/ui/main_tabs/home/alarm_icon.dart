@@ -22,7 +22,7 @@ class AlramIcon extends StatelessWidget {
             "assets/icon/notificBell.png",
           ),
           onPressed: () {
-            Get.toNamed("/alarmPage");
+            Get.toNamed("/alarm");
           },
         ),
         unreadAlarmCount != 0

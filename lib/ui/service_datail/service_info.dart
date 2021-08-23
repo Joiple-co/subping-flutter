@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/modules/design_system/webview/expandable_webview.dart';
 
 class ServiceInfo extends StatelessWidget {
-  const ServiceInfo({Key key}) : super(key: key);
+  ServiceInfo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,9 @@ class ServiceInfo extends StatelessWidget {
             "제품 상세",
             size: SubpingFontSize.title6,
             fontWeight: SubpingFontWeight.bold,
-          ))
+          )), 
+          Space(size: SubpingSize.large20,),
+          ExpandableWebView("https://www.google.com/",)
         ],
       ),
     );

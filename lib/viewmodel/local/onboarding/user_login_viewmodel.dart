@@ -36,7 +36,7 @@ class UserLoginViewModel extends GetxController {
       return true;
     } else {
       emailValid.value = false;
-      emailError.value = "이메일 주소를 양식에 맞게 입력헤주세요.";
+      emailError.value = email.value == "" ? "" : "이메일 주소를 양식에 맞게 입력헤주세요.";
     }
 
     return false;
@@ -54,7 +54,7 @@ class UserLoginViewModel extends GetxController {
       passwordValid.value = true;
       passwordError.value = "";
     } else {
-      passwordError.value = "비밀번호를 양식에 맞게 입력해주세요.";
+      passwordError.value = password.value == "" ? "" : "비밀번호를 양식에 맞게 입력해주세요.";
     }
 
     return false;

@@ -1,8 +1,7 @@
 String getAmplifyCongig(String stage) {
-  if(stage == "dev") {
+  if (stage == "dev") {
     return devAmplifyconfig;
-  }
-  else {
+  } else {
     return devAmplifyconfig;
   }
 }
@@ -62,5 +61,13 @@ const devAmplifyconfig = ''' {
                 }
             }
         }
+    },
+  "storage": {
+    "plugins": {
+      "awsS3StoragePlugin": {
+        "bucket": "subping-dev-user-upload",
+        "region": "ap-northeast-2"
+      }
     }
+  }
 }''';

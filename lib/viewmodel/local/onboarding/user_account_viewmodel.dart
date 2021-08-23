@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:subping/model/body_model.dart';
@@ -151,9 +149,11 @@ class UserAccountViewModel extends GetxController {
 
       else {
         ErrorHandler.errorHandler(response.message);
+        loading.value = false;
       }
     } else {
       ErrorHandler.errorHandler("UserAccountException");
+      loading.value = false;
     }
   }
 

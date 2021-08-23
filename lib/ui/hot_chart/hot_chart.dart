@@ -6,7 +6,7 @@ import 'package:subping/viewmodel/global/service_viewmodel.dart';
 class HotChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final hotChartViewModel = Get.find<ServiceViewModel>();
+    final serviceViewModel = Get.find<ServiceViewModel>();
 
     return HeaderSafe(
       hasBottomSafe: false,
@@ -14,17 +14,17 @@ class HotChart extends StatelessWidget {
           appBar: TitleAppBar(
             "인기차트",
             hasBackButton: true,
-            rear: TimeDisplay(hotChartViewModel.chart.standardTime),
+            rear: TimeDisplay(serviceViewModel.chart.standardTime),
           ),
           body: HorizontalPadding(
             child: RefreshIndicator(
               backgroundColor: SubpingColor.white100,
-              onRefresh: hotChartViewModel.updateCharts,
+              onRefresh: serviceViewModel.updateCharts,
               child: ListView.builder(
-                  itemCount: hotChartViewModel.chart.serviceRank.length,
+                  itemCount: serviceViewModel.chart.serviceRank.length,
                   itemBuilder: (context, index) {
                     return RankChartItem(
-                        service: hotChartViewModel.chart.serviceRank[index]);
+                        service: serviceViewModel.chart.serviceRank[index]);
                   }),
             ),
           )),

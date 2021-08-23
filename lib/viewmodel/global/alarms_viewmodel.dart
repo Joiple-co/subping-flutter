@@ -10,7 +10,10 @@ class AlarmsViewModel extends GetxController {
 
   Future<void> updateAlarm() async {
     try {
+      _isLoading = true.obs;
+
       alarms.value = await _alarmRepository.getAlarm();
+      
       _isLoading = false.obs;
     } catch (e) {
       print(e);
@@ -19,16 +22,17 @@ class AlarmsViewModel extends GetxController {
 
   Future<void> readAlarm() async {
     await _alarmRepository.readAlarm();
+    alarms.value.unreadAlarms = 0;
+    alarms.refresh();
   }
 
-  bool get alarmIsLoading {
+  bool get isLoading {
     return _isLoading.value;
   }
 
   @override
   void onInit() {
     super.onInit();
-    _isLoading = true.obs;
     updateAlarm();
   }
 
