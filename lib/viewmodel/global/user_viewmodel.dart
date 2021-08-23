@@ -30,4 +30,8 @@ class UserViewModel extends GetxController {
   String get nickName {
     return _user.value.nickName;
   }
+
+  String get userProfileImageUrl {
+    return _user.value.userProfileImageUrl ?? "";
+  }
 }

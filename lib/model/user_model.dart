@@ -2,7 +2,7 @@ class UserModel {
   String email;
   String name;
   String nickName;
-  String userProfileUrl;
+  String userProfileImageUrl;
   String birthday;
   String gender;
   String ci;
@@ -14,7 +14,7 @@ class UserModel {
       {this.email = "",
       this.name = "사용자",
       this.nickName,
-      this.userProfileUrl,
+      this.userProfileImageUrl,
       this.birthday,
       this.gender,
       this.ci,
@@ -26,7 +26,7 @@ class UserModel {
     email = user.email ?? this.email;
     name = user.name ?? this.name;
     nickName = user.nickName ?? this.nickName;
-    userProfileUrl = user.userProfileUrl ?? this.userProfileUrl;
+    userProfileImageUrl = user.userProfileImageUrl ?? this.userProfileImageUrl;
     birthday = user.birthday ?? this.birthday;
     gender = user.gender ?? this.gender;
     ci = user.ci ?? this.ci;
@@ -39,7 +39,7 @@ class UserModel {
     email = json['email'];
     name = json['name'];
     nickName = json['nickName'];
-    userProfileUrl = json['userProfileUrl'];
+    userProfileImageUrl = json['userProfileImageUrl'];
     birthday = json['birthday'];
     gender = json['gender'];
     ci = json['ci'];
