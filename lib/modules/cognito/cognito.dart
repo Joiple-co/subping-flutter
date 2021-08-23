@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
@@ -29,8 +28,12 @@ class Cognito {
   }
 
   Future<bool> checkLoggedIn() async {
-    final user = await Amplify.Auth.fetchAuthSession();
-    return user.isSignedIn;
+    try {
+      final user = await Amplify.Auth.fetchAuthSession();
+      return user.isSignedIn;
+    } catch(e) {
+      return false;
+    }
   }
 
   Future<BodyModel> signUpStart(String email, String password) async {
@@ -74,7 +77,12 @@ class Cognito {
       return result;
     } on AuthException catch(e) {
       print(e.message);
+      return SignInResult(isSignedIn: false);
     }
+  }
+
+  Future<void> signOut() async {
+    await Amplify.Auth.signOut();
   }
 
   Future<BodyModel> isDuplicateEmail(String email) async {

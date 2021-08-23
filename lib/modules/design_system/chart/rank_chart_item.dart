@@ -1,32 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class RankChartItem extends StatelessWidget {
-  final int rank;
+  final ServiceModel service;
   final int lastRank;
-  final String serviceName;
-  final String serviceSummary;
-  final String serviceLogoUrl;
-  final List<dynamic> serviceTags;
 
-  RankChartItem(
-      {this.rank,
-      this.lastRank,
-      this.serviceName,
-      this.serviceSummary,
-      this.serviceLogoUrl,
-      this.serviceTags});
+  RankChartItem({this.service, this.lastRank});
 
   @override
   Widget build(BuildContext context) {
     return Material(
         child: InkWell(
-            onTap: () {},
+            onTap: () => Get.toNamed("/serviceDetail/${service.id}"),
             child: Container(
-              padding: EdgeInsets.fromLTRB(0, 40.h, 0, 40.h),
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
               decoration: BoxDecoration(
-                border: rank != lastRank
+                border: service.rank != lastRank
                     ? Border(
                         bottom:
                             BorderSide(width: 2, color: SubpingColor.black30))
@@ -36,39 +27,39 @@ class RankChartItem extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      RankShape(rank),
+                      RankShape(service.rank),
                       Space(
-                        size: SubpingSize.medium16,
+                        size: SubpingSize.medium8,
                       )
                     ],
                   ),
-                  Space(size: SubpingSize.large30),
+                  Space(size: SubpingSize.large15),
                   Container(
-                    width: 150.w,
-                    height: 150.h,
+                    width: 75,
+                    height: 75,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: NetworkImage(this.serviceLogoUrl)),
+                          image: NetworkImage(service.serviceLogoUrl)),
                     ),
                   ),
-                  Space(size: SubpingSize.large30),
+                  Space(size: SubpingSize.large15),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SubpingText(this.serviceName,
-                            size: SubpingFontSize.body1),
-                        SubpingText(this.serviceSummary,
+                        SubpingText(service.name, size: SubpingFontSize.body1),
+                        SubpingText(service.summary,
                             size: SubpingFontSize.body4),
-                        Space(size: SubpingSize.medium22),
+                        Space(size: SubpingSize.medium11),
                         Row(
-                          children: this.serviceTags?.map((category) {
-                            bool marginFlag =
-                                serviceTags.indexOf(category) != 0;
-                            return PoundButton(category,
-                                marginFlag: marginFlag);
-                          }).toList(),
+                          children: List.generate(service.tag.length, (index) {
+                            bool marginFlag = (index != 0);
+                            return PoundButton(
+                              service.tag[index],
+                              marginFlag: marginFlag,
+                            );
+                          }),
                         )
                       ])
                 ],

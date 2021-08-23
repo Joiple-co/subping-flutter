@@ -4,11 +4,12 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:subping/model/category_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class SubscribeManageViewModel extends GetxController{
+class SubscribeManageViewModel extends GetxController {
   Rx<DateTime> currentDate = DateTime.now().obs;
   Rx<DateTime> focusedDate = DateTime.now().obs;
   Rx<DateTime> startDate = DateTime.now().obs;
   Rx<DateTime> endDate = DateTime.now().obs;
+  Rx<DateTime> prevFocusedDate = DateTime.now().obs;
   Rx<CalendarFormat> format = CalendarFormat.month.obs;
   RxList<String> categories = ["관리", "캘린더"].obs;
 
@@ -16,14 +17,19 @@ class SubscribeManageViewModel extends GetxController{
   ScrollController scrollViewController;
   ItemScrollController itemScrollController = ItemScrollController();
   ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
-  
+
   SubscribeManageViewModel() {
-    startDate.value = DateTime.utc(currentDate.value.year, currentDate.value.month - 1, 1);
-    endDate.value = DateTime.utc(currentDate.value.year, currentDate.value.month + 1, 31);
+    startDate.value =
+        DateTime.utc(currentDate.value.year, currentDate.value.month - 1, 1);
+    endDate.value =
+        DateTime.utc(currentDate.value.year, currentDate.value.month + 1, 31);
   }
 
   void onChangeViewItem(num minIndex) {
-    focusedDate.value = calcDate(minIndex);
+    if (prevFocusedDate.value != calcDate(minIndex)) {
+      prevFocusedDate.value = focusedDate.value;
+      focusedDate.value = calcDate(minIndex);
+    }
   }
 
   void onDaySelected(DateTime selectedDate, DateTime prevFocusedDate) {
@@ -43,9 +49,7 @@ class SubscribeManageViewModel extends GetxController{
 
   void scrollTo(num index, Duration duration) {
     itemScrollController.scrollTo(
-      index: index, 
-      duration: duration,
-      curve: Curves.easeInOutCubic);
+        index: index, duration: duration, curve: Curves.easeInOutCubic);
   }
 
   void jumpTo(num index) {

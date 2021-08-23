@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/main_tabs/category/category_viewer.dart';
-import 'package:subping/viewmodel/global/category_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -16,11 +16,12 @@ class _CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
-    final categoryViewModel = Get.find<CategoryViewModel>();
-
+    final serviceViewModel = Get.find<ServiceViewModel>();
+    serviceViewModel.updateCategory();
+    
     return Obx(
       () => DefaultTabController(
-        length: categoryViewModel.categories.length,
+        length: serviceViewModel.categories.length,
         child: HeaderSafe(
           child: Scaffold(
               backgroundColor: SubpingColor.back20,
@@ -32,25 +33,17 @@ class _CategoryState extends State<Category> {
                     SliverOverlapAbsorber(
                       handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                           context),
-                      sliver: SliverSafeArea(
-                        top: false,
-                        bottom: false,
-                        sliver: SliverAppBar(
-                          backgroundColor: SubpingColor.white100,
-                          flexibleSpace: FlexibleSpaceBar(
-                            centerTitle: true,
-                            collapseMode: CollapseMode.pin,
-                          ),
-                          centerTitle: false,
-                          title: SubpingText("카테고리",
-                              color: SubpingColor.black100,
-                              fontWeight: SubpingFontWeight.bold,
-                              size: SubpingFontSize.title5),
-                          leadingWidth: 0.w,
-                          elevation: 0,
-                          pinned: false,
-                          forceElevated: innerBoxIsScrolled,
-                        ),
+                      sliver: SliverAppBar(
+                        backgroundColor: SubpingColor.white100,
+                        centerTitle: false,
+                        title: SubpingText("카테고리",
+                            color: SubpingColor.black100,
+                            fontWeight: SubpingFontWeight.bold,
+                            size: SubpingFontSize.title5),
+                        leadingWidth: 0.w,
+                        elevation: 0,
+                        pinned: false,
+                        forceElevated: innerBoxIsScrolled,
                       ),
                     ),
                   ];
@@ -59,10 +52,10 @@ class _CategoryState extends State<Category> {
                   Container(
                     color: SubpingColor.white100,
                     alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.fromLTRB(20.w, 0, 0, 20.h),
-                    constraints: BoxConstraints(maxHeight: 70.h),
+                    padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    constraints: BoxConstraints(maxHeight: 35),
                     child: TabBar(
-                      labelStyle: TextStyle(fontSize: 28.nsp),
+                      labelStyle: TextStyle(fontSize: 14),
                       labelColor: SubpingColor.white100,
                       unselectedLabelColor: SubpingColor.black100,
                       indicator: BoxDecoration(
@@ -74,10 +67,10 @@ class _CategoryState extends State<Category> {
                       indicatorWeight: 0,
                       isScrollable: true,
                       tabs: List.generate(
-                        categoryViewModel.categories.length,
+                        serviceViewModel.categories.length,
                         (index) => Tab(
                             child: SubpingText(
-                                categoryViewModel.categories[index].name)),
+                                serviceViewModel.categories[index].name)),
                       ),
                       controller: tabController,
                     ),
@@ -86,9 +79,9 @@ class _CategoryState extends State<Category> {
                     child: TabBarView(
                       controller: tabController,
                       children: List.generate(
-                          categoryViewModel.categories.length, (index) {
+                          serviceViewModel.categories.length, (index) {
                         return CategoryViewer(index.toString(),
-                            categoryViewModel.categories[index]);
+                            serviceViewModel.categories[index], serviceViewModel, serviceViewModel.categoryServices[serviceViewModel.categories[index].name]);
                       }),
                     ),
                   ),

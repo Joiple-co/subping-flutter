@@ -26,7 +26,7 @@ class AppIntro extends StatelessWidget {
                         fontWeight: SubpingFontWeight.bold),
                     Container(height: 10),
                     Text("구독에 대한 정보부터 구매, 관리까지 한번에!\n간단한 구독 생활을 즐겨보세요!",
-                        style: TextStyle(fontSize: 30.sp)),
+                        style: TextStyle(fontSize: 15)),
                   ],
                 ),
               ),
@@ -67,10 +67,9 @@ class AppIntro extends StatelessWidget {
               Center(
                   child: SquareButton(
                       text: "섭핑 시작하기",
-                      height: 110,
                       onPressed: () => showBottomSheet(context))),
               Space(
-                size: SubpingSize.large40,
+                size: SubpingSize.large20,
               ),
             ],
           ),
@@ -84,8 +83,8 @@ class AppIntro extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Container(
-            height: 304.h,
-            padding: EdgeInsets.fromLTRB(40.h, 43.h, 40.h, 0),
+            height: 150,
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -101,16 +100,16 @@ class AppIntro extends StatelessWidget {
                     onPressed: () => appIntroViewModal.onPressLogin(),
                     child: Text.rich(TextSpan(
                         text: "이미 회원이에요.",
-                        style: TextStyle(fontSize: 30.sp),
+                        style: TextStyle(fontSize: 15),
                         children: <TextSpan>[
                           TextSpan(
                               text: "로그인 ",
                               style: TextStyle(
-                                  fontSize: 30.sp,
+                                  fontSize: 15,
                                   decoration: TextDecoration.underline)),
                           TextSpan(
                             text: "할래요",
-                            style: TextStyle(fontSize: 30.sp),
+                            style: TextStyle(fontSize: 15),
                           )
                         ])))
               ],

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../settingTable.dart';
+import '../setting_table.dart';
 
 class SubpingTextSpan extends TextSpan {
   final List<SubpingTextSpan> children;

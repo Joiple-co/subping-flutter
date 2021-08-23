@@ -1,7 +1,4 @@
-import '../settingTable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/text.dart' as SubText;
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SubpingText extends StatelessWidget {
   final double height;
@@ -26,7 +23,7 @@ class SubpingText extends StatelessWidget {
     @required this.size,
     Key key,
     this.color,
-    this.height = null,
+    this.height,
     this.fontWeight = FontWeight.w500,
     this.strutStyle,
     this.textAlign,
@@ -34,7 +31,7 @@ class SubpingText extends StatelessWidget {
     this.locale,
     this.softWrap,
     this.overflow,
-    this.textScaleFactor,
+    this.textScaleFactor = 1.0,
     this.maxLines,
     this.semanticsLabel,
     this.textWidthBasis,

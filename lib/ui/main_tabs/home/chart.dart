@@ -12,87 +12,82 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HorizontalPadding(
-      child: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Text.rich(SubpingTextSpan(children: [
-                      SubpingTextSpan(
-                        text: "인기차트",
-                        fontSize: SubpingFontSize.title6,
+    if (limitItem != 0) {
+      return HorizontalPadding(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text.rich(SubpingTextSpan(children: [
+                        SubpingTextSpan(
+                          text: "인기차트",
+                          fontSize: SubpingFontSize.title6,
+                          fontWeight: SubpingFontWeight.bold,
+                        ),
+                      ])),
+                      Space(size: SubpingSize.tiny5),
+                      Container(
+                          padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
+                          decoration: BoxDecoration(),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 27.w,
+                                height: 27.w,
+                                child: Image.asset(
+                                  "assets/icon/clock.png",
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
+                                child: SubpingText(hotChartData.standardTime,
+                                    fontWeight: SubpingFontWeight.medium,
+                                    size: SubpingFontSize.body3,
+                                    color: SubpingColor.black60),
+                              )
+                            ],
+                          ))
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () => Get.toNamed("/hotChart"),
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(
+                          SubpingSize.medium10, 5, SubpingSize.medium10, 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: SubpingColor.back20),
+                      child: SubpingText(
+                        '더보기',
+                        color: SubpingColor.subping50,
+                        size: SubpingFontSize.body3,
                         fontWeight: SubpingFontWeight.bold,
                       ),
-                    ])),
-                    Space(size: SubpingSize.tiny10),
-                    Container(
-                        padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
-                        decoration: BoxDecoration(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 27.w,
-                              height: 27.h,
-                              child: Image.asset(
-                                "assets/icon/clock.png",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
-                              child: SubpingText(hotChartData.standardTime,
-                                  fontWeight: SubpingFontWeight.medium,
-                                  size: SubpingFontSize.body3,
-                                  color: SubpingColor.black60),
-                            )
-                          ],
-                        ))
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () => Get.toNamed("/hotChart"),
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(SubpingSize.medium20.w, 5.h,
-                        SubpingSize.medium20.w, 5.h),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: SubpingColor.back20),
-                    child: SubpingText(
-                      '더보기',
-                      color: SubpingColor.subping50,
-                      size: SubpingFontSize.body3,
-                      fontWeight: SubpingFontWeight.bold,
                     ),
                   ),
-                ),
-              ],
-            ),
-            Space(size: SubpingSize.large40),
-            Container(
-              child:
-                Column(
-                    children: List.generate(limitItem, (index) {
-                  return RankChartItem(
-                      rank: hotChartData?.serviceRank[index].rank,
-                      lastRank: limitItem,
-                      serviceName: hotChartData?.serviceRank[index].serviceName,
-                      serviceSummary:
-                          hotChartData?.serviceRank[index].serviceSummary,
-                      serviceLogoUrl:
-                          hotChartData?.serviceRank[index].serviceLogoUrl,
-                      serviceTags: hotChartData?.serviceRank[index].serviceTags);
-                }))
-            )
-          ],
+                ],
+              ),
+              Container(
+                  child: Column(
+                      children: List.generate(limitItem, (index) {
+                return RankChartItem(
+                    lastRank: limitItem,
+                    service: hotChartData?.serviceRank[index]);
+              })))
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return Container();
+    }
   }
 }

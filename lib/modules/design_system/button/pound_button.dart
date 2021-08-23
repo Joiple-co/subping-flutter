@@ -18,16 +18,17 @@ class PoundButton extends StatelessWidget {
     return GestureDetector(
       child: Container(
           margin: marginFlag
-              ? EdgeInsets.fromLTRB(SubpingSize.tiny10.w, 0, 0, 0)
+              ? EdgeInsets.fromLTRB(SubpingSize.tiny6, 0, 0, 0)
               : null,
           padding: EdgeInsets.fromLTRB(
-              SubpingSize.tiny12.w, 0, SubpingSize.tiny12.w, 0),
+              SubpingSize.tiny6, 0, SubpingSize.tiny6, 0),
           decoration: BoxDecoration(
               color: SubpingColor.back20,
               borderRadius: BorderRadius.circular(2.5)),
           child: Center(
             child: SubpingText(
               '#${this.text}',
+              size: SubpingFontSize.body4,
               color: SubpingColor.black60,
             ),
           )),

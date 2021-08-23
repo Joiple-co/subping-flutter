@@ -32,9 +32,9 @@ class AlarmItem extends StatelessWidget {
             margin: EdgeInsets.only(top: 3.h),
             width: 40.w,
             height: 40.h,
-            child: Image.asset("assets/alarmIcon/delivery.png"),
+            child: Image.asset("assets/alarmIcon/${alarmContent.type}.png"),
           ),
-          Space(size: SubpingSize.tiny10),
+          Space(size: SubpingSize.tiny5),
           Flexible(
               flex: 1,
               child: Column(
@@ -45,22 +45,22 @@ class AlarmItem extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          SubpingText("넷플릭스",
+                          SubpingText(alarmContent.title,
                               size: SubpingFontSize.body3,
                               color: SubpingColor.black100),
-                          Space(size: SubpingSize.tiny10),
-                          SubpingText("결제 실패",
-                              size: SubpingFontSize.body3,
-                              color: SubpingColor.warning100),
+                          Space(size: SubpingSize.tiny5),
+                          // SubpingText("결제 실패",
+                          //     size: SubpingFontSize.body3,
+                          //     color: SubpingColor.warning100),
                         ],
                       ),
-                      SubpingText(Helper.refineDate("2021-07-26T14:58"),
+                      SubpingText(Helper.refineDate(alarmContent.createdAt),
                           size: SubpingFontSize.body3,
                           color: SubpingColor.black60)
                     ],
                   ),
-                  Space(size: SubpingSize.tiny10),
-                  SubpingText("2021년 7월 21일 넷플릭스에서 9,900원 결제가 완료되었습니다.",
+                  Space(size: SubpingSize.tiny5),
+                  SubpingText(alarmContent.content,
                       color: SubpingColor.black80, size: SubpingFontSize.body4)
                 ],
               ))

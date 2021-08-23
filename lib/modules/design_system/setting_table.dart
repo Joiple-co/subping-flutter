@@ -1,4 +1,3 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
 enum SubpingSizeExtension {
@@ -51,118 +50,118 @@ enum SubpingFontSizeExtension {
 enum SubpingFontWeightExtionsion { bold, medium, regular }
 
 extension SubpingSize on SubpingSizeExtension {
-  static double get large80 {
-    return 80.0;
-  }
-
-  static double get large70 {
-    return 70.0;
-  }
-
-  static double get large64 {
-    return 64.0;
-  }
-
-  static double get large56 {
-    return 56.0;
-  }
-
-  static double get large50 {
-    return 50.0;
-  }
-
-  static double get large48 {
-    return 48.0;
-  }
-
   static double get large40 {
-    return 40.0;
+    return 40;
   }
 
-  static double get large30 {
-    return 30.0;
+  static double get large35 {
+    return 35;
   }
 
-  static double get medium28 {
-    return 30.0;
+  static double get large32 {
+    return 32;
   }
 
-  static double get medium24 {
-    return 24.0;
+  static double get large28 {
+    return 28;
   }
 
-  static double get medium22 {
-    return 22.0;
+  static double get large25 {
+    return 25;
   }
 
-  static double get medium20 {
-    return 20.0;
+  static double get large24 {
+    return 24;
   }
 
-  static double get medium16 {
-    return 16.0;
+  static double get large20 {
+    return 20;
   }
 
-  static double get tiny14 {
-    return 14.0;
+  static double get large15 {
+    return 15;
   }
 
-  static double get tiny12 {
-    return 12.0;
+  static double get medium14 {
+    return 14;
   }
 
-  static double get tiny10 {
-    return 10.0;
+  static double get medium12 {
+    return 12;
+  }
+
+  static double get medium11 {
+    return 11;
+  }
+
+  static double get medium10 {
+    return 10;
+  }
+
+  static double get medium8 {
+    return 8;
+  }
+
+  static double get tiny7 {
+    return 7;
+  }
+
+  static double get tiny6 {
+    return 6;
+  }
+
+  static double get tiny5 {
+    return 5;
   }
 }
 
 extension SubpingFontSize on SubpingFontSizeExtension {
   static double get title1 {
-    return 62.nsp;
+    return 31;
   }
 
   static double get title2 {
-    return 60.nsp;
+    return 30;
   }
 
   static double get title3 {
-    return 52.nsp;
+    return 26;
   }
 
   static double get title4 {
-    return 46.nsp;
+    return 23;
   }
 
   static double get title5 {
-    return 42.nsp;
+    return 21;
   }
 
   static double get title6 {
-    return 36.nsp;
+    return 18;
   }
 
   static double get body1 {
-    return 32.nsp;
+    return 16;
   }
 
   static double get body2 {
-    return 30.nsp;
+    return 15;
   }
 
   static double get body3 {
-    return 28.nsp;
+    return 14;
   }
 
   static double get body4 {
-    return 26.nsp;
+    return 13;
   }
 
   static double get body5 {
-    return 24.nsp;
+    return 12;
   }
 
   static double get tiny1 {
-    return 22.nsp;
+    return 11;
   }
 }
 

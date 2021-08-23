@@ -36,7 +36,7 @@ class Address extends StatelessWidget {
                                 fontWeight: SubpingFontWeight.bold)
                           ]),
                         ),
-                        Space(size: SubpingSize.large56),
+                        Space(size: SubpingSize.large28),
                         Row(
                           children: [
                             Flexible(
@@ -59,7 +59,7 @@ class Address extends StatelessWidget {
                                     ),
                                   ),
                                 )),
-                            Space(size: SubpingSize.tiny14),
+                            Space(size: SubpingSize.tiny7),
                             Flexible(
                                 flex: 2529,
                                 child: Container(
@@ -71,7 +71,7 @@ class Address extends StatelessWidget {
                                     ))),
                           ],
                         ),
-                        Space(size: SubpingSize.medium28),
+                        Space(size: SubpingSize.medium14),
                         Row(
                           children: [
                             Flexible(
@@ -86,7 +86,7 @@ class Address extends StatelessWidget {
                             )
                           ],
                         ),
-                        Space(size: SubpingSize.medium28),
+                        Space(size: SubpingSize.medium14),
                         Container(
                           height: 110.h,
                           child: SubpingTextField(

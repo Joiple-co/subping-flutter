@@ -1,60 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:subping/modules/design_system/loading/subping_loading,.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
-import 'package:subping/viewmodel/global/hot_chart_viewmodel.dart';
+import 'package:subping/viewmodel/global/service_viewmodel.dart';
+import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import './expected.dart';
 import './recommand.dart';
 import './chart.dart';
 
 class Home extends StatelessWidget {
   const Home() : super();
+
   @override
   Widget build(BuildContext context) {
-    final serviceChartViewModel = Get.find<HotChartViewModel>();
+    final serviveViewModel = Get.find<ServiceViewModel>();
     final alarmViewModel = Get.find<AlarmsViewModel>();
+    final userViewModel = Get.find<UserViewModel>();
 
-    serviceChartViewModel.updateCharts();
-    alarmViewModel.updateAlarm();
+    userViewModel.updateInfo();
+    serviveViewModel.updateCharts();
 
-    return Scaffold(
-      appBar: TitleAppBar(
-        "홈",
-        rear: ToolBar(hasSearchIcon: true, hasAlarmIcon: true),
-      ),
-      body: Obx(
-        () => HeaderSafe(
+    return Obx(() => Scaffold(
+          backgroundColor: SubpingColor.white100,
+          appBar: TitleAppBar(
+            "홈",
+            hasBackButton: false,
+            rear: ToolBar(
+              unreadAlarmCount: alarmViewModel.isLoading
+                  ? 0
+                  : alarmViewModel.alarms.value.unreadAlarms,
+            ),
+          ),
+          body: HeaderSafe(
             hasBottomSafe: false,
             child: RefreshIndicator(
               onRefresh: () async {
-                await serviceChartViewModel.updateCharts();
+                await serviveViewModel.updateCharts();
+                await alarmViewModel.updateAlarm();
               },
-              child: ListView(
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                children: [
-                  Space(size: SubpingSize.large40),
-                  Expected(),
-                  Space(size: SubpingSize.large80),
-                  Recommand(),
-                  Space(size: SubpingSize.large80),
-                  serviceChartViewModel.chart.serviceRank.length != 0 ?
-                    Chart(
-                        limitItem:
-                            serviceChartViewModel.chart.serviceRank.length >= 3
+              child: serviveViewModel.chartLoading
+                  ? SubpingLoading()
+                  : ListView(
+                      physics: const BouncingScrollPhysics(
+                          parent: AlwaysScrollableScrollPhysics()),
+                      children: [
+                        Space(size: SubpingSize.large20),
+                        Expected(),
+                        Space(size: SubpingSize.large40),
+                        Recommand(),
+                        Space(size: SubpingSize.large40),
+                        Chart(
+                            limitItem: serviveViewModel
+                                        .chart.serviceRank.length >=
+                                    3
                                 ? 3
-                                : serviceChartViewModel.chart.serviceRank.length,
-                        hotChartData: serviceChartViewModel.chart) :
-                    Container(),
-                  Space(size: SubpingSize.large80),
-                  RecentReview(),
-                  Space(size: SubpingSize.large80),
-                ],
-              ),
-            )),
-      ),
-    );
+                                : serviveViewModel
+                                    .chart.serviceRank.length,
+                            hotChartData: serviveViewModel.chart),
+                        Space(size: SubpingSize.large40),
+                        RecentReview(),
+                        Space(size: SubpingSize.large40),
+                      ],
+                    ),
+            ),
+          ),
+        ));
   }
 }

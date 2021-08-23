@@ -38,7 +38,7 @@ class PassAuth extends StatelessWidget {
                     text: "확인",
                     onPressed: viewModel.onPressNext,
                     loading: viewModel.loading.value),
-                Space(size: SubpingSize.large40)
+                Space(size: SubpingSize.large20)
               ],
             )),
           ),

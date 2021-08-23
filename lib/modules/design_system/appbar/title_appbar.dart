@@ -11,7 +11,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   TitleAppBar(this.title, {this.hasBackButton = false, this.rear, Key key})
-      : preferredSize = Size.fromHeight(100.0.h),
+      : preferredSize = Size.fromHeight(56),
         super(key: key);
 
   @override
@@ -28,7 +28,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: Get.back,
               icon: Icon(
                 Icons.chevron_left,
-                size: 60.nsp,
+                size: 60.sp,
                 color: SubpingColor.black100,
               ))
           : null,
@@ -39,7 +39,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: SubpingFontSize.title5),
         rear != null ? rear : Container(),
       ]),
-      leadingWidth: hasBackButton ? null : 0.w,
+      leadingWidth: hasBackButton ? null : 0,
       elevation: 0,
     );
   }

@@ -12,7 +12,7 @@ class Expected extends StatelessWidget {
         children: [
           Container(
             width: MediaQuery.of(context).size.width - 80.w,
-            height: 178.h,
+            padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: <Color>[
                   SubpingColor.subping50,
@@ -29,19 +29,19 @@ class Expected extends StatelessWidget {
               color: Colors.transparent,
               child: InkWell(
                 child: Container(
+                  alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(30.w, 22.h, 20.w, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SubpingText("구독중인 상품의 총 월 결제액",
                                 color: SubpingColor.white100,
                                 fontWeight: SubpingFontWeight.regular,
-                                size: SubpingFontSize.body4),
-                            Space(size: SubpingSize.tiny10),
+                                size: SubpingFontSize.body1),
+                            Space(size: SubpingSize.tiny5),
                             SubpingText(
                               Helper.setComma(22121211) + " 원",
                               fontWeight: FontWeight.bold,

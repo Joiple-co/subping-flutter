@@ -20,7 +20,7 @@ class Helper {
     } else if (isSameDay(from.add(Duration(days: 1)), from)) {
       return "어제";
     } else {
-      return '${from.month}월 ${from.day}';
+      return '${from.month}월 ${from.day}일';
     }
   }
 }

@@ -6,9 +6,34 @@ import 'package:subping/repository/alarm_repository.dart';
 class AlarmsViewModel extends GetxController {
   AlarmRepository _alarmRepository = AlarmRepository();
   Rx<AlarmsModel> alarms = AlarmsModel().obs;
+  Rx<bool> _isLoading = false.obs;
 
-  void updateAlarm() async {
-    alarms.value = await _alarmRepository.getAlarm();
+  Future<void> updateAlarm() async {
+    try {
+      _isLoading = true.obs;
+
+      alarms.value = await _alarmRepository.getAlarm();
+      
+      _isLoading = false.obs;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> readAlarm() async {
+    await _alarmRepository.readAlarm();
+    alarms.value.unreadAlarms = 0;
+    alarms.refresh();
+  }
+
+  bool get isLoading {
+    return _isLoading.value;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    updateAlarm();
   }
 
   @override
