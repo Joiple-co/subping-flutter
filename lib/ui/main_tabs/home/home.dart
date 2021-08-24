@@ -29,9 +29,8 @@ class Home extends StatelessWidget {
             "홈",
             hasBackButton: false,
             rear: ToolBar(
-              unreadAlarmCount: alarmViewModel.isLoading
-                  ? 0
-                  : alarmViewModel.alarms.value.unreadAlarms,
+              hasSearchIcon: true,
+              hasAlarmIcon: true,
             ),
           ),
           body: HeaderSafe(

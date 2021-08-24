@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:subping/main.dart';
-import 'package:subping/modules/design_system/settingTable.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 
 class SearchResults extends StatelessWidget {
   
@@ -27,7 +27,7 @@ class SearchCategories extends StatefulWidget {
 }
 
 class _SearchCategoriesState extends State<SearchCategories> {
-  List<String> searchCategories = ["상품","스토어","리뷰"];
+  List<String> searchCategories = ["상품","리뷰"];
   int selectedIndex = 0;
 
   @override

@@ -30,7 +30,7 @@ class ToolBar extends StatelessWidget {
                     children: [
                       SearchIcon(),
                       Space(
-                        size: SubpingSize.large40,
+                        size: SubpingSize.large20,
                       ),
                     ],
                   )

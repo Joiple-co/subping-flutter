@@ -17,7 +17,7 @@ class SearchIcon  extends StatelessWidget {
             "assets/icon/search.png",
           ),
           onPressed: () {
-            Get.toNamed("/searchBar");  
+            Get.toNamed("/search");  
           },
         );
   }

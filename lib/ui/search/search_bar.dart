@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/viewmodel/local/search/search.dart';
 
 class SearchBar extends StatelessWidget implements PreferredSizeWidget {
+  final SearchViewModel searchViewModel;
+
+  SearchBar({this.searchViewModel});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -15,28 +21,30 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: Get.back,
         icon: Icon(
           Icons.chevron_left,
-          size: 60.nsp,
+          size: 30,
           color: SubpingColor.black100,
         ),
       ),
       title: Container(
-        padding: EdgeInsets.fromLTRB(25.w, 10.h, 25.w, 10.h),
-        height: 73.h,
+        padding: EdgeInsets.fromLTRB(13, 5, 13, 5),
         width: 680.w,
         decoration: BoxDecoration(
             color: SubpingColor.back20,
-            borderRadius: BorderRadius.all(Radius.circular(8.0))),
+            borderRadius: BorderRadius.all(Radius.circular(15))),
         child: TextField(
-          onChanged: (search) {},
+          onChanged: searchViewModel.onChangeSearchText,
           cursorColor: SubpingColor.subping100,
-          cursorHeight: 40.h,
-          style: TextStyle(color: Colors.red, fontSize: SubpingSize.medium20),
+          cursorHeight: SubpingSize.large24,
+          style: TextStyle(fontSize: SubpingFontSize.title6),
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(RegExp(r'[ㄱ-ㅎ 가-힣 a-z A-Z 0-9]')),
+          ],
           decoration: InputDecoration(
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 18.h),
+            contentPadding: EdgeInsets.symmetric(vertical: 9),
             hintText: "검색어를 입력해주세요",
             hintStyle: TextStyle(
-                fontSize: SubpingFontSize.body1, color: SubpingColor.black60),
+                fontSize: SubpingFontSize.title6, color: SubpingColor.black60),
           ),
         ),
       ),
@@ -44,7 +52,5 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(100.h); // 다음에 쓰게 되면 혹시 아래 칸을 만들어야할지 몰라서 넣어둠
-
+  Size get preferredSize => Size.fromHeight(65);
 }
