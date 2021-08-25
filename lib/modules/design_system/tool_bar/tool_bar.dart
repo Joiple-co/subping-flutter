@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/search/search_icon.dart';
-import 'alarm_icon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/modules/design_system/tool_bar/alarm_icon.dart';
 
 class ToolBar extends StatelessWidget {
   final bool hasSearchIcon;
