@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/model/review_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/ui/write_review/write_review_bottomsheet.dart';
 
 class ServiceReview extends StatelessWidget {
   final List<ReviewModel> reviews;
@@ -27,10 +27,10 @@ class ServiceReview extends StatelessWidget {
                         color: SubpingColor.subping100)
                   ])),
                   GestureDetector(
-                    onTap: () => Get.toNamed("/hotChart"),
+                    onTap: () => Get.bottomSheet(WriteReviewBottomSheet()),
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(SubpingSize.medium10, 5,
-                          SubpingSize.medium10, 5),
+                      padding: EdgeInsets.fromLTRB(
+                          SubpingSize.medium10, 5, SubpingSize.medium10, 5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color: SubpingColor.back20),

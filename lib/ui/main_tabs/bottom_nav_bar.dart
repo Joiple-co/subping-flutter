@@ -13,7 +13,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MainTabsViewModel());
+    final mainTabsViewModel = Get.put(MainTabsViewModel());
 
     TextStyle labelStyle = TextStyle(
         color: SubpingColor.black80,
@@ -27,11 +27,11 @@ class BottomNavBar extends StatelessWidget {
 
     return BottomNavigationBar(
       onTap: (index) {
-        controller.onChangeTabIndex(index);
+        mainTabsViewModel.onChangeTabIndex(index);
       },
       showUnselectedLabels: true,
       showSelectedLabels: true,
-      currentIndex: controller.tabIndex.value,
+      currentIndex: mainTabsViewModel.tabIndex.value,
       unselectedLabelStyle: labelStyle,
       selectedLabelStyle: selectedLabelStyle,
       type: BottomNavigationBarType.fixed,

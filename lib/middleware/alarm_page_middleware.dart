@@ -6,7 +6,6 @@ class AlarmMiddleWare extends GetMiddleware {
   @override
   void onPageDispose() async {
     final alarmViewModel = Get.find<AlarmsViewModel>();
-    
     await alarmViewModel.readAlarm();
   }
 }

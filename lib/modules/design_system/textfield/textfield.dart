@@ -24,6 +24,8 @@ class SubpingTextField extends StatelessWidget {
   final String errorText;
   final Function onSubmitted;
   final List<TextInputFormatter> inputFormatters;
+  final int maxLines;
+  final String hintText;
 
   SubpingTextField(
       {this.focusNode,
@@ -41,7 +43,9 @@ class SubpingTextField extends StatelessWidget {
       this.obscuringCharacter = "●",
       this.errorText,
       this.onSubmitted,
-      this.inputFormatters});
+      this.inputFormatters,
+      this.maxLines,
+      this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +64,7 @@ class SubpingTextField extends StatelessWidget {
         obscuringCharacter: obscuringCharacter,
         enableInteractiveSelection: readOnly ? false : true,
         inputFormatters: inputFormatters,
+        maxLines: this.maxLines,
         style: TextStyle(
           fontSize: 15,
         ),
@@ -67,6 +72,7 @@ class SubpingTextField extends StatelessWidget {
             labelText: labelText,
             helperText: helperText,
             errorText: errorText,
+            hintText: hintText,
             isDense: true,
             border: OutlineInputBorder()),
       ),
