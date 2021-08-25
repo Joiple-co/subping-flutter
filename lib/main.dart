@@ -8,8 +8,8 @@ import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
-
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
+import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
 
@@ -30,6 +30,7 @@ import 'package:subping/ui/splash/splash.dart';
 import 'package:subping/ui/alarm/alarm.dart';
 import 'package:subping/ui/start_subscribe/start_subscribe.dart';
 import 'package:subping/ui/write_review/write_review.dart';
+import 'package:subping/ui/search/search.dart';
 
 import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
@@ -133,7 +134,11 @@ class _SubpingAppState extends State<SubpingApp> {
                   name: "/startSubscribe/:param",
                   page: () => StartSubscribe(),
                   binding: StartSubscribeBindings()
-                )
+                ),
+                GetPage(
+                  name: "/search",
+                    page: () => Search(),
+                    binding: SearchBinidings()),
               ],
             ));
   }
