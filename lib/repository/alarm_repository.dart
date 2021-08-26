@@ -26,7 +26,6 @@ class AlarmRepository {
     try {
       final rawResponse = await API.get("user", "/readAlarm");
       final decodedResponse = utf8.decode(rawResponse.data);
-      print(decodedResponse);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
       if (!response.success) {}
     } catch (e) {

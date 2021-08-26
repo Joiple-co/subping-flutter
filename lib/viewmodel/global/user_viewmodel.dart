@@ -12,9 +12,9 @@ class UserViewModel extends GetxController {
     _user.refresh();
     this.checkUserStatus();
   }
-  
+
   void checkUserStatus() {
-    if(_user.value.nickName == null) {
+    if (_user.value.nickName == null) {
       Get.offAndToNamed("/createNickName");
     }
   }
