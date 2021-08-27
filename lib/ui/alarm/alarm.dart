@@ -41,7 +41,7 @@ class Alarm extends StatelessWidget {
                               blankType: BlankTypeStatus.alarm,
                               condition: isBlank,
                               child: Column(
-                                children: alarmViewModel.alarms.value.contents
+                                children: alarmViewModel.alarms.contents
                                     .map((itemContent) {
                                   return AlarmItem(alarmContent: itemContent);
                                 }).toList(),

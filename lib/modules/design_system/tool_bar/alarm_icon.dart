@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/viewmodel/global/alarms_viewmodel.dart';//이거 빼도 될 것 같은데 처음에 만들어져 있을때 있더라..
-
 
 class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
@@ -26,7 +24,7 @@ class AlramIcon extends StatelessWidget {
           },
         ),
         unreadAlarmCount != 0
-         ? Positioned(
+            ? Positioned(
                 right: 0,
                 top: 0,
                 child: Container(

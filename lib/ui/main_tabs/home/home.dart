@@ -33,6 +33,7 @@ class Home extends StatelessWidget {
             rear: ToolBar(
               hasSearchIcon: true,
               hasAlarmIcon: true,
+              unreadAlarmCount: alarmViewModel.unReadAlarmCount,
             ),
           ),
           body: HeaderSafe(

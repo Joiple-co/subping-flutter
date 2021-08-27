@@ -8,10 +8,14 @@ import 'package:subping/modules/design_system/tool_bar/alarm_icon.dart';
 class ToolBar extends StatelessWidget {
   final bool hasSearchIcon;
   final bool hasAlarmIcon;
+  final int unreadAlarmCount;
+
   ToolBar({
     this.hasSearchIcon = false,
     this.hasAlarmIcon = false,
+    this.unreadAlarmCount = 0
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +40,7 @@ class ToolBar extends StatelessWidget {
             hasAlarmIcon
                 ? Row(
                     children: [
-                      AlramIcon(),
+                      AlramIcon(unreadAlarmCount: unreadAlarmCount,),
                     ],
                   )
                 : Container()
