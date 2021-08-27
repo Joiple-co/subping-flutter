@@ -15,6 +15,10 @@ class StartSubscribeViewModel extends GetxController {
     _selectedProducts[_products[_products.keys.elementAt(0)].id] = 1;
   }
 
+  void initPeriods(List<dynamic> periods) {
+    _selectedPeriod.value = periods[0];
+  }
+
   void onSelectProduct(String productId, int amount) {
     _selectedProducts[productId] = amount;
   }

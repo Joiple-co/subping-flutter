@@ -13,7 +13,7 @@ class UserModel {
   UserModel(
       {this.email = "",
       this.name = "사용자",
-      this.nickName,
+      this.nickName = "",
       this.userProfileImageUrl,
       this.birthday,
       this.gender,

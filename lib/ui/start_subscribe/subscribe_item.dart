@@ -5,8 +5,10 @@ import 'package:subping/viewmodel/local/subscribe/start_subscribe_viewmodel.dart
 
 class SubscribeItem extends StatelessWidget {
   final StartSubscribeViewModel startSubscribeViewModel;
+  final bool customizable;
 
-  const SubscribeItem({Key key, this.startSubscribeViewModel});
+  const SubscribeItem(
+      {Key key, this.startSubscribeViewModel, this.customizable});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +19,12 @@ class SubscribeItem extends StatelessWidget {
           size: SubpingSize.medium14,
         ),
         SubpingText(
-          "상품 구성",
+          customizable ? "상품 구성" : "상품",
           size: SubpingFontSize.title6,
           fontWeight: SubpingFontWeight.bold,
         ),
         SubpingText(
-          "구성은 구독 이후에도 변경이 가능해요!",
+          customizable ? "구성은 구독 이후에도 변경이 가능해요!" : "상품은 구독 이후에도 변경이 가능해요!",
           size: SubpingFontSize.body4,
           color: SubpingColor.black80,
         ),
@@ -75,26 +77,32 @@ class SubscribeItem extends StatelessWidget {
                 )
               ],
             ),
-            Space(
-              size: SubpingSize.medium14,
-            )
+            customizable
+                ? Space(
+                    size: SubpingSize.medium14,
+                  )
+                : Container()
           ]);
         })),
-        Divider(
-          color: SubpingColor.black80,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SubpingText("합계"),
-            SubpingText(
-                "${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원")
-          ],
-        ),
+        customizable
+            ? Divider(
+                color: SubpingColor.black80,
+              )
+            : Container(),
+        customizable
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SubpingText("합계"),
+                  SubpingText(
+                      "${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원")
+                ],
+              )
+            : Container(),
         Space(
           size: SubpingSize.large20,
         ),
-        SquareButton(text: "구성 변겅하기", onPressed: () {}, type: "outline"),
+        SquareButton(text: customizable ? "구성 변경하기" : "상품 변겅하기", onPressed: () {}, type: "outline"),
         Space(
           size: SubpingSize.medium14,
         ),

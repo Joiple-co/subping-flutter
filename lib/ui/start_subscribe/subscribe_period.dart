@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/const/const.dart';
+import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/viewmodel/local/subscribe/start_subscribe_viewmodel.dart';
 
 class SubscribePeriod extends StatelessWidget {
+  final ServiceModel service;
   final StartSubscribeViewModel startSubscribeViewModel;
 
-  const SubscribePeriod({Key key, this.startSubscribeViewModel})
+  const SubscribePeriod({Key key, this.startSubscribeViewModel, this.service})
       : super(key: key);
 
   @override
@@ -94,7 +96,7 @@ class SubscribePeriod extends StatelessWidget {
                                 size: SubpingSize.medium14,
                               ),
                               PeriodRadioSelector(
-                                period: Period.values,
+                                period: service.period,
                                 value: startSubscribeViewModel.selectedPeriod,
                                 onChangeValue: (value) {
                                   startSubscribeViewModel.onSelectPeriod(value);

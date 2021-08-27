@@ -93,7 +93,7 @@ class ServiceViewModel extends GetxController {
 
   Future<void> updateService(String serviceId) async {
     final service = await _serviceRepository.getService(serviceId);
-
+    
     if (_services[service.id] != null) {
       _services[service.id].value.updateServiceModel(service);
     } else {

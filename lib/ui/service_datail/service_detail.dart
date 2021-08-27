@@ -56,14 +56,16 @@ class ServiceDetail extends StatelessWidget {
                                     size: SubpingFontSize.title5,
                                     fontWeight: SubpingFontWeight.bold,
                                   ),
-                                  Row(
-                                    children: List.generate(
-                                        2,
-                                        (index) => PoundButton(
-                                              "#${service.tag[index]}",
-                                              marginFlag: true,
-                                            )),
-                                  )
+                                  service.tag != null
+                                      ? Row(
+                                          children: List.generate(
+                                              service.tag.length,
+                                              (index) => PoundButton(
+                                                    "#${service.tag[index]}",
+                                                    marginFlag: true,
+                                                  )),
+                                        )
+                                      : Container()
                                 ],
                               ),
                               Space(
@@ -118,12 +120,16 @@ class ServiceDetail extends StatelessWidget {
                               Space(size: SubpingSize.large25)
                             ]),
                       ),
-                      Container(
-                          height: SubpingSize.medium10,
-                          color: SubpingColor.back20),
-                      ServiceProducts(
-                        products: products,
-                      ),
+                      products.length != 0
+                          ? Container(
+                              height: SubpingSize.medium10,
+                              color: SubpingColor.back20)
+                          : Container(),
+                      products.length != 0
+                          ? ServiceProducts(
+                              products: products,
+                            )
+                          : Container(),
                       Container(
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
@@ -143,6 +149,7 @@ class ServiceDetail extends StatelessWidget {
               userLike: service.like,
               toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId),
               serviceId: serviceId,
+              products: products,
             )
           ]),
         ),

@@ -25,12 +25,16 @@ class ProductViewModel extends GetxController {
       num cheapestPrice = double.infinity;
 
       _products[serviceId].forEach((element) { 
-        if(element.price < cheapestPrice) {
+        if(element.price != null && element.price < cheapestPrice) {
           cheapestPrice = element.price;
         }
       });
 
-      return Helper.setComma(cheapestPrice);
+      if(cheapestPrice != double.infinity) {
+        return Helper.setComma(cheapestPrice);
+      } else {
+        return "0";
+      }
     } else {
       return "0";
     }
