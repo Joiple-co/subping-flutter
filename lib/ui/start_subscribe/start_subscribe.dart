@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/modules/payment/payment.dart';
+import 'package:subping/ui/start_subscribe/subscribe_address.dart';
 import 'package:subping/ui/start_subscribe/subscribe_item.dart';
 import 'package:subping/ui/start_subscribe/subscribe_period.dart';
 import 'package:subping/ui/start_subscribe/subscribe_service.dart';
@@ -32,33 +32,47 @@ class StartSubscribe extends StatelessWidget {
         hasBackButton: true,
       ),
       body: HeaderSafe(
-        child: SingleChildScrollView(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-              child: HorizontalPadding(
-                  child: SubscribeService(
-                service: service,
-              )),
-            ),
-            Container(height: SubpingSize.medium10, color: SubpingColor.back20),
-            Container(
-              child: HorizontalPadding(
-                  child: SubscribeItem(
-                    customizable: service.customizable,
-                      startSubscribeViewModel: startSubscribeViewModel)),
-            ),
-            Container(height: SubpingSize.medium10, color: SubpingColor.back20),
-            Container(
-              child: HorizontalPadding(
-                child: SubscribePeriod(
-                  service: service,
-                  startSubscribeViewModel: startSubscribeViewModel,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+              child:
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                  child: HorizontalPadding(
+                      child: SubscribeService(
+                    service: service,
+                  )),
                 ),
-              ),
+                Container(height: SubpingSize.medium10, color: SubpingColor.back20),
+                Container(
+                  child: HorizontalPadding(
+                      child: SubscribeItem(
+                          customizable: service.customizable,
+                          startSubscribeViewModel: startSubscribeViewModel)),
+                ),
+                Container(height: SubpingSize.medium10, color: SubpingColor.back20),
+                Container(
+                  child: HorizontalPadding(
+                    child: SubscribePeriod(
+                      service: service,
+                      startSubscribeViewModel: startSubscribeViewModel,
+                    ),
+                  ),
+                ),
+                Container(height: SubpingSize.medium10, color: SubpingColor.back20),
+                Container(
+                  child: HorizontalPadding(
+                    child: SubscribeAddress(),
+                  ),
+                ),
+                Container(height: SubpingSize.medium10, color: SubpingColor.back20),
+                SquareButton(text: "결제하기", onPressed: () => {})
+              ]),
+                      ),
             ),
-            Container(height: SubpingSize.medium10, color: SubpingColor.back20),
-            SquareButton(text: "결제하기", onPressed: () => {})
-          ]),
+          Space(size: SubpingSize.large20,)
+          ]
         ),
       ),
     );

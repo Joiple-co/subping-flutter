@@ -16,6 +16,7 @@ import 'package:subping/binding/write_review_bindings.dart';
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
+import 'package:subping/ui/add_address/add_address.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/like_service/like_service.dart';
@@ -109,6 +110,10 @@ class _SubpingAppState extends State<SubpingApp> {
                     name: "/createNickName",
                     page: () => CreateNickName(),
                     binding: CreateNickNameBindings()),
+                GetPage(
+                  name: "/addAddress",
+                  page: () => AddAddress(),
+                ),
                 GetPage(
                     name: "/mainTabs",
                     page: () => MainTabs(),

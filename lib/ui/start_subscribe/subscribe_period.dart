@@ -67,48 +67,51 @@ class SubscribePeriod extends StatelessWidget {
               text: "주기 변겅하기",
               onPressed: () => Get.bottomSheet(
                     Obx(
-                      () => Container(
-                        height: 420,
-                        decoration: BoxDecoration(
-                            color: SubpingColor.white100,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            )),
-                        padding: EdgeInsets.only(left: 20),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Space(
-                                size: SubpingSize.medium14,
-                              ),
-                              SubpingText(
-                                "구독 주기",
-                                size: SubpingFontSize.title6,
-                                fontWeight: SubpingFontWeight.bold,
-                              ),
-                              SubpingText(
-                                "얼마나 자주 구독할지 선택할 수 있어요.\n주기는 구독 이후에도 변경이 가능해요!",
-                                size: SubpingFontSize.body4,
-                                color: SubpingColor.black80,
-                              ),
-                              Space(
-                                size: SubpingSize.medium14,
-                              ),
-                              PeriodRadioSelector(
-                                period: service.period,
-                                value: startSubscribeViewModel.selectedPeriod,
-                                onChangeValue: (value) {
-                                  startSubscribeViewModel.onSelectPeriod(value);
-                                  Get.back();
-                                },
-                              ),
-                            ]),
-                      ),
+                      () => Wrap(children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: SubpingColor.white100,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              )),
+                          padding: EdgeInsets.only(left: 20),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Space(
+                                  size: SubpingSize.medium14,
+                                ),
+                                SubpingText(
+                                  "구독 주기",
+                                  size: SubpingFontSize.title6,
+                                  fontWeight: SubpingFontWeight.bold,
+                                ),
+                                SubpingText(
+                                  "얼마나 자주 구독할지 선택할 수 있어요.\n주기는 구독 이후에도 변경이 가능해요!",
+                                  size: SubpingFontSize.body4,
+                                  color: SubpingColor.black80,
+                                ),
+                                Space(
+                                  size: SubpingSize.medium14,
+                                ),
+                                PeriodRadioSelector(
+                                  period: service.period,
+                                  value: startSubscribeViewModel.selectedPeriod,
+                                  onChangeValue: (value) {
+                                    startSubscribeViewModel
+                                        .onSelectPeriod(value);
+                                    Get.back();
+                                  },
+                                ),
+                                Space(size: SubpingSize.large32,)
+                              ]),
+                        ),
+                      ]),
                     ),
                   ),
               type: "outline"),
-                        Space(
+          Space(
             size: SubpingSize.medium14,
           ),
         ],

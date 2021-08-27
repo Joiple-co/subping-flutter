@@ -11,7 +11,8 @@ class StartSubscribeViewModel extends GetxController {
     products.forEach((element) { 
       _products[element.id] = element;
     });
-
+    
+    _selectedProducts.value = {};
     _selectedProducts[_products[_products.keys.elementAt(0)].id] = 1;
   }
 
@@ -19,8 +20,15 @@ class StartSubscribeViewModel extends GetxController {
     _selectedPeriod.value = periods[0];
   }
 
-  void onSelectProduct(String productId, int amount) {
-    _selectedProducts[productId] = amount;
+  void onSelectProduct(String productId, int amount, {bool customizable}) {
+    if(customizable) {
+       _selectedProducts[productId] = amount;
+    } else {
+      _selectedProducts.value = {};
+      _selectedProducts[productId] = amount;
+    }
+    
+    _selectedProducts.refresh();
   }
 
   void onSelectPeriod(Period period) {
