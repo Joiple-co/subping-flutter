@@ -38,8 +38,6 @@ import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
