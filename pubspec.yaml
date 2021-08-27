@@ -45,7 +45,7 @@ dependencies:
   lottie : ^1.0.0
   kopo: 
     git:
-      url: https://github.com/W1nU/kopo.git
+      url: https://github.com/pqr4579/kopo.git
       
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
