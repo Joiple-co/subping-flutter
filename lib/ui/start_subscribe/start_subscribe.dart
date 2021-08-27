@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/modules/payment/payment.dart';
 import 'package:subping/ui/start_subscribe/subscribe_item.dart';
 import 'package:subping/ui/start_subscribe/subscribe_period.dart';
 import 'package:subping/ui/start_subscribe/subscribe_service.dart';
@@ -22,6 +23,7 @@ class StartSubscribe extends StatelessWidget {
     final service = serviceViewModel.getService(serviceId);
     final products = productViewModel.getProducts(serviceId);
     startSubscribeViewModel.initProducts(products);
+    startSubscribeViewModel.initPeriods(service.period);
 
     return Scaffold(
       backgroundColor: SubpingColor.white100,
@@ -42,17 +44,20 @@ class StartSubscribe extends StatelessWidget {
             Container(
               child: HorizontalPadding(
                   child: SubscribeItem(
+                    customizable: service.customizable,
                       startSubscribeViewModel: startSubscribeViewModel)),
             ),
             Container(height: SubpingSize.medium10, color: SubpingColor.back20),
             Container(
               child: HorizontalPadding(
                 child: SubscribePeriod(
+                  service: service,
                   startSubscribeViewModel: startSubscribeViewModel,
                 ),
               ),
             ),
             Container(height: SubpingSize.medium10, color: SubpingColor.back20),
+            SquareButton(text: "결제하기", onPressed: () => {})
           ]),
         ),
       ),
