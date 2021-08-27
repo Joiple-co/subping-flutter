@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/model/subscribe_block_item_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'subscribe_block_item.dart';
 
 class SubscribeBlock extends StatelessWidget {
+  List<SubScribeBlockItemModel> subscribeDataOfDay;
+
+  SubscribeBlock({this.subscribeDataOfDay});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,12 +19,11 @@ class SubscribeBlock extends StatelessWidget {
         color: SubpingColor.white100,
       ),
       child: Column(
-        children: List.generate(2, (index) {
+        children: List.generate(subscribeDataOfDay.length, (index) {
           bool hasborder = true;
           if (index == 0) hasborder = false;
           return SubscribeBlockItem(
-            hasborder: hasborder,
-          );
+              hasborder: hasborder, subscribeData: subscribeDataOfDay[index]);
         }),
       ),
     );

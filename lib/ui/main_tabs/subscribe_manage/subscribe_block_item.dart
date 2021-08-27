@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/model/subscribe_block_item_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class SubscribeBlockItem extends StatelessWidget {
-  final bool hasborder;
-
-  SubscribeBlockItem({this.hasborder});
+  bool hasborder;
+  SubScribeBlockItemModel subscribeData;
+  SubscribeBlockItem({this.hasborder, this.subscribeData});
 
   @override
   Widget build(BuildContext context) {
