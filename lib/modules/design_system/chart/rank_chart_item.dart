@@ -56,7 +56,7 @@ class RankChartItem extends StatelessWidget {
                           children: List.generate(service.tag.length, (index) {
                             bool marginFlag = (index != 0);
                             return PoundButton(
-                              service.tag[index],
+                              "#${service.tag[index]}",
                               marginFlag: marginFlag,
                             );
                           }),

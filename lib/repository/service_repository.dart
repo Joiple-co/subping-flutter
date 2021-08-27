@@ -73,9 +73,10 @@ class ServiceRepository {
       final rawResponse = await API
           .post("service", "/getService", body: {"service": serviceId});
       final decodedResponse = utf8.decode(rawResponse.data);
+      
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      ServiceModel service = ServiceModel.fromJson(response.message);
+      ServiceModel service = ServiceModel.fromJson(response.message[0]); 
 
       return service;
     } catch (e) {
@@ -108,7 +109,6 @@ class ServiceRepository {
       final rawResponse = await API
           .post("user", "/toggleUserLike", body: {"serviceId": serviceId, "toggle": toggle});
       final decodedResponse = utf8.decode(rawResponse.data);
-      print(decodedResponse);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
       if (!response.success) {

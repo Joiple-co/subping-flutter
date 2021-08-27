@@ -5,14 +5,14 @@ import 'package:subping/repository/alarm_repository.dart';
 
 class AlarmsViewModel extends GetxController {
   AlarmRepository _alarmRepository = AlarmRepository();
-  Rx<AlarmsModel> alarms = AlarmsModel().obs;
+  Rx<AlarmsModel> _alarms = AlarmsModel().obs;
   Rx<bool> _isLoading = false.obs;
 
   Future<void> updateAlarm() async {
     try {
       _isLoading = true.obs;
 
-      alarms.value = await _alarmRepository.getAlarm();
+      _alarms.value = await _alarmRepository.getAlarm();
       
       _isLoading = false.obs;
     } catch (e) {
@@ -22,12 +22,20 @@ class AlarmsViewModel extends GetxController {
 
   Future<void> readAlarm() async {
     await _alarmRepository.readAlarm();
-    alarms.value.unreadAlarms = 0;
-    alarms.refresh();
+    _alarms.value.unreadAlarms = 0;
+    _alarms.refresh();
   }
 
   bool get isLoading {
     return _isLoading.value;
+  }
+
+  AlarmsModel get alarms {
+    return _alarms.value;
+  }
+  
+  int get unReadAlarmCount {
+    return _alarms.value.unreadAlarms;
   }
 
   @override

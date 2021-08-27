@@ -9,7 +9,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
+import 'package:subping/binding/search_bindings.dart';
+import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
+
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
@@ -24,14 +27,15 @@ import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/onboarding/user_nickname/create_nickname.dart';
 import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
+import 'package:subping/ui/alarm/alarm.dart';
+import 'package:subping/ui/start_subscribe/start_subscribe.dart';
+import 'package:subping/ui/write_review/write_review.dart';
+import 'package:subping/ui/search/search.dart';
 
 import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
-
-import 'package:subping/ui/alarm/alarm.dart';
-import 'package:subping/ui/write_review/write_review.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -123,7 +127,16 @@ class _SubpingAppState extends State<SubpingApp> {
                 GetPage(
                     name: "/likeService",
                     page: () => LikeService(),
-                    middlewares: [LikeServiceMiddleware()])
+                    middlewares: [LikeServiceMiddleware()]),
+                GetPage(
+                  name: "/startSubscribe/:param",
+                  page: () => StartSubscribe(),
+                  binding: StartSubscribeBindings()
+                ),
+                GetPage(
+                  name: "/search",
+                    page: () => Search(),
+                    binding: SearchBinidings()),
               ],
             ));
   }

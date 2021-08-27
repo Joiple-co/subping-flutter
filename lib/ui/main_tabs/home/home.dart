@@ -4,7 +4,8 @@ import 'package:subping/modules/design_system/loading/subping_loading,.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
-import 'package:subping/ui/main_tabs/home/tool_bar.dart';
+//import 'package:subping/ui/main_tabs/home/tool_bar.dart';
+import 'package:subping/modules/design_system/tool_bar/tool_bar.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
@@ -30,9 +31,9 @@ class Home extends StatelessWidget {
             "홈",
             hasBackButton: false,
             rear: ToolBar(
-              unreadAlarmCount: alarmViewModel.isLoading
-                  ? 0
-                  : alarmViewModel.alarms.value.unreadAlarms,
+              hasSearchIcon: true,
+              hasAlarmIcon: true,
+              unreadAlarmCount: alarmViewModel.unReadAlarmCount,
             ),
           ),
           body: HeaderSafe(

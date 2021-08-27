@@ -27,7 +27,7 @@ class PoundButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(2.5)),
           child: Center(
             child: SubpingText(
-              '#${this.text}',
+              '${this.text}',
               size: SubpingFontSize.body4,
               color: SubpingColor.black60,
             ),

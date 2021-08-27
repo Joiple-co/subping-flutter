@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/service_datail/service_footer.dart';
 import 'package:subping/ui/service_datail/service_info.dart';
+import 'package:subping/ui/service_datail/service_products.dart';
 import 'package:subping/ui/service_datail/service_review.dart';
+import 'package:subping/viewmodel/global/product_viewmodel.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class ServiceDetail extends StatelessWidget {
@@ -13,12 +15,17 @@ class ServiceDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
+    final productViewModel = Get.find<ProductViewModel>();
+
     serviceViewModel.updateService(serviceId);
+    productViewModel.updateProducts(serviceId);
 
     return Obx(() {
       final service = serviceViewModel.services[serviceId].value;
-      
+      final products = productViewModel.getProducts(serviceId);
+
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: TitleAppBar(
           service.name,
           hasBackButton: true,
@@ -49,14 +56,16 @@ class ServiceDetail extends StatelessWidget {
                                     size: SubpingFontSize.title5,
                                     fontWeight: SubpingFontWeight.bold,
                                   ),
-                                  Row(
-                                    children: List.generate(
-                                        2,
-                                        (index) => PoundButton(
-                                              service.tag[index],
-                                              marginFlag: true,
-                                            )),
-                                  )
+                                  service.tag != null
+                                      ? Row(
+                                          children: List.generate(
+                                              service.tag.length,
+                                              (index) => PoundButton(
+                                                    "#${service.tag[index]}",
+                                                    marginFlag: true,
+                                                  )),
+                                        )
+                                      : Container()
                                 ],
                               ),
                               Space(
@@ -65,7 +74,7 @@ class ServiceDetail extends StatelessWidget {
                               SubpingText(service.summary),
                               Space(size: SubpingSize.large20),
                               SubpingText(
-                                "9,000원 ~",
+                                "${productViewModel.getCheapeastPrice(serviceId)}원 ~",
                                 size: SubpingFontSize.title6,
                                 fontWeight: SubpingFontWeight.bold,
                               ),
@@ -81,7 +90,9 @@ class ServiceDetail extends StatelessWidget {
                                   Space(
                                     size: SubpingSize.large25,
                                   ),
-                                  SubpingText(service.category != null ? service.category.join(",") : "")
+                                  SubpingText(service.category != null
+                                      ? service.category.join(",")
+                                      : "")
                                 ],
                               ),
                               Space(
@@ -109,6 +120,16 @@ class ServiceDetail extends StatelessWidget {
                               Space(size: SubpingSize.large25)
                             ]),
                       ),
+                      products.length != 0
+                          ? Container(
+                              height: SubpingSize.medium10,
+                              color: SubpingColor.back20)
+                          : Container(),
+                      products.length != 0
+                          ? ServiceProducts(
+                              products: products,
+                            )
+                          : Container(),
                       Container(
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
@@ -124,10 +145,15 @@ class ServiceDetail extends StatelessWidget {
                 ),
               ]),
             ),
-            ServiceFooter(userLike: service.like, toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId))
+            ServiceFooter(
+              userLike: service.like,
+              toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId),
+              serviceId: serviceId,
+              products: products,
+            )
           ]),
         ),
-      );}
-    );
+      );
+    });
   }
 }

@@ -19,8 +19,6 @@ class ServiceViewModel extends GetxController {
   RxSet<String> _likes = <String>{}.obs;
   Map<String, Function> _likesReserved = {};
 
-  StreamSubscription _toggleSubscription;
-
   Future<void> updateCharts() async {
     try {
       _chartLoading.value = true;
@@ -95,7 +93,7 @@ class ServiceViewModel extends GetxController {
 
   Future<void> updateService(String serviceId) async {
     final service = await _serviceRepository.getService(serviceId);
-
+    
     if (_services[service.id] != null) {
       _services[service.id].value.updateServiceModel(service);
     } else {
@@ -145,7 +143,7 @@ class ServiceViewModel extends GetxController {
 
     if(_likesReserved.length != 0) {
       _likesReserved.forEach((key, value) {
-      requests.add(value());
+        requests.add(value());
       });
 
       await Future.wait(requests);
