@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/search_model.dart';
 import 'package:subping/repository/search_repository.dart';
@@ -6,6 +7,7 @@ class SearchViewModel extends GetxController {
   SearchRepository _searchRepository = SearchRepository();
   RxString _searchText = "".obs;
   Rx<SearchModel> _searchResult = SearchModel().obs;
+  TextEditingController _searchTextEditingController = TextEditingController();
 
   @override
   void onInit() {
@@ -24,10 +26,24 @@ class SearchViewModel extends GetxController {
   }
 
   void onChangeSearchText(String text) {
+    print(text);
     _searchText.value = text;
+  }
+
+  void onClickClear() {
+    _searchText.value = "";
+    _searchTextEditingController.clear();
   }
 
   SearchModel get searchResult {
     return _searchResult.value;
+  }
+
+  TextEditingController get searchTextEditingController {
+    return _searchTextEditingController;
+  }
+
+  String get searchText {
+    return _searchText.value;
   }
 }
