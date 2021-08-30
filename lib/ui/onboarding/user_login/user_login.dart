@@ -46,6 +46,7 @@ class UserLogin extends StatelessWidget {
                       errorText: viewModel.emailError.value != ""
                           ? viewModel.emailError.value
                           : null,
+                      maxLines: 1,
                     ),
                     Space(size: SubpingSize.large15),
                     SubpingTextField(
@@ -57,6 +58,7 @@ class UserLogin extends StatelessWidget {
                           ? viewModel.passwordError.value
                           : null,
                       obscureText: true,
+                      maxLines: 1,
                     ),
                   ],
                 )),

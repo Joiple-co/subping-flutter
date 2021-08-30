@@ -7,6 +7,7 @@ import 'package:subping/viewmodel/global/alarms_viewmodel.dart';//이거 빼도 
 
 class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
+  
   AlramIcon({this.unreadAlarmCount});
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class AlramIcon extends StatelessWidget {
                 ),
               )
             : Space(size: SubpingSize.large20)
+           // , AlramIcon(unreadAlarmCount: unreadAlarmCount),//이 한줄 수정
       ],
     );
   }
