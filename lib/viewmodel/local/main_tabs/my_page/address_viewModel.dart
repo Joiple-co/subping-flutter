@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kopo/kopo.dart';
+import 'package:kpostal/kpostal.dart';
 import 'package:subping/model/address_model.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/address_repository.dart';
@@ -16,17 +16,18 @@ class AddAddressViewModel extends GetxController {
 
   void routingKopo(BuildContext context) async {
     await Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Kopo(
+        builder: (context) => KpostalView(
               callback: (kopoModel) => setAddressInform(kopoModel),
             )));
   }
 
-  void setAddressInform(KopoModel kopoModel) {
-    zipCode = kopoModel.zonecode;
-    address = kopoModel.address;
+  void setAddressInform(Kpostal kpostalmodel) {
+    print(kpostalmodel);
+    zipCode = kpostalmodel.postCode;
+    address = kpostalmodel.address;
 
-    zipCodeController.text = kopoModel.zonecode;
-    addressController.text = kopoModel.address;
+    zipCodeController.text = kpostalmodel.postCode;
+    addressController.text = kpostalmodel.address;
 
     detailedAddressFocusNode.requestFocus();
   }

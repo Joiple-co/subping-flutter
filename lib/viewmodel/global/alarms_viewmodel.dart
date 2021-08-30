@@ -13,7 +13,7 @@ class AlarmsViewModel extends GetxController {
       _isLoading = true.obs;
 
       _alarms.value = await _alarmRepository.getAlarm();
-      
+
       _isLoading = false.obs;
     } catch (e) {
       print(e);
@@ -33,9 +33,9 @@ class AlarmsViewModel extends GetxController {
   AlarmsModel get alarms {
     return _alarms.value;
   }
-  
+
   int get unReadAlarmCount {
-    return _alarms.value.unreadAlarms;
+    return _alarms?.value?.unreadAlarms;
   }
 
   @override
