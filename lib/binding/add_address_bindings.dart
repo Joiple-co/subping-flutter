@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:subping/viewmodel/local/main_tabs/my_page/address_viewModel.dart';
+import 'package:subping/viewmodel/local/add_address/add_address_viewmodel.dart';
 
 class AddAddressBindings implements Bindings {
   @override

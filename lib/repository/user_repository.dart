@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:subping/model/body_model.dart';
+import 'package:subping/model/user_address_model.dart';
 import 'package:subping/model/user_model.dart';
 import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
@@ -64,6 +65,52 @@ class UserRepository {
     } catch (e) {
       ErrorHandler.errorHandler("NickNameUpdateException");
       return false;
+    }
+  }
+
+  Future<List<UserAddressModel>> getUserAddresses() async {
+    final result = <UserAddressModel>[];
+
+    try {
+      final rawResponse = await API.get("user", "/getUserAddresses");
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        response.message.forEach(
+            (address) => result.add(UserAddressModel.fromJson(address)));
+      } else {
+        ErrorHandler.errorHandler("GetUserAddressesException");
+      }
+    } catch (e) {
+      ErrorHandler.errorHandler("GetUserAddressesException");
+    }
+    
+    return result;
+  }
+
+  Future<void> makeUserAddress(UserAddressModel address) async {
+    try {
+      final rawResponse = await API.post("user", "/makeUserAddress", body: {
+        "userName": address.userName,
+        "userPhoneNumber": address.userPhoneNumber,
+        "postCode": address.postCode,
+        "address": address.address,
+        "detailedAddress": address.detailedAddress,
+        "isDefault": address.isDefault
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      print(response.message);
+
+      if (!response.success) {
+        ErrorHandler.errorHandler("MakeUserAddressException");
+      }
+    } catch (e) {
+      ErrorHandler.errorHandler("MakeUserAddressException");
     }
   }
 }

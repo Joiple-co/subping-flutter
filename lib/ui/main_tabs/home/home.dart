@@ -22,6 +22,7 @@ class Home extends StatelessWidget {
     final alarmViewModel = Get.find<AlarmsViewModel>();
     final userViewModel = Get.find<UserViewModel>();
 
+    alarmViewModel.updateAlarm();
     userViewModel.updateInfo();
     serviveViewModel.updateCharts();
 
