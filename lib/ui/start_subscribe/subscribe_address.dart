@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/model/user_address_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import 'package:subping/viewmodel/local/subscribe/start_subscribe_viewmodel.dart';
@@ -206,10 +205,15 @@ class SubscribeAddress extends StatelessWidget {
                                                             BorderRadius
                                                                 .circular(5)),
                                                     child: Center(
-                                                        child: SubpingText(
-                                                      "수정하기",
-                                                      color:
-                                                          SubpingColor.white100,
+                                                        child: GestureDetector(
+                                                      onTap: () => Get.toNamed(
+                                                          "/editAddress/${addresses[addressId].id}",
+                                                          preventDuplicates: false),
+                                                      child: SubpingText(
+                                                        "수정하기",
+                                                        color: SubpingColor
+                                                            .white100,
+                                                      ),
                                                     )),
                                                   ),
                                                 )

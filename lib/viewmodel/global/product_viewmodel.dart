@@ -10,6 +10,10 @@ class ProductViewModel extends GetxController {
 
   Future<void> updateProducts(String serviceId) async {
     final products = await _productRepository.getProducts(serviceId);
+    
+    products.sort((a, b) {
+      return b.price - a.price;
+    });
 
     if (_products[serviceId] != null) {
       _products[serviceId].value = products;

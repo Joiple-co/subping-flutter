@@ -17,6 +17,7 @@ import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
 import 'package:subping/ui/add_address/add_address.dart';
+import 'package:subping/ui/edit_address/edit_address.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/like_service/like_service.dart';
@@ -137,6 +138,10 @@ class _SubpingAppState extends State<SubpingApp> {
                   name: "/startSubscribe/:param",
                   page: () => StartSubscribe(),
                   binding: StartSubscribeBindings()
+                ),
+                GetPage(
+                  name: "/editAddress/:param",
+                  page: () => EditAddress(),
                 ),
                 GetPage(
                   name: "/search",

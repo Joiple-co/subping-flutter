@@ -55,7 +55,8 @@ class StartSubscribe extends StatelessWidget {
                     Container(
                       child: HorizontalPadding(
                           child: SubscribeItem(
-                              customizable: service.customizable,
+                              // customizable: service.customizable,
+                              customizable: true,
                               startSubscribeViewModel:
                                   startSubscribeViewModel)),
                     ),

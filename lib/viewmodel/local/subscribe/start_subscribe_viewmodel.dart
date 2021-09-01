@@ -37,6 +37,10 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void onSelectProduct(String productId, int amount, {bool customizable}) {
+    if(amount < 0) {
+      return;
+    }
+
     if(customizable) {
        _selectedProducts[productId] = amount;
     } else {
@@ -59,12 +63,22 @@ class StartSubscribeViewModel extends GetxController {
     int total = 0;
 
     _selectedProducts.forEach((key, value) { 
-      total += _products[key].price;
+      total += _products[key].price * value;
     });
 
     return total;
   }
 
+  int getSelectedTotalCount() {
+    int total = 0;
+
+    _selectedProducts.forEach((key, value) { 
+      total += value;
+    });
+    
+    return total;
+  }
+  
   Map<String, int> get selectedProducts {
     return _selectedProducts.value;
   }

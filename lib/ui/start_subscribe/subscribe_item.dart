@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
+import 'package:subping/ui/start_subscribe/customize_product.dart';
 import 'package:subping/ui/start_subscribe/select_product.dart';
 import 'package:subping/viewmodel/local/subscribe/start_subscribe_viewmodel.dart';
 
@@ -14,7 +15,8 @@ class SubscribeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Column(
+    return Obx(
+      () => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Space(
@@ -39,7 +41,7 @@ class SubscribeItem extends StatelessWidget {
             final productId =
                 startSubscribeViewModel.selectedProducts.keys.elementAt(index);
             final product = startSubscribeViewModel.products[productId];
-    
+
             return Column(children: [
               Row(
                 children: [
@@ -59,8 +61,10 @@ class SubscribeItem extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SubpingText(product.name,
-                                size: SubpingFontSize.body1),
+                            Expanded(
+                              child: SubpingText(product.name,
+                                  size: SubpingFontSize.body1),
+                            ),
                             SubpingText(
                               "${Helper.setComma(product.price)}원",
                               color: SubpingColor.subping100,
@@ -68,11 +72,20 @@ class SubscribeItem extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SubpingText(
-                          product.summary,
-                          size: SubpingFontSize.body5,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SubpingText(
+                              product.summary,
+                              size: SubpingFontSize.body5,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            customizable ? 
+                              SubpingText(
+                                "${startSubscribeViewModel.selectedProducts[productId]}개",
+                              ) : Container(),
+                          ],
                         ),
                       ],
                     ),
@@ -95,7 +108,7 @@ class SubscribeItem extends StatelessWidget {
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SubpingText("합계"),
+                    SubpingText("합계 (총 ${startSubscribeViewModel.getSelectedTotalCount()}개)"),
                     SubpingText(
                         "${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원")
                   ],
@@ -105,9 +118,11 @@ class SubscribeItem extends StatelessWidget {
             size: SubpingSize.large20,
           ),
           SquareButton(
-                text: customizable ? "구성 변경하기" : "상품 변겅하기",
-                onPressed: () => Get.to(SelectProduct()),
-                type: "outline"),
+              text: customizable ? "구성 변경하기" : "상품 변겅하기",
+              onPressed: customizable
+                  ? () => Get.to(CustomizeProduct())
+                  : () => Get.to(SelectProduct()),
+              type: "outline"),
           Space(
             size: SubpingSize.medium14,
           ),
