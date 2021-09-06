@@ -1,3 +1,5 @@
+import 'package:subping/const/const.dart';
+
 class ServiceModel {
   String id;
   List<dynamic> category;
@@ -8,8 +10,10 @@ class ServiceModel {
   String summary;
   String sellerEmail;
   String serviceExplainUrl;
+  bool customizable;
   bool like;
   List<dynamic> tag;
+  List<Period> period;
 
   ServiceModel(
       {this.id,
@@ -22,6 +26,8 @@ class ServiceModel {
       this.sellerEmail,
       this.serviceExplainUrl,
       this.like,
+      this.customizable,
+      this.period,
       this.tag});
 
   void updateServiceModel(ServiceModel service) {
@@ -36,6 +42,8 @@ class ServiceModel {
     tag = service.tag ?? this.tag;
     serviceExplainUrl = service.serviceExplainUrl ?? this.serviceExplainUrl;
     like = service.like ?? this.like;
+    customizable = service.customizable ?? this.customizable;
+    period = service.period ?? this.period;
   }
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -50,5 +58,10 @@ class ServiceModel {
     tag = json['tag'];
     serviceExplainUrl = json['serviceExplainUrl'];
     like = json['like'] == 1 ? true : false;
+    customizable = json["customizable"] == 1 ? true : false;
+    period = json['period'] != null
+        ? List.generate(json["period"].length,
+            (index) => PeriodMapper[json["period"][index]])
+        : null;
   }
 }

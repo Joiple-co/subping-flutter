@@ -22,6 +22,7 @@ class Home extends StatelessWidget {
     final alarmViewModel = Get.find<AlarmsViewModel>();
     final userViewModel = Get.find<UserViewModel>();
 
+    alarmViewModel.updateAlarm();
     userViewModel.updateInfo();
     serviveViewModel.updateCharts();
 
@@ -31,9 +32,9 @@ class Home extends StatelessWidget {
             "홈",
             hasBackButton: false,
             rear: ToolBar(
-              hasSearchIcon: true,
-              hasAlarmIcon: true,
-            ),
+                hasSearchIcon: true,
+                hasAlarmIcon: true,
+                unreadAlarmCount: alarmViewModel.unReadAlarmCount ?? 0),
           ),
           body: HeaderSafe(
             hasBottomSafe: false,
@@ -42,7 +43,7 @@ class Home extends StatelessWidget {
                 await serviveViewModel.updateCharts();
                 await alarmViewModel.updateAlarm();
               },
-              child: serviveViewModel.chartLoading
+              child: serviveViewModel.chartLoading || alarmViewModel.isLoading
                   ? SubpingLoading()
                   : ListView(
                       physics: const BouncingScrollPhysics(
@@ -54,12 +55,10 @@ class Home extends StatelessWidget {
                         Recommand(),
                         Space(size: SubpingSize.large40),
                         Chart(
-                            limitItem: serviveViewModel
-                                        .chart.serviceRank.length >=
-                                    3
-                                ? 3
-                                : serviveViewModel
-                                    .chart.serviceRank.length,
+                            limitItem:
+                                serviveViewModel.chart.serviceRank.length >= 3
+                                    ? 3
+                                    : serviveViewModel.chart.serviceRank.length,
                             hotChartData: serviveViewModel.chart),
                         Space(size: SubpingSize.large40),
                         RecentReview(),

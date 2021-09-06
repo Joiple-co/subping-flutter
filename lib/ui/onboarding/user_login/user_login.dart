@@ -40,6 +40,7 @@ class UserLogin extends StatelessWidget {
                   children: [
                     SubpingTextField(
                       labelText: "이메일",
+                      maxLines: 1,
                       focusNode: viewModel.emailFocus,
                       onChanged: viewModel.onChangeEmail,
                       onSubmitted: viewModel.onPressEmailDone,
@@ -50,6 +51,7 @@ class UserLogin extends StatelessWidget {
                     ),
                     Space(size: SubpingSize.large15),
                     SubpingTextField(
+                      maxLines: 1,
                       labelText: "비밀번호",
                       focusNode: viewModel.passwordFocus,
                       onChanged: viewModel.onChangePassword,

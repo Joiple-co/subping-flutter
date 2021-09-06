@@ -4,6 +4,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 
 class ErrorHandler {
   static errorHandler(String error) {
+    print(error);
+    
     switch (error) {
       case "UserExistException":
         Get.dialog(AlertDialog(

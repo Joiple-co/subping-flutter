@@ -22,3 +22,12 @@ const PeriodString = {
   Period.TWO_WEEK: "2주 마다",
   Period.THREE_WEEK: "3주 마다"
 };
+
+const PeriodMapper = {
+  "1M": Period.ONE_MONTH,
+  "2M": Period.TWO_MONTH,
+  "3M": Period.THREE_MONTH,
+  "1W": Period.ONE_WEEK,
+  "2W": Period.TWO_WEEK,
+  "3W": Period.THREE_WEEK
+};

@@ -107,3 +107,4 @@ class Search extends StatelessWidget {
     );
   }
 }
+

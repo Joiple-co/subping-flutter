@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:subping/model/search_model.dart';
 import 'package:subping/repository/search_repository.dart';
@@ -26,7 +27,6 @@ class SearchViewModel extends GetxController {
   }
 
   void onChangeSearchText(String text) {
-    print(text);
     _searchText.value = text;
   }
 

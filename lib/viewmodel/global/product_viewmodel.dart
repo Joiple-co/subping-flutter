@@ -10,6 +10,10 @@ class ProductViewModel extends GetxController {
 
   Future<void> updateProducts(String serviceId) async {
     final products = await _productRepository.getProducts(serviceId);
+    
+    products.sort((a, b) {
+      return b.price - a.price;
+    });
 
     if (_products[serviceId] != null) {
       _products[serviceId].value = products;
@@ -25,12 +29,16 @@ class ProductViewModel extends GetxController {
       num cheapestPrice = double.infinity;
 
       _products[serviceId].forEach((element) { 
-        if(element.price < cheapestPrice) {
+        if(element.price != null && element.price < cheapestPrice) {
           cheapestPrice = element.price;
         }
       });
 
-      return Helper.setComma(cheapestPrice);
+      if(cheapestPrice != double.infinity) {
+        return Helper.setComma(cheapestPrice);
+      } else {
+        return "0";
+      }
     } else {
       return "0";
     }
