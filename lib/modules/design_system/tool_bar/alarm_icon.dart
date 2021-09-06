@@ -6,9 +6,6 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
 
-class AlramIcon extends StatelessWidget {
-  final int unreadAlarmCount;
-
   AlramIcon({this.unreadAlarmCount});
   
   @override
