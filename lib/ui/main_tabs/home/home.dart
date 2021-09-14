@@ -24,6 +24,8 @@ class Home extends StatelessWidget {
 
     alarmViewModel.updateAlarm();
     userViewModel.updateInfo();
+    userViewModel.updateUserAddresses();
+    userViewModel.updateUserCards();
     serviveViewModel.updateCharts();
 
     return Obx(() => Scaffold(

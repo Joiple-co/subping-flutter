@@ -8,15 +8,19 @@ import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
+import 'package:subping/binding/add_card_bindings.dart';
+import 'package:subping/binding/app_intro_bindings.dart';
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
+import 'package:subping/main.mapper.g.dart';
 
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
 import 'package:subping/ui/add_address/add_address.dart';
+import 'package:subping/ui/add_card/add_card.dart';
 import 'package:subping/ui/edit_address/edit_address.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
@@ -38,8 +42,10 @@ import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
+import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
 void main() async {
+  initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(SubpingApp());
@@ -89,10 +95,10 @@ class _SubpingAppState extends State<SubpingApp> {
                   disabledColor: Color.fromRGBO(173, 178, 198, 0.5),
                   canvasColor: Colors.transparent),
               home: Scaffold(backgroundColor: Colors.blue),
-              initialRoute: '/splash',
+              initialRoute: '/appIntro',
               getPages: [
                 GetPage(name: "/splash", page: () => Splash()),
-                GetPage(name: "/appIntro", page: () => AppIntro()),
+                GetPage(name: "/appIntro", page: () => AppIntro(), binding: AppIntroBindings()),
                 GetPage(
                     name: "/userAccount",
                     page: () => UserAccount(),
@@ -147,6 +153,11 @@ class _SubpingAppState extends State<SubpingApp> {
                   name: "/search",
                     page: () => Search(),
                     binding: SearchBinidings()),
+                GetPage(
+                  name: "/addCard",
+                  page: () => AddCard(),
+                  binding: AddCardBindings()
+                )
               ],
             ));
   }

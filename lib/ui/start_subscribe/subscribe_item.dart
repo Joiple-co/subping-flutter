@@ -22,10 +22,25 @@ class SubscribeItem extends StatelessWidget {
           Space(
             size: SubpingSize.medium14,
           ),
-          SubpingText(
-            customizable ? "상품 구성" : "상품",
-            size: SubpingFontSize.title6,
-            fontWeight: SubpingFontWeight.bold,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text.rich(SubpingTextSpan(children: [
+                SubpingTextSpan(
+                  text: customizable ? "상품 구성 " : "상품",
+                  fontSize: SubpingFontSize.title6,
+                  fontWeight: SubpingFontWeight.bold,
+                ),
+                customizable
+                    ? SubpingTextSpan(
+                        text:
+                            "${startSubscribeViewModel.getSelectedTotalCount()}건",
+                        fontSize: SubpingFontSize.title6,
+                        fontWeight: SubpingFontWeight.bold,
+                        color: SubpingColor.subping100)
+                    : SubpingTextSpan()
+              ])),
+            ],
           ),
           SubpingText(
             customizable ? "구성은 구독 이후에도 변경이 가능해요!" : "상품은 구독 이후에도 변경이 가능해요!",
@@ -35,82 +50,105 @@ class SubscribeItem extends StatelessWidget {
           Space(
             size: SubpingSize.medium14,
           ),
-          Column(
-              children: List.generate(
-                  startSubscribeViewModel.selectedProducts.length, (index) {
-            final productId =
-                startSubscribeViewModel.selectedProducts.keys.elementAt(index);
-            final product = startSubscribeViewModel.products[productId];
+          Container(
+            decoration: BoxDecoration(
+                color: SubpingColor.back20,
+                borderRadius: BorderRadius.circular(10)),
+            padding: EdgeInsets.all(10),
+            child: Column(
+                children: List.generate(
+                    startSubscribeViewModel.selectedProducts.length, (index) {
+              final productId = startSubscribeViewModel.selectedProducts.keys
+                  .elementAt(index);
+              final product = startSubscribeViewModel.products[productId];
 
-            return Column(children: [
-              Row(
-                children: [
-                  Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(product.productLogoUrl)))),
-                  Space(size: SubpingSize.large15),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: SubpingText(product.name,
-                                  size: SubpingFontSize.body1),
-                            ),
-                            SubpingText(
-                              "${Helper.setComma(product.price)}원",
-                              color: SubpingColor.subping100,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SubpingText(
-                              product.summary,
-                              size: SubpingFontSize.body5,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            customizable ? 
-                              SubpingText(
-                                "${startSubscribeViewModel.selectedProducts[productId]}개",
-                              ) : Container(),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              customizable
-                  ? Space(
-                      size: SubpingSize.medium14,
-                    )
-                  : Container()
-            ]);
-          })),
-          customizable
-              ? Divider(
-                  color: SubpingColor.black80,
-                )
-              : Container(),
-          customizable
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              return Column(children: [
+                Row(
                   children: [
-                    SubpingText("합계 (총 ${startSubscribeViewModel.getSelectedTotalCount()}개)"),
+                    Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(product.productLogoUrl)))),
+                    Space(size: SubpingSize.large15),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: SubpingText(product.name,
+                                    size: SubpingFontSize.body1),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              SubpingText(
+                                "${Helper.setComma(product.price)}원",
+                                color: SubpingColor.black80,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              customizable
+                                  ? SubpingText(
+                                      " | ",
+                                      color: SubpingColor.black30,
+                                    )
+                                  : Container(),
+                              customizable
+                                  ? SubpingText(
+                                      "${startSubscribeViewModel.selectedProducts[productId]}개",
+                                      color: SubpingColor.black80)
+                                  : Container(),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                startSubscribeViewModel.selectedProducts.length - 1 != index
+                    ? Space(
+                        size: SubpingSize.medium10,
+                      )
+                    : Container()
+              ]);
+            })),
+          ),
+          customizable
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Space(
+                      size: SubpingSize.medium10,
+                    ),
+                    Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                      Container(
+                        width: 25,
+                        height: 25,
+                        child: Image.asset(
+                          "assets/icon/coin.png",
+                        ),
+                      ),
+                      Space(
+                        size: SubpingSize.tiny5,
+                      ),
+                      SubpingText(
+                        "총 구독 금액",
+                        color: SubpingColor.black60,
+                        size: SubpingFontSize.body1,
+                      ),
+                    ]),
                     SubpingText(
-                        "${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원")
+                      "${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원",
+                      size: SubpingFontSize.title5,
+                      fontWeight: SubpingFontWeight.bold,
+                    )
                   ],
                 )
               : Container(),

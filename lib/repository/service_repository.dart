@@ -92,7 +92,7 @@ class ServiceRepository {
 
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-
+      
       response.message.forEach((value) {
         services.add(ServiceModel.fromJson(value));
       });

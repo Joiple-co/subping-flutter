@@ -1,15 +1,12 @@
-
-import 'package:flutter/widgets.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify.dart';
 import 'package:get/get.dart';
-import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
+import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
-class PassAuthViewModel extends GetxController{
-  RxMap<String, String> currentTitle = {
-    "preTitle": "서비스 이용을 위해\n",
-    "accent": "본인인증",
-    "postTitle": "이 필요해요"
-  }.obs;
+class PassAuthViewModel extends GetxController {
+  RxMap<String, String> currentTitle =
+      {"preTitle": "서비스 이용을 위해\n", "accent": "본인인증", "postTitle": "이 필요해요"}.obs;
   RxBool loading = false.obs;
 
   void onInit() {
@@ -18,27 +15,27 @@ class PassAuthViewModel extends GetxController{
 
   void onPressNext() async {
     try {
-      loading.value = true;
+      final authViewModel = Get.find<AuthViewModel>();
+      print(authViewModel.email);
+      print(authViewModel.password);
 
-      final cognito = Cognito();
+      final userAttributes = {
+        "name": "정승우",
+        "phoneNumber": "01088812173",
+        "carrier": "SKT",
+        "ci": "testCI",
+        "birthday": "1998-08-03",
+        "gender": "M"
+      };
 
-      final response = await cognito.signUpDone(
-          name: "정승우",
-          phoneNumber: "01088812173",
-          carrier: "SKT",
-          ci: "testCI",
-          birthday: "1998-08-03",
-          gender: "M");
+      SignUpResult result = await Amplify.Auth.signUp(
+          username: authViewModel.email,
+          password: authViewModel.password,
+          options: CognitoSignUpOptions(userAttributes: userAttributes));
 
-      loading.value = false;
+      print(result);
       
-      if (response.success) {
-        Get.offNamedUntil("/userLogin", ModalRoute.withName("/appIntro"));
-      } else {
-        ErrorHandler.errorHandler(response.message);
-      }
     } catch (e) {
-      loading.value = false;
       print(e);
       ErrorHandler.errorHandler("default");
     }

@@ -2,12 +2,14 @@ import 'package:get/get.dart';
 import 'package:subping/const/const.dart';
 import 'package:subping/model/product_model.dart';
 import 'package:subping/model/user_address_model.dart';
+import 'package:subping/model/user_card_model.dart';
 
 class StartSubscribeViewModel extends GetxController {
   RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
   RxMap<String, int> _selectedProducts = <String, int>{}.obs;
   Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
   RxString _selectedAddress = "".obs;
+  RxString _selectedCard = "".obs;
 
   void initProducts(List<ProductModel> products) {
     products.forEach((element) { 
@@ -36,13 +38,27 @@ class StartSubscribeViewModel extends GetxController {
     _selectedPeriod.value = periods[0];
   }
 
+  void initCards(Map<String, UserCardModel> cards) {
+    final cardIds = cards.keys;
+
+    if(cardIds.length != 0) {
+      _selectedCard.value = cardIds.elementAt(0);
+    }
+  }
+  
   void onSelectProduct(String productId, int amount, {bool customizable}) {
     if(amount < 0) {
       return;
     }
 
     if(customizable) {
-       _selectedProducts[productId] = amount;
+      if(amount == 0) {
+        if(getSelectedTotalCount() > 1) {
+          _selectedProducts.remove(productId);
+        }
+      } else {
+        _selectedProducts[productId] = amount;
+      }
     } else {
       _selectedProducts.value = {};
       _selectedProducts[productId] = amount;
@@ -57,6 +73,10 @@ class StartSubscribeViewModel extends GetxController {
   
   void onSelectAddress(String addressId) {
     _selectedAddress.value = addressId;
+  }
+
+  void onSelectCard(String cardId) {
+    _selectedCard.value = cardId;
   }
 
   int getSelectedTotalAmount() {
@@ -93,5 +113,9 @@ class StartSubscribeViewModel extends GetxController {
 
   String get selectedAddress {
     return _selectedAddress.value;
+  }
+
+  String get selectedCard {
+    return _selectedCard.value;
   }
 }

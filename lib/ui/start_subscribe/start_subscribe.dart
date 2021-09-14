@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/start_subscribe/subscribe_address.dart';
+import 'package:subping/ui/start_subscribe/subscribe_card.dart';
 import 'package:subping/ui/start_subscribe/subscribe_item.dart';
 import 'package:subping/ui/start_subscribe/subscribe_period.dart';
 import 'package:subping/ui/start_subscribe/subscribe_service.dart';
@@ -29,6 +30,7 @@ class StartSubscribe extends StatelessWidget {
     startSubscribeViewModel.initProducts(products);
     startSubscribeViewModel.initPeriods(service.period);
     startSubscribeViewModel.initAddresses(addresses);
+    startSubscribeViewModel.initCards(userViewModel.cards);
 
     return Scaffold(
       backgroundColor: SubpingColor.white100,
@@ -40,6 +42,7 @@ class StartSubscribe extends StatelessWidget {
         child: Column(children: [
           Expanded(
             child: SingleChildScrollView(
+              padding: EdgeInsets.only(bottom: 20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -55,8 +58,7 @@ class StartSubscribe extends StatelessWidget {
                     Container(
                       child: HorizontalPadding(
                           child: SubscribeItem(
-                              // customizable: service.customizable,
-                              customizable: true,
+                              customizable: service.customizable,
                               startSubscribeViewModel:
                                   startSubscribeViewModel)),
                     ),
@@ -84,12 +86,25 @@ class StartSubscribe extends StatelessWidget {
                     Container(
                         height: SubpingSize.medium10,
                         color: SubpingColor.back20),
+                    Container(
+                      child: HorizontalPadding(
+                        child: SubscribeCard(
+                          userViewModel: userViewModel,
+                          startSubscribeViewModel: startSubscribeViewModel,
+                        ),
+                      ),
+                    ),
+                    Container(
+                        height: SubpingSize.medium10,
+                        color: SubpingColor.back20),
+                    Space(size: SubpingSize.medium14),
+                    Align(
+                      alignment: Alignment.center,
+                      child: SquareButton(text: "구독하기", onPressed: () {})
+                    )
                   ]),
             ),
           ),
-          Space(
-            size: SubpingSize.large20,
-          )
         ]),
       ),
     );

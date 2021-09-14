@@ -107,6 +107,26 @@ class ErrorHandler {
                   onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
             ]));
         break;
+      
+      case "AddCardException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("카드 등록에 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
+      
+      case "EditUserAddressException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("주소 수정에 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
 
       default:
         Get.dialog(AlertDialog(

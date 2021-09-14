@@ -1,9 +1,31 @@
-const ONBOARDING_EMAIL = "EMAIL";
-const ONBOARDING_PASSWORD = "PASSWORD";
+enum CardVendor {
+  HANA,
+  SHINHAN,
+  KB,
+  NH,
+  LOTTE,
+  HYNUDAI,
+  BC,
+  SAMSUNG,
+  WOORI
+}
 
-const IDENTITIY_POOL_ID = "ap-northeast-2:399e170b-7fa8-47d7-b5b8-1b4d1a8dd55e";
-const USER_POOL_ID = "ap-northeast-2_VzCrSsELb";
-const CLIENT_ID = "4p168n12vp9vraftlg9d29hlf2";
+const CardVendorAsset = {
+  CardVendor.BC: "assets/cardLogo/bc.png",
+  CardVendor.HANA: "assets/cardLogo/hana.png",
+  CardVendor.HYNUDAI: "assets/cardLogo/hyundai.png",
+  CardVendor.KB: "assets/cardLogo/kb.png",
+  CardVendor.LOTTE: "assets/cardLogo/lotte.png",
+  CardVendor.NH: "assets/cardLogo/nh.png",
+  CardVendor.SAMSUNG: "assets/cardLogo/samsung.png",
+  CardVendor.SHINHAN: "assets/cardLogo/shinhan.png",
+  CardVendor.WOORI: "assets/cardLogo/woori.png"
+};
+
+const CardVendorMapper = {
+  "신한카드": CardVendor.SHINHAN,
+  "삼성카드": CardVendor.SAMSUNG
+};
 
 enum Period {
   ONE_MONTH,

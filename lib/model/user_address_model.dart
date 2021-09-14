@@ -29,6 +29,19 @@ class UserAddressModel {
     createdAt = userAddress.createdAt ?? this.createdAt;
   }
 
+  bool isSame(UserAddressModel userAddress) {
+    if (this.userName == userAddress.userName &&
+        this.userPhoneNumber == userAddress.userPhoneNumber &&
+        this.postCode == userAddress.postCode &&
+        this.address == userAddress.address &&
+        this.detailedAddress == userAddress.detailedAddress &&
+        this.isDefault == userAddress.isDefault) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   UserAddressModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userName = json['userName'];
@@ -40,4 +53,3 @@ class UserAddressModel {
     createdAt = json['createdAt'];
   }
 }
- 

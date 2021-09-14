@@ -97,23 +97,31 @@ class Cognito {
 
   Future<Map<String, String>> currentUser({
     email: bool,
-    name: bool
+    name: bool,
+    cognitoId: bool
   }) async {
     var result = {
       "email": "",
-      "name": ""
+      "name": "",
+      "cognitoId": ""
     };
 
     if(await checkLoggedIn()) {
       final userAttr = await Amplify.Auth.fetchUserAttributes();
 
       await Future.forEach(userAttr, (element) { 
+        print("${element.userAttributeKey} : ${element.value}");
+
         if(email == true && element.userAttributeKey == "email") {
           result["email"] = element.value;
         }
 
         if(name == true && element.userAttributeKey == "name") {
           result["name"] = element.value;
+        }
+
+        if(cognitoId == true && element.userAttributeKey == "sub") {
+          result["cognitoId"] = element.value;
         }
       });
     }

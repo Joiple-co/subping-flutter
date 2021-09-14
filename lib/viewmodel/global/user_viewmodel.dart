@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:subping/model/user_address_model.dart';
+import 'package:subping/model/user_card_model.dart';
 import 'package:subping/model/user_model.dart';
 import 'package:subping/repository/user_repository.dart';
 
@@ -8,8 +9,9 @@ class UserViewModel extends GetxController {
 
   Rx<UserModel> _user = UserModel().obs;
   RxMap<String, UserAddressModel> _addresses = <String, UserAddressModel>{}.obs;
+  RxMap<String, UserCardModel> _cards = <String, UserCardModel>{}.obs;
 
-  void updateInfo() async {
+  Future<void> updateInfo() async {
     _user.value.updateUserModel(await _userRepository.getUser());
     _user.refresh();
     await updateUserAddresses();
@@ -26,6 +28,17 @@ class UserViewModel extends GetxController {
     });
 
     _addresses.refresh();
+  }
+
+  Future<void> updateUserCards() async {
+    final response = await _userRepository.getUserCards();
+    _cards.value = {};
+
+    response.forEach((element) {
+      _cards[element.id] = element;
+    });
+
+    _cards.refresh();
   }
 
   void checkUserStatus() {
@@ -52,6 +65,10 @@ class UserViewModel extends GetxController {
 
   String get userProfileImageUrl {
     return _user.value.userProfileImageUrl ?? "";
+  }
+
+  Map<String, UserCardModel> get cards {
+    return _cards.value;
   }
 
   Map<String, UserAddressModel> get userAddreses {
