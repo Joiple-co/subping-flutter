@@ -72,6 +72,11 @@ PODS:
     - OrderedSet (~> 5.0)
   - flutter_secure_storage (3.3.1):
     - Flutter
+<<<<<<< HEAD
+=======
+  - geocoding (1.0.5):
+    - Flutter
+>>>>>>> 29397f2943da40b36e27e25ed8922b3b1f2e6e66
   - iamport_flutter (0.0.1):
     - Flutter
   - iamport_webview_flutter (0.0.1):
@@ -102,6 +107,10 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+<<<<<<< HEAD
+=======
+  - geocoding (from `.symlinks/plugins/geocoding/ios`)
+>>>>>>> 29397f2943da40b36e27e25ed8922b3b1f2e6e66
   - iamport_flutter (from `.symlinks/plugins/iamport_flutter/ios`)
   - iamport_webview_flutter (from `.symlinks/plugins/iamport_webview_flutter/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
