@@ -23,6 +23,7 @@ class API {
     String deviceVersion;
     String deviceId;
     String email;
+    String userId;
 
     if (Platform.isAndroid) {
       AndroidDeviceInfo deviceInfo = await deviceInfoPlugin.androidInfo;
@@ -38,9 +39,11 @@ class API {
 
     final user = await cognito.currentUser(email: true);
     email = user['email'];
+    userId = user["cognitoId"];
 
     header = {
       "email": email,
+      "id": userId,
       "deviceName": deviceName,
       "deviceVersion": deviceVersion,
       "buildNumber": buildNumber,
