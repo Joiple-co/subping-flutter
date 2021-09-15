@@ -95,7 +95,7 @@ class _SubpingAppState extends State<SubpingApp> {
                   disabledColor: Color.fromRGBO(173, 178, 198, 0.5),
                   canvasColor: Colors.transparent),
               home: Scaffold(backgroundColor: Colors.blue),
-              initialRoute: '/appIntro',
+              initialRoute: '/splash',
               getPages: [
                 GetPage(name: "/splash", page: () => Splash()),
                 GetPage(name: "/appIntro", page: () => AppIntro(), binding: AppIntroBindings()),
