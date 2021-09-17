@@ -3,6 +3,7 @@ import 'package:subping/const/const.dart';
 import 'package:subping/model/product_model.dart';
 import 'package:subping/model/user_address_model.dart';
 import 'package:subping/model/user_card_model.dart';
+import 'package:subping/repository/subscribe_repository.dart';
 
 class StartSubscribeViewModel extends GetxController {
   RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
@@ -10,6 +11,13 @@ class StartSubscribeViewModel extends GetxController {
   Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
   RxString _selectedAddress = "".obs;
   RxString _selectedCard = "".obs;
+  String _serviceId = "";
+
+  SubscribeRepository _subscribeRepository = SubscribeRepository();
+
+  void initService(String serviceId) {
+    _serviceId = serviceId;
+  }
 
   void initProducts(List<ProductModel> products) {
     products.forEach((element) { 
@@ -67,6 +75,22 @@ class StartSubscribeViewModel extends GetxController {
     _selectedProducts.refresh();
   }
 
+  void onStartSubscribe() async {
+    final subscribeItems = [];
+
+    _selectedProducts.forEach((key, value) => subscribeItems.add({
+      "id": key, "amount": value 
+    }));
+
+    await _subscribeRepository.makeSubscribe(
+      subscribeItems: subscribeItems,
+      userCardId: _selectedCard.value,
+      addressId: _selectedAddress.value,
+      period: PeriodInnerString[_selectedPeriod.value],
+      serviceId: _serviceId
+    );
+  }
+
   void onSelectPeriod(Period period) {
     _selectedPeriod.value = period;
   }
@@ -78,6 +102,7 @@ class StartSubscribeViewModel extends GetxController {
   void onSelectCard(String cardId) {
     _selectedCard.value = cardId;
   }
+
 
   int getSelectedTotalAmount() {
     int total = 0;

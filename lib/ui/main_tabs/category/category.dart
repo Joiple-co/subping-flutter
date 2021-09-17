@@ -17,7 +17,6 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
-    serviceViewModel.updateCategory();
     
     return Obx(
       () => DefaultTabController(

@@ -24,7 +24,8 @@ const CardVendorAsset = {
 
 const CardVendorMapper = {
   "신한카드": CardVendor.SHINHAN,
-  "삼성카드": CardVendor.SAMSUNG
+  "삼성카드": CardVendor.SAMSUNG,
+  "현대카드": CardVendor.HYNUDAI
 };
 
 enum Period {
@@ -43,6 +44,15 @@ const PeriodString = {
   Period.ONE_WEEK: "매주",
   Period.TWO_WEEK: "2주 마다",
   Period.THREE_WEEK: "3주 마다"
+};
+
+const PeriodInnerString = {
+  Period.ONE_MONTH: "1M",
+  Period.TWO_MONTH: "2M",
+  Period.THREE_MONTH: "3M",
+  Period.ONE_WEEK: "1W",
+  Period.TWO_WEEK: "2W",
+  Period.THREE_WEEK: "3W"
 };
 
 const PeriodMapper = {

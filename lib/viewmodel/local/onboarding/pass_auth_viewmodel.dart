@@ -1,6 +1,7 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:get/get.dart';
+import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
@@ -15,26 +16,34 @@ class PassAuthViewModel extends GetxController {
 
   void onPressNext() async {
     try {
+      loading.value = true;
+
       final authViewModel = Get.find<AuthViewModel>();
-      print(authViewModel.email);
-      print(authViewModel.password);
 
       final userAttributes = {
         "name": "정승우",
-        "phoneNumber": "01088812173",
+      };
+
+      final validationData = {
+        "name": "정승우",
+        "phone_number": "01088812173",
         "carrier": "SKT",
         "ci": "testCI",
-        "birthday": "1998-08-03",
+        "birthdate": "1998-08-03",
         "gender": "M"
       };
 
-      SignUpResult result = await Amplify.Auth.signUp(
-          username: authViewModel.email,
-          password: authViewModel.password,
-          options: CognitoSignUpOptions(userAttributes: userAttributes));
+      SignUpResult result = await Cognito().signUp(authViewModel.email,
+          authViewModel.password, userAttributes, validationData);
 
-      print(result);
-      
+      if (result.isSignUpComplete) {
+        await Cognito().signIn(authViewModel.email, authViewModel.password);
+        Get.offAndToNamed("/splash");
+      } else {
+        ErrorHandler.errorHandler("default");
+      }
+
+      loading.value = false;
     } catch (e) {
       print(e);
       ErrorHandler.errorHandler("default");

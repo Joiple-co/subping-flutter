@@ -37,7 +37,7 @@ class API {
       deviceId = deviceInfo.identifierForVendor;
     }
 
-    final user = await cognito.currentUser(email: true);
+    final user = await cognito.currentUser(email: true, cognitoId: true);
     email = user['email'];
     userId = user["cognitoId"];
 
@@ -56,6 +56,7 @@ class API {
   }
 
   static Future<RestResponse> get(String service, String path) async {
+    print('[API GET] service : "${service}" path : "${path}"');
     Map<String, String> header = await _makeHeader();
 
     try {
@@ -70,6 +71,7 @@ class API {
 
   static Future<RestResponse> post(
       String service, String path, {Map<dynamic, dynamic> body}) async {
+    print('[API POST] service : "${service}" path : "${path}"');
     Map<String, String> header = await _makeHeader();
 
     try {

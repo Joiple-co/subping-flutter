@@ -19,11 +19,15 @@ class UserRepository {
         final user = UserModel.fromJson(response.message);
         return user;
       } else {
-        ErrorHandler.errorHandler("GetUserException");
-        return UserModel();
+        if (response.message == "NoUserExistException") {
+        ErrorHandler.errorHandler("NoUserExistException");
+        } else {
+          ErrorHandler.errorHandler("GetUserException");
+          return UserModel();
+        }
       }
     } catch (e) {
-      print(e);
+      print("[UserRepository Error] getUser : ${e}");
       return UserModel();
     }
   }

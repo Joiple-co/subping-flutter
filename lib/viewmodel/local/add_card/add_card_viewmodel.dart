@@ -7,7 +7,9 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 
 enum AddCardStep {
   CARD_NAME,
-  PG
+  PG,
+  LOADING,
+  DONE
 }
 
 class AddCardViewModel extends GetxController {
@@ -33,6 +35,8 @@ class AddCardViewModel extends GetxController {
   }
 
   Future<void> onAddCardDone(Map<String, String> result) async {
+    _step.value = AddCardStep.LOADING;
+
     final success = result["success"];
     final cardVendor = result["card_name"];
     final billingKey = result["customer_uid"];
@@ -40,10 +44,12 @@ class AddCardViewModel extends GetxController {
     final pg = result["pg_provider"];
 
     if(success == "true"){
-      Get.back();
       await _userRepository.addCard(cardVendor, billingKey, method, pg, _cardName.value);
       final userViewModel = Get.find<UserViewModel>();
       await userViewModel.updateUserCards();
+      
+      Get.back();
+      _step.value = AddCardStep.DONE;
     } else {
       Get.back();
       ErrorHandler.errorHandler("AddCardException");

@@ -27,10 +27,13 @@ class StartSubscribe extends StatelessWidget {
     final products = productViewModel.getProducts(serviceId);
     final addresses = userViewModel.userAddreses;
 
+    startSubscribeViewModel.initService(serviceId);
     startSubscribeViewModel.initProducts(products);
     startSubscribeViewModel.initPeriods(service.period);
-    startSubscribeViewModel.initAddresses(addresses);
     startSubscribeViewModel.initCards(userViewModel.cards);
+    if(service.type != "online") {
+      startSubscribeViewModel.initAddresses(addresses);
+    }
 
     return Scaffold(
       backgroundColor: SubpingColor.white100,
@@ -73,16 +76,18 @@ class StartSubscribe extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                        height: SubpingSize.medium10,
-                        color: SubpingColor.back20),
-                    Container(
-                      child: HorizontalPadding(
-                        child: SubscribeAddress(
-                            userViewModel: userViewModel,
-                            startSubscriveViewModel: startSubscribeViewModel),
-                      ),
-                    ),
+                    service.type != "online" ?
+                      Container(
+                          height: SubpingSize.medium10,
+                          color: SubpingColor.back20) : Container(),
+                    service.type != "online" ?
+                      Container(
+                        child: HorizontalPadding(
+                          child: SubscribeAddress(
+                              userViewModel: userViewModel,
+                              startSubscriveViewModel: startSubscribeViewModel),
+                        ),
+                      ) : Container(),
                     Container(
                         height: SubpingSize.medium10,
                         color: SubpingColor.back20),
@@ -100,7 +105,7 @@ class StartSubscribe extends StatelessWidget {
                     Space(size: SubpingSize.medium14),
                     Align(
                       alignment: Alignment.center,
-                      child: SquareButton(text: "구독하기", onPressed: () {})
+                      child: SquareButton(text: "구독하기", onPressed: startSubscribeViewModel.onStartSubscribe)
                     )
                   ]),
             ),

@@ -42,7 +42,7 @@ class UserViewModel extends GetxController {
   }
 
   void checkUserStatus() {
-    if (_user.value.nickName == null) {
+    if (_user.value.nickName == null || _user.value.nickName == "") {
       Get.offAndToNamed("/createNickName");
     }
   }
