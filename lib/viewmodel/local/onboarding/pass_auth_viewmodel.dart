@@ -1,15 +1,13 @@
-
-import 'package:flutter/widgets.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
+import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
-class PassAuthViewModel extends GetxController{
-  RxMap<String, String> currentTitle = {
-    "preTitle": "서비스 이용을 위해\n",
-    "accent": "본인인증",
-    "postTitle": "이 필요해요"
-  }.obs;
+class PassAuthViewModel extends GetxController {
+  RxMap<String, String> currentTitle =
+      {"preTitle": "서비스 이용을 위해\n", "accent": "본인인증", "postTitle": "이 필요해요"}.obs;
   RxBool loading = false.obs;
 
   void onInit() {
@@ -20,25 +18,33 @@ class PassAuthViewModel extends GetxController{
     try {
       loading.value = true;
 
-      final cognito = Cognito();
+      final authViewModel = Get.find<AuthViewModel>();
 
-      final response = await cognito.signUpDone(
-          name: "정승우",
-          phoneNumber: "01088812173",
-          carrier: "SKT",
-          ci: "testCI",
-          birthday: "1998-08-03",
-          gender: "M");
+      final userAttributes = {
+        "name": "정승우",
+      };
 
-      loading.value = false;
-      
-      if (response.success) {
-        Get.offNamedUntil("/userLogin", ModalRoute.withName("/appIntro"));
+      final validationData = {
+        "name": "정승우",
+        "phone_number": "01088812173",
+        "carrier": "SKT",
+        "ci": "testCI",
+        "birthdate": "1998-08-03",
+        "gender": "M"
+      };
+
+      SignUpResult result = await Cognito().signUp(authViewModel.email,
+          authViewModel.password, userAttributes, validationData);
+
+      if (result.isSignUpComplete) {
+        await Cognito().signIn(authViewModel.email, authViewModel.password);
+        Get.offAndToNamed("/splash");
       } else {
-        ErrorHandler.errorHandler(response.message);
+        ErrorHandler.errorHandler("default");
       }
-    } catch (e) {
+
       loading.value = false;
+    } catch (e) {
       print(e);
       ErrorHandler.errorHandler("default");
     }

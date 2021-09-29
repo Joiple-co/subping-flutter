@@ -7,22 +7,19 @@ import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/secure/secure.dart';
 
-
 class Cognito {
-  static final Cognito _instance = Cognito._internal(String.fromEnvironment("stage", defaultValue: "dev"));
-
+  static final Cognito _instance =
+      Cognito._internal(String.fromEnvironment("stage", defaultValue: "dev"));
   Map<String, dynamic> _awsConfig;
-
+  
   factory Cognito() {
     return _instance;
   }
 
   Cognito._internal(String stage) {
-    if(stage != null) {
+    if (stage != null) {
       _awsConfig = jsonDecode(getAmplifyCongig(stage));
-    }
-    
-    else {
+    } else {
       _awsConfig = jsonDecode(getAmplifyCongig("dev"));
     }
   }
@@ -31,53 +28,39 @@ class Cognito {
     try {
       final user = await Amplify.Auth.fetchAuthSession();
       return user.isSignedIn;
-    } catch(e) {
+    } catch (e) {
       return false;
     }
-  }
-
-  Future<BodyModel> signUpStart(String email, String password) async {
-    final secure = Secure();
-    final encryptedPassword = await secure.encrpytRSA(password);
-    password = "";
-
-    final rawResponse = await API.post("auth", "/signUpStart", body: {
-      "email" : email, "password": encryptedPassword
-    });
-
-    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
-    BodyModel data = BodyModel.fromJson(response);
-
-    return data;
-  } 
-
-  Future<BodyModel> signUpDone({String name, String phoneNumber, String carrier, String ci, String birthday, String gender}) async{
-    final rawResponse = await API.post("auth", "/signUpDone",
-        body: {
-          "name": name,
-          "phoneNumber": phoneNumber,
-          "birthDay": birthday,
-          "carrier": carrier,
-          "ci": ci,
-          "gender": gender,
-        });
-
-    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
-    BodyModel body = BodyModel.fromJson(response);
-
-    return body;
   }
 
   Future<SignInResult> signIn(String email, String password) async {
     try {
       SignInResult result = await Amplify.Auth.signIn(
-        username: email.trim(), 
-        password: password.trim());
+          username: email.trim(), password: password.trim());
 
       return result;
-    } on AuthException catch(e) {
+    } on AuthException catch (e) {
       print(e.message);
       return SignInResult(isSignedIn: false);
+    }
+  }
+
+  Future<SignUpResult> signUp(
+      String email,
+      String password,
+      Map<String, String> userAttributes,
+      Map<String, String> validationData) async {
+    try {
+      SignUpResult result = await Amplify.Auth.signUp(
+          username: email,
+          password: password,
+          options: CognitoSignUpOptions(
+              userAttributes: userAttributes, validationData: validationData));
+
+      return result;
+    } catch (e) {
+      print(e);
+      return SignUpResult(isSignUpComplete: false);
     }
   }
 
@@ -86,34 +69,33 @@ class Cognito {
   }
 
   Future<BodyModel> isDuplicateEmail(String email) async {
-    final rawResponse = await API.post("auth", "/emailDuplicate", body: {
-      "email": email
-    });
+    final rawResponse =
+        await API.post("auth", "/emailDuplicate", body: {"email": email});
 
-    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
+    Map<String, dynamic> response =
+        jsonDecode(new String.fromCharCodes(rawResponse.data));
     BodyModel body = BodyModel.fromJson(response);
     return body;
   }
 
-  Future<Map<String, String>> currentUser({
-    email: bool,
-    name: bool
-  }) async {
-    var result = {
-      "email": "",
-      "name": ""
-    };
+  Future<Map<String, String>> currentUser(
+      {email: bool, name: bool, cognitoId: bool}) async {
+    var result = {"email": "", "name": "", "cognitoId": ""};
 
-    if(await checkLoggedIn()) {
+    if (await checkLoggedIn()) {
       final userAttr = await Amplify.Auth.fetchUserAttributes();
 
-      await Future.forEach(userAttr, (element) { 
-        if(email == true && element.userAttributeKey == "email") {
+      await Future.forEach(userAttr, (element) {
+        if (email == true && element.userAttributeKey == "email") {
           result["email"] = element.value;
         }
 
-        if(name == true && element.userAttributeKey == "name") {
+        if (name == true && element.userAttributeKey == "name") {
           result["name"] = element.value;
+        }
+
+        if (cognitoId == true && element.userAttributeKey == "sub") {
+          result["cognitoId"] = element.value;
         }
       });
     }

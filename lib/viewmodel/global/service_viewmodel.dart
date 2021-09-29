@@ -154,7 +154,7 @@ class ServiceViewModel extends GetxController {
   }
 
   List<ServiceModel> getServicesWithCategory(CategoryModel category) {
-    return _categoryServices.value[category.name];
+    return _categoryServices[category.name];
   }
 
   bool get chartLoading {
@@ -170,19 +170,20 @@ class ServiceViewModel extends GetxController {
   }
 
   Map<String, List<ServiceModel>> get categoryServices {
-    return _categoryServices.value;
+    return _categoryServices;
   }
 
   List<CategoryModel> get categories {
-    return _categories.value;
+    return _categories;
   }
 
   Set<String> get likes {
-    return _likes.value;
+    return _likes;
   }
 
   @override
   void onInit() {
     super.onInit();
+    updateCategory();
   }
 }

@@ -26,6 +26,7 @@ class SubpingTextField extends StatelessWidget {
   final List<TextInputFormatter> inputFormatters;
   final int maxLines;
   final String hintText;
+  final int maxLength;
 
   SubpingTextField(
       {this.focusNode,
@@ -45,6 +46,7 @@ class SubpingTextField extends StatelessWidget {
       this.onSubmitted,
       this.inputFormatters,
       this.maxLines,
+      this.maxLength,
       this.hintText});
 
   @override
@@ -65,6 +67,7 @@ class SubpingTextField extends StatelessWidget {
         enableInteractiveSelection: readOnly ? false : true,
         inputFormatters: inputFormatters,
         maxLines: this.maxLines,
+        maxLength: this.maxLength,
         style: TextStyle(
           fontSize: 15,
         ),

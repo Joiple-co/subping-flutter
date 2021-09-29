@@ -46,7 +46,7 @@ class CreateNickName extends StatelessWidget {
                           labelText: "닉네임",
                           onChanged: userNickNameController.onChangedNickName,
                           focusNode: userNickNameController.inputFocusNode,
-                          helperText: "닉네임은 국문, 영문, 숫자로 4자리 이상 입력헤주세요.",
+                          helperText: "닉네임은 한국어, 영문, 숫자로 4자리 이상 입력헤주세요.",
                           errorText:
                               userNickNameController.nickNameError.value != ""
                                   ? userNickNameController.nickNameError.value

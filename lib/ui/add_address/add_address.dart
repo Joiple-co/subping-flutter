@@ -1,52 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:subping/viewmodel/local/main_tabs/my_page/address_viewModel.dart';
+import 'package:subping/viewmodel/global/user_viewmodel.dart';
+import 'package:subping/viewmodel/local/add_address/add_address_viewmodel.dart';
 
 class AddAddress extends StatelessWidget {
-  final controller = Get.put(AddAddressViewModel());
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TitleAppBar("주소 추가하기", hasBackButton: true,),
-      body: HeaderSafe(
-          child: HorizontalPadding(
-        child: GetBuilder<AddAddressViewModel>(
-            builder: (controller) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text.rich(
-                      SubpingTextSpan(children: [
-                        SubpingTextSpan(
-                          text: "구독 상품을 수령 받으실\n",
-                          fontSize: SubpingFontSize.title4,
-                          fontWeight: SubpingFontWeight.bold,
-                        ),
-                        SubpingTextSpan(
-                          text: "배송지와 정보",
-                          fontSize: SubpingFontSize.title4,
-                          fontWeight: SubpingFontWeight.bold,
-                          color: SubpingColor.subping100,
-                        ),
-                        SubpingTextSpan(
-                            text: "를 입력해 주세요",
-                            fontSize: SubpingFontSize.title4,
-                            fontWeight: SubpingFontWeight.bold)
-                      ]),
+    final addressViewModel = Get.put(AddAddressViewModel());
+    final userViewModel = Get.find<UserViewModel>();
+
+    addressViewModel.setUserDefaultInfo(
+        userViewModel.name, userViewModel.phoneNumber);
+
+    return Obx(
+      () => Scaffold(
+          backgroundColor: SubpingColor.white100,
+          resizeToAvoidBottomInset: false,
+          appBar: TitleAppBar(
+            "주소 추가하기",
+            hasBackButton: true,
+          ),
+          body: HeaderSafe(
+            child: HorizontalPadding(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Space(size: SubpingSize.tiny7),
+                    SubpingTextField(
+                      controller: addressViewModel.userNameController,
+                      labelText: "배송받는 분",
+                      maxLines: 1,
+                      onChanged: (_) => addressViewModel.checkValid(),
                     ),
-                    Space(size: SubpingSize.large28),
+                    Space(size: SubpingSize.medium14),
+                    SubpingTextField(
+                      controller: addressViewModel.phoneNumberController,
+                      labelText: "전화번호",
+                      maxLines: 1,
+                      inputFormatters: [addressViewModel.phoneNumberFormatter],
+                      onChanged: (_) => addressViewModel.checkValid(),
+                    ),
+                    Space(size: SubpingSize.medium14),
                     Row(
                       children: [
                         Flexible(
                             flex: 1000,
                             child: GestureDetector(
                               onTap: () {
-                                controller.routingKopo(context);
+                                addressViewModel.routingKopo(context);
                               },
                               child: Container(
-                                height: 110.h,
+                                height: 55,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                     color: SubpingColor.subping100,
@@ -63,12 +69,11 @@ class AddAddress extends StatelessWidget {
                         Flexible(
                             flex: 2529,
                             child: Container(
-                                height: 110.h,
                                 child: SubpingTextField(
-                                  controller: controller.zipCodeController,
-                                  labelText: "우편 번호",
-                                  readOnly: true,
-                                ))),
+                              controller: addressViewModel.zipCodeController,
+                              labelText: "우편 번호",
+                              readOnly: true,
+                            ))),
                       ],
                     ),
                     Space(size: SubpingSize.medium14),
@@ -77,30 +82,50 @@ class AddAddress extends StatelessWidget {
                         Flexible(
                           flex: 1,
                           child: Container(
-                              height: 110.h,
                               child: SubpingTextField(
-                                controller: controller.addressController,
-                                readOnly: true,
-                                labelText: "배송지",
-                              )),
+                            controller: addressViewModel.addressController,
+                            readOnly: true,
+                            labelText: "배송지",
+                          )),
                         )
                       ],
                     ),
                     Space(size: SubpingSize.medium14),
                     Container(
-                      height: 110.h,
                       child: SubpingTextField(
                         labelText: "상세 주소",
-                        focusNode: controller.detailedAddressFocusNode,
-                        onChanged: controller.onChangeDetailAddress,
+                        maxLines: 1,
+                        focusNode: addressViewModel.detailedAddressFocusNode,
+                        onChanged: addressViewModel.onChangeDetailAddress,
                         onSubmitted: (String str) {
-                          controller.onSubmit();
+                          if(addressViewModel.isValid.value) {
+                            addressViewModel.onSubmit();
+                          }
                         },
                       ),
                     ),
-                  ],
-                )),
-      )),
+                    Row(children: [
+                      Checkbox(
+                          activeColor: SubpingColor.subping100,
+                          value: addressViewModel.isDefault.value,
+                          onChanged: addressViewModel.onClickIsDefault),
+                      SubpingText("기본 주소로 사용할래요!", size: SubpingFontSize.body1)
+                    ])
+                  ]),
+                  Column(
+                    children: [
+                      SquareButton(
+                        text: "주소 추가하기", 
+                        onPressed: addressViewModel.onSubmit, 
+                        disabled: !addressViewModel.isValid.value,
+                        loading: addressViewModel.loading.value),
+                      Space(
+                        size: SubpingSize.large20,
+                      )
+                    ],
+                  )
+                ])),
+          )),
     );
   }
 }

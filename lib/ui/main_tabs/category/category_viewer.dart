@@ -18,8 +18,6 @@ class CategoryViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    serviceViewModel.updateCategoryServices(categoryModel);
-
     return Obx(
       () => RefreshIndicator(
         color: SubpingColor.subping100,

@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/search/search_bar.dart';
 import 'package:subping/ui/search/search_item.dart';
 
-
 import 'package:subping/viewmodel/local/search/search.dart';
 
 class Search extends StatelessWidget {
@@ -37,8 +36,6 @@ class Search extends StatelessWidget {
                                     .searchResult.serviceResult[index],
                               )),
                     ),
-
-
                     Space(
                       size: SubpingSize.tiny5,
                     ),
@@ -49,8 +46,6 @@ class Search extends StatelessWidget {
                       ),
                     ),
                     Space(size: SubpingSize.tiny5),
-
-
                     SubpingText("검색어 제안",
                         size: SubpingFontSize.body1,
                         color: SubpingColor.black80),
@@ -64,9 +59,18 @@ class Search extends StatelessWidget {
                               searchViewModel.searchResult.tagResult[index];
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 14),
-                            child: Row(                              
-                              children: [                             
-                                Icon(Icons.search),
+                            child: Row(
+                              children: [                                
+                                Container(                                 
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: AssetImage(
+                                            "assets/icon/search2.png")),
+                                  ),
+                                ),
                                 Space(
                                   size: SubpingSize.medium14,
                                 ),
@@ -103,3 +107,4 @@ class Search extends StatelessWidget {
     );
   }
 }
+

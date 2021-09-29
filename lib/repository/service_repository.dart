@@ -19,9 +19,11 @@ class ServiceRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      response.message.forEach((value) {
-        services.add(ServiceModel.fromJson(value));
-      });
+      if(response.success) {
+        response.message.forEach((value) {
+          services.add(ServiceModel.fromJson(value));
+        });
+      }
 
       return services;
     } catch (e) {
@@ -92,7 +94,7 @@ class ServiceRepository {
 
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-
+      
       response.message.forEach((value) {
         services.add(ServiceModel.fromJson(value));
       });

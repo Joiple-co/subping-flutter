@@ -46,6 +46,7 @@ class UserAccount extends StatelessWidget {
                         errorText: viewModel.emailError.value != ""
                             ? viewModel.emailError.value
                             : null,
+                        maxLines: 1,
                       ),
                       Space(size: SubpingSize.large15),
                       SubpingTextField(
@@ -58,6 +59,7 @@ class UserAccount extends StatelessWidget {
                             ? viewModel.passwordError.value
                             : null,
                         obscureText: true,
+                        maxLines: 1,
                       ),
                       Space(size: SubpingSize.large15),
                       SubpingTextField(
@@ -73,6 +75,7 @@ class UserAccount extends StatelessWidget {
                             ? viewModel.passwordCheckError.value
                             : null,
                         obscureText: true,
+                        maxLines: 1,
                       )
                     ],
                   )),

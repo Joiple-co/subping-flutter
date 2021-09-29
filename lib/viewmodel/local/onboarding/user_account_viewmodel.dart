@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
+import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
 class UserAccountViewModel extends GetxController {
   final itemArray = {
@@ -135,25 +136,14 @@ class UserAccountViewModel extends GetxController {
   }
 
   void onPressNext() async {
-    loading.value = true;
-
     if (await checkEmailVaild() && checkPasswordValid()) {
-      Cognito cognito = Cognito();
-      BodyModel response = await cognito.signUpStart(email.value, password.value);
+      final authViewModel = Get.find<AuthViewModel>();
+      authViewModel.email = email.value;
+      authViewModel.password = password.value;
 
-      loading.value = false;
-      
-      if(response.success) {
-        Get.toNamed('/passAuth');
-      }
-
-      else {
-        ErrorHandler.errorHandler(response.message);
-        loading.value = false;
-      }
+      Get.toNamed('/passAuth');
     } else {
       ErrorHandler.errorHandler("UserAccountException");
-      loading.value = false;
     }
   }
 

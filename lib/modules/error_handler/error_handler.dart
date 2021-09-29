@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class ErrorHandler {
   static errorHandler(String error) {
+    print(error);
+    
     switch (error) {
       case "UserExistException":
         Get.dialog(AlertDialog(
@@ -103,6 +106,39 @@ class ErrorHandler {
             actions: [
               TextButton(
                   onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
+      
+      case "AddCardException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("카드 등록에 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
+      
+      case "EditUserAddressException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("주소 수정에 실패했어요.\n잠시뒤에 다시 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(), child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
+            ]));
+        break;
+      
+      case "NoUserExistException":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("유저정보를 불러오기에 실패했어요.\n로그인이 다시 필요해요\n(오류 지속시 고객센터로 문의해 주세요)"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Cognito().signOut();
+                    Get.offAllNamed("/splash");
+                  }, child: SubpingText("확인", size: SubpingFontSize.body1, color: SubpingColor.subping100))
             ]));
         break;
 

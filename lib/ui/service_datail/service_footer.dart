@@ -24,14 +24,14 @@ class ServiceFooter extends StatelessWidget {
             onTap: toggleUserLike,
             child: userLike
                 ? Container(
-                    width: 110.w,
-                    height: 110.w,
+                    width: 55,
+                    height: 55,
                     color: SubpingColor.back20,
                     child: Icon(Icons.favorite, color: SubpingColor.warning100),
                   )
                 : Container(
-                    width: 110.w,
-                    height: 110.w,
+                    width: 55,
+                    height: 55,
                     color: SubpingColor.back20,
                     child: Icon(Icons.favorite, color: SubpingColor.black60),
                   ),
@@ -42,7 +42,6 @@ class ServiceFooter extends StatelessWidget {
           SquareButton(
             text: "구독하기",
             width: 680.w,
-            height: 110.h,
             disabled: products.length == 0,
             onPressed: () => Get.toNamed("/startSubscribe/${serviceId}"),
           ),
