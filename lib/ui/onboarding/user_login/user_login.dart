@@ -42,6 +42,7 @@ class UserLogin extends StatelessWidget {
                       labelText: "이메일",
                       focusNode: viewModel.emailFocus,
                       onChanged: viewModel.onChangeEmail,
+                      maxLines: 1,
                       onSubmitted: viewModel.onPressEmailDone,
                       errorText: viewModel.emailError.value != ""
                           ? viewModel.emailError.value
@@ -52,6 +53,7 @@ class UserLogin extends StatelessWidget {
                       labelText: "비밀번호",
                       focusNode: viewModel.passwordFocus,
                       onChanged: viewModel.onChangePassword,
+                      maxLines: 1,
                       onSubmitted: viewModel.onPressPasswordDone,
                       errorText: viewModel.passwordError.value != ""
                           ? viewModel.passwordError.value

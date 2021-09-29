@@ -38,6 +38,7 @@ class Home extends StatelessWidget {
           body: HeaderSafe(
             hasBottomSafe: false,
             child: RefreshIndicator(
+              backgroundColor: SubpingColor.white100,
               onRefresh: () async {
                 await serviveViewModel.updateCharts();
                 await alarmViewModel.updateAlarm();
