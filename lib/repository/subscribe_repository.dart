@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:ntp/ntp.dart';
 import 'package:subping/model/body_model.dart';
+import 'package:subping/model/subscribe_model.dart';
 import 'package:subping/modules/api/api.dart';
 
 class SubscribeRepository {
@@ -25,6 +26,44 @@ class SubscribeRepository {
 
     final decodedResponse = utf8.decode(rawResponse.data);
     BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+    if(response.success) {
+
+    }
+
     print(response.message);
   } 
+
+  Future<List<SubscribeModel>> getSubscribes() async {
+    List<SubscribeModel> subscribes = [];
+
+    final rawResponse = await API.post("user", "/getSubscribe");
+    final decodedResponse = utf8.decode(rawResponse.data);
+    BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+    
+    if(response.success) {
+      response.message.forEach((item) {
+        subscribes.add(SubscribeModel.fromJson(item));
+      });
+    }
+    
+    return subscribes;
+  }
+
+  Future<SubscribeModel> getSubscribe({serviceId: String}) async {
+    SubscribeModel subscribe;
+
+    final rawResponse = await API.post("user", "/getSubscribe", body: {
+      "serviceId": serviceId
+    });
+
+    final decodedResponse = utf8.decode(rawResponse.data);
+    BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+    
+    if(response.success) {
+      subscribe = SubscribeModel.fromJson(response.message[0]);
+    }
+    
+    return subscribe;
+  }
 }

@@ -8,6 +8,7 @@ import 'package:subping/ui/service_datail/service_products.dart';
 import 'package:subping/ui/service_datail/service_review.dart';
 import 'package:subping/viewmodel/global/product_viewmodel.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
+import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 
 class ServiceDetail extends StatelessWidget {
   final serviceId = Get.parameters['param'];
@@ -16,10 +17,12 @@ class ServiceDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
     final productViewModel = Get.find<ProductViewModel>();
+    final subscribeViewModel = Get.find<SubscribeViewModel>();
 
     serviceViewModel.updateService(serviceId);
     productViewModel.updateProducts(serviceId);
-
+    subscribeViewModel.updateSubscribe(serviceId);
+    
     return Obx(() {
       final service = serviceViewModel.services[serviceId].value;
       final products = productViewModel.getProducts(serviceId);
@@ -150,6 +153,7 @@ class ServiceDetail extends StatelessWidget {
               toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId),
               serviceId: serviceId,
               products: products,
+              subscribes: subscribeViewModel.subscribe
             )
           ]),
         ),
