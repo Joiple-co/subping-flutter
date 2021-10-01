@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:subping/const/const.dart';
 import 'package:subping/model/product_model.dart';
+import 'package:subping/model/service_model.dart';
 import 'package:subping/model/user_address_model.dart';
 import 'package:subping/model/user_card_model.dart';
+import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/subscribe_repository.dart';
 
 class StartSubscribeViewModel extends GetxController {
@@ -11,12 +13,12 @@ class StartSubscribeViewModel extends GetxController {
   Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
   RxString _selectedAddress = "".obs;
   RxString _selectedCard = "".obs;
-  String _serviceId = "";
+  ServiceModel _service;
 
   SubscribeRepository _subscribeRepository = SubscribeRepository();
 
-  void initService(String serviceId) {
-    _serviceId = serviceId;
+  void initService(ServiceModel service) {
+    _service = service;
   }
 
   void initProducts(List<ProductModel> products) {
@@ -76,6 +78,8 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void onStartSubscribe() async {
+    ErrorHandler.errorHandler("default");
+    
     final subscribeItems = [];
 
     _selectedProducts.forEach((key, value) => subscribeItems.add({
@@ -87,7 +91,7 @@ class StartSubscribeViewModel extends GetxController {
       userCardId: _selectedCard.value,
       addressId: _selectedAddress.value,
       period: PeriodInnerString[_selectedPeriod.value],
-      serviceId: _serviceId
+      serviceId: _service.id
     );
   }
 
@@ -102,7 +106,6 @@ class StartSubscribeViewModel extends GetxController {
   void onSelectCard(String cardId) {
     _selectedCard.value = cardId;
   }
-
 
   int getSelectedTotalAmount() {
     int total = 0;
@@ -142,5 +145,15 @@ class StartSubscribeViewModel extends GetxController {
 
   String get selectedCard {
     return _selectedCard.value;
+  }
+
+  bool get isValid {
+    bool valid = getSelectedTotalCount() != 0 && _selectedPeriod != null && _selectedCard.value != null;
+
+    if(_service.type != "online") {
+      valid = valid && _selectedAddress.value != "";
+    }
+
+    return valid;
   }
 }
