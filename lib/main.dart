@@ -14,7 +14,7 @@ import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
-import 'package:subping/main.mapper.g.dart';
+//import 'package:subping/main.mapper.g.dart';
 
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
@@ -45,7 +45,7 @@ import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
 void main() async {
-  initializeJsonMapper();
+  //initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(SubpingApp());

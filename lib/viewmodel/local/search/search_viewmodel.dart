@@ -9,7 +9,8 @@ class SearchViewModel extends GetxController {
   RxString _searchText = "".obs;
   Rx<SearchModel> _searchResult = SearchModel().obs;
   TextEditingController _searchTextEditingController = TextEditingController();
-
+  RxBool isFocused = false.obs;
+  
   @override
   void onInit() {
     super.onInit();

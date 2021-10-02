@@ -79,7 +79,7 @@ class _CategoryState extends State<Category> {
                       controller: tabController,
                       children: List.generate(
                           serviceViewModel.categories.length, (index) {
-                        return CategoryViewer(index.toString(),
+                        return CategoryViewer(index.toString(),  //categoryviewer만 제외하라
                             serviceViewModel.categories[index], serviceViewModel, serviceViewModel.categoryServices[serviceViewModel.categories[index].name]);
                       }),
                     ),
