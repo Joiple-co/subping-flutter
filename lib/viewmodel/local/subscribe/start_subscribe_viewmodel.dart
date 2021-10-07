@@ -56,7 +56,7 @@ class StartSubscribeViewModel extends GetxController {
     final cardIds = cards.keys;
 
     if(cardIds.length != 0) {
-      _selectedCard.value = cardIds.elementAt(1);
+      _selectedCard.value = cardIds.elementAt(0);
     }
   }
   

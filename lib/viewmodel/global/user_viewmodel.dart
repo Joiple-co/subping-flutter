@@ -42,7 +42,11 @@ class UserViewModel extends GetxController {
   }
   
   Future<void> deleteCard(UserCardModel card) async {
+    final response = await _userRepository.deleteCard(card.id);
 
+    if(response) {
+      updateUserCards();
+    }
   }
 
   void checkUserStatus() {

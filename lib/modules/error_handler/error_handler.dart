@@ -182,7 +182,8 @@ class ErrorHandler {
       case "UserHasSameServiceSubscribeException":
         Get.dialog(AlertDialog(
             title: Text("구독에 실패했어요!"),
-            content: Text("이미 구독중인 서비스이에요.\n구독중인 서비스의 경우 구독 관리를 통해 구독 내용을 변경할 수 있어요!"),
+            content: Text(
+                "이미 구독중인 서비스이에요.\n구독중인 서비스의 경우 구독 관리를 통해 구독 내용을 변경할 수 있어요!"),
             actions: [
               TextButton(
                   onPressed: () {
@@ -226,35 +227,51 @@ class ErrorHandler {
         break;
 
       case "NoExistAddressException":
-        Get.dialog(AlertDialog(
-            title: Text("확인이 필요해요!"),
-            content: Text("잘못된 주소입니다.\n고객센터로 문의 부탁드립니다."),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Get.back();
-                    Get.back();
-                  },
-                  child: SubpingText("확인",
-                      size: SubpingFontSize.body1,
-                      color: SubpingColor.subping100))
-            ]),
+        Get.dialog(
+            AlertDialog(
+                title: Text("확인이 필요해요!"),
+                content: Text("잘못된 주소입니다.\n고객센터로 문의 부탁드립니다."),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Get.back();
+                        Get.back();
+                      },
+                      child: SubpingText("확인",
+                          size: SubpingFontSize.body1,
+                          color: SubpingColor.subping100))
+                ]),
             barrierDismissible: false);
         break;
-      
+
       case "NoNetworkException":
+        Get.dialog(
+          AlertDialog(
+              title: Text("확인이 필요해요!"),
+              content: Text("인터넷 연결이 끊어졌어요.\n인터넷 연결을 확인해주세요!"),
+              actions: [
+                TextButton(
+                    onPressed: () => Get.back(),
+                    child: SubpingText("확인",
+                        size: SubpingFontSize.body1,
+                        color: SubpingColor.subping100))
+              ]),
+        );
+        break;
+
+      case "DeleteCardException":
         Get.dialog(AlertDialog(
             title: Text("확인이 필요해요!"),
-            content: Text("인터넷 연결이 끊어졌어요.\n인터넷 연결을 확인해주세요!"),
+            content: Text("카드 연결 해제에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
             actions: [
               TextButton(
                   onPressed: () => Get.back(),
                   child: SubpingText("확인",
                       size: SubpingFontSize.body1,
                       color: SubpingColor.subping100))
-            ]),);
+            ]));
         break;
-            
+
       default:
         Get.dialog(AlertDialog(
             title: Text("확인이 필요해요!"),
