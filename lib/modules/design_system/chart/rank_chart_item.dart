@@ -45,23 +45,27 @@ class RankChartItem extends StatelessWidget {
                     ),
                   ),
                   Space(size: SubpingSize.large15),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SubpingText(service.name, size: SubpingFontSize.body1),
-                        SubpingText(service.summary,
-                            size: SubpingFontSize.body4),
-                        Space(size: SubpingSize.medium11),
-                        Row(
-                          children: List.generate(service.tag.length, (index) {
-                            bool marginFlag = (index != 0);
-                            return PoundButton(
-                              "#${service.tag[index]}",
-                              marginFlag: marginFlag,
-                            );
-                          }),
-                        )
-                      ])
+                  Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SubpingText(service.name, size: SubpingFontSize.body1),
+                          SubpingText(service.summary,
+                              size: SubpingFontSize.body4,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis),
+                          Space(size: SubpingSize.medium11),
+                          Row(
+                            children: List.generate(service.tag.length, (index) {
+                              bool marginFlag = (index != 0);
+                              return PoundButton(
+                                "#${service.tag[index]}",
+                                marginFlag: marginFlag,
+                              );
+                            }),
+                          )
+                        ]),
+                  )
                 ],
               ),
             )));

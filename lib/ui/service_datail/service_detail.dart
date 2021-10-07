@@ -112,12 +112,12 @@ class ServiceDetail extends StatelessWidget {
                                   Space(
                                     size: SubpingSize.large25,
                                   ),
-                                  Wrap(children: [
-                                    SubpingText(
+                                  Expanded(
+                                    child: SubpingText(
                                       service.summary,
                                       size: null,
-                                    )
-                                  ]),
+                                    ),
+                                  ),
                                 ],
                               ),
                               Space(size: SubpingSize.large25)

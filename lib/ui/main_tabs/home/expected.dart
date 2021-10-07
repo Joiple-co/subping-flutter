@@ -4,11 +4,15 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
+import 'package:subping/viewmodel/local/main_tabs/main_tabs_viewmodel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
 class Expected extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final subscribeViewModel = Get.find<SubscribeViewModel>();
+    final mainTabsViewModel = Get.find<MainTabsViewModel>();
+    final subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
 
     return HorizontalPadding(
       child: Column(
@@ -32,6 +36,7 @@ class Expected extends StatelessWidget {
             child: Material(
               color: Colors.transparent,
               child: GestureDetector(
+                
                 child: Container(
                   alignment: Alignment.center,
                   child: Row(
@@ -41,7 +46,7 @@ class Expected extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SubpingText("구독중인 상품의 총 월 결제액",
+                            SubpingText("구독중인 상품의 총액",
                                 color: SubpingColor.white100,
                                 fontWeight: SubpingFontWeight.regular,
                                 size: SubpingFontSize.body1),
@@ -73,7 +78,10 @@ class Expected extends StatelessWidget {
                     ],
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  mainTabsViewModel.onChangeTabIndex(2);
+                  subscribeManageViewModel.changeTab(0);
+                },
               ),
             ),
           )

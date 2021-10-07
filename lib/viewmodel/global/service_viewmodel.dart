@@ -39,21 +39,22 @@ class ServiceViewModel extends GetxController {
     }
   }
 
-  Future<void> updateCategory() async {
+  Future<void> updateCategory({bool updateServices=false}) async {
     final response = await _serviceRepository.getCategories();
 
     _categories.value = response;
     _categories.refresh();
 
-    response.forEach((item) {
-      updateCategoryServices(item);
-    });
+    if(updateServices) {
+      response.forEach((item) {
+        updateCategoryServices(item);
+      });
+    }
   }
 
   Future<void> updateCategoryServices(CategoryModel categoryModel,
       {String repeatKey}) async {
-    if (repeatKey == null &&
-        (_categoryServices.value[categoryModel.name] ?? []).length == 0) {
+    if (repeatKey == null) {
       final response =
           (await _serviceRepository.getServicesByCategory(categoryModel));
       _categoryServices.value[categoryModel.name] = response;
@@ -184,6 +185,5 @@ class ServiceViewModel extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    updateCategory();
   }
 }

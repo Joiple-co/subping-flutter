@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -17,7 +19,7 @@ class SubscribeManageViewModel extends GetxController with SingleGetTickerProvid
 
   Future<void> updateSubscribeSchedule () async {
     final schedules =  await _subscribeRepository.getSubscribeSchedule();
-    _focusedMonth.value = 0;
+
     _schedules.value = schedules;
     _schedules.refresh();
   }

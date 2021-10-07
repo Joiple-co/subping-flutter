@@ -16,6 +16,7 @@ class SubscribeCalendar extends StatelessWidget {
     return Obx(() {
       final schdules = subscribeManageViewModel
           .schedules[subscribeManageViewModel.focusedMonth];
+      final sortedDates = schdules.keys.toList()..sort();
 
       return Container(
         color: SubpingColor.white100,
@@ -52,14 +53,14 @@ class SubscribeCalendar extends StatelessWidget {
                     ),
                   ),
                   Container(
-                      height: 120,
+                      height: 140,
                       child: ListView(
-                          padding: EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
                           physics: AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           children:
-                              List.generate(schdules.keys.length, (index) {
-                            final date = schdules.keys.elementAt(index);
+                              List.generate(sortedDates.length, (index) {
+                            final date = sortedDates[index];
                             final schedulesOfDate = schdules[date];
 
                             return Row(children: [
@@ -83,9 +84,9 @@ class SubscribeCalendar extends StatelessWidget {
                       child: ScrollablePositionedList.builder(
                         padding: EdgeInsets.only(top: 10),
                         physics: AlwaysScrollableScrollPhysics(),
-                        itemCount: schdules.keys.length,
+                        itemCount: sortedDates.length,
                         itemBuilder: (context, index) {
-                          final date = schdules.keys.elementAt(index);
+                          final date = sortedDates[index];
                           final schedulesOfDate = schdules[date];
 
                           return Row(
