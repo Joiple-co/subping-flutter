@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/like_service/like_service_item.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
+import 'package:subping/viewmodel/local/like_service/like_service_viewmodel.dart';
 
 class LikeService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
-    serviceViewModel.updateLikeServices();
+    final likeServiceViewModel = Get.find<LikeServiceViewModel>();
+    
+    likeServiceViewModel.updateLikeServices();
 
     return Obx(() => HeaderSafe(
         hasBottomSafe: false,
@@ -19,6 +22,7 @@ class LikeService extends StatelessWidget {
             ),
             body: HorizontalPadding(
               child: RefreshIndicator(
+                key: likeServiceViewModel.refreshIndicatorKey,
                 backgroundColor: SubpingColor.white100,
                 onRefresh: serviceViewModel.updateLikeServices,
                 child: ListView.builder(

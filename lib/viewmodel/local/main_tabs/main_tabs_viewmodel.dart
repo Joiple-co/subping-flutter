@@ -5,6 +5,7 @@ class MainTabsViewModel extends GetxController {
   RxInt tabIndex = 0.obs;
 
   void onChangeTabIndex(int index) {
+    print(index);
     tabIndex(index);
   }
 

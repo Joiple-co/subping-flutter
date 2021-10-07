@@ -15,9 +15,13 @@ class EditAddress extends StatelessWidget {
   Widget build(BuildContext context) {
     final addressViewModel = Get.put(EditAddressViewModel());
     final userViewModel = Get.find<UserViewModel>();
-    final UserAddressModel address = userViewModel.userAddreses[addressId];
+    UserAddressModel address = userViewModel.userAddreses[addressId];
 
     addressViewModel.setExistAddress(address);
+
+    if (address == null) {
+      address = new UserAddressModel(isDefault: false);
+    }
 
     return Obx(
       () => Scaffold(
@@ -120,7 +124,7 @@ class EditAddress extends StatelessWidget {
                             },
                           ),
                         ),
-                        !address.isDefault
+                        !(address.isDefault)
                             ? Obx(
                                 () => Row(children: [
                                   Checkbox(

@@ -58,7 +58,6 @@ class ServiceFooter extends StatelessWidget {
                         text: "리뷰적기",
                         type: "outline",
                         width: 330.w,
-                        disabled: products.length == 0,
                         onPressed: () =>
                             Get.toNamed("/startSubscribe/${serviceId}"),
                       ),
@@ -68,7 +67,6 @@ class ServiceFooter extends StatelessWidget {
                       SquareButton(
                         text: "관리하기",
                         width: 330.w,
-                        disabled: products.length == 0,
                         onPressed: () =>
                             Get.toNamed("/startSubscribe/${serviceId}"),
                       ),

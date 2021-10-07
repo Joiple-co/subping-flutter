@@ -1,210 +1,254 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
-import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_block.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe/subscribe_manage_viewModel.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/modules/helper/helper.dart';
+import 'package:subping/ui/main_tabs/subscribe_manage/calendar_date.dart';
+import 'package:subping/ui/main_tabs/subscribe_manage/timeline_status.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
 class SubscribeCalendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetX<SubscribeManageViewModel>(
-      builder: (viewModel) => viewModel.isLoading
-          ? SubpingLoading()
-          : Container(
-              margin: EdgeInsets.fromLTRB(0, 20.h, 0, 0),
-              child: Column(children: [
-                Container(
-                    decoration: BoxDecoration(
-                        color: SubpingColor.white100,
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20))),
-                    child: Column(
-                      children: [
-                        TableCalendar(
-                          key: PageStorageKey(
-                              "subscribe_calendar_table_calendar"),
-                          calendarFormat: viewModel.format.value,
-                          startingDayOfWeek: StartingDayOfWeek.monday,
-                          calendarBuilders: CalendarBuilders(
-                            headerTitleBuilder: (context, day) {
-                              return Center(
-                                  child: SubpingText(
-                                '${day.month}월',
-                                fontWeight: SubpingFontWeight.bold,
-                              ));
-                            },
-                            dowBuilder: (context, day) {
-                              List<Map<String, dynamic>> date = [
-                                {"day": "일", "color": SubpingColor.warning100},
-                                {"day": "월", "color": SubpingColor.black100},
-                                {"day": "화", "color": SubpingColor.black100},
-                                {"day": "수", "color": SubpingColor.black100},
-                                {"day": "목", "color": SubpingColor.black100},
-                                {"day": "금", "color": SubpingColor.black100},
-                                {"day": "토", "color": SubpingColor.subping100},
-                              ];
-                              return Center(
-                                child: SubpingText(date[day.weekday - 1]["day"],
-                                    size: SubpingFontSize.body5,
-                                    color: date[day.weekday - 1]["color"]),
-                              );
-                            },
-                            todayBuilder: (context, day, _) {
-                              return Center(child: SubpingText('${day.day}'));
-                            },
-                            selectedBuilder: (context, day, _) {
-                              return Center(
-                                child: Container(
-                                  width: 32,
-                                  height: 32,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: SubpingColor.subping100,
-                                      borderRadius: BorderRadius.circular(30)),
-                                  child: SubpingText(
-                                    '${day.day}',
-                                    fontWeight: SubpingFontWeight.regular,
-                                    size: SubpingSize.medium12,
-                                    color: SubpingColor.white100,
-                                  ),
-                                ),
-                              );
-                            },
-                            defaultBuilder: (context, day, _) {
-                              return Center(
-                                child: Container(
-                                  width: 32,
-                                  height: 32,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: SubpingColor.back20,
-                                      borderRadius: BorderRadius.circular(30)),
-                                  child: SubpingText(
-                                    '${day.day}',
-                                    fontWeight: SubpingFontWeight.regular,
-                                    size: SubpingSize.medium12,
-                                    color: SubpingColor.black60,
-                                  ),
-                                ),
-                              );
-                            },
-                            disabledBuilder: (context, day, focusedDay) {
-                              return Center(
-                                child: SubpingText(
-                                  '${day.day}',
-                                  fontWeight: SubpingFontWeight.regular,
-                                  size: SubpingSize.medium12,
-                                  color: SubpingColor.black60,
-                                ),
-                              );
-                            },
-                          ),
-                          headerStyle: HeaderStyle(
-                              formatButtonVisible: false,
-                              headerPadding:
-                                  EdgeInsets.fromLTRB(0, 0, 0, 10.h)),
-                          firstDay: viewModel.startDate.value,
-                          lastDay: viewModel.endDate.value,
-                          focusedDay: viewModel.focusedDate.value,
-                          onDaySelected: viewModel.onDaySelected,
-                          onFormatChanged: viewModel.onFormatChanged,
-                          onHeaderTapped: viewModel.onHeaderTapped,
-                          selectedDayPredicate: viewModel.selectedDayPredicate,
-                          enabledDayPredicate: viewModel.isLoading
-                              ? null
-                              : viewModel.enabledDayPredicate,
-                          availableGestures: AvailableGestures.all,
-                          availableCalendarFormats: const {
-                            CalendarFormat.month: 'Month',
-                            CalendarFormat.week: 'Week',
-                          },
-                        ),
-                        Space(size: SubpingSize.tiny5),
-                        Container(
-                          height: 5,
-                          color: SubpingColor.white100,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: SubpingColor.black30),
-                            width: 50,
-                          ),
-                        ),
-                        Space(size: SubpingSize.tiny5)
-                      ],
-                    )),
-                Expanded(
-                    child: HorizontalPadding(
-                  child: ScrollablePositionedList.builder(
-                    key: PageStorageKey("subscribe_calendar_list"),
-                    initialScrollIndex: viewModel.isLoading
-                        ? 0
-                        : viewModel.calcIndex(viewModel.focusedDate.value),
-                    itemScrollController: viewModel.itemScrollController,
-                    itemPositionsListener: viewModel.itemPositionsListener,
-                    itemBuilder: (context, index) {
-                      final dateOfIndex = viewModel.enableDays[index];
-                      final dateFormatter = DateFormat("yyyy년 MM월 dd일");
-                      List<String> date = ["월", "화", "수", "목", "금", "토", "일"];
+    final subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
 
-                      return Container(
-                          padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: Column(
+    return Obx(() {
+      final schdules = subscribeManageViewModel
+          .schedules[subscribeManageViewModel.focusedMonth];
+
+      return Container(
+        color: SubpingColor.white100,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 10,
+              color: SubpingColor.back20,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    child: GestureDetector(
+                      onTap: subscribeManageViewModel.toggleFocusedMonth,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Space(size: SubpingSize.medium14),
+                          Row(children: [
+                            SubpingText(
+                              "${subscribeManageViewModel.focusedMonth}월 구독 리스트",
+                              size: SubpingFontSize.title6,
+                            ),
+                            Space(size: SubpingSize.tiny5,),
+                            Icon(Icons.change_circle_rounded, color: SubpingColor.black60, size: SubpingFontSize.title2)
+                          ]),
+                          Space(size: SubpingSize.medium14),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                      height: 120,
+                      child: ListView(
+                          padding: EdgeInsets.only(left: 20),
+                          physics: AlwaysScrollableScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          children:
+                              List.generate(schdules.keys.length, (index) {
+                            final date = schdules.keys.elementAt(index);
+                            final schedulesOfDate = schdules[date];
+
+                            return Row(children: [
+                              CalendarDate(
+                                  highlight:
+                                      subscribeManageViewModel.highlightIndex ==
+                                          index,
+                                  date: DateTime.parse(date),
+                                  schedules: schedulesOfDate,
+                                  onClickDate: () => subscribeManageViewModel
+                                      .jumpToIndex(index)),
+                              Space(
+                                size: SubpingSize.medium14,
+                              )
+                            ]);
+                          }))),
+                  Space(size: SubpingSize.medium14),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: ScrollablePositionedList.builder(
+                        padding: EdgeInsets.only(top: 10),
+                        physics: AlwaysScrollableScrollPhysics(),
+                        itemCount: schdules.keys.length,
+                        itemBuilder: (context, index) {
+                          final date = schdules.keys.elementAt(index);
+                          final schedulesOfDate = schdules[date];
+
+                          return Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (dateOfIndex.firstOfMonth ?? false)
-                                Container(
-                                    margin: EdgeInsets.only(
-                                        bottom: SubpingSize.medium10),
-                                    child: SubpingText(
-                                      '${dateOfIndex.date.month}월',
-                                      size: SubpingFontSize.title5,
-                                      fontWeight: SubpingFontWeight.bold,
-                                    )),
-                              SubpingText(
-                                '${dateFormatter.format(dateOfIndex.date)} ${date[dateOfIndex.date.weekday - 1]}요일',
-                                size: SubpingFontSize.body4,
-                                fontWeight: SubpingFontWeight.bold,
-                                color: SubpingColor.subping100,
+                              Container(
+                                width: 60,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: SubpingText(
+                                    "${DateTime.parse(date).day}일",
+                                    size: SubpingFontSize.title5,
+                                    fontWeight: SubpingFontWeight.bold,
+                                  ),
+                                ),
                               ),
-                              SubscribeBlock(
-                                subscribeDataOfDay: dateOfIndex.itemList,
-                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: List.generate(
+                                      schedulesOfDate.length, (index) {
+                                    final schedule = schedulesOfDate[index];
+
+                                    return Column(children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: SubpingColor.back20,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        padding: EdgeInsets.all(10),
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    ClipOval(
+                                                      child: Image.network(
+                                                        schedule.serviceLogoUrl,
+                                                        width: 25,
+                                                        height: 25,
+                                                      ),
+                                                    ),
+                                                    Space(
+                                                        size:
+                                                            SubpingSize.tiny5),
+                                                    SubpingText(
+                                                        schedule.serviceName,
+                                                        size: SubpingFontSize
+                                                            .title6)
+                                                  ],
+                                                ),
+                                                TimeLineStatus(
+                                                  status: schedule.status,
+                                                )
+                                              ],
+                                            ),
+                                            Space(size: SubpingSize.medium14),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: List.generate(
+                                                          schedule.productName
+                                                              .length, (index) {
+                                                        return Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              child:
+                                                                  SubpingText(
+                                                                schedule.productName[
+                                                                    index],
+                                                                size:
+                                                                    SubpingFontSize
+                                                                        .body1,
+                                                                color:
+                                                                    SubpingColor
+                                                                        .black80,
+                                                              ),
+                                                            ),
+                                                            Space(
+                                                              size: SubpingSize
+                                                                  .large20,
+                                                            ),
+                                                            Container(
+                                                                width: 2,
+                                                                height: 25,
+                                                                color:
+                                                                    SubpingColor
+                                                                        .black30),
+                                                            Space(
+                                                              size: SubpingSize
+                                                                  .large20,
+                                                            )
+                                                          ],
+                                                        );
+                                                      })),
+                                                ),
+                                                SubpingText(
+                                                  "${Helper.setComma(schedule.totalPrice)}원",
+                                                  size: SubpingFontSize.body1,
+                                                  fontWeight:
+                                                      SubpingFontWeight.bold,
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Space(
+                                        size: SubpingSize.medium10,
+                                      )
+                                    ]);
+                                  }),
+                                ),
+                              )
                             ],
-                          ));
-                    },
-                    itemCount: viewModel.enableDays.length,
-                  ),
-                )),
-                ValueListenableBuilder(
-                    valueListenable:
-                        viewModel.itemPositionsListener.itemPositions,
-                    builder: (context, positions, child) {
-                      if (positions.isNotEmpty) {
-                        num minIndex = positions
-                            .where((ItemPosition position) =>
-                                position.itemTrailingEdge > 0)
-                            .reduce((ItemPosition min, ItemPosition position) =>
-                                position.itemTrailingEdge <=
-                                        min.itemTrailingEdge
-                                    ? position
-                                    : min)
-                            .index;
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((timeStamp) {
-                          viewModel.onChangeViewItem(minIndex);
-                        });
-                      }
-                      return SizedBox.shrink();
-                    })
-              ]),
+                          );
+                        },
+                        itemScrollController:
+                            subscribeManageViewModel.itemScrollController,
+                        itemPositionsListener:
+                            subscribeManageViewModel.itemPositionsListener,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
-    );
+            ValueListenableBuilder(
+                valueListenable: subscribeManageViewModel
+                    .itemPositionsListener.itemPositions,
+                builder: (context, positions, child) {
+                  if (positions.isNotEmpty) {
+                    num minIndex = positions
+                        .where((ItemPosition position) =>
+                            position.itemTrailingEdge > 0)
+                        .reduce((ItemPosition min, ItemPosition position) =>
+                            position.itemTrailingEdge <= min.itemTrailingEdge
+                                ? position
+                                : min)
+                        .index;
+                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                      subscribeManageViewModel.onChangeMinIndex(minIndex);
+                    });
+                  }
+                  return SizedBox.shrink();
+                }),
+          ],
+        ),
+      );
+    });
   }
 }

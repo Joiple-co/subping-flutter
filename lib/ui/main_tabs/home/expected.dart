@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/modules/helper/helper.dart';
+import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 
 class Expected extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final subscribeViewModel = Get.find<SubscribeViewModel>();
+
     return HorizontalPadding(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +31,7 @@ class Expected extends StatelessWidget {
                 ]),
             child: Material(
               color: Colors.transparent,
-              child: InkWell(
+              child: GestureDetector(
                 child: Container(
                   alignment: Alignment.center,
                   child: Row(
@@ -42,11 +46,12 @@ class Expected extends StatelessWidget {
                                 fontWeight: SubpingFontWeight.regular,
                                 size: SubpingFontSize.body1),
                             Space(size: SubpingSize.tiny5),
-                            SubpingText(
-                              Helper.setComma(22121211) + " 원",
-                              fontWeight: FontWeight.bold,
-                              size: SubpingFontSize.title1,
-                              color: SubpingColor.white100,
+                            Obx(() => SubpingText(
+                                Helper.setComma(subscribeViewModel.totalPrice) + " 원",
+                                fontWeight: FontWeight.bold,
+                                size: SubpingFontSize.title1,
+                                color: SubpingColor.white100,
+                              ),
                             )
                           ],
                         ),

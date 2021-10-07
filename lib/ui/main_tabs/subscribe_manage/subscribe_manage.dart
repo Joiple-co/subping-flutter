@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_calendar.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe/subscribe_manage_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
 class SubscribeManage extends StatelessWidget {
   const SubscribeManage() : super();
 
   @override
   Widget build(BuildContext context) {
-    Get.put(SubscribeManageViewModel());
-    return GetX<SubscribeManageViewModel>(
-      builder: (viewModel) => DefaultTabController(
-        length: viewModel.categories.length,
+    final subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
+    subscribeManageViewModel.updateSubscribeSchedule();
+
+    return DefaultTabController(
+        length: 2,
         child: HeaderSafe(
           hasBottomSafe: false,
           child: Scaffold(
@@ -37,21 +38,20 @@ class SubscribeManage extends StatelessWidget {
                       indicatorWeight: 0,
                       isScrollable: true,
                       tabs: List.generate(
-                        viewModel.categories.length,
+                        2,
                         (index) => Tab(
-                            child: SubpingText(viewModel.categories[index])),
+                            child: SubpingText(["관리", "캘린더"][index])),
                       ),
-                      controller: viewModel.tabController,
+                      controller: subscribeManageViewModel.tabController,
                     ),
                   ),
                   Expanded(
                     child: TabBarView(
-                        controller: viewModel.tabController,
-                        children: [SubscribeCalendar(), Container()]),
+                        controller: subscribeManageViewModel.tabController,
+                        children: [Container(), SubscribeCalendar()]),
                   ),
                 ]),
               )),
-        ),
-      );
+        );
   }
 }

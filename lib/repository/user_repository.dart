@@ -28,7 +28,7 @@ class UserRepository {
       }
     } catch (e) {
       print("[UserRepository Error] getUser : ${e}");
-      return UserModel();
+      return UserModel(nickName: "사용자님");
     }
   }
 
