@@ -1,42 +1,25 @@
+import 'dart:developer';
+
 import 'package:subping/model/service_model.dart';
 
 class SearchModel {
-  List<TagResult> tagResult = [];
   List<ServiceResult> serviceResult = [];
+  List<ReviewResult> reviewResult = [];
 
-  SearchModel({this.tagResult, this.serviceResult});
+  SearchModel({ this.serviceResult, this.reviewResult});
 
   SearchModel.fromJson(Map<String, dynamic> json) {
-    json['tagResult'].forEach((item) {
-      tagResult.add(TagResult.fromJson(item));
-    });
-
+    
     json['serviceResult'].forEach((item) {
       serviceResult.add(ServiceResult.fromJson(item));
     });
+ 
+    json['reviewResult'].forEach((item) {
+      reviewResult.add(ReviewResult.fromJson(item));
+    });
 
-    print(tagResult);
-    print(serviceResult);
-  }
-}
-
-class SearchProperty {
-  int matchedIndex;
-  int length;
-
-  SearchProperty.fromJson(Map<String, dynamic> json) {
-    matchedIndex = json["matchedIndex"];
-    length = json["length"];
-  }
-}
-
-class TagResult {
-  String tag;
-  SearchProperty search;
-
-  TagResult.fromJson(Map<String, dynamic> json) {
-    tag = json['tag'];
-    search = SearchProperty.fromJson(json['search']);
+    inspect(serviceResult);
+    inspect(reviewResult);
   }
 }
 
@@ -48,4 +31,23 @@ class ServiceResult extends ServiceModel {
     search = SearchProperty.fromJson(json['search']);
   }
 } 
- 
+
+class SearchProperty {
+  int matchedIndex;
+  int length;
+
+  SearchProperty.fromJson(Map<String, dynamic> json) {
+    matchedIndex = json["matchedIndex"];
+    length = json["length"];
+  }
+}
+
+class ReviewResult {
+  String tag;
+  SearchProperty search;
+
+  ReviewResult.fromJson(Map<String, dynamic> json) {
+    tag = json['tag'];
+    search = SearchProperty.fromJson(json['search']);
+  }
+}

@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:subping/model/search_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
-class SearchItem extends StatelessWidget {
+class AutoCompleteItem extends StatelessWidget {
   final ServiceResult serviceResult;
 
-  const SearchItem({Key key, this.serviceResult}) : super(key: key);
+  const AutoCompleteItem({Key key, this.serviceResult}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -97,7 +97,7 @@ class _SubpingAppState extends State<SubpingApp> {
               home: Scaffold(backgroundColor: Colors.blue),
               initialRoute: '/splash',
               getPages: [
-                GetPage(name: "/splash", page: () => Splash()),
+                GetPage(name: "/splash", page: () => Search()),
                 GetPage(name: "/appIntro", page: () => AppIntro(), binding: AppIntroBindings()),
                 GetPage(
                     name: "/userAccount",

@@ -16,7 +16,7 @@ class HorizontTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => DefaultTabController(
-        length: widget.categories.length,
+        length: categories.length,
         child: HeaderSafe(    
           child: Scaffold(
               backgroundColor: SubpingColor.back20,
@@ -41,10 +41,10 @@ class HorizontTabBar extends StatelessWidget {
                       indicatorWeight: 0,
                       isScrollable: true,
                       tabs: List.generate(
-                        widget.categories.length,
+                        categories.length,
                         (index) => Tab(
                             child: SubpingText(
-                                widget.categories[index])),
+                                categories[index])),
                       ),
                       controller: tabController,
                     ),

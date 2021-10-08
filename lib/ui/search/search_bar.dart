@@ -5,11 +5,13 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/viewmodel/local/search/search_viewmodel.dart';
+import 'package:subping/viewmodel/local/search/auto_complete_viewmodel.dart';
+
 
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {
   final SearchViewModel searchViewModel;
   final bool autoFocus;
-  final Function onFocus;
+  final bool onFocus;
   final Function onBlur;
 
   SearchBar(
@@ -24,25 +26,25 @@ class SearchBar extends StatefulWidget implements PreferredSizeWidget {
 class _SearchBarState extends State<SearchBar> {
   final FocusNode searchFocusNode = FocusNode();
 
-  @override
-  void initState() {
-    super.initState();
-    searchFocusNode.addListener(() {
-      if (searchFocusNode.hasFocus) {
-        if(widget.onFocus != null) {
-          widget.onFocus();
-        } else {
-          print("[searchBar] onFocus가 없습니다.");
-        }
-      } else {
-        if(widget.onBlur != null) {
-          widget.onBlur();
-        } else {
-          print("[searchBar] onBlur가 없습니다.");
-        }
-      }
-    });
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   searchFocusNode.addListener(() {
+  //     if (searchFocusNode.hasFocus) {
+  //       if(widget.onFocus != null) {
+  //         widget.onFocus();
+  //       } else {
+  //         print("[searchBar] onFocus가 없습니다.");
+  //       }
+  //     } else {
+  //       if(widget.onBlur != null) {
+  //         widget.onBlur();
+  //       } else {
+  //         print("[searchBar] onBlur가 없습니다.");
+  //       }
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
