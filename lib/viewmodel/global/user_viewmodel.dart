@@ -40,6 +40,14 @@ class UserViewModel extends GetxController {
 
     _cards.refresh();
   }
+  
+  Future<void> deleteCard(UserCardModel card) async {
+    final response = await _userRepository.deleteCard(card.id);
+
+    if(response) {
+      updateUserCards();
+    }
+  }
 
   void checkUserStatus() {
     if (_user.value.nickName == null || _user.value.nickName == "") {

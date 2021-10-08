@@ -34,6 +34,7 @@ class CategoryServiceItem extends StatelessWidget {
                   item.summary,
                   size: SubpingFontSize.body2,
                   maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 )
               ],
             )

@@ -4,7 +4,7 @@ import 'package:subping/model/product_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
 
-const CARD_HEIGHT = 270.0;
+const CARD_HEIGHT = 220.0;
 const CARD_WIDTH = 200.0;
 
 class ServiceProducts extends StatelessWidget {
@@ -16,7 +16,7 @@ class ServiceProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 1.sw,
-      height: 350,
+      height: 300,
       padding: EdgeInsets.only(bottom: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,6 +81,8 @@ class ServiceProducts extends StatelessWidget {
                                         products[index].name,
                                         size: SubpingFontSize.body3,
                                         fontWeight: SubpingFontWeight.bold,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                       SubpingText(
                                         products[index].summary,
@@ -88,13 +90,6 @@ class ServiceProducts extends StatelessWidget {
                                         overflow: TextOverflow.ellipsis,
                                         size: SubpingFontSize.body4,
                                       ),
-                                      Space(size: SubpingSize.tiny7,),
-                                      Row(children: [
-                                        PoundButton("1주", marginFlag: false,),
-                                        PoundButton("2주", marginFlag: true,),
-                                        PoundButton("1달", marginFlag: true,),
-                                        PoundButton("2달", marginFlag: true,),
-                                      ],)
                                     ],
                                   ),
                                   Container(

@@ -28,6 +28,18 @@ class SubscribeViewModel extends GetxController {
     }
   }
   
+  num get totalPrice {
+    num totalPrice = 0;
+
+    _subscribe.forEach((key, value) { 
+      value.subscribeItems.forEach((element) {
+       totalPrice +=  element.amount * element.product.price;
+      });
+    });
+
+    return totalPrice;
+  }
+
   Map<String, SubscribeModel> get subscribe {
     return _subscribe;
   }

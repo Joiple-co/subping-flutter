@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/add_card_bindings.dart';
 import 'package:subping/binding/app_intro_bindings.dart';
+import 'package:subping/binding/like_service_bindings.dart';
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
@@ -21,6 +22,8 @@ import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
 import 'package:subping/ui/add_address/add_address.dart';
 import 'package:subping/ui/add_card/add_card.dart';
+import 'package:subping/ui/address_management/address_management.dart';
+import 'package:subping/ui/card_management/card_management.dart';
 import 'package:subping/ui/edit_address/edit_address.dart';
 
 import 'package:subping/ui/hot_chart/hot_chart.dart';
@@ -97,8 +100,16 @@ class _SubpingAppState extends State<SubpingApp> {
               home: Scaffold(backgroundColor: Colors.blue),
               initialRoute: '/splash',
               getPages: [
+<<<<<<< HEAD
                 GetPage(name: "/splash", page: () => Search()),
                 GetPage(name: "/appIntro", page: () => AppIntro(), binding: AppIntroBindings()),
+=======
+                GetPage(name: "/splash", page: () => Splash()),
+                GetPage(
+                    name: "/appIntro",
+                    page: () => AppIntro(),
+                    binding: AppIntroBindings()),
+>>>>>>> 0873d565c9de19151d4f4e25074ca4f5e527dd7b
                 GetPage(
                     name: "/userAccount",
                     page: () => UserAccount(),
@@ -139,25 +150,27 @@ class _SubpingAppState extends State<SubpingApp> {
                 GetPage(
                     name: "/likeService",
                     page: () => LikeService(),
+                    binding: LikeServiceBindings(),
                     middlewares: [LikeServiceMiddleware()]),
                 GetPage(
-                  name: "/startSubscribe/:param",
-                  page: () => StartSubscribe(),
-                  binding: StartSubscribeBindings()
-                ),
+                    name: "/startSubscribe/:param",
+                    page: () => StartSubscribe(),
+                    binding: StartSubscribeBindings()),
                 GetPage(
                   name: "/editAddress/:param",
                   page: () => EditAddress(),
                 ),
                 GetPage(
-                  name: "/search",
+                    name: "/search",
                     page: () => Search(),
                     binding: SearchBinidings()),
                 GetPage(
-                  name: "/addCard",
-                  page: () => AddCard(),
-                  binding: AddCardBindings()
-                )
+                    name: "/addCard",
+                    page: () => AddCard(),
+                    binding: AddCardBindings()),
+                GetPage(name: "/cardManagement", page: () => CardManagement()),
+                GetPage(
+                    name: "/addressManagement", page: () => AddressManagement())
               ],
             ));
   }

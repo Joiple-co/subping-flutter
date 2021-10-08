@@ -151,6 +151,7 @@ class IamportAssign extends StatelessWidget {
         ),
         /* [필수입력] 콜백 함수 */
         callback: (Map<String, String> result) {
+          print(result);
           addCardViewModel.onAddCardDone(result);
         },
     );
