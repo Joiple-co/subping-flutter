@@ -6,6 +6,9 @@ import 'package:subping/model/user_address_model.dart';
 import 'package:subping/model/user_card_model.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/subscribe_repository.dart';
+import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage.dart';
+import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
 class StartSubscribeViewModel extends GetxController {
   RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
@@ -13,6 +16,7 @@ class StartSubscribeViewModel extends GetxController {
   Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
   RxString _selectedAddress = "".obs;
   RxString _selectedCard = "".obs;
+  RxBool _isLoading = false.obs;
   ServiceModel _service;
 
   SubscribeRepository _subscribeRepository = SubscribeRepository();
@@ -45,7 +49,11 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void initPeriods(List<dynamic> periods) {
-    _selectedPeriod.value = periods[0];
+    if(periods.length != 0) {
+      _selectedPeriod.value = periods[0];
+    } else {
+      ErrorHandler.errorHandler("StartSubscribeInitializeException");
+    }
   }
 
   void initCards(Map<String, UserCardModel> cards) {
@@ -78,7 +86,7 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void onStartSubscribe() async {
-    ErrorHandler.errorHandler("default");
+    _isLoading.value = true;
     
     final subscribeItems = [];
 
@@ -86,13 +94,25 @@ class StartSubscribeViewModel extends GetxController {
       "id": key, "amount": value 
     }));
 
-    await _subscribeRepository.makeSubscribe(
+    final result = await _subscribeRepository.makeSubscribe(
       subscribeItems: subscribeItems,
       userCardId: _selectedCard.value,
       addressId: _selectedAddress.value,
       period: PeriodInnerString[_selectedPeriod.value],
       serviceId: _service.id
     );
+
+    if(result) { // 성공시
+      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
+      final _subscribeViewModel = Get.find<SubscribeViewModel>();
+
+      _subscribeManageViewModel.updateSubscribeSchedule();
+      _subscribeViewModel.getSubscribes();
+
+      Get.back();
+    } 
+
+    _isLoading.value = false;
   }
 
   void onSelectPeriod(Period period) {
@@ -148,12 +168,16 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   bool get isValid {
-    bool valid = getSelectedTotalCount() != 0 && _selectedPeriod != null && _selectedCard.value != null;
+    bool valid = getSelectedTotalCount() != 0 && _selectedPeriod != null && _selectedCard.value != "";
 
     if(_service.type != "online") {
       valid = valid && _selectedAddress.value != "";
     }
 
     return valid;
+  }
+
+  bool get isLoading {
+    return _isLoading.value;
   }
 }

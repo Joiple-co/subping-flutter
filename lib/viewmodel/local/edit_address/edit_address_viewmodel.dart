@@ -4,6 +4,7 @@ import 'package:kpostal/kpostal.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:subping/model/user_address_model.dart';
 import 'package:subping/modules/design_system/appbar/title_appbar.dart';
+import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/user_repository.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 
@@ -28,16 +29,23 @@ class EditAddressViewModel extends GetxController {
   UserAddressModel beforeAddress;
 
   void setExistAddress(UserAddressModel address) {
-    userNameController.text = address.userName;
-    phoneNumberController.text =
-        phoneNumberFormatter.maskText(address.userPhoneNumber);
-    postCodeController.text = address.postCode;
-    addressController.text = address.address;
-    detailedAddressController.text = address.detailedAddress;
-    isDefault.value = address.isDefault;
+    if (address == null) {
+      address = new UserAddressModel();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ErrorHandler.errorHandler("NoExistAddressException");
+      });
+    } else {
+      userNameController.text = address.userName;
+      phoneNumberController.text =
+          phoneNumberFormatter.maskText(address.userPhoneNumber);
+      postCodeController.text = address.postCode;
+      addressController.text = address.address;
+      detailedAddressController.text = address.detailedAddress;
+      isDefault.value = address.isDefault;
 
-    beforeAddress = address;
-    checkValid();
+      beforeAddress = address;
+      checkValid();
+    }
   }
 
   void routingKopo(BuildContext context) async {
@@ -78,7 +86,8 @@ class EditAddressViewModel extends GetxController {
         phoneNumberController.text.length > 0 &&
         postCodeController.text.length > 0 &&
         addressController.text.length > 0 &&
-        detailedAddressController.text.length > 0 && !beforeAddress.isSame(newAddress)) {
+        detailedAddressController.text.length > 0 &&
+        !beforeAddress.isSame(newAddress)) {
       isValid.value = true;
     } else {
       isValid.value = false;
@@ -88,7 +97,7 @@ class EditAddressViewModel extends GetxController {
   void onSubmit() async {
     if (isValid.value) {
       loading.value = true;
-      
+
       final address = new UserAddressModel();
 
       address.id = beforeAddress.id;
@@ -101,7 +110,7 @@ class EditAddressViewModel extends GetxController {
 
       final result = await _userRepository.editUserAddress(address);
 
-      if(result == true) {
+      if (result == true) {
         await _userViewModel.updateUserAddresses();
         loading.value = false;
 

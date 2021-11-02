@@ -7,8 +7,10 @@ import "package:amplify_flutter/amplify.dart";
 import "package:device_info/device_info.dart";
 import "package:package_info/package_info.dart";
 import "package:subping/modules/cognito/cognito.dart";
+import 'package:subping/modules/error_handler/error_handler.dart';
 
 class API {
+  static final List<RestOperation> requests = [];
   static final JSON = JsonEncoder();
   static final cognito = Cognito();
 
@@ -55,13 +57,36 @@ class API {
     return header;
   }
 
+  static Future<bool> hasNetwork() async {
+    try {
+      final result = await InternetAddress.lookup('example.com');
+      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } on SocketException catch (_) {
+      return false;
+    }
+  }
+
   static Future<RestResponse> get(String service, String path) async {
     print('[API GET] service : "${service}" path : "${path}"');
+      
+    if (!await API.hasNetwork()) {
+      print("[API] No Network");
+
+      API.requests.forEach((request) {
+        request.cancel();
+      });
+
+      ErrorHandler.errorHandler("NoNetworkException");
+      return null;
+    }
+
     Map<String, String> header = await _makeHeader();
 
     try {
-      RestOptions options = RestOptions(apiName: service, path: path, headers: header);
+      RestOptions options =
+          RestOptions(apiName: service, path: path, headers: header);
       RestOperation restOperation = Amplify.API.get(restOptions: options);
+      API.requests.add(restOperation);
 
       return restOperation.response;
     } on ApiException catch (e) {
@@ -69,9 +94,21 @@ class API {
     }
   }
 
-  static Future<RestResponse> post(
-      String service, String path, {Map<dynamic, dynamic> body}) async {
+  static Future<RestResponse> post(String service, String path,
+      {Map<dynamic, dynamic> body}) async {
     print('[API POST] service : "${service}" path : "${path}"');
+    
+    if (!await API.hasNetwork()) {
+      print("[API] No Network");
+
+      API.requests.forEach((request) {
+        request.cancel();
+      });
+
+      ErrorHandler.errorHandler("NoNetworkException");
+      return null;
+    }
+
     Map<String, String> header = await _makeHeader();
 
     try {
@@ -79,12 +116,10 @@ class API {
       Uint8List encoded = utf8.encode(jsonBody);
 
       RestOptions options = RestOptions(
-          apiName: service,
-          path: path,
-          headers: header,
-          body: encoded);
+          apiName: service, path: path, headers: header, body: encoded);
       RestOperation restOperation = Amplify.API.post(restOptions: options);
-      
+      API.requests.add(restOperation);
+
       return restOperation.response;
     } on ApiException catch (e) {
       print("Post call failed: $e");

@@ -18,6 +18,8 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
     
+    serviceViewModel.updateCategory(updateServices: true);
+
     return Obx(
       () => DefaultTabController(
         length: serviceViewModel.categories.length,

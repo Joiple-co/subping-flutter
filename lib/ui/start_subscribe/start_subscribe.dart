@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/ui/start_subscribe/subscribe_address.dart';
 import 'package:subping/ui/start_subscribe/subscribe_card.dart';
 import 'package:subping/ui/start_subscribe/subscribe_item.dart';
@@ -111,6 +110,7 @@ class StartSubscribe extends StatelessWidget {
               text: "구독하기",
               onPressed: startSubscribeViewModel.onStartSubscribe,
               disabled: !startSubscribeViewModel.isValid,
+              loading: startSubscribeViewModel.isLoading,
             ),
           ),
         )

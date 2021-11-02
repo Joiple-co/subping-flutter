@@ -25,9 +25,24 @@ class SubscribeViewModel extends GetxController {
     if(subscribe != null) {
       _subscribe[subscribe.serviceId] = subscribe;
       _subscribe.refresh();
+    } else {
+      _subscribe.remove(serviceId);
+      _subscribe.refresh();
     }
   }
   
+  num get totalPrice {
+    num totalPrice = 0;
+
+    _subscribe.forEach((key, value) { 
+      value.subscribeItems.forEach((element) {
+       totalPrice +=  element.amount * element.product.price;
+      });
+    });
+
+    return totalPrice;
+  }
+
   Map<String, SubscribeModel> get subscribe {
     return _subscribe;
   }

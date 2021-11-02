@@ -28,7 +28,7 @@ class UserRepository {
       }
     } catch (e) {
       print("[UserRepository Error] getUser : ${e}");
-      return UserModel();
+      return UserModel(nickName: "사용자님");
     }
   }
 
@@ -189,6 +189,28 @@ class UserRepository {
     } catch (e) {
       print(e);
       ErrorHandler.errorHandler("AddCardException");
+    }
+  }
+
+  Future<bool> deleteCard(String cardId) async {
+    try {
+      final rawResponse = await API.post("user", "/deleteUserCard", body: {
+        "cardId": cardId
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      print(response.message);
+      
+      if (!response.success) {
+        ErrorHandler.errorHandler("DeleteCardException");
+      }
+
+      return response.success;
+    } catch (e) {
+      print(e);
+      ErrorHandler.errorHandler("DeleteCardException");
     }
   }
 }

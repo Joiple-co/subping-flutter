@@ -11,6 +11,7 @@ import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/add_card_bindings.dart';
 import 'package:subping/binding/app_intro_bindings.dart';
 import 'package:subping/binding/main_tabs_bindings.dart';
+import 'package:subping/binding/like_service_bindings.dart';
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
@@ -25,6 +26,8 @@ import 'package:subping/middleware/service_detail_middleware.dart';
 import 'package:subping/ui/add_address/add_address.dart';
 import 'package:subping/ui/add_card/add_card.dart';
 import 'package:subping/ui/alarm/alarm.dart';
+import 'package:subping/ui/address_management/address_management.dart';
+import 'package:subping/ui/card_management/card_management.dart';
 import 'package:subping/ui/edit_address/edit_address.dart';
 import 'package:subping/ui/gallery/gallery.dart';
 import 'package:subping/ui/hot_chart/hot_chart.dart';
@@ -141,6 +144,7 @@ class _SubpingAppState extends State<SubpingApp> {
                 GetPage(
                     name: "/likeService",
                     page: () => LikeService(),
+                    binding: LikeServiceBindings(),
                     middlewares: [LikeServiceMiddleware()]),
                 GetPage(
                     name: "/startSubscribe/:param",
@@ -167,6 +171,9 @@ class _SubpingAppState extends State<SubpingApp> {
                     name: "/gallery",
                     page: () => Gallery(),
                     binding: GalleryBindings()),
+                GetPage(name: "/cardManagement", page: () => CardManagement()),
+                GetPage(
+                    name: "/addressManagement", page: () => AddressManagement())
               ],
             ));
   }
