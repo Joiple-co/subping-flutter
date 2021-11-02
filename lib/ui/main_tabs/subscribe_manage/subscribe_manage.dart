@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_calendar.dart';
+import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_management.dart';
 import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
 class SubscribeManage extends StatelessWidget {
@@ -48,7 +49,7 @@ class SubscribeManage extends StatelessWidget {
                   Expanded(
                     child: TabBarView(
                         controller: subscribeManageViewModel.tabController,
-                        children: [Container(), SubscribeCalendar()]),
+                        children: [SubscribeManagement(), SubscribeCalendar()]),
                   ),
                 ]),
               )),

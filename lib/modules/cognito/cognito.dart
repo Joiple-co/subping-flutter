@@ -5,7 +5,6 @@ import 'package:amplify_flutter/amplify.dart';
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/api/api.dart';
-import 'package:subping/modules/secure/secure.dart';
 
 class Cognito {
   static final Cognito _instance =

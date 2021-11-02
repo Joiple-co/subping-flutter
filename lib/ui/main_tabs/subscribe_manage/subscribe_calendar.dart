@@ -20,19 +20,14 @@ class SubscribeCalendar extends StatelessWidget {
     return Obx(() {
       final schedules = subscribeManageViewModel
           .schedules[subscribeManageViewModel.focusedMonth];
-      
-      if(subscribeViewModel.subscribe.keys.length == 0) {
+
+      if (subscribeViewModel.subscribe.keys.length == 0) {
         return Container(
-          color: SubpingColor.white100,
-          child: SubscribeCalendarEmpty()
-        );
+            color: SubpingColor.white100, child: SubscribeCalendarEmpty());
       }
 
-      if(schedules == null) {
-        return Container(
-          color: SubpingColor.white100,
-          child: SubpingLoading()
-        );
+      if (schedules == null) {
+        return Container(color: SubpingColor.white100, child: SubpingLoading());
       }
 
       final sortedDates = schedules.keys.toList()..sort();
@@ -63,8 +58,12 @@ class SubscribeCalendar extends StatelessWidget {
                               "${subscribeManageViewModel.focusedMonth}월 구독 리스트",
                               size: SubpingFontSize.title6,
                             ),
-                            Space(size: SubpingSize.tiny5,),
-                            Icon(Icons.change_circle_rounded, color: SubpingColor.black60, size: SubpingFontSize.title2)
+                            Space(
+                              size: SubpingSize.tiny5,
+                            ),
+                            Icon(Icons.change_circle_rounded,
+                                color: SubpingColor.black60,
+                                size: SubpingFontSize.title2)
                           ]),
                           Space(size: SubpingSize.medium14),
                         ],
@@ -74,11 +73,11 @@ class SubscribeCalendar extends StatelessWidget {
                   Container(
                       height: 140,
                       child: ListView(
-                          padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                          padding:
+                              EdgeInsets.only(left: 20, top: 10, bottom: 10),
                           physics: AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          children:
-                              List.generate(sortedDates.length, (index) {
+                          children: List.generate(sortedDates.length, (index) {
                             final date = sortedDates[index];
                             final schedulesOfDate = schedules[date];
 
@@ -188,8 +187,7 @@ class SubscribeCalendar extends StatelessWidget {
                                                             Expanded(
                                                               child:
                                                                   SubpingText(
-                                                                schedule.productName[
-                                                                    index],
+                                                                "${schedule.productName[index]}",
                                                                 size:
                                                                     SubpingFontSize
                                                                         .body1,

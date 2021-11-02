@@ -11,6 +11,8 @@ class SubscribeModel {
   String userCardId;
   String addressId;
   String serviceId;
+  String serviceName;
+  String serviceLogoUrl;
   List<SubscribeItem> subscribeItems;
 
   SubscribeModel(
@@ -23,14 +25,14 @@ class SubscribeModel {
       this.addressId,
       this.serviceId,
       this.subscribeItems,
+      this.serviceName,
       this.createdAt});
 
   SubscribeModel.fromJson(Map<String, dynamic> json) {
     List<SubscribeItem> _subscribeItems = [];
 
-    json['subscribeItems'].forEach((item) => {
-      _subscribeItems.add(SubscribeItem.fromJson(item))
-    });
+    json['subscribeItems']
+        .forEach((item) => {_subscribeItems.add(SubscribeItem.fromJson(item))});
 
     id = json["id"];
     subscribeDate = json['subscribeDate'];
@@ -42,6 +44,19 @@ class SubscribeModel {
     addressId = json['addressId'];
     serviceId = _subscribeItems[0].product.serviceId;
     subscribeItems = _subscribeItems;
+    serviceName = json['subscribeItems'][0]['product']['service']['name'];
+    serviceLogoUrl =
+        json['subscribeItems'][0]['product']['service']['serviceLogoUrl'];
+  }
+
+  num totalPrice() {
+    num totalPrice = 0;
+
+    subscribeItems.forEach((element) {
+      totalPrice += element.amount * element.product.price;
+    });
+
+    return totalPrice;
   }
 }
 
@@ -49,11 +64,8 @@ class SubscribeItem {
   num amount;
   ProductModel product;
 
-  SubscribeItem({
-    this.amount,
-    this.product
-  });
-  
+  SubscribeItem({this.amount, this.product});
+
   SubscribeItem.fromJson(Map<String, dynamic> json) {
     amount = json['amount'];
     product = ProductModel.fromJson(json['product']);
