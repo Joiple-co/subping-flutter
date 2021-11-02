@@ -49,7 +49,11 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void initPeriods(List<dynamic> periods) {
-    _selectedPeriod.value = periods[0];
+    if(periods.length != 0) {
+      _selectedPeriod.value = periods[0];
+    } else {
+      ErrorHandler.errorHandler("StartSubscribeInitializeException");
+    }
   }
 
   void initCards(Map<String, UserCardModel> cards) {
@@ -164,7 +168,7 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   bool get isValid {
-    bool valid = getSelectedTotalCount() != 0 && _selectedPeriod != null && _selectedCard.value != null;
+    bool valid = getSelectedTotalCount() != 0 && _selectedPeriod != null && _selectedCard.value != "";
 
     if(_service.type != "online") {
       valid = valid && _selectedAddress.value != "";
