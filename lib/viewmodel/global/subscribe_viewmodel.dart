@@ -26,7 +26,7 @@ class SubscribeViewModel extends GetxController {
       _subscribe[subscribe.serviceId] = subscribe;
       _subscribe.refresh();
     } else {
-      _subscribe[subscribe.serviceId] = null;
+      _subscribe.remove(serviceId);
       _subscribe.refresh();
     }
   }
