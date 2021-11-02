@@ -5,6 +5,7 @@ import 'package:subping/modules/design_system/page/header_safe.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:subping/ui/search/auto_complete_search/auto_complete_search.dart';
 //import 'package:subping/ui/search/auto_complete_search/auto_complete_search.dart';
 import 'package:subping/ui/search/search_bar.dart';
 import 'package:subping/viewmodel/local/search/auto_complete_viewmodel.dart';
@@ -21,7 +22,10 @@ class Search extends StatelessWidget {
           appBar: SearchBar(
             searchViewModel: searchController,
             onFocus: searchController.isFocused.value,
+            
+
           ),
+          body: AutoCompleteSearch(),
           ),
           
     );

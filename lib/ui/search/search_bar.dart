@@ -5,7 +5,6 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/viewmodel/local/search/search_viewmodel.dart';
-import 'package:subping/viewmodel/local/search/auto_complete_viewmodel.dart';
 
 
 class SearchBar extends StatefulWidget implements PreferredSizeWidget {

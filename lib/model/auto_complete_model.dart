@@ -5,27 +5,26 @@ class AutoCompleteModel {
   List<TagResult> tagResult = [];
   List<ServiceResult> serviceResult = [];
 
-  AutoCompleteModel({ this.tagResult, this.serviceResult });
+  AutoCompleteModel({ this.serviceResult, this.tagResult });
 
   AutoCompleteModel.fromJson(Map<String, dynamic> json) {
+
+    json['serviceResult'].forEach((item) {
+      serviceResult.add(ServiceResult.fromJson(item));
+    });
     
     json['tagResult'].forEach((item) {
       tagResult.add(TagResult.fromJson(item));
     });
 
-    json['serviceResult'].forEach((item) {
-      serviceResult.add(ServiceResult.fromJson(item));
-    });
   }
 }
 
 class TagResult {
   String tag;
-  String serviceId;
 
   TagResult.fromJson(Map<String, dynamic> json) {
     tag = json['tag'];
-    serviceId = json['serviceId'];
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:subping/model/auto_complete_model.dart';
 import 'package:subping/repository/search_repository.dart';
 
+
 class AutoCompleteViewModel extends GetxController {
   SearchRepository _searchRepository = SearchRepository();
   RxString _autoCompleteText = "".obs;

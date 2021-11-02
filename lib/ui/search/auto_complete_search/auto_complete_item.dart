@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/model/search_model.dart';
+import 'package:subping/model/service_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class AutoCompleteItem extends StatelessWidget {
-  final ServiceResult serviceResult;
+  final ServiceModel serviceResult;
 
   const AutoCompleteItem({Key key, this.serviceResult}) : super(key: key);
 
@@ -30,27 +31,27 @@ class AutoCompleteItem extends StatelessWidget {
           Space(
             size: SubpingSize.medium14,
           ),
-          Text.rich(SubpingTextSpan(children: [
-            SubpingTextSpan(
-                fontSize: SubpingFontSize.title5,
-                 fontWeight: FontWeight.bold,
-                text: serviceResult.name
-                    .substring(0, serviceResult.search.matchedIndex)),
-            SubpingTextSpan(
-                color: SubpingColor.subping100,
-                fontSize: SubpingFontSize.title5,
-              fontWeight: FontWeight.bold,
-                text: serviceResult.name.substring(
-                    serviceResult.search.matchedIndex,
-                    serviceResult.search.matchedIndex +
-                        serviceResult.search.length)),
-            SubpingTextSpan(
-                fontSize: SubpingFontSize.title5,
-                 fontWeight: FontWeight.bold,
-                text: serviceResult.name.substring(
-                    serviceResult.search.matchedIndex +
-                        serviceResult.search.length)),
-          ]))
+          // Text.rich(SubpingTextSpan(children: [
+          //   SubpingTextSpan(
+          //       fontSize: SubpingFontSize.title5,
+          //        fontWeight: FontWeight.bold,
+          //       text: serviceResult.name
+          //           .substring(0, serviceResult.search.matchedIndex)),
+          //   SubpingTextSpan(
+          //       color: SubpingColor.subping100,
+          //       fontSize: SubpingFontSize.title5,
+          //     fontWeight: FontWeight.bold,
+          //       text: serviceResult.name.substring(
+          //           serviceResult.search.matchedIndex,
+          //           serviceResult.search.matchedIndex +
+          //               serviceResult.search.length)),
+          //   SubpingTextSpan(
+          //       fontSize: SubpingFontSize.title5,
+          //        fontWeight: FontWeight.bold,
+          //       text: serviceResult.name.substring(
+          //           serviceResult.search.matchedIndex +
+          //               serviceResult.search.length)),
+          // ]))
         ],
       ),
     );
