@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:subping/modules/design_system/loading/subping_loading,.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/calendar_date.dart';
@@ -14,9 +15,17 @@ class SubscribeCalendar extends StatelessWidget {
     final subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
 
     return Obx(() {
-      final schdules = subscribeManageViewModel
+      final schedules = subscribeManageViewModel
           .schedules[subscribeManageViewModel.focusedMonth];
-      final sortedDates = schdules.keys.toList()..sort();
+        
+      if(schedules == null) {
+        return Container(
+          color: SubpingColor.white100,
+          child: SubpingLoading()
+        );
+      }
+
+      final sortedDates = schedules.keys.toList()..sort();
 
       return Container(
         color: SubpingColor.white100,
@@ -61,7 +70,7 @@ class SubscribeCalendar extends StatelessWidget {
                           children:
                               List.generate(sortedDates.length, (index) {
                             final date = sortedDates[index];
-                            final schedulesOfDate = schdules[date];
+                            final schedulesOfDate = schedules[date];
 
                             return Row(children: [
                               CalendarDate(
@@ -87,7 +96,7 @@ class SubscribeCalendar extends StatelessWidget {
                         itemCount: sortedDates.length,
                         itemBuilder: (context, index) {
                           final date = sortedDates[index];
-                          final schedulesOfDate = schdules[date];
+                          final schedulesOfDate = schedules[date];
 
                           return Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
