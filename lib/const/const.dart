@@ -1,14 +1,4 @@
-enum CardVendor {
-  HANA,
-  SHINHAN,
-  KB,
-  NH,
-  LOTTE,
-  HYNUDAI,
-  BC,
-  SAMSUNG,
-  WOORI
-}
+enum CardVendor { HANA, SHINHAN, KB, NH, LOTTE, HYNUDAI, BC, SAMSUNG, WOORI }
 
 const CardVendorAsset = {
   CardVendor.BC: "assets/cardLogo/bc.png",
@@ -19,14 +9,23 @@ const CardVendorAsset = {
   CardVendor.NH: "assets/cardLogo/nh.png",
   CardVendor.SAMSUNG: "assets/cardLogo/samsung.png",
   CardVendor.SHINHAN: "assets/cardLogo/shinhan.png",
-  CardVendor.WOORI: "assets/cardLogo/woori.png"
+  CardVendor.WOORI: "assets/cardLogo/w;oori.png"
 };
 
 const CardVendorMapper = {
   "신한카드": CardVendor.SHINHAN,
   "삼성카드": CardVendor.SAMSUNG,
-  "현대카드": CardVendor.HYNUDAI
+  "현대카드": CardVendor.HYNUDAI,
+  "BC카드": CardVendor.BC,
 };
+const List<String> RatingPharses = [
+  "",
+  "다시는 안사요",
+  "많이 아쉬웠어요",
+  "괜찮네요!",
+  "좋아요! 정말 마음에 들어요!",
+  "결혼할꺼에요!"
+];
 
 enum Period {
   ONE_MONTH,

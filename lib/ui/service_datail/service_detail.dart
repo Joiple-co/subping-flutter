@@ -22,7 +22,7 @@ class ServiceDetail extends StatelessWidget {
     serviceViewModel.updateService(serviceId);
     productViewModel.updateProducts(serviceId);
     subscribeViewModel.updateSubscribe(serviceId);
-    
+
     return Obx(() {
       final service = serviceViewModel.services[serviceId].value;
       final products = productViewModel.getProducts(serviceId);
@@ -138,6 +138,7 @@ class ServiceDetail extends StatelessWidget {
                           color: SubpingColor.back20),
                       ServiceReview(
                         reviews: [],
+                        serviceId: serviceId,
                       ),
                       Container(
                           height: SubpingSize.medium10,
@@ -149,12 +150,14 @@ class ServiceDetail extends StatelessWidget {
               ]),
             ),
             ServiceFooter(
-              userLike: service.like,
-              toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId),
-              serviceId: serviceId,
-              products: products,
-              subscribes: subscribeViewModel.subscribe
-            )
+                serviceLogoUrl: service.serviceLogoUrl,
+                serviceName: service.name,
+                userLike: service.like,
+                toggleUserLike: () =>
+                    serviceViewModel.toggleUserLike(serviceId),
+                serviceId: serviceId,
+                products: products,
+                subscribes: subscribeViewModel.subscribe)
           ]),
         ),
       );
