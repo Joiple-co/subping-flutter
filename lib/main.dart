@@ -6,6 +6,8 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/add_card_bindings.dart';
@@ -15,6 +17,7 @@ import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
 import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
+import 'package:subping/hive/recent_service.dart';
 import 'package:subping/main.mapper.g.dart';
 
 import 'package:subping/middleware/alarm_page_middleware.dart';
@@ -34,6 +37,7 @@ import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/onboarding/user_nickname/create_nickname.dart';
+import 'package:subping/ui/recent_service_history/recent_service_history.dart';
 import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
 import 'package:subping/ui/alarm/alarm.dart';
@@ -45,12 +49,16 @@ import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
-import 'package:subping/viewmodel/global/auth_viewmodel.dart';
 
 void main() async {
   initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  await Hive.initFlutter();
+  Hive.registerAdapter(RecentServiceAdapter());
+  
+  await Hive.openBox<RecentService>("recentView");
+
   runApp(SubpingApp());
 }
 
@@ -165,7 +173,8 @@ class _SubpingAppState extends State<SubpingApp> {
                     binding: AddCardBindings()),
                 GetPage(name: "/cardManagement", page: () => CardManagement()),
                 GetPage(
-                    name: "/addressManagement", page: () => AddressManagement())
+                    name: "/addressManagement", page: () => AddressManagement()),
+                GetPage(name: "/recentServiceHistory", page: () => RecentServiceHistory())
               ],
             ));
   }

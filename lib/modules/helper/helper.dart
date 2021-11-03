@@ -16,11 +16,24 @@ class Helper {
     DateTime to = new DateTime.now();
     DateTime from = DateTime.parse(date);
 
-    if (isSameDay(to, from)) {
-      return '${from.hour}시 ${from.minute}분';
-    } else if (isSameDay(from.add(Duration(days: 1)), from)) {
+    final diff = to.difference(from);
+
+    if (diff.inMinutes < 1) {
+      return "방금 전";
+    }
+    else if (diff.inHours < 1) {
+      return '${diff.inMinutes}분 전';
+    } 
+
+    else if (diff.inDays < 1) {
+      return '${diff.inHours}시간 전';
+    }
+
+    else if (diff.inDays < 2) {
       return "어제";
-    } else {
+    }
+
+    else {
       return '${from.month}월 ${from.day}일';
     }
   }

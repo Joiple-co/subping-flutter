@@ -30,7 +30,7 @@ class LikeService extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return LikeServiceItem(
                           service: serviceViewModel.services[serviceViewModel.likes.elementAt(index)].value,
-                          isLast: false,
+                          isLast: index == serviceViewModel.likes.length- 1 ? false : true,
                           toggleUserLike: serviceViewModel.toggleUserLike);
                     }),
               ),

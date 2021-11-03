@@ -48,6 +48,9 @@ class UserHistoryContainer extends StatelessWidget {
           ),
         ),
         GestureDetector(
+          onTap: () {
+            Get.toNamed("/recentServiceHistory");
+          },
           child: Column(
             children: [
               IconButton(

@@ -1,4 +1,4 @@
-import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_flutter/amplify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,6 +12,7 @@ import 'package:subping/modules/design_system/appbar/title_appbar.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import 'package:subping/viewmodel/local/add_card/add_card_viewmodel.dart';
+
 
 class AddCard extends StatelessWidget {
   @override

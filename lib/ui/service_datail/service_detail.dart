@@ -18,8 +18,8 @@ class ServiceDetail extends StatelessWidget {
     final serviceViewModel = Get.find<ServiceViewModel>();
     final productViewModel = Get.find<ProductViewModel>();
     final subscribeViewModel = Get.find<SubscribeViewModel>();
-
-    serviceViewModel.updateService(serviceId);
+    
+    serviceViewModel.updateService(serviceId, page: true);
     productViewModel.updateProducts(serviceId);
     subscribeViewModel.updateSubscribe(serviceId);
     

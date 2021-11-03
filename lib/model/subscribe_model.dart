@@ -26,7 +26,23 @@ class SubscribeModel {
       this.serviceId,
       this.subscribeItems,
       this.serviceName,
+      this.serviceLogoUrl,
       this.createdAt});
+  
+   void updateSubscribeModel(SubscribeModel subscribe) {
+    id = subscribe.id ?? this.id;
+    subscribeDate = subscribe.subscribeDate ?? this.subscribeDate;
+    expiredDate = subscribe.expiredDate ?? this.expiredDate;
+    reSubscribeDate = subscribe.reSubscribeDate ?? this.reSubscribeDate;
+    period = subscribe.period ?? this.period;
+    userCardId = subscribe.userCardId ?? this.userCardId;
+    addressId = subscribe.addressId ?? this.addressId;
+    serviceId = subscribe.serviceId ?? this.serviceId;
+    subscribeItems = subscribe.subscribeItems ?? this.subscribeItems;
+    serviceLogoUrl = subscribe.serviceLogoUrl ?? this.serviceLogoUrl;
+    serviceName = subscribe.serviceName ?? this.serviceName;
+    createdAt = subscribe.createdAt ?? this.createdAt;
+  }
 
   SubscribeModel.fromJson(Map<String, dynamic> json) {
     List<SubscribeItem> _subscribeItems = [];
@@ -44,10 +60,14 @@ class SubscribeModel {
     addressId = json['addressId'];
     serviceId = _subscribeItems[0].product.serviceId;
     subscribeItems = _subscribeItems;
-    serviceName = json['subscribeItems'][0]['product']['service']['name'];
-    serviceLogoUrl =
-        json['subscribeItems'][0]['product']['service']['serviceLogoUrl'];
+
+    if(json['subscribeItems'][0]['product'] != null && json['subscribeItems'][0]['product']['service'] != null) {
+      serviceName = json['subscribeItems'][0]['product']['service']['name']; 
+      serviceLogoUrl =
+          json['subscribeItems'][0]['product']['service']['serviceLogoUrl'];
+    }
   }
+
 
   num totalPrice() {
     num totalPrice = 0;
