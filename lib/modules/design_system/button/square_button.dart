@@ -88,7 +88,7 @@ class SquareButton extends StatelessWidget {
           : Text(text,
               style: TextStyle(
                   color: _setTextColor(),
-                  fontWeight: FontWeight.bold,
+                  fontWeight: SubpingFontWeight.medium,
                   fontSize: 17)),
       onPressed: disabled || loading ? null : onPressed,
       style: TextButton.styleFrom(
