@@ -12,11 +12,14 @@ const CardVendorAsset = {
   CardVendor.WOORI: "assets/cardLogo/w;oori.png"
 };
 
+const int MIN_REVIEW_LENGTH = 20;
+
 const CardVendorMapper = {
   "신한카드": CardVendor.SHINHAN,
   "삼성카드": CardVendor.SAMSUNG,
   "현대카드": CardVendor.HYNUDAI,
   "BC카드": CardVendor.BC,
+  "KB국민": CardVendor.KB
 };
 const List<String> RatingPharses = [
   "",

@@ -19,7 +19,7 @@ class UserAccountViewModel extends GetxController {
       "postTitle": "를 다시 입력해주세요"
     }
   };
-  
+
   RxBool loading = false.obs;
   RxBool emailValid = false.obs;
   RxBool passwordValid = false.obs;

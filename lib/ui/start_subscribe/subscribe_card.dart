@@ -16,6 +16,7 @@ class SubscribeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(userViewModel.cards[startSubscribeViewModel.selectedCard]);
     return Obx(
       () => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +72,8 @@ class SubscribeCard extends StatelessWidget {
                         )
                       : Row(
                           children: [
-                            Icon(Icons.credit_card, color: SubpingColor.warning100),
+                            Icon(Icons.credit_card,
+                                color: SubpingColor.warning100),
                             SubpingText(" 카드를 선택해주세요",
                                 size: SubpingFontSize.body1,
                                 color: SubpingColor.warning100),
@@ -140,6 +142,7 @@ class SelectCardBottomSheet extends StatelessWidget {
               ...List.generate(userViewModel.cards.length, (index) {
                 final cardId = userViewModel.cards.keys.elementAt(index);
                 final card = userViewModel.cards[cardId];
+                print(card.cardVendor);
 
                 return GestureDetector(
                   onTap: () {

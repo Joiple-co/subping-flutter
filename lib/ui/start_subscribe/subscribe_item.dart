@@ -156,7 +156,7 @@ class SubscribeItem extends StatelessWidget {
             size: SubpingSize.large20,
           ),
           SquareButton(
-              text: customizable ? "구성 변경하기" : "상품 변겅하기",
+              text: customizable ? "구성 변경하기" : "상품 변경하기",
               onPressed: customizable
                   ? () => Get.to(CustomizeProduct())
                   : () => Get.to(SelectProduct()),

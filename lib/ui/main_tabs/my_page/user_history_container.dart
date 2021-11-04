@@ -30,6 +30,7 @@ class UserHistoryContainer extends StatelessWidget {
           ),
         ),
         GestureDetector(
+          onTap: () => Get.toNamed("/myReviewHistory"),
           child: Column(
             children: [
               IconButton(

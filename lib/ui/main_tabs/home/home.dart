@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/loading/subping_loading,.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/repository/review_repository.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
 //import 'package:subping/ui/main_tabs/home/tool_bar.dart';
@@ -23,6 +24,7 @@ class Home extends StatelessWidget {
     final alarmViewModel = Get.find<AlarmsViewModel>();
     final userViewModel = Get.find<UserViewModel>();
     final subscribeViewModel = Get.find<SubscribeViewModel>();
+    final review = ReviewRepository();
 
     alarmViewModel.updateAlarm();
     userViewModel.updateInfo();
@@ -69,6 +71,8 @@ class Home extends StatelessWidget {
                         Space(size: SubpingSize.large40),
                         RecentReview(),
                         Space(size: SubpingSize.large40),
+                        SquareButton(
+                            text: "qwdqwd", onPressed: review.makeReview)
                       ],
                     ),
             ),

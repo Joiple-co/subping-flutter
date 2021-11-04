@@ -3,6 +3,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -33,6 +34,7 @@ import 'package:subping/ui/gallery/gallery.dart';
 import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/like_service/like_service.dart';
 import 'package:subping/ui/main_tabs/main_tabs.dart';
+import 'package:subping/ui/main_tabs/my_page/my_review_history.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
@@ -45,10 +47,12 @@ import 'package:subping/ui/start_subscribe/start_subscribe.dart';
 import 'package:subping/ui/write_review/write_review.dart';
 
 import 'binding/gallery_bindings.dart';
+import 'binding/my_review_bindings.dart';
 
 void main() async {
   initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await GetStorage.init();
   runApp(SubpingApp());
 }
@@ -141,6 +145,10 @@ class _SubpingAppState extends State<SubpingApp> {
                     name: "/writeReview",
                     page: () => WriteReview(),
                     binding: WriteReviewBindings()),
+                GetPage(
+                    name: "/myReviewHistory",
+                    page: () => MyReviewHistory(),
+                    binding: MyReviewHistoryBindings()),
                 GetPage(
                     name: "/likeService",
                     page: () => LikeService(),

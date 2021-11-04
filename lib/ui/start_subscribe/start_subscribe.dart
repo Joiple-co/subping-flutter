@@ -13,11 +13,11 @@ import 'package:subping/viewmodel/local/subscribe/start_subscribe_viewmodel.dart
 
 class StartSubscribe extends StatelessWidget {
   final String serviceId = Get.parameters['param'];
-  
+
   StartSubscribe({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
     final productViewModel = Get.find<ProductViewModel>();
     final startSubscribeViewModel = Get.find<StartSubscribeViewModel>();
@@ -44,67 +44,61 @@ class StartSubscribe extends StatelessWidget {
       body: Column(children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: HorizontalPadding(
-                        child: SubscribeService(
-                      service: service,
-                    )),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                child: HorizontalPadding(
+                    child: SubscribeService(
+                  service: service,
+                )),
+              ),
+              Container(
+                  height: SubpingSize.medium10, color: SubpingColor.back20),
+              Container(
+                child: HorizontalPadding(
+                    child: SubscribeItem(
+                        customizable: service.customizable,
+                        startSubscribeViewModel: startSubscribeViewModel)),
+              ),
+              Container(
+                  height: SubpingSize.medium10, color: SubpingColor.back20),
+              Container(
+                child: HorizontalPadding(
+                  child: SubscribePeriod(
+                    service: service,
+                    startSubscribeViewModel: startSubscribeViewModel,
                   ),
-                  Container(
-                      height: SubpingSize.medium10,
-                      color: SubpingColor.back20),
-                  Container(
-                    child: HorizontalPadding(
-                        child: SubscribeItem(
-                            customizable: service.customizable,
-                            startSubscribeViewModel:
-                                startSubscribeViewModel)),
-                  ),
-                  Container(
-                      height: SubpingSize.medium10,
-                      color: SubpingColor.back20),
-                  Container(
-                    child: HorizontalPadding(
-                      child: SubscribePeriod(
-                        service: service,
-                        startSubscribeViewModel: startSubscribeViewModel,
+                ),
+              ),
+              service.type != "online"
+                  ? Container(
+                      height: SubpingSize.medium10, color: SubpingColor.back20)
+                  : Container(),
+              service.type != "online"
+                  ? Container(
+                      child: HorizontalPadding(
+                        child: SubscribeAddress(
+                            userViewModel: userViewModel,
+                            startSubscriveViewModel: startSubscribeViewModel),
                       ),
-                    ),
+                    )
+                  : Container(),
+              Container(
+                  height: SubpingSize.medium10, color: SubpingColor.back20),
+              Container(
+                child: HorizontalPadding(
+                  child: SubscribeCard(
+                    userViewModel: userViewModel,
+                    startSubscribeViewModel: startSubscribeViewModel,
                   ),
-                  service.type != "online"
-                      ? Container(
-                          height: SubpingSize.medium10,
-                          color: SubpingColor.back20)
-                      : Container(),
-                  service.type != "online"
-                      ? Container(
-                          child: HorizontalPadding(
-                            child: SubscribeAddress(
-                                userViewModel: userViewModel,
-                                startSubscriveViewModel:
-                                    startSubscribeViewModel),
-                          ),
-                        )
-                      : Container(),
-                  Container(
-                      height: SubpingSize.medium10,
-                      color: SubpingColor.back20),
-                  Container(
-                    child: HorizontalPadding(
-                      child: SubscribeCard(
-                        userViewModel: userViewModel,
-                        startSubscribeViewModel: startSubscribeViewModel,
-                      ),
-                    ),
-                  ),
-                  Space(size: SubpingSize.medium14),
-                ]),
+                ),
+              ),
+              Space(size: SubpingSize.medium14),
+            ]),
           ),
         ),
-        Obx(() => SafeArea(
+        Obx(
+          () => SafeArea(
             bottom: true,
             child: SquareButton(
               text: "구독하기",

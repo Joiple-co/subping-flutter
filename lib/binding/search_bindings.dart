@@ -6,4 +6,4 @@ class SearchBinidings implements Bindings {
   void dependencies() {
     Get.put(SearchViewModel());
   }
-} 
+}

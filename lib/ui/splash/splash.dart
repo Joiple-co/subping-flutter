@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/local/splash/splash_viewmodel.dart';
 
 class Splash extends StatelessWidget {

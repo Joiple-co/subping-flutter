@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:subping/model/product_model.dart';
 import 'package:subping/model/review_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/write_review/write_review_bottomsheet.dart';
 
 class ServiceReview extends StatelessWidget {
   final List<ReviewModel> reviews;
+  final List<ProductModel> productDetail;
+  final String serviceId;
 
-  ServiceReview({this.reviews});
+  ServiceReview({this.reviews, this.productDetail, this.serviceId});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,9 @@ class ServiceReview extends StatelessWidget {
                         color: SubpingColor.subping100)
                   ])),
                   GestureDetector(
-                    onTap: () => Get.bottomSheet(WriteReviewBottomSheet()),
+                    onTap: () => Get.bottomSheet(WriteReviewBottomSheet(
+                      serviceId: serviceId,
+                    )),
                     child: Container(
                       padding: EdgeInsets.fromLTRB(
                           SubpingSize.medium10, 5, SubpingSize.medium10, 5),

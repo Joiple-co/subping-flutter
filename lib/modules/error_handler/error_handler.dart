@@ -288,6 +288,36 @@ class ErrorHandler {
             ]));
         break;
 
+      case "FillReviewLength":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("리뷰는 20글자 이상으로 부탁드립니다."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
+      case "MakeReviewFail":
+        Get.dialog(AlertDialog(
+            title: Text("확인이 필요해요!"),
+            content: Text("필요정보가 누락되었습니다.\n잠시뒤에 다시 시도해주세요."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
       default:
         Get.dialog(AlertDialog(
             title: Text("확인이 필요해요!"),
