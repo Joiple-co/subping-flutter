@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 
 class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
 
-  AlramIcon({this.unreadAlarmCount});
+  const AlramIcon({this.unreadAlarmCount, Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(

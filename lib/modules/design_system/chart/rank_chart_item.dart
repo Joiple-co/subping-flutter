@@ -7,7 +7,7 @@ class RankChartItem extends StatelessWidget {
   final ServiceModel service;
   final int lastRank;
 
-  RankChartItem({this.service, this.lastRank});
+  const RankChartItem({this.service, this.lastRank, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class RankChartItem extends StatelessWidget {
         child: InkWell(
             onTap: () => Get.toNamed("/serviceDetail/${service.id}"),
             child: Container(
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
               decoration: BoxDecoration(
                 border: service.rank != lastRank
                     ? Border(
@@ -49,14 +49,16 @@ class RankChartItem extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SubpingText(service.name, size: SubpingFontSize.body1),
+                          SubpingText(service.name,
+                              size: SubpingFontSize.body1),
                           SubpingText(service.summary,
                               size: SubpingFontSize.body4,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis),
                           Space(size: SubpingSize.medium11),
                           Row(
-                            children: List.generate(service.tag.length, (index) {
+                            children:
+                                List.generate(service.tag.length, (index) {
                               bool marginFlag = (index != 0);
                               return PoundButton(
                                 "#${service.tag[index]}",

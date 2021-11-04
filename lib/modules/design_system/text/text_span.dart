@@ -1,31 +1,28 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../setting_table.dart';
 
 class SubpingTextSpan extends TextSpan {
-  final List<SubpingTextSpan> children;
-  final String text;
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
 
-  SubpingTextSpan(
-      {this.text, this.children, this.color, this.fontWeight, this.fontSize});
+  const SubpingTextSpan(
+      {text, children, this.color, this.fontWeight, this.fontSize})
+      : super(children: children, text: text);
 
   @override
   void build(ParagraphBuilder builder,
       {double textScaleFactor = 1.0, List<PlaceholderDimensions> dimensions}) {
-    final TextStyle style = TextStyle(
-        fontSize: this.fontSize,
-        fontWeight: this.fontWeight,
-        color: this.color);
+    final TextStyle style =
+        TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color);
     final bool hasStyle = style != null;
-    if (hasStyle)
+    if (hasStyle) {
       builder.pushStyle(style.getTextStyle(textScaleFactor: textScaleFactor));
-    if (this.text != null) builder.addText(this.text);
-    if (this.children != null) {
-      for (final InlineSpan child in this.children) {
+    }
+    if (text != null) builder.addText(text);
+    if (children != null) {
+      for (final InlineSpan child in children) {
         assert(child != null);
         child.build(
           builder,

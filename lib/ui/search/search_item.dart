@@ -33,20 +33,20 @@ class SearchItem extends StatelessWidget {
           Text.rich(SubpingTextSpan(children: [
             SubpingTextSpan(
                 fontSize: SubpingFontSize.title5,
-                 fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
                 text: serviceResult.name
                     .substring(0, serviceResult.search.matchedIndex)),
             SubpingTextSpan(
                 color: SubpingColor.subping100,
                 fontSize: SubpingFontSize.title5,
-              fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
                 text: serviceResult.name.substring(
                     serviceResult.search.matchedIndex,
                     serviceResult.search.matchedIndex +
                         serviceResult.search.length)),
             SubpingTextSpan(
                 fontSize: SubpingFontSize.title5,
-                 fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
                 text: serviceResult.name.substring(
                     serviceResult.search.matchedIndex +
                         serviceResult.search.length)),

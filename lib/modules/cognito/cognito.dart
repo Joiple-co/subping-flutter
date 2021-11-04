@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:convert';
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
@@ -5,13 +7,12 @@ import 'package:amplify_flutter/amplify.dart';
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/api/api.dart';
-import 'package:subping/modules/secure/secure.dart';
 
 class Cognito {
-  static final Cognito _instance =
-      Cognito._internal(String.fromEnvironment("stage", defaultValue: "dev"));
+  static final Cognito _instance = Cognito._internal(
+      const String.fromEnvironment("stage", defaultValue: "dev"));
   Map<String, dynamic> _awsConfig;
-  
+
   factory Cognito() {
     return _instance;
   }
@@ -39,8 +40,7 @@ class Cognito {
           username: email.trim(), password: password.trim());
 
       return result;
-    } on AuthException catch (e) {
-      print(e.message);
+    } on AuthException {
       return SignInResult(isSignedIn: false);
     }
   }
@@ -59,8 +59,7 @@ class Cognito {
 
       return result;
     } catch (e) {
-      print(e);
-      return SignUpResult(isSignUpComplete: false);
+      return SignUpResult(isSignUpComplete: false, nextStep: null);
     }
   }
 
@@ -73,13 +72,13 @@ class Cognito {
         await API.post("auth", "/emailDuplicate", body: {"email": email});
 
     Map<String, dynamic> response =
-        jsonDecode(new String.fromCharCodes(rawResponse.data));
+        jsonDecode(String.fromCharCodes(rawResponse.data));
     BodyModel body = BodyModel.fromJson(response);
     return body;
   }
 
   Future<Map<String, String>> currentUser(
-      {email: bool, name: bool, cognitoId: bool}) async {
+      {email = bool, name = bool, cognitoId = bool}) async {
     var result = {"email": "", "name": "", "cognitoId": ""};
 
     if (await checkLoggedIn()) {

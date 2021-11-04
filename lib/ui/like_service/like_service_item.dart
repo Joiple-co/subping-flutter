@@ -8,13 +8,15 @@ class LikeServiceItem extends StatelessWidget {
   final bool isLast;
   final Function toggleUserLike;
 
-  LikeServiceItem({this.service, this.isLast, this.toggleUserLike});
+  const LikeServiceItem(
+      {this.service, this.isLast, this.toggleUserLike, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
         child: Container(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
       decoration: BoxDecoration(
         border: isLast
             ? Border(bottom: BorderSide(width: 2, color: SubpingColor.black30))
@@ -46,7 +48,9 @@ class LikeServiceItem extends StatelessWidget {
                             size: SubpingFontSize.body4),
                         Space(size: SubpingSize.medium11),
                         Row(
-                          children: List.generate(service.tag != null ? service.tag.length : 0, (index) {
+                          children: List.generate(
+                              service.tag != null ? service.tag.length : 0,
+                              (index) {
                             bool marginFlag = (index != 0);
                             return PoundButton(
                               "#${service.tag[index]}",
@@ -62,7 +66,7 @@ class LikeServiceItem extends StatelessWidget {
           GestureDetector(
             onTap: () => toggleUserLike(service.id),
             child: service.like
-                ? Container(
+                ? SizedBox(
                     width: 55,
                     height: 55,
                     child: Align(
@@ -71,12 +75,13 @@ class LikeServiceItem extends StatelessWidget {
                           Icon(Icons.favorite, color: SubpingColor.warning100),
                     ),
                   )
-                : Container(
+                : SizedBox(
                     width: 55,
                     height: 55,
                     child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(Icons.favorite, color: SubpingColor.black60)),
+                        alignment: Alignment.centerRight,
+                        child:
+                            Icon(Icons.favorite, color: SubpingColor.black60)),
                   ),
           ),
         ],

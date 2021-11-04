@@ -35,8 +35,7 @@ class SubscribePeriod extends StatelessWidget {
           Space(
             size: SubpingSize.medium14,
           ),
-          Container(
-              child: Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
@@ -44,22 +43,23 @@ class SubscribePeriod extends StatelessWidget {
                 children: [
                   SubpingText("선택된 주기", size: SubpingFontSize.body1),
                   SubpingText(
-                      PeriodString[startSubscribeViewModel.selectedPeriod],
+                      periodString[startSubscribeViewModel.selectedPeriod],
                       size: SubpingFontSize.body1),
                 ],
               ),
-              Divider(),
+              const Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SubpingText("다음 구독 예정일", size: SubpingFontSize.body1),
                   SubpingText(
-                      "${Helper.addPeriod(DateTime.now(), startSubscribeViewModel.selectedPeriod)}",
+                      Helper.addPeriod(DateTime.now(),
+                          startSubscribeViewModel.selectedPeriod),
                       size: SubpingFontSize.body1),
                 ],
               ),
             ],
-          )),
+          ),
           Space(
             size: SubpingSize.large20,
           ),
@@ -71,11 +71,11 @@ class SubscribePeriod extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                               color: SubpingColor.white100,
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                               )),
-                          padding: EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.only(left: 20),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

@@ -1,5 +1,4 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
@@ -10,6 +9,7 @@ class PassAuthViewModel extends GetxController {
       {"preTitle": "서비스 이용을 위해\n", "accent": "본인인증", "postTitle": "이 필요해요"}.obs;
   RxBool loading = false.obs;
 
+  @override
   void onInit() {
     super.onInit();
   }
@@ -45,7 +45,6 @@ class PassAuthViewModel extends GetxController {
 
       loading.value = false;
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("default");
     }
   }

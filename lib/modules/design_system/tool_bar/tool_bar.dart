@@ -10,11 +10,12 @@ class ToolBar extends StatelessWidget {
   final bool hasAlarmIcon;
   final int unreadAlarmCount;
 
-  ToolBar({
-    this.hasSearchIcon = false,
-    this.hasAlarmIcon = false,
-    this.unreadAlarmCount = 0
-  });
+  const ToolBar(
+      {this.hasSearchIcon = false,
+      this.hasAlarmIcon = false,
+      this.unreadAlarmCount = 0,
+      Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class ToolBar extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(13.w, 13.h, 13.w, 13.h),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(100)),
+            borderRadius: const BorderRadius.all(Radius.circular(100)),
             color: SubpingColor.white100),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -30,7 +31,7 @@ class ToolBar extends StatelessWidget {
             hasSearchIcon
                 ? Row(
                     children: [
-                      SearchIcon(),
+                      const SearchIcon(),
                       Space(
                         size: SubpingSize.large20,
                       ),
@@ -40,7 +41,9 @@ class ToolBar extends StatelessWidget {
             hasAlarmIcon
                 ? Row(
                     children: [
-                      AlramIcon(unreadAlarmCount: unreadAlarmCount,),
+                      AlramIcon(
+                        unreadAlarmCount: unreadAlarmCount,
+                      ),
                     ],
                   )
                 : Container()

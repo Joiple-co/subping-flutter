@@ -23,13 +23,13 @@ class SplashViewModel {
   void goNextScene() async {
     bool isSecureInitSucess;
     bool isLoggedIn;
-      
+
     try {
       await Future.wait([initSecure(), _checkLoggedIn()]).then((value) {
         isSecureInitSucess = value[0];
         isLoggedIn = value[1];
       });
- 
+
       if (isSecureInitSucess) {
         if (isLoggedIn) {
           Get.offAllNamed("/mainTabs");
@@ -41,7 +41,7 @@ class SplashViewModel {
       }
     } on UnknownException {
       Get.offAllNamed("/appIntro");
-    } catch(e) {
+    } catch (e) {
       ErrorHandler.errorHandler("SplashException");
     }
   }

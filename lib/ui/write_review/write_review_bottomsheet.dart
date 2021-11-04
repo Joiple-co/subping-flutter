@@ -18,7 +18,7 @@ class WriteReviewBottomSheet extends StatelessWidget {
     return HeaderSafe(
       hasBottomSafe: true,
       child: HorizontalPadding(
-        child: Container(
+        child: SizedBox(
           height: 260,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

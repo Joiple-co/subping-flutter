@@ -17,16 +17,17 @@ class UserLoginViewModel extends GetxController {
   FocusNode emailFocus = FocusNode();
   FocusNode passwordFocus = FocusNode();
 
+  @override
   void onInit() {
     super.onInit();
 
     debounce(email, (text) async {
       checkEmailVaild();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
 
     debounce(password, (text) {
       checkPasswordValid();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
   }
 
   Future<bool> checkEmailVaild() async {
@@ -66,19 +67,17 @@ class UserLoginViewModel extends GetxController {
 
       Cognito cognito = Cognito();
 
-      final result = await cognito.signIn(email.value, password.value);
+      await cognito.signIn(email.value, password.value);
       final isSignedIn = await cognito.checkLoggedIn();
 
       loading.value = false;
 
       if (isSignedIn) {
         Get.offAllNamed("/mainTabs");
-        print("logged in");
       } else {
         ErrorHandler.errorHandler("LoginException");
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("default");
     }
   }

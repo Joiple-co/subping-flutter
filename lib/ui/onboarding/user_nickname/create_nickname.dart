@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:subping/viewmodel/local/onboarding/create_nickname_viewmodel.dart';
 
 class CreateNickName extends StatelessWidget {
+  const CreateNickName({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final userNickNameController = Get.find<CreateNickNameViewModel>();

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class HeaderPadding extends StatelessWidget {
   final Widget child;
 
-  HeaderPadding({Key key, this.child}) : super(key: key);
+  const HeaderPadding({Key key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

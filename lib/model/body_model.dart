@@ -6,6 +6,6 @@ class BodyModel {
 
   BodyModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
-    success = json['success'] == null ? false : json['success'];
+    success = json['success'] ?? false;
   }
 }

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-class SearchIcon  extends StatelessWidget {
-  
+
+class SearchIcon extends StatelessWidget {
+  const SearchIcon({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return 
-      IconButton(
-          padding: EdgeInsets.zero,
-          constraints: BoxConstraints(
-            minHeight: 50.h,
-            minWidth: 50.w,
-          ),
-          icon: Image.asset(
-            "assets/icon/search.png",
-          ),
-          onPressed: () { 
-            Get.toNamed("/search");  
-          },
-        );
+    return IconButton(
+      padding: EdgeInsets.zero,
+      constraints: BoxConstraints(
+        minHeight: 50.h,
+        minWidth: 50.w,
+      ),
+      icon: Image.asset(
+        "assets/icon/search.png",
+      ),
+      onPressed: () {
+        Get.toNamed("/search");
+      },
+    );
   }
 }

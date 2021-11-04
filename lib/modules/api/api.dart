@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import "dart:convert";
 import "dart:io";
 import 'dart:typed_data';
@@ -11,7 +13,7 @@ import 'package:subping/modules/error_handler/error_handler.dart';
 
 class API {
   static final List<RestOperation> requests = [];
-  static final JSON = JsonEncoder();
+  static const json = JsonEncoder();
   static final cognito = Cognito();
 
   static Future<Map<String, String>> _makeHeader() async {
@@ -67,14 +69,14 @@ class API {
   }
 
   static Future<RestResponse> get(String service, String path) async {
-    print('[API GET] service : "${service}" path : "${path}"');
-      
+    print('[API GET] service : "$service" path : "$path"');
+
     if (!await API.hasNetwork()) {
       print("[API] No Network");
 
-      API.requests.forEach((request) {
+      for (var request in API.requests) {
         request.cancel();
-      });
+      }
 
       ErrorHandler.errorHandler("NoNetworkException");
       return null;
@@ -91,19 +93,20 @@ class API {
       return restOperation.response;
     } on ApiException catch (e) {
       print("GET call failed: $e");
+      return RestResponse(data: null, headers: null, statusCode: 500);
     }
   }
 
   static Future<RestResponse> post(String service, String path,
       {Map<dynamic, dynamic> body}) async {
-    print('[API POST] service : "${service}" path : "${path}"');
-    
+    print('[API POST] service : "$service" path : "$path"');
+
     if (!await API.hasNetwork()) {
       print("[API] No Network");
 
-      API.requests.forEach((request) {
+      for (var request in API.requests) {
         request.cancel();
-      });
+      }
 
       ErrorHandler.errorHandler("NoNetworkException");
       return null;
@@ -112,7 +115,7 @@ class API {
     Map<String, String> header = await _makeHeader();
 
     try {
-      String jsonBody = JSON.convert(body);
+      String jsonBody = json.convert(body);
       Uint8List encoded = utf8.encode(jsonBody);
 
       RestOptions options = RestOptions(
@@ -123,6 +126,7 @@ class API {
       return restOperation.response;
     } on ApiException catch (e) {
       print("Post call failed: $e");
+      return RestResponse(data: null, headers: null, statusCode: 500);
     }
   }
 }

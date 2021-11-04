@@ -5,17 +5,16 @@ import 'package:subping/model/body_model.dart';
 import 'package:subping/model/subscribe_model.dart';
 import 'package:subping/model/subscribe_schedule_model.dart';
 import 'package:subping/modules/api/api.dart';
-import 'package:subping/modules/error_handler/error_handler.dart';
 
 class SubscribeRepository {
-  Future<bool> makeSubscribe(
-      {userCardId: String,
-      subscribeItems: List,
-      addressId: String,
-      period: String,
-      serviceId: String}) async {
+  Future<String> makeSubscribe(
+      {userCardId = String,
+      subscribeItems = List,
+      addressId = String,
+      period = String,
+      serviceId = String}) async {
     try {
-      final now = (await NTP.now()).toUtc().add(Duration(hours: 9));
+      final now = (await NTP.now()).toUtc().add(const Duration(hours: 9));
 
       final rawResponse = await API.post("user", "/makeSubscribe", body: {
         "serviceId": serviceId,
@@ -30,24 +29,20 @@ class SubscribeRepository {
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
       if (response.success) {
-        return true;
+        return "success";
       } else {
-        print(response.message);
-
         if (response.message == "UserHasSameServiceSubscribeException") {
-          ErrorHandler.errorHandler(response.message);
+          return response.message;
         } else if (response.message == "MakeSubscribeException") {
-          ErrorHandler.errorHandler(response.message);
+          return response.message;
         } else if (response.message == "PaymentException") {
-          ErrorHandler.errorHandler(response.message);
+          return response.message;
         } else {
-          ErrorHandler.errorHandler("WrongAccess");
+          return "WrongAccessException";
         }
-        return false;
       }
     } catch (e) {
-      ErrorHandler.errorHandler("default");
-      return false;
+      return "UnknownException";
     }
   }
 
@@ -67,7 +62,7 @@ class SubscribeRepository {
     return subscribes;
   }
 
-  Future<SubscribeModel> getSubscribe({serviceId: String}) async {
+  Future<SubscribeModel> getSubscribe({serviceId = String}) async {
     SubscribeModel subscribe;
 
     final rawResponse =

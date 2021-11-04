@@ -53,10 +53,16 @@ dependencies:
   cupertino_icons: ^1.0.0
   iamport_flutter: ^0.10.0-dev.3
   ntp: ^2.0.0
-  
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  hive_generator: ^1.1.1
+  build_runner: ^2.1.4
+  test: ^1.17.10
+  flutter_lints: ^1.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

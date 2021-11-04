@@ -28,7 +28,7 @@ class ServiceFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final hasSubscribe = this.subscribes[serviceId] != null;
+      final hasSubscribe = subscribes[serviceId] != null;
 
       return SafeArea(
         bottom: true,
@@ -76,16 +76,15 @@ class ServiceFooter extends StatelessWidget {
                         text: "관리하기",
                         width: 330.w,
                         onPressed: () =>
-                            Get.toNamed("/startSubscribe/${serviceId}"),
+                            Get.toNamed("/startSubscribe/$serviceId"),
                       ),
                     ],
                   )
                 : SquareButton(
                     text: "구독하기",
                     width: 680.w,
-                    disabled: products.length == 0,
-                    onPressed: () =>
-                        Get.toNamed("/startSubscribe/${serviceId}"),
+                    disabled: products.isEmpty,
+                    onPressed: () => Get.toNamed("/startSubscribe/$serviceId"),
                   ),
           ]),
         ]),

@@ -7,17 +7,14 @@ import 'package:subping/modules/api/api.dart';
 class SearchRepository {
   Future<SearchModel> getSearch(String requestWord) async {
     try {
-      final rawResponse = await API.post("service", "/search", body: {
-        "requestWord": requestWord
-      });
+      final rawResponse = await API
+          .post("service", "/search", body: {"requestWord": requestWord});
 
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-      print(response.message);
 
       return SearchModel.fromJson(response.message);
     } catch (e) {
-      print(e);
       return SearchModel();
     }
   }

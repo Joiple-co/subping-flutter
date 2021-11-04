@@ -10,7 +10,11 @@ class CalendarDate extends StatelessWidget {
   final Function onClickDate;
 
   const CalendarDate(
-      {Key key, this.date, this.schedules, this.highlight = false, this.onClickDate})
+      {Key key,
+      this.date,
+      this.schedules,
+      this.highlight = false,
+      this.onClickDate})
       : super(key: key);
 
   @override
@@ -19,30 +23,27 @@ class CalendarDate extends StatelessWidget {
       onTap: onClickDate,
       child: Container(
           decoration: BoxDecoration(
-              boxShadow: highlight ? [
-                BoxShadow(
-                  color: SubpingColor.black30,
-                  spreadRadius: 3,
-                  blurRadius: 5,
-                  offset: Offset(0, 0), // changes position of shadow
-                )
-              ] : [],
+              boxShadow: highlight
+                  ? [
+                      BoxShadow(
+                        color: SubpingColor.black30,
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset:
+                            const Offset(0, 0), // changes position of shadow
+                      )
+                    ]
+                  : [],
               color: highlight ? SubpingColor.white100 : SubpingColor.back20,
               borderRadius: BorderRadius.circular(15)),
           width: 90,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SubpingText(
-                WeekOfDayToString[date.weekday],
-                size: SubpingFontSize.tiny1,
-                color: SubpingColor.black80
-              ),
-              SubpingText(
-                date.day.toString(),
-                size: SubpingFontSize.title3,
-                color: SubpingColor.black80
-              ),
+              SubpingText(weekOfDayToString[date.weekday],
+                  size: SubpingFontSize.tiny1, color: SubpingColor.black80),
+              SubpingText(date.day.toString(),
+                  size: SubpingFontSize.title3, color: SubpingColor.black80),
               Space(
                 size: SubpingSize.medium10,
               ),

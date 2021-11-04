@@ -4,8 +4,8 @@ import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/repository/product_repository.dart';
 
 class ProductViewModel extends GetxController {
-  ProductRepository _productRepository = ProductRepository();
-  Map<String, RxList<ProductModel>> _products =
+  final ProductRepository _productRepository = ProductRepository();
+  final Map<String, RxList<ProductModel>> _products =
       <String, RxList<ProductModel>>{}.obs;
 
   Future<void> updateProducts(String serviceId) async {
@@ -24,21 +24,27 @@ class ProductViewModel extends GetxController {
     _products[serviceId].refresh();
   }
 
-  String getCheapeastPrice(String serviceId) {
-    if (_products[serviceId] != null) {
-      num cheapestPrice = double.infinity;
+  String getCheapestPrice(List<ProductModel> products) {
+    num cheapestPrice = double.infinity;
 
-      _products[serviceId].forEach((element) {
-        if (element.price != null && element.price < cheapestPrice) {
-          cheapestPrice = element.price;
-        }
-      });
-
-      if (cheapestPrice != double.infinity) {
-        return Helper.setComma(cheapestPrice);
-      } else {
-        return "0";
+    for (var element in products) {
+      if (element.price != null && element.price < cheapestPrice) {
+        cheapestPrice = element.price;
       }
+    }
+
+    if (cheapestPrice != double.infinity) {
+      return Helper.setComma(cheapestPrice);
+    } else {
+      return "0";
+    }
+  }
+
+  String getCheapeastPriceInService(String serviceId) {
+    final products = _products[serviceId];
+
+    if (products != null) {
+      return getCheapestPrice(products);
     } else {
       return "0";
     }
@@ -46,10 +52,14 @@ class ProductViewModel extends GetxController {
 
   List<ProductModel> getProducts(String serviceId) {
     if (_products[serviceId] != null) {
-      return _products[serviceId].value;
+      return _products[serviceId];
     } else {
       return [];
     }
+  }
+
+  Map<String, RxList<ProductModel>> get products {
+    return _products;
   }
 
   @override

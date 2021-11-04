@@ -4,6 +4,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserHistoryContainer extends StatelessWidget {
+  const UserHistoryContainer({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,8 +26,12 @@ class UserHistoryContainer extends StatelessWidget {
                 icon: Image.asset(
                   "assets/icon/mypage1.png",
                 ),
+                onPressed: () {},
               ),
-              SubpingText("찜한 상품")
+              const SubpingText(
+                "찜한 상품",
+                size: null,
+              )
             ],
           ),
         ),
@@ -44,11 +50,14 @@ class UserHistoryContainer extends StatelessWidget {
                 ),
                 onPressed: () {},
               ),
-              SubpingText("나의 리뷰")
+              const SubpingText("나의 리뷰", size: null)
             ],
           ),
         ),
         GestureDetector(
+          onTap: () {
+            Get.toNamed("/recentServiceHistory");
+          },
           child: Column(
             children: [
               IconButton(
@@ -62,7 +71,7 @@ class UserHistoryContainer extends StatelessWidget {
                 ),
                 onPressed: () {},
               ),
-              SubpingText("최근 본 상품")
+              const SubpingText("최근 본 상품", size: null)
             ],
           ),
         )

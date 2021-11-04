@@ -14,9 +14,6 @@ class SearchModel {
     json['serviceResult'].forEach((item) {
       serviceResult.add(ServiceResult.fromJson(item));
     });
-
-    print(tagResult);
-    print(serviceResult);
   }
 }
 
@@ -47,5 +44,4 @@ class ServiceResult extends ServiceModel {
     super.updateServiceModel(ServiceModel.fromJson(json));
     search = SearchProperty.fromJson(json['search']);
   }
-} 
- 
+}

@@ -9,9 +9,9 @@ class Space extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Container(
-      color: this.color,
-      width: this.size,
-      height: this.size,
+      color: color,
+      width: size,
+      height: size,
     ));
   }
 }

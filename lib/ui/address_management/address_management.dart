@@ -12,8 +12,9 @@ class AddressManagement extends StatelessWidget {
     userViewModel.updateUserAddresses();
     final addresses = userViewModel.userAddreses;
 
-    return Obx(() => Scaffold(
-        appBar: TitleAppBar("등록 주소 관리", hasBackButton: true),
+    return Obx(
+      () => Scaffold(
+        appBar: const TitleAppBar("등록 주소 관리", hasBackButton: true),
         backgroundColor: SubpingColor.white100,
         body: RefreshIndicator(
           backgroundColor: SubpingColor.white100,
@@ -23,7 +24,7 @@ class AddressManagement extends StatelessWidget {
           child: ListView(children: [
             ...List.generate(addresses.length, (index) {
               final addressId = addresses.keys.elementAt(index);
-            
+
               return HorizontalPadding(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +51,7 @@ class AddressManagement extends StatelessWidget {
                                     ),
                                     addresses[addressId].isDefault
                                         ? Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                                 horizontal: 5, vertical: 2),
                                             decoration: BoxDecoration(
                                                 color: SubpingColor.subping30,
@@ -66,7 +67,7 @@ class AddressManagement extends StatelessWidget {
                                     size: SubpingSize.tiny5,
                                   ),
                                   SubpingText(
-                                      "${addresses[addressId].userPhoneNumber}",
+                                      addresses[addressId].userPhoneNumber,
                                       color: SubpingColor.black60,
                                       size: SubpingFontSize.body2),
                                   SubpingText(
@@ -86,12 +87,14 @@ class AddressManagement extends StatelessWidget {
                                     onTap: () => Get.toNamed(
                                         "/editAddress/${addresses[addressId].id}",
                                         preventDuplicates: false),
-                                    child: Container(
-                                        child: Align(
+                                    child: Align(
                                       alignment: Alignment.topLeft,
-                                      child: SubpingText("수정하기",
-                                          color: SubpingColor.subping100),
-                                    )),
+                                      child: SubpingText(
+                                        "수정하기",
+                                        color: SubpingColor.subping100,
+                                        size: null,
+                                      ),
+                                    ),
                                   ),
                                   Space(size: SubpingSize.medium10),
                                   !addresses[addressId].isDefault
@@ -99,12 +102,14 @@ class AddressManagement extends StatelessWidget {
                                           onTap: () => Get.toNamed(
                                               "/editAddress/${addresses[addressId].id}",
                                               preventDuplicates: false),
-                                          child: Container(
-                                              child: Align(
+                                          child: Align(
                                             alignment: Alignment.topLeft,
-                                            child: SubpingText("삭제하기",
-                                                color: SubpingColor.black60),
-                                          )),
+                                            child: SubpingText(
+                                              "삭제하기",
+                                              color: SubpingColor.black60,
+                                              size: null,
+                                            ),
+                                          ),
                                         )
                                       : Container()
                                 ],
@@ -113,7 +118,7 @@ class AddressManagement extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Divider()
+                      const Divider()
                     ]),
               );
             }),

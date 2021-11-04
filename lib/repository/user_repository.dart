@@ -20,14 +20,14 @@ class UserRepository {
         return user;
       } else {
         if (response.message == "NoUserExistException") {
-        ErrorHandler.errorHandler("NoUserExistException");
+          ErrorHandler.errorHandler("NoUserExistException");
+          return UserModel();
         } else {
           ErrorHandler.errorHandler("GetUserException");
           return UserModel();
         }
       }
     } catch (e) {
-      print("[UserRepository Error] getUser : ${e}");
       return UserModel(nickName: "사용자님");
     }
   }
@@ -47,7 +47,6 @@ class UserRepository {
         return false;
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("NickNameDuplicateException");
       return false;
     }
@@ -109,8 +108,6 @@ class UserRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      print(response.message);
-
       if (!response.success) {
         ErrorHandler.errorHandler("MakeUserAddressException");
       }
@@ -120,8 +117,8 @@ class UserRepository {
   }
 
   Future<bool> editUserAddress(UserAddressModel address) async {
-    try{
-     final rawResponse = await API.post("user", "/editUserAddress", body: {
+    try {
+      final rawResponse = await API.post("user", "/editUserAddress", body: {
         "addressId": address.id,
         "userName": address.userName,
         "userPhoneNumber": address.userPhoneNumber,
@@ -141,6 +138,7 @@ class UserRepository {
       return response.success;
     } catch (e) {
       ErrorHandler.errorHandler("EditUserAddressException");
+      return false;
     }
   }
 
@@ -160,7 +158,6 @@ class UserRepository {
         ErrorHandler.errorHandler("GetUserCardsException");
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("GetUserCardsException");
     }
 
@@ -181,36 +178,30 @@ class UserRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      print(response.message);
-      
       if (!response.success) {
         ErrorHandler.errorHandler("AddCardException");
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("AddCardException");
     }
   }
 
   Future<bool> deleteCard(String cardId) async {
     try {
-      final rawResponse = await API.post("user", "/deleteUserCard", body: {
-        "cardId": cardId
-      });
+      final rawResponse =
+          await API.post("user", "/deleteUserCard", body: {"cardId": cardId});
 
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      print(response.message);
-      
       if (!response.success) {
         ErrorHandler.errorHandler("DeleteCardException");
       }
 
       return response.success;
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("DeleteCardException");
+      return false;
     }
   }
 }

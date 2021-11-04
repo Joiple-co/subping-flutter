@@ -5,27 +5,28 @@ import 'package:subping/model/user_model.dart';
 import 'package:subping/repository/user_repository.dart';
 
 class UserViewModel extends GetxController {
-  UserRepository _userRepository = UserRepository();
+  final UserRepository _userRepository = UserRepository();
 
-  Rx<UserModel> _user = UserModel().obs;
-  RxMap<String, UserAddressModel> _addresses = <String, UserAddressModel>{}.obs;
-  RxMap<String, UserCardModel> _cards = <String, UserCardModel>{}.obs;
+  final Rx<UserModel> _user = UserModel().obs;
+  final RxMap<String, UserAddressModel> _addresses =
+      <String, UserAddressModel>{}.obs;
+  final RxMap<String, UserCardModel> _cards = <String, UserCardModel>{}.obs;
 
   Future<void> updateInfo() async {
     _user.value.updateUserModel(await _userRepository.getUser());
     _user.refresh();
     await updateUserAddresses();
 
-    this.checkUserStatus();
+    checkUserStatus();
   }
 
   Future<void> updateUserAddresses() async {
     final response = await _userRepository.getUserAddresses();
     _addresses.value = {};
 
-    response.forEach((element) {
+    for (var element in response) {
       _addresses[element.id] = element;
-    });
+    }
 
     _addresses.refresh();
   }
@@ -34,17 +35,17 @@ class UserViewModel extends GetxController {
     final response = await _userRepository.getUserCards();
     _cards.value = {};
 
-    response.forEach((element) {
+    for (var element in response) {
       _cards[element.id] = element;
-    });
+    }
 
     _cards.refresh();
   }
-  
+
   Future<void> deleteCard(UserCardModel card) async {
     final response = await _userRepository.deleteCard(card.id);
 
-    if(response) {
+    if (response) {
       updateUserCards();
     }
   }
@@ -76,7 +77,7 @@ class UserViewModel extends GetxController {
   }
 
   Map<String, UserCardModel> get cards {
-    return _cards.value;
+    return _cards;
   }
 
   Map<String, UserAddressModel> get userAddreses {

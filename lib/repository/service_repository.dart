@@ -27,7 +27,6 @@ class ServiceRepository {
 
       return services;
     } catch (e) {
-      print(e);
       return [];
     }
   }
@@ -47,7 +46,6 @@ class ServiceRepository {
         return CurrentHotChartModel();
       }
     } catch (e) {
-      print(e);
       return CurrentHotChartModel();
     }
   }
@@ -67,7 +65,6 @@ class ServiceRepository {
 
       return categories;
     } catch (e) {
-      print(e);
       return [];
     }
   }
@@ -84,7 +81,7 @@ class ServiceRepository {
 
       return service;
     } catch (e) {
-      print(e);
+      return ServiceModel();
     }
   }
 
@@ -103,7 +100,6 @@ class ServiceRepository {
 
       return services;
     } catch (e) {
-      print(e);
       return [];
     }
   }
@@ -122,7 +118,6 @@ class ServiceRepository {
         return response.message;
       }
     } catch (e) {
-      print(e);
       return null;
     }
   }

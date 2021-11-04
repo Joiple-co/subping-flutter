@@ -15,7 +15,7 @@ class AddAddressViewModel extends GetxController {
   RxBool isValid = false.obs;
   RxBool loading = false.obs;
 
-  UserRepository _userRepository = UserRepository();
+  final UserRepository _userRepository = UserRepository();
 
   FocusNode detailedAddressFocusNode = FocusNode();
   TextEditingController userNameController = TextEditingController();
@@ -23,7 +23,7 @@ class AddAddressViewModel extends GetxController {
   TextEditingController zipCodeController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  MaskTextInputFormatter phoneNumberFormatter = new MaskTextInputFormatter(
+  MaskTextInputFormatter phoneNumberFormatter = MaskTextInputFormatter(
       mask: '###-####-####', filter: {"#": RegExp(r'[0-9]')});
 
   void setUserDefaultInfo(String userName, String phoneNumber) {
@@ -35,7 +35,7 @@ class AddAddressViewModel extends GetxController {
   void routingKopo(BuildContext context) async {
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => KpostalView(
-              appBar: TitleAppBar(
+              appBar: const TitleAppBar(
                 "우편번호 찾기",
                 hasBackButton: true,
               ),
@@ -65,9 +65,9 @@ class AddAddressViewModel extends GetxController {
   }
 
   void checkValid() {
-    isValid.value = !(postCode.length == 0 ||
-        postCode.length == 0 ||
-        detailAddress.length == 0 ||
+    isValid.value = !(postCode.isEmpty ||
+        postCode.isEmpty ||
+        detailAddress.isEmpty ||
         userNameController.text.length < 2 ||
         phoneNumberFormatter.unmaskText(phoneNumberController.text).length <
             10);
@@ -90,7 +90,7 @@ class AddAddressViewModel extends GetxController {
       await _userViewModel.updateUserAddresses();
 
       loading.value = false;
-      
+
       Get.back();
     }
   }

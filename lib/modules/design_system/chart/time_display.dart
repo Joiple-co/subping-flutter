@@ -5,8 +5,9 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 class TimeDisplay extends StatelessWidget {
   final String time;
 
-  const TimeDisplay(this.time) : super();
+  const TimeDisplay(this.time, {Key key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
@@ -18,7 +19,7 @@ class TimeDisplay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: 27.w,
             height: 27.h,
             child: Image.asset(

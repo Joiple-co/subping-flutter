@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/gallery/galleryItem.dart';
 import 'package:subping/ui/gallery/picked_image_list.dart';

@@ -9,12 +9,13 @@ class AlterPage extends StatelessWidget {
   final Map<String, dynamic> blankType;
   final Widget child;
 
-  AlterPage({this.blankType, this.condition, this.child});
+  const AlterPage({this.blankType, this.condition, this.child, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (!condition) {
-      return this.child;
+      return child;
     } else {
       return Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25),

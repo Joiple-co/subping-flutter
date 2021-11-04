@@ -7,7 +7,14 @@ class ProductModel {
   String productLogoUrl;
   bool available;
 
-  ProductModel({this.id, this.serviceId, this.price, this.name, this.summary, this.productLogoUrl, this.available});
+  ProductModel(
+      {this.id,
+      this.serviceId,
+      this.price,
+      this.name,
+      this.summary,
+      this.productLogoUrl,
+      this.available});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

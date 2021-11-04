@@ -1,3 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify.dart';
@@ -7,6 +14,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/add_card_bindings.dart';
@@ -20,6 +29,7 @@ import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
+import 'package:subping/hive/recent_service.dart';
 import 'package:subping/main.mapper.g.dart';
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
@@ -41,6 +51,7 @@ import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/onboarding/user_nickname/create_nickname.dart';
 import 'package:subping/ui/search/search.dart';
+import 'package:subping/ui/recent_service_history/recent_service_history.dart';
 import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
 import 'package:subping/ui/start_subscribe/start_subscribe.dart';
@@ -48,17 +59,26 @@ import 'package:subping/ui/write_review/write_review.dart';
 
 import 'binding/gallery_bindings.dart';
 import 'binding/my_review_bindings.dart';
+import 'package:subping/binding/main_tabs_bindings.dart';
+import 'package:subping/binding/onboarding/user_account_bindings.dart';
+import 'package:subping/binding/onboarding/user_login_bindings.dart';
+import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
 void main() async {
   initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await GetStorage.init();
+  await Hive.initFlutter();
+  Hive.registerAdapter(RecentServiceAdapter());
+
+  await Hive.openBox<RecentService>("recentView");
+
   runApp(SubpingApp());
 }
 
 class SubpingApp extends StatefulWidget {
-  const SubpingApp() : super();
+  const SubpingApp({Key key}) : super(key: key);
 
   @override
   _SubpingAppState createState() => _SubpingAppState();
@@ -83,6 +103,7 @@ class _SubpingAppState extends State<SubpingApp> {
     try {
       await Amplify.configure(getAmplifyCongig("dev"));
     } on AmplifyAlreadyConfiguredException {
+      // ignore: avoid_print
       print(
           "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
     }
@@ -181,7 +202,11 @@ class _SubpingAppState extends State<SubpingApp> {
                     binding: GalleryBindings()),
                 GetPage(name: "/cardManagement", page: () => CardManagement()),
                 GetPage(
-                    name: "/addressManagement", page: () => AddressManagement())
+                    name: "/addressManagement",
+                    page: () => AddressManagement()),
+                GetPage(
+                    name: "/recentServiceHistory",
+                    page: () => RecentServiceHistory())
               ],
             ));
   }

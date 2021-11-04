@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/repository/review_repository.dart';
 import 'package:subping/ui/main_tabs/home/recent_review.dart';
 import 'package:subping/ui/main_tabs/home/recommand.dart';
-//import 'package:subping/ui/main_tabs/home/tool_bar.dart';
 import 'package:subping/modules/design_system/tool_bar/tool_bar.dart';
 import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
@@ -16,7 +15,7 @@ import './recommand.dart';
 import './chart.dart';
 
 class Home extends StatelessWidget {
-  const Home() : super();
+  const Home({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +51,15 @@ class Home extends StatelessWidget {
                 await alarmViewModel.updateAlarm();
               },
               child: serviveViewModel.chartLoading || alarmViewModel.isLoading
-                  ? SubpingLoading()
+                  ? const SubpingLoading()
                   : ListView(
                       physics: const BouncingScrollPhysics(
                           parent: AlwaysScrollableScrollPhysics()),
                       children: [
                         Space(size: SubpingSize.large20),
-                        Expected(),
+                        const Expected(),
                         Space(size: SubpingSize.large40),
-                        Recommand(),
+                        const Recommand(),
                         Space(size: SubpingSize.large40),
                         Chart(
                             limitItem:

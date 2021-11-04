@@ -4,9 +4,11 @@ import 'package:subping/model/subscribe_block_item_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class SubscribeBlockItem extends StatelessWidget {
-  bool hasborder;
-  SubScribeBlockItemModel subscribeData;
-  SubscribeBlockItem({this.hasborder, this.subscribeData});
+  final bool hasborder;
+  final SubScribeBlockItemModel subscribeData;
+
+  const SubscribeBlockItem({Key key, this.hasborder, this.subscribeData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class SubscribeBlockItem extends StatelessWidget {
             height: 80.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
+              image: const DecorationImage(
                   fit: BoxFit.fill,
                   image: NetworkImage(
                       "https://pds.joins.com/news/component/htmlphoto_mmdata/202107/06/21ce34aa-c1e6-4b62-a5d5-568fe81334c4.jpg")),

@@ -6,11 +6,12 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 class UserInfoContainer extends StatelessWidget {
   final UserViewModel userData;
 
-  UserInfoContainer({this.userData});
+  const UserInfoContainer({this.userData, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+    return Obx(
+      () => Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         GestureDetector(
           child: CircleAvatar(
             radius: 20,
@@ -31,7 +32,7 @@ class UserInfoContainer extends StatelessWidget {
             SubpingText("${userData.name}님 / ${userData.nickName}",
                 fontWeight: FontWeight.bold, size: SubpingFontSize.body2),
             SubpingText(
-              "${userData.email}",
+              userData.email,
               color: SubpingColor.black60,
               size: SubpingFontSize.tiny1,
             )

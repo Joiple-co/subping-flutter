@@ -8,10 +8,8 @@ class AlarmItem extends StatelessWidget {
   final bool isLastItem;
   final AlarmContentsModel alarmContent;
 
-  AlarmItem({
-    this.isLastItem = false,
-    this.alarmContent,
-  });
+  const AlarmItem({this.isLastItem = false, this.alarmContent, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

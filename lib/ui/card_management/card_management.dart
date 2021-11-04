@@ -19,7 +19,7 @@ class CardManagement extends StatelessWidget {
 
       return Scaffold(
         backgroundColor: SubpingColor.white100,
-        appBar: TitleAppBar("등록 카드 관리", hasBackButton: true),
+        appBar: const TitleAppBar("등록 카드 관리", hasBackButton: true),
         body: RefreshIndicator(
           backgroundColor: SubpingColor.white100,
           onRefresh: userViewModel.updateUserCards,
@@ -36,7 +36,7 @@ class CardManagement extends StatelessWidget {
                         Row(
                           children: [
                             CardIcon(
-                              vendor: CardVendorMapper[
+                              vendor: cardVendorMapper[
                                   userViewModel.cards[cardKey].cardVendor],
                               size: 50,
                             ),
@@ -47,10 +47,10 @@ class CardManagement extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SubpingText(
-                                    "${userViewModel.cards[cardKey].cardName}",
+                                    userViewModel.cards[cardKey].cardName,
                                     size: SubpingFontSize.body1),
                                 SubpingText(
-                                    "${userViewModel.cards[cardKey].cardVendor}",
+                                    userViewModel.cards[cardKey].cardVendor,
                                     size: SubpingFontSize.body2,
                                     color: SubpingColor.black60),
                               ],
@@ -60,8 +60,9 @@ class CardManagement extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             Get.dialog(AlertDialog(
-                                title: Text("확인이 필요해요!"),
-                                content: Text("카드 연결이 해지됩니다.\n정말 해지하시겠습니까?"),
+                                title: const Text("확인이 필요해요!"),
+                                content:
+                                    const Text("카드 연결이 해지됩니다.\n정말 해지하시겠습니까?"),
                                 actions: [
                                   TextButton(
                                       onPressed: () {
@@ -86,7 +87,7 @@ class CardManagement extends StatelessWidget {
                         ),
                       ]),
                   Space(size: SubpingSize.medium10),
-                  Divider()
+                  const Divider()
                 ]),
               );
             }),

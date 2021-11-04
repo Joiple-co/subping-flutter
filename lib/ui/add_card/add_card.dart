@@ -1,4 +1,4 @@
-import 'package:amplify_api/amplify_api.dart';
+import 'package:amplify_flutter/amplify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -14,19 +14,21 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import 'package:subping/viewmodel/local/add_card/add_card_viewmodel.dart';
 
 class AddCard extends StatelessWidget {
+  const AddCard({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final addCardViewModel = Get.find<AddCardViewModel>();
 
     return Obx(() {
-      if (addCardViewModel.step == AddCardStep.CARD_NAME) {
-        return CardName();
-      } else if (addCardViewModel.step == AddCardStep.PG) {
-        return IamportAssign();
-      } else if (addCardViewModel.step == AddCardStep.LOADING) {
-        return Loading();
+      if (addCardViewModel.step == AddCardStep.cardName) {
+        return const CardName();
+      } else if (addCardViewModel.step == AddCardStep.pg) {
+        return const IamportAssign();
+      } else if (addCardViewModel.step == AddCardStep.loading) {
+        return const Loading();
       } else {
-        return Done();
+        return const Done();
       }
     });
   }
@@ -39,9 +41,10 @@ class CardName extends StatelessWidget {
   Widget build(BuildContext context) {
     final addCardViewModel = Get.find<AddCardViewModel>();
 
-    return Obx(() => Scaffold(
+    return Obx(
+      () => Scaffold(
         backgroundColor: SubpingColor.white100,
-        appBar: TitleAppBar(
+        appBar: const TitleAppBar(
           "카드 등록",
           hasBackButton: true,
         ),
@@ -118,42 +121,43 @@ class IamportAssign extends StatelessWidget {
     final userEmail = userViewModel.email;
 
     return IamportPayment(
-        appBar: TitleAppBar(
-          "카드 등록",
-          hasBackButton: true,
-        ),
-        /* 웹뷰 로딩 컴포넌트 */
-        initialChild: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/iamport-logo.png'),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-                  child: Text('잠시만 기다려주세요...', style: TextStyle(fontSize: 20.0)),
-                ),
-              ],
-            ),
+      appBar: const TitleAppBar(
+        "카드 등록",
+        hasBackButton: true,
+      ),
+      /* 웹뷰 로딩 컴포넌트 */
+      // ignore: avoid_unnecessary_containers
+      initialChild: Container(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/iamport-logo.png'),
+              Container(
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                child: const Text('잠시만 기다려주세요...',
+                    style: TextStyle(fontSize: 20.0)),
+              ),
+            ],
           ),
         ),
-        userCode: 'imp90315868',
-        data: PaymentData(
-          payMethod: 'card',
-          name: '구독의 모든것! 섭핑',
-          merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}',
-          amount: 0,
-          customerUid: "${userEmail}-${UUID.getUUID()}",
-          buyerName: userName,
-          buyerTel: userPhoneNumber,
-          buyerEmail: userEmail,
-          appScheme: 'subping',
-        ),
-        /* [필수입력] 콜백 함수 */
-        callback: (Map<String, String> result) {
-          print(result);
-          addCardViewModel.onAddCardDone(result);
-        },
+      ),
+      userCode: 'imp90315868',
+      data: PaymentData(
+        payMethod: 'card',
+        name: '구독의 모든것! 섭핑',
+        merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}',
+        amount: 0,
+        customerUid: "$userEmail-${UUID.getUUID()}",
+        buyerName: userName,
+        buyerTel: userPhoneNumber,
+        buyerEmail: userEmail,
+        appScheme: 'subping',
+      ),
+      /* [필수입력] 콜백 함수 */
+      callback: (Map<String, String> result) {
+        addCardViewModel.onAddCardDone(result);
+      },
     );
   }
 }
@@ -165,9 +169,10 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     final userViewModel = Get.find<UserViewModel>();
 
-    return Obx(() => Scaffold(
+    return Obx(
+      () => Scaffold(
           backgroundColor: SubpingColor.white100,
-          appBar: TitleAppBar(
+          appBar: const TitleAppBar(
             "카드 등록",
           ),
           body: Center(

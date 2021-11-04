@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class ExpandableWebView extends StatefulWidget {
   final String url;
   final EdgeInsets padding;
 
-  ExpandableWebView(
+  const ExpandableWebView(
     this.url, {
     Key key,
     this.padding = const EdgeInsets.all(0),
@@ -29,7 +29,10 @@ class _ExpandableWebViewState extends State<ExpandableWebView> {
         height: contentHeight,
         child: Stack(
           alignment: Alignment.topCenter,
-          children: [_buildWebView(context), if (!loaded) SubpingLoading()],
+          children: [
+            _buildWebView(context),
+            if (!loaded) const SubpingLoading()
+          ],
         ));
   }
 
@@ -37,17 +40,15 @@ class _ExpandableWebViewState extends State<ExpandableWebView> {
     return InAppWebView(
         initialOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(
-            supportZoom: false,
-            javaScriptEnabled: true,
-            disableHorizontalScroll: true,
-            disableVerticalScroll: true,
-            disableContextMenu: true
-          ),
+              supportZoom: false,
+              javaScriptEnabled: true,
+              disableHorizontalScroll: true,
+              disableVerticalScroll: true,
+              disableContextMenu: true),
         ),
         initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
         onLoadStop: (InAppWebViewController controller, Uri url) async {
-          controller.injectCSSCode(source: 
-          """
+          controller.injectCSSCode(source: """
             html {
               -ms-user-select: none; 
               -moz-user-select: -moz-none;
@@ -55,8 +56,8 @@ class _ExpandableWebViewState extends State<ExpandableWebView> {
               -webkit-user-select: none;
               user-select: none;
             }
-          """); 
-          
+          """);
+
           final height = (await controller.getContentHeight()).toDouble();
 
           setState(() {

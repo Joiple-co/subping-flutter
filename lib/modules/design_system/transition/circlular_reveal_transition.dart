@@ -9,7 +9,6 @@ class CirclularRevealTransition extends PageRouteBuilder {
   final Offset centerOffset;
   final double minRadius;
   final double maxRadius;
-  final Duration transitionDuration;
 
   CirclularRevealTransition(
       {@required this.page,
@@ -17,10 +16,11 @@ class CirclularRevealTransition extends PageRouteBuilder {
       @required this.maxRadius,
       this.centerAlignment,
       this.centerOffset,
-      this.transitionDuration,
+      transitionDuration,
       name})
       : assert(centerOffset != null || centerAlignment != null),
         super(
+            transitionDuration: transitionDuration,
             pageBuilder: (
               BuildContext context,
               Animation<double> animation,
@@ -58,7 +58,7 @@ class CircularRevealClipper extends CustomClipper<Path> {
   final double minRadius;
   final double maxRadius;
 
-  CircularRevealClipper({
+  const CircularRevealClipper({
     @required this.fraction,
     this.centerAlignment,
     this.centerOffset,
@@ -68,8 +68,8 @@ class CircularRevealClipper extends CustomClipper<Path> {
 
   @override
   Path getClip(Size size) {
-    final Offset center = this.centerAlignment?.alongSize(size) ??
-        this.centerOffset ??
+    final Offset center = centerAlignment?.alongSize(size) ??
+        centerOffset ??
         Offset(size.width / 2, size.height / 2);
     final minRadius = this.minRadius ?? 0;
     final maxRadius = this.maxRadius ?? calcMaxRadius(size, center);

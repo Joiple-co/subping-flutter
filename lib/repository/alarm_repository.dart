@@ -13,6 +13,7 @@ class AlarmRepository {
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
       if (!response.success) {
         ErrorHandler.errorHandler(response.message);
+        return AlarmsModel();
       } else {
         return AlarmsModel.fromJson(response.message);
       }
@@ -29,6 +30,7 @@ class AlarmRepository {
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
       if (!response.success) {}
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }

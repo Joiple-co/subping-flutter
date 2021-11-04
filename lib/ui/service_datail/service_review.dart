@@ -17,7 +17,7 @@ class ServiceReview extends StatelessWidget {
     return Column(children: [
       Space(size: SubpingSize.large25),
       HorizontalPadding(
-        child: reviews.length == 0
+        child: reviews.isEmpty
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

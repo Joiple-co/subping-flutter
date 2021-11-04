@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:subping/repository/user_repository.dart';
 
 class CreateNickNameViewModel extends GetxController {
-  UserRepository _userRepository = UserRepository();
+  final UserRepository _userRepository = UserRepository();
   RxString nickName = "".obs;
   RxBool nickNameVaild = false.obs;
   RxBool loading = false.obs;
@@ -11,12 +11,13 @@ class CreateNickNameViewModel extends GetxController {
   RxString nickErrorText = "".obs;
   FocusNode inputFocusNode;
 
+  @override
   void onInit() {
     super.onInit();
 
     debounce(nickName, (text) async {
       checkNickNameValid();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
   }
 
   Future<void> checkNickNameValid() async {
@@ -28,7 +29,7 @@ class CreateNickNameViewModel extends GetxController {
         nickNameVaild.value = false;
       } else {
         nickNameVaild.value = true;
-         nickNameError.value = "";
+        nickNameError.value = "";
       }
     } else {
       nickNameVaild.value = false;
@@ -44,10 +45,10 @@ class CreateNickNameViewModel extends GetxController {
     loading.value = true;
 
     final result = await _userRepository.updateNickName(nickName.value);
-    
+
     loading.value = false;
 
-    if(result) {
+    if (result) {
       Get.offAndToNamed("/mainTabs");
     }
   }

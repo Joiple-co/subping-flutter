@@ -48,7 +48,7 @@ class SubscribeCard extends StatelessWidget {
                       ? Row(
                           children: [
                             CardIcon(
-                              vendor: CardVendorMapper[userViewModel
+                              vendor: cardVendorMapper[userViewModel
                                   .cards[startSubscribeViewModel.selectedCard]
                                   .cardVendor],
                               size: 50,
@@ -60,10 +60,16 @@ class SubscribeCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SubpingText(
-                                    "${userViewModel.cards[startSubscribeViewModel.selectedCard].cardName}",
+                                    userViewModel
+                                        .cards[startSubscribeViewModel
+                                            .selectedCard]
+                                        .cardName,
                                     size: SubpingFontSize.body1),
                                 SubpingText(
-                                    "${userViewModel.cards[startSubscribeViewModel.selectedCard].cardVendor}",
+                                    userViewModel
+                                        .cards[startSubscribeViewModel
+                                            .selectedCard]
+                                        .cardVendor,
                                     size: SubpingFontSize.body2,
                                     color: SubpingColor.black60),
                               ],
@@ -116,7 +122,7 @@ class SelectCardBottomSheet extends StatelessWidget {
         height: 300,
         decoration: BoxDecoration(
             color: SubpingColor.white100,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
             )),
@@ -155,7 +161,7 @@ class SelectCardBottomSheet extends StatelessWidget {
                       Row(
                         children: [
                           CardIcon(
-                            vendor: CardVendorMapper[card.cardVendor],
+                            vendor: cardVendorMapper[card.cardVendor],
                             size: 50,
                           ),
                           Space(
@@ -164,13 +170,13 @@ class SelectCardBottomSheet extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SubpingText("${card.cardName}",
+                              SubpingText(card.cardName,
                                   size: SubpingFontSize.body1,
                                   color: startSubscribeViewModel.selectedCard ==
                                           card.id
                                       ? SubpingColor.subping100
                                       : SubpingColor.black100),
-                              SubpingText("${card.cardVendor}",
+                              SubpingText(card.cardVendor,
                                   size: SubpingFontSize.body2,
                                   color: SubpingColor.black60),
                             ],

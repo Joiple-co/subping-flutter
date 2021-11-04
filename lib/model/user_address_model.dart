@@ -19,23 +19,23 @@ class UserAddressModel {
       this.createdAt});
 
   void updateUserModel(UserAddressModel userAddress) {
-    id = userAddress.id ?? this.id;
-    userName = userAddress.userName ?? this.userName;
-    userPhoneNumber = userAddress.userPhoneNumber ?? this.userPhoneNumber;
-    postCode = userAddress.postCode ?? this.postCode;
-    address = userAddress.address ?? this.address;
-    detailedAddress = userAddress.detailedAddress ?? this.detailedAddress;
-    isDefault = userAddress.isDefault ?? this.isDefault;
-    createdAt = userAddress.createdAt ?? this.createdAt;
+    id = userAddress.id ?? id;
+    userName = userAddress.userName ?? userName;
+    userPhoneNumber = userAddress.userPhoneNumber ?? userPhoneNumber;
+    postCode = userAddress.postCode ?? postCode;
+    address = userAddress.address ?? address;
+    detailedAddress = userAddress.detailedAddress ?? detailedAddress;
+    isDefault = userAddress.isDefault ?? isDefault;
+    createdAt = userAddress.createdAt ?? createdAt;
   }
 
   bool isSame(UserAddressModel userAddress) {
-    if (this.userName == userAddress.userName &&
-        this.userPhoneNumber == userAddress.userPhoneNumber &&
-        this.postCode == userAddress.postCode &&
-        this.address == userAddress.address &&
-        this.detailedAddress == userAddress.detailedAddress &&
-        this.isDefault == userAddress.isDefault) {
+    if (userName == userAddress.userName &&
+        userPhoneNumber == userAddress.userPhoneNumber &&
+        postCode == userAddress.postCode &&
+        address == userAddress.address &&
+        detailedAddress == userAddress.detailedAddress &&
+        isDefault == userAddress.isDefault) {
       return true;
     } else {
       return false;

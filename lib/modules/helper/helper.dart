@@ -13,12 +13,18 @@ class Helper {
   }
 
   static String refineDate(String date) {
-    DateTime to = new DateTime.now();
+    DateTime to = DateTime.now();
     DateTime from = DateTime.parse(date);
 
-    if (isSameDay(to, from)) {
-      return '${from.hour}시 ${from.minute}분';
-    } else if (isSameDay(from.add(Duration(days: 1)), from)) {
+    final diff = to.difference(from);
+
+    if (diff.inMinutes < 1) {
+      return "방금 전";
+    } else if (diff.inHours < 1) {
+      return '${diff.inMinutes}분 전';
+    } else if (diff.inDays < 1) {
+      return '${diff.inHours}시간 전';
+    } else if (diff.inDays < 2) {
       return "어제";
     } else {
       return '${from.month}월 ${from.day}일';
@@ -28,17 +34,17 @@ class Helper {
   static String addPeriod(DateTime from, Period period) {
     DateTime date;
 
-    if (period == Period.ONE_MONTH) {
+    if (period == Period.oneMonth) {
       date = DateTime(from.year, from.month + 1, from.day);
-    } else if (period == Period.TWO_MONTH) {
+    } else if (period == Period.twoMonth) {
       date = DateTime(from.year, from.month + 2, from.day);
-    } else if (period == Period.THREE_MONTH) {
+    } else if (period == Period.threeMonth) {
       date = DateTime(from.year, from.month + 3, from.day);
-    } else if (period == Period.ONE_WEEK) {
+    } else if (period == Period.oneWeek) {
       date = DateTime(from.year, from.month, from.day + 7);
-    } else if (period == Period.TWO_WEEK) {
+    } else if (period == Period.twoWeek) {
       date = DateTime(from.year, from.month, from.day + 14);
-    } else if (period == Period.THREE_WEEK) {
+    } else if (period == Period.threeWeek) {
       date = DateTime(from.year, from.month, from.day + 21);
     } else {
       return "";

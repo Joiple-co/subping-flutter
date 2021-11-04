@@ -1,22 +1,24 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:subping/hive/recent_service.dart';
 import 'package:subping/model/category_model.dart';
 import 'package:subping/model/current_hot_chart_model.dart';
-import 'package:subping/model/review_model.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/repository/service_repository.dart';
 
 class ServiceViewModel extends GetxController {
-  ServiceRepository _serviceRepository = ServiceRepository();
-  Map<String, Rx<ServiceModel>> _services = <String, Rx<ServiceModel>>{}.obs;
-  RxMap<String, List<ServiceModel>> _categoryServices =
+  final ServiceRepository _serviceRepository = ServiceRepository();
+  final Map<String, Rx<ServiceModel>> _services =
+      <String, Rx<ServiceModel>>{}.obs;
+  final RxMap<String, List<ServiceModel>> _categoryServices =
       <String, List<ServiceModel>>{}.obs;
-  RxList<CategoryModel> _categories = <CategoryModel>[].obs;
-  Rx<CurrentHotChartModel> _chart = CurrentHotChartModel().obs;
-  RxBool _chartLoading = false.obs;
-  Map<String, RxList<ReviewModel>> _reviews = <String, RxList<ReviewModel>>{};
-  RxSet<String> _likes = <String>{}.obs;
+  final RxList<CategoryModel> _categories = <CategoryModel>[].obs;
+  final Rx<CurrentHotChartModel> _chart = CurrentHotChartModel().obs;
+  final RxBool _chartLoading = false.obs;
+  final RxList<RecentService> _recentService = <RecentService>[].obs;
+  final RxSet<String> _likes = <String>{}.obs;
   Map<String, Function> _likesReserved = {};
 
   Future<void> updateCharts() async {
@@ -26,29 +28,30 @@ class ServiceViewModel extends GetxController {
       final response = await _serviceRepository.getCurrentChart();
       _chart.value = response;
 
-      response.serviceRank.forEach((item) {
+      for (var item in response.serviceRank) {
         _services[item.id] = item.obs;
         _services[item.id].refresh();
-      });
+      }
 
       _chartLoading.value = false;
 
       _chart.refresh();
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
 
-  Future<void> updateCategory({bool updateServices=false}) async {
+  Future<void> updateCategory({bool updateServices = false}) async {
     final response = await _serviceRepository.getCategories();
 
     _categories.value = response;
     _categories.refresh();
 
-    if(updateServices) {
-      response.forEach((item) {
+    if (updateServices) {
+      for (var item in response) {
         updateCategoryServices(item);
-      });
+      }
     }
   }
 
@@ -57,9 +60,9 @@ class ServiceViewModel extends GetxController {
     if (repeatKey == null) {
       final response =
           (await _serviceRepository.getServicesByCategory(categoryModel));
-      _categoryServices.value[categoryModel.name] = response;
+      _categoryServices[categoryModel.name] = response;
 
-      response.forEach((item) {
+      for (var item in response) {
         if (_services[item.id] != null) {
           _services[item.id].value.updateServiceModel(item);
         } else {
@@ -67,7 +70,7 @@ class ServiceViewModel extends GetxController {
         }
 
         _services[item.id].refresh();
-      });
+      }
 
       _categoryServices.refresh();
     } else {}
@@ -76,25 +79,26 @@ class ServiceViewModel extends GetxController {
   Future<void> updateLikeServices() async {
     final services = await _serviceRepository.getLikeServices();
 
+    // ignore: invalid_use_of_protected_member
     _likes.value = {};
-    
-    services.forEach((item) {
+
+    for (var item in services) {
       if (_services[item.id] != null) {
         _services[item.id].value.updateServiceModel(item);
       } else {
         _services[item.id] = item.obs;
       }
-      
+
       _likes.add(item.id);
       _services[item.id].refresh();
-    });
+    }
 
     _likes.refresh();
   }
 
-  Future<void> updateService(String serviceId) async {
+  Future<void> updateService(String serviceId, {bool page = false}) async {
     final service = await _serviceRepository.getService(serviceId);
-    
+
     if (_services[service.id] != null) {
       _services[service.id].value.updateServiceModel(service);
     } else {
@@ -102,6 +106,10 @@ class ServiceViewModel extends GetxController {
     }
 
     _services[service.id].refresh();
+
+    if (page) {
+      putRecentService(service);
+    }
   }
 
   ServiceModel getService(String serviceId) {
@@ -126,7 +134,7 @@ class ServiceViewModel extends GetxController {
 
     _services[serviceId].refresh();
     _likes.refresh();
-    
+
     _likesReserved[serviceId] = () async {
       final response =
           await _serviceRepository.toggleUserLike(serviceId, toggle);
@@ -142,7 +150,7 @@ class ServiceViewModel extends GetxController {
   Future<void> synchronizeLike() async {
     List<Future> requests = [];
 
-    if(_likesReserved.length != 0) {
+    if (_likesReserved.isNotEmpty) {
       _likesReserved.forEach((key, value) {
         requests.add(value());
       });
@@ -152,6 +160,43 @@ class ServiceViewModel extends GetxController {
       _likesReserved = {};
       updateLikeServices();
     }
+  }
+
+  List<RecentService> sortRecentServices(List<RecentService> recentServices) {
+    recentServices.sort((a, b) {
+      return -a.createdAt.millisecondsSinceEpoch
+          .compareTo(b.createdAt.millisecondsSinceEpoch);
+    });
+
+    return recentServices;
+  }
+
+  Future<void> putRecentService(ServiceModel service) async {
+    final box = Hive.box<RecentService>("recentView");
+    final now = DateTime.now();
+
+    await box.put(
+        service.id,
+        RecentService(service.id, service.name, service.summary,
+            service.serviceLogoUrl, service.tag, now));
+
+    final sortedRecentServices =
+        sortRecentServices(box.valuesBetween().toList());
+
+    if (sortedRecentServices.length > 20) {
+      for (int index = 20; index < sortedRecentServices.length; index++) {
+        await box.delete(sortedRecentServices[index].serviceId);
+      }
+    }
+  }
+
+  Future<void> updateRecentServices() async {
+    final box = Hive.box<RecentService>("recentView");
+
+    final sortedRecentServices =
+        sortRecentServices(box.valuesBetween().toList());
+
+    _recentService.value = sortedRecentServices;
   }
 
   List<ServiceModel> getServicesWithCategory(CategoryModel category) {
@@ -180,6 +225,10 @@ class ServiceViewModel extends GetxController {
 
   Set<String> get likes {
     return _likes;
+  }
+
+  List<RecentService> get recentService {
+    return _recentService;
   }
 
   @override

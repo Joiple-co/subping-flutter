@@ -6,7 +6,7 @@ import 'package:keyboard_actions/external/keyboard_avoider/keyboard_avoider.dart
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:subping/const/const.dart';
 import 'package:subping/modules/design_system/keyboard_done/keyboard_done_container.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/write_review/subscirbe_product_swiper.dart';
 import 'package:subping/viewmodel/local/write_review/write_review_viewmodel.dart';

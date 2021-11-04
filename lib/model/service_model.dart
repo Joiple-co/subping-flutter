@@ -31,19 +31,19 @@ class ServiceModel {
       this.tag});
 
   void updateServiceModel(ServiceModel service) {
-    id = service.id ?? this.id;
-    category = service.category ?? this.category;
-    rank = service.rank ?? this.rank;
-    name = service.name ?? this.name;
-    type = service.type ?? this.type;
-    serviceLogoUrl = service.serviceLogoUrl ?? this.serviceLogoUrl;
-    summary = service.summary ?? this.summary;
-    sellerEmail = service.sellerEmail ?? this.sellerEmail;
-    tag = service.tag ?? this.tag;
-    serviceExplainUrl = service.serviceExplainUrl ?? this.serviceExplainUrl;
-    like = service.like ?? this.like;
-    customizable = service.customizable ?? this.customizable;
-    period = service.period ?? this.period;
+    id = service.id ?? id;
+    category = service.category ?? category;
+    rank = service.rank ?? rank;
+    name = service.name ?? name;
+    type = service.type ?? type;
+    serviceLogoUrl = service.serviceLogoUrl ?? serviceLogoUrl;
+    summary = service.summary ?? summary;
+    sellerEmail = service.sellerEmail ?? sellerEmail;
+    tag = service.tag ?? tag;
+    serviceExplainUrl = service.serviceExplainUrl ?? serviceExplainUrl;
+    like = service.like ?? like;
+    customizable = service.customizable ?? customizable;
+    period = service.period ?? period;
   }
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
@@ -61,7 +61,7 @@ class ServiceModel {
     customizable = json["customizable"] == 1 ? true : false;
     period = json['period'] != null
         ? List.generate(json["period"].length,
-            (index) => PeriodMapper[json["period"][index]])
+            (index) => periodMapper[json["period"][index]])
         : null;
   }
 }

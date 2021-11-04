@@ -4,7 +4,7 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/local/onboarding/user_login_viewmodel.dart';
 
 class UserLogin extends StatelessWidget {
-  const UserLogin() : super();
+  const UserLogin({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
