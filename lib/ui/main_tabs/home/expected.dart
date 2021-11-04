@@ -15,28 +15,31 @@ class Expected extends StatelessWidget {
     final subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
 
     return HorizontalPadding(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width - 80.w,
-            padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: <Color>[
-                  SubpingColor.subping50,
-                  SubpingColor.subping100
-                ]),
-                borderRadius: BorderRadius.circular(5.0),
-                boxShadow: [
-                  BoxShadow(
-                      color: SubpingColor.black60,
-                      offset: Offset(0, 4.h),
-                      blurRadius: 15)
-                ]),
-            child: Material(
-              color: Colors.transparent,
-              child: GestureDetector(
-                
+      child: GestureDetector(
+        onTap: () {
+          mainTabsViewModel.onChangeTabIndex(2);
+          subscribeManageViewModel.changeTab(0);
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width - 80.w,
+              padding: EdgeInsets.fromLTRB(10, 10, 0, 10),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: <Color>[
+                    SubpingColor.subping50,
+                    SubpingColor.subping100
+                  ]),
+                  borderRadius: BorderRadius.circular(5.0),
+                  boxShadow: [
+                    BoxShadow(
+                        color: SubpingColor.black60,
+                        offset: Offset(0, 4.h),
+                        blurRadius: 15)
+                  ]),
+              child: Material(
+                color: Colors.transparent,
                 child: Container(
                   alignment: Alignment.center,
                   child: Row(
@@ -51,8 +54,10 @@ class Expected extends StatelessWidget {
                                 fontWeight: SubpingFontWeight.regular,
                                 size: SubpingFontSize.body1),
                             Space(size: SubpingSize.tiny5),
-                            Obx(() => SubpingText(
-                                Helper.setComma(subscribeViewModel.totalPrice) + " 원",
+                            Obx(
+                              () => SubpingText(
+                                Helper.setComma(subscribeViewModel.totalPrice) +
+                                    " 원",
                                 fontWeight: FontWeight.bold,
                                 size: SubpingFontSize.title1,
                                 color: SubpingColor.white100,
@@ -78,14 +83,10 @@ class Expected extends StatelessWidget {
                     ],
                   ),
                 ),
-                onTap: () {
-                  mainTabsViewModel.onChangeTabIndex(2);
-                  subscribeManageViewModel.changeTab(0);
-                },
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
