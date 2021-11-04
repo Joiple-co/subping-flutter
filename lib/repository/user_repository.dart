@@ -20,7 +20,7 @@ class UserRepository {
         return user;
       } else {
         if (response.message == "NoUserExistException") {
-        ErrorHandler.errorHandler("NoUserExistException");
+          ErrorHandler.errorHandler("NoUserExistException");
         } else {
           ErrorHandler.errorHandler("GetUserException");
           return UserModel();
@@ -120,8 +120,8 @@ class UserRepository {
   }
 
   Future<bool> editUserAddress(UserAddressModel address) async {
-    try{
-     final rawResponse = await API.post("user", "/editUserAddress", body: {
+    try {
+      final rawResponse = await API.post("user", "/editUserAddress", body: {
         "addressId": address.id,
         "userName": address.userName,
         "userPhoneNumber": address.userPhoneNumber,
@@ -182,7 +182,7 @@ class UserRepository {
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
       print(response.message);
-      
+
       if (!response.success) {
         ErrorHandler.errorHandler("AddCardException");
       }
@@ -194,15 +194,14 @@ class UserRepository {
 
   Future<bool> deleteCard(String cardId) async {
     try {
-      final rawResponse = await API.post("user", "/deleteUserCard", body: {
-        "cardId": cardId
-      });
+      final rawResponse =
+          await API.post("user", "/deleteUserCard", body: {"cardId": cardId});
 
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
       print(response.message);
-      
+
       if (!response.success) {
         ErrorHandler.errorHandler("DeleteCardException");
       }

@@ -5,7 +5,8 @@ import 'package:subping/viewmodel/local/subscribe/start_subscribe_viewmodel.dart
 class SubscribeSummary extends StatelessWidget {
   final StartSubscribeViewModel startSubscribeViewModel;
 
-  const SubscribeSummary({ Key key, this.startSubscribeViewModel }) : super(key: key);
+  const SubscribeSummary({Key key, this.startSubscribeViewModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +34,14 @@ class SubscribeSummary extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              ],
+              children: [],
             ),
           ],
         ),
         Space(
           size: SubpingSize.large20,
         ),
-                Space(
+        Space(
           size: SubpingSize.medium14,
         ),
       ],

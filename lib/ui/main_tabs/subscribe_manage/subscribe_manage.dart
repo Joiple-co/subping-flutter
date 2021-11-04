@@ -14,45 +14,43 @@ class SubscribeManage extends StatelessWidget {
     subscribeManageViewModel.updateSubscribeSchedule();
 
     return DefaultTabController(
-        length: 2,
-        child: HeaderSafe(
+      length: 2,
+      child: HeaderSafe(
           hasBottomSafe: false,
           child: Scaffold(
-              appBar: TitleAppBar("구독관리"),
-              backgroundColor: SubpingColor.back20,
-              body: Column(children: [
-                  Container(
-                    color: SubpingColor.white100,
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                    constraints: BoxConstraints(maxHeight: 35),
-                    child: TabBar(
-                      labelStyle: TextStyle(fontSize: 14),
-                      labelColor: SubpingColor.white100,
-                      unselectedLabelColor: SubpingColor.black100,
-                      indicator: BoxDecoration(
-                        color: SubpingColor.subping100,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      indicatorColor:
-                          SubpingColor.subping100, // Tab Bar directive
-                      indicatorWeight: 0,
-                      isScrollable: true,
-                      tabs: List.generate(
-                        2,
-                        (index) => Tab(
-                            child: SubpingText(["관리", "캘린더"][index])),
-                      ),
-                      controller: subscribeManageViewModel.tabController,
-                    ),
+            appBar: TitleAppBar("구독관리"),
+            backgroundColor: SubpingColor.back20,
+            body: Column(children: [
+              Container(
+                color: SubpingColor.white100,
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
+                constraints: BoxConstraints(maxHeight: 35),
+                child: TabBar(
+                  labelStyle: TextStyle(fontSize: 14),
+                  labelColor: SubpingColor.white100,
+                  unselectedLabelColor: SubpingColor.black100,
+                  indicator: BoxDecoration(
+                    color: SubpingColor.subping100,
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                  Expanded(
-                    child: TabBarView(
-                        controller: subscribeManageViewModel.tabController,
-                        children: [SubscribeManagement(), SubscribeCalendar()]),
+                  indicatorColor: SubpingColor.subping100, // Tab Bar directive
+                  indicatorWeight: 0,
+                  isScrollable: true,
+                  tabs: List.generate(
+                    2,
+                    (index) => Tab(child: SubpingText(["관리", "캘린더"][index])),
                   ),
-                ]),
-              )),
-        );
+                  controller: subscribeManageViewModel.tabController,
+                ),
+              ),
+              Expanded(
+                child: TabBarView(
+                    controller: subscribeManageViewModel.tabController,
+                    children: [SubscribeManagement(), SubscribeCalendar()]),
+              ),
+            ]),
+          )),
+    );
   }
 }

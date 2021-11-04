@@ -43,16 +43,24 @@ class RecentServiceHistoryItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                            SubpingText(service.serviceName, size: SubpingFontSize.body1),
-                            SubpingText(Helper.refineDate(service.createdAt.toString()), size: SubpingFontSize.body5, color: SubpingColor.black60)
-                          ]),
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SubpingText(service.serviceName,
+                                    size: SubpingFontSize.body1),
+                                SubpingText(
+                                    Helper.refineDate(
+                                        service.createdAt.toString()),
+                                    size: SubpingFontSize.body5,
+                                    color: SubpingColor.black60)
+                              ]),
                           SubpingText(service.serviceSummary,
                               size: SubpingFontSize.body4),
                           Space(size: SubpingSize.medium11),
                           Row(
-                            children: List.generate(service.serviceTags != null ? service.serviceTags.length : 0, (index) {
+                            children: List.generate(
+                                service.serviceTags != null
+                                    ? service.serviceTags.length
+                                    : 0, (index) {
                               bool marginFlag = (index != 0);
                               return PoundButton(
                                 "#${service.serviceTags[index]}",

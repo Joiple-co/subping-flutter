@@ -18,7 +18,7 @@ class SubscribeManagement extends StatelessWidget {
     return Obx(() {
       final paidAndTotalPriceOfThisMonth =
           subscribeManageViewModel.paidAndTotalPriceOfThisMonth;
-      
+
       if (subscribeViewModel.subscribe.keys.length == 0) {
         return Container(
             color: SubpingColor.white100, child: SubscribeManagementEmpty());

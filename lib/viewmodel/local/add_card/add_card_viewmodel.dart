@@ -5,12 +5,7 @@ import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/user_repository.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 
-enum AddCardStep {
-  CARD_NAME,
-  PG,
-  LOADING,
-  DONE
-}
+enum AddCardStep { CARD_NAME, PG, LOADING, DONE }
 
 class AddCardViewModel extends GetxController {
   Rx<AddCardStep> _step = AddCardStep.CARD_NAME.obs;
@@ -21,7 +16,7 @@ class AddCardViewModel extends GetxController {
   void onChangeCardName(String cardName) {
     _cardName.value = cardName;
 
-    if(_cardName.value.length > 0) {
+    if (_cardName.value.length > 0) {
       _available.value = true;
     } else {
       _available.value = false;
@@ -29,7 +24,7 @@ class AddCardViewModel extends GetxController {
   }
 
   void onClickCardNameDone() {
-    if(_available.value) {
+    if (_available.value) {
       _step.value = AddCardStep.PG;
     }
   }
@@ -43,11 +38,12 @@ class AddCardViewModel extends GetxController {
     final method = result["pay_method"];
     final pg = result["pg_provider"];
 
-    if(success == "true"){
-      await _userRepository.addCard(cardVendor, billingKey, method, pg, _cardName.value);
+    if (success == "true") {
+      await _userRepository.addCard(
+          cardVendor, billingKey, method, pg, _cardName.value);
       final userViewModel = Get.find<UserViewModel>();
       await userViewModel.updateUserCards();
-      
+
       Get.back();
       _step.value = AddCardStep.DONE;
     } else {

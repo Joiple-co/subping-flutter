@@ -104,7 +104,9 @@ class SubscribePeriod extends StatelessWidget {
                                     Get.back();
                                   },
                                 ),
-                                Space(size: SubpingSize.large32,)
+                                Space(
+                                  size: SubpingSize.large32,
+                                )
                               ]),
                         ),
                       ]),

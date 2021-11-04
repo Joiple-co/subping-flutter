@@ -71,7 +71,8 @@ class SubscribeCard extends StatelessWidget {
                         )
                       : Row(
                           children: [
-                            Icon(Icons.credit_card, color: SubpingColor.warning100),
+                            Icon(Icons.credit_card,
+                                color: SubpingColor.warning100),
                             SubpingText(" 카드를 선택해주세요",
                                 size: SubpingFontSize.body1,
                                 color: SubpingColor.warning100),

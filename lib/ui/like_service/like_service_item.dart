@@ -46,7 +46,9 @@ class LikeServiceItem extends StatelessWidget {
                             size: SubpingFontSize.body4),
                         Space(size: SubpingSize.medium11),
                         Row(
-                          children: List.generate(service.tag != null ? service.tag.length : 0, (index) {
+                          children: List.generate(
+                              service.tag != null ? service.tag.length : 0,
+                              (index) {
                             bool marginFlag = (index != 0);
                             return PoundButton(
                               "#${service.tag[index]}",
@@ -75,8 +77,9 @@ class LikeServiceItem extends StatelessWidget {
                     width: 55,
                     height: 55,
                     child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(Icons.favorite, color: SubpingColor.black60)),
+                        alignment: Alignment.centerRight,
+                        child:
+                            Icon(Icons.favorite, color: SubpingColor.black60)),
                   ),
           ),
         ],

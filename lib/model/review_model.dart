@@ -9,7 +9,14 @@ class ReviewModel {
   num rating;
   List<String> imagesUrl;
 
-  ReviewModel({this.id, this.userEmail, this.productId, this.title, this.content, this.rating, this.imagesUrl});
+  ReviewModel(
+      {this.id,
+      this.userEmail,
+      this.productId,
+      this.title,
+      this.content,
+      this.rating,
+      this.imagesUrl});
 
   ReviewModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -20,8 +20,8 @@ class PoundButton extends StatelessWidget {
           margin: marginFlag
               ? EdgeInsets.fromLTRB(SubpingSize.tiny6, 0, 0, 0)
               : null,
-          padding: EdgeInsets.fromLTRB(
-              SubpingSize.tiny6, 0, SubpingSize.tiny6, 0),
+          padding:
+              EdgeInsets.fromLTRB(SubpingSize.tiny6, 0, SubpingSize.tiny6, 0),
           decoration: BoxDecoration(
               color: SubpingColor.back20,
               borderRadius: BorderRadius.circular(2.5)),

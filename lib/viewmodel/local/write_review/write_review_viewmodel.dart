@@ -5,10 +5,7 @@ class WriteReviewViewModel extends GetxController {
   RxList<XFile> _images = <XFile>[].obs;
 
   Future<void> onSelectImage(List<XFile> selectedImages) {
-    _images.value = [
-      ..._images.value,
-      ...selectedImages
-    ];
+    _images.value = [..._images.value, ...selectedImages];
 
     _images.refresh();
   }

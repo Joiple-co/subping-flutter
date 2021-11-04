@@ -57,10 +57,7 @@ class WriteReview extends StatelessWidget {
                           onRatingUpdate: (rating) => print(rating)),
                     ),
                     Space(size: SubpingSize.medium14),
-                    SubpingTextField(
-                      hintText: "제목",
-                      maxLines: 1
-                    ),
+                    SubpingTextField(hintText: "제목", maxLines: 1),
                     Space(size: SubpingSize.medium14),
                     SubpingTextField(
                       hintText: "내용",

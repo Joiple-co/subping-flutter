@@ -7,23 +7,25 @@ class SubscribeViewModel extends GetxController {
   RxMap<String, SubscribeModel> _subscribe = <String, SubscribeModel>{}.obs;
 
   void getSubscribes() async {
-    List<SubscribeModel> subscribes = await _subscribeRepository.getSubscribes();
-    
+    List<SubscribeModel> subscribes =
+        await _subscribeRepository.getSubscribes();
+
     _subscribe.value = {};
 
     subscribes.forEach((subscribe) {
       final serviceId = subscribe.serviceId;
       _subscribe[serviceId] = subscribe;
-    }); 
+    });
 
     _subscribe.refresh();
   }
 
   void updateSubscribe(String serviceId) async {
-    SubscribeModel subscribe = await _subscribeRepository.getSubscribe(serviceId: serviceId);
+    SubscribeModel subscribe =
+        await _subscribeRepository.getSubscribe(serviceId: serviceId);
 
-    if(subscribe != null) {
-      if(_subscribe[subscribe.serviceId] == null) {
+    if (subscribe != null) {
+      if (_subscribe[subscribe.serviceId] == null) {
         _subscribe[subscribe.serviceId] = subscribe;
       } else {
         _subscribe[subscribe.serviceId].updateSubscribeModel(subscribe);
@@ -34,13 +36,13 @@ class SubscribeViewModel extends GetxController {
       _subscribe.refresh();
     }
   }
-  
+
   num get totalPrice {
     num totalPrice = 0;
 
-    _subscribe.forEach((key, value) { 
+    _subscribe.forEach((key, value) {
       value.subscribeItems.forEach((element) {
-       totalPrice +=  element.amount * element.product.price;
+        totalPrice += element.amount * element.product.price;
       });
     });
 

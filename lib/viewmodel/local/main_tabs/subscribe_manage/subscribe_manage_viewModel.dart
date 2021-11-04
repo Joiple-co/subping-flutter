@@ -46,10 +46,7 @@ class SubscribeManageViewModel extends GetxController
   }
 
   Map<String, int> get paidAndTotalPriceOfThisMonth {
-    final result = {
-      "total": 0,
-      "paid": 0
-    };
+    final result = {"total": 0, "paid": 0};
 
     if (_schedules.keys.length != 0) {
       final month = _schedules.keys.elementAt(0);
@@ -58,12 +55,12 @@ class SubscribeManageViewModel extends GetxController
       schedules.forEach((key, value) {
         value.forEach((schedule) {
           result['total'] += schedule.totalPrice;
-          if(schedule.status == "결제 완료") {
+          if (schedule.status == "결제 완료") {
             result['paid'] += schedule.totalPrice;
           }
         });
       });
-    } 
+    }
 
     return result;
   }

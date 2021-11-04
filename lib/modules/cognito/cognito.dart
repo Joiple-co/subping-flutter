@@ -10,7 +10,7 @@ class Cognito {
   static final Cognito _instance =
       Cognito._internal(String.fromEnvironment("stage", defaultValue: "dev"));
   Map<String, dynamic> _awsConfig;
-  
+
   factory Cognito() {
     return _instance;
   }

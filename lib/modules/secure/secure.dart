@@ -9,7 +9,8 @@ import 'package:subping/modules/api/api.dart';
 class Secure {
   Future<bool> initRSA() async {
     RestResponse rawResponse = await API.get("auth", "/rsa");
-    Map<String, dynamic> response = jsonDecode(new String.fromCharCodes(rawResponse.data));
+    Map<String, dynamic> response =
+        jsonDecode(new String.fromCharCodes(rawResponse.data));
 
     RSAModel data = RSAModel.fromJson(response);
 

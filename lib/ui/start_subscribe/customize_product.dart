@@ -133,7 +133,10 @@ class CustomizeProduct extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SquareButton(text: "총 ${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원 구독하기", onPressed: () => Get.back()),
+                      SquareButton(
+                          text:
+                              "총 ${Helper.setComma(startSubscribeViewModel.getSelectedTotalAmount())}원 구독하기",
+                          onPressed: () => Get.back()),
                       Space(size: SubpingSize.large20)
                     ],
                   ),

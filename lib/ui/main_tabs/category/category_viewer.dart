@@ -7,14 +7,14 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/category/category_service_item.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
-
 class CategoryViewer extends StatelessWidget {
   final String index;
   final CategoryModel categoryModel;
   final ServiceViewModel serviceViewModel;
   final List<ServiceModel> services;
 
-  CategoryViewer(this.index, this.categoryModel, this.serviceViewModel, this.services);
+  CategoryViewer(
+      this.index, this.categoryModel, this.serviceViewModel, this.services);
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +61,8 @@ class CategoryViewer extends StatelessWidget {
                             crossAxisSpacing: 28.w,
                             mainAxisSpacing: 20.h,
                             crossAxisCount: 2,
-                            children: List.generate(
-                                (services ?? []).length, (index) {
+                            children:
+                                List.generate((services ?? []).length, (index) {
                               return CategoryServiceItem(
                                   item: (services ?? [])[index]);
                             }),

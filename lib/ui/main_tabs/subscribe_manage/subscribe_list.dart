@@ -49,11 +49,14 @@ class SubscribeList extends StatelessWidget {
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.only(bottom: 15),
                     decoration: BoxDecoration(
-                      color: SubpingColor.white100,
-                      borderRadius: BorderRadius.circular(10), boxShadow: [BoxShadow(
-                          color: SubpingColor.black30,
-                          offset: Offset(0, 0),
-                          blurRadius: 14)]),
+                        color: SubpingColor.white100,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              color: SubpingColor.black30,
+                              offset: Offset(0, 0),
+                              blurRadius: 14)
+                        ]),
                     child: Column(
                       children: [
                         Row(
@@ -66,24 +69,44 @@ class SubscribeList extends StatelessWidget {
                               ),
                             ),
                             Space(size: SubpingSize.tiny6),
-                            SubpingText(subscribe.serviceName, size: SubpingFontSize.body3, fontWeight: SubpingFontWeight.medium,)
+                            SubpingText(
+                              subscribe.serviceName,
+                              size: SubpingFontSize.body3,
+                              fontWeight: SubpingFontWeight.medium,
+                            )
                           ],
                         ),
-                        Space(size: SubpingSize.medium12,),
-                        Row(children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: List.generate(subscribe.subscribeItems.length, (index) {
-                            return Text.rich(
-                              SubpingTextSpan(children: [
-                                SubpingTextSpan(text: "${subscribe.subscribeItems[index].product.name}", fontSize: SubpingFontSize.title6, fontWeight: SubpingFontWeight.medium),
-                                SubpingTextSpan(text: " | ", fontSize: SubpingFontSize.title6, fontWeight: SubpingFontWeight.medium, color: SubpingColor.black30),
-                                SubpingTextSpan(text: "${subscribe.subscribeItems[index].amount}개", fontSize: SubpingFontSize.title6,  fontWeight: SubpingFontWeight.medium)
-                              ])
-                            );
-                          }),)
-                          // SubpingText("${Helper.setComma(subscribe.totalPrice())}원")
-                        ],)
+                        Space(
+                          size: SubpingSize.medium12,
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: List.generate(
+                                  subscribe.subscribeItems.length, (index) {
+                                return Text.rich(SubpingTextSpan(children: [
+                                  SubpingTextSpan(
+                                      text:
+                                          "${subscribe.subscribeItems[index].product.name}",
+                                      fontSize: SubpingFontSize.title6,
+                                      fontWeight: SubpingFontWeight.medium),
+                                  SubpingTextSpan(
+                                      text: " | ",
+                                      fontSize: SubpingFontSize.title6,
+                                      fontWeight: SubpingFontWeight.medium,
+                                      color: SubpingColor.black30),
+                                  SubpingTextSpan(
+                                      text:
+                                          "${subscribe.subscribeItems[index].amount}개",
+                                      fontSize: SubpingFontSize.title6,
+                                      fontWeight: SubpingFontWeight.medium)
+                                ]));
+                              }),
+                            )
+                            // SubpingText("${Helper.setComma(subscribe.totalPrice())}원")
+                          ],
+                        )
                       ],
                     ),
                   );

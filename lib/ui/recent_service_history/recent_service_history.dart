@@ -5,7 +5,7 @@ import 'package:subping/ui/recent_service_history/recent_service_history_item.da
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class RecentServiceHistory extends StatelessWidget {
-  const RecentServiceHistory({ Key key }) : super(key: key);
+  const RecentServiceHistory({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,10 @@ class RecentServiceHistory extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return RecentServiceHistoryItem(
                         service: recentService[index],
-                        isLast: index == serviceViewModel.recentService.length - 1 ? false : true,
+                        isLast:
+                            index == serviceViewModel.recentService.length - 1
+                                ? false
+                                : true,
                       );
                     }),
               ),

@@ -47,5 +47,4 @@ class ServiceResult extends ServiceModel {
     super.updateServiceModel(ServiceModel.fromJson(json));
     search = SearchProperty.fromJson(json['search']);
   }
-} 
- 
+}

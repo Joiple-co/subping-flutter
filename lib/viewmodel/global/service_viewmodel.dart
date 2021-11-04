@@ -163,7 +163,8 @@ class ServiceViewModel extends GetxController {
 
   List<RecentService> sortRecentServices(List<RecentService> recentServices) {
     recentServices.sort((a, b) {
-      return -a.createdAt.millisecondsSinceEpoch.compareTo(b.createdAt.millisecondsSinceEpoch);
+      return -a.createdAt.millisecondsSinceEpoch
+          .compareTo(b.createdAt.millisecondsSinceEpoch);
     });
 
     return recentServices;
@@ -178,10 +179,11 @@ class ServiceViewModel extends GetxController {
         RecentService(service.id, service.name, service.summary,
             service.serviceLogoUrl, service.tag, now));
 
-    final sortedRecentServices = this.sortRecentServices(box.valuesBetween().toList());
-    
-    if(sortedRecentServices.length > 20) {
-      for(int index = 20; index < sortedRecentServices.length; index++) {
+    final sortedRecentServices =
+        this.sortRecentServices(box.valuesBetween().toList());
+
+    if (sortedRecentServices.length > 20) {
+      for (int index = 20; index < sortedRecentServices.length; index++) {
         await box.delete(sortedRecentServices[index].serviceId);
       }
     }
@@ -190,7 +192,8 @@ class ServiceViewModel extends GetxController {
   Future<void> updateRecentServices() async {
     final box = Hive.box<RecentService>("recentView");
 
-    final sortedRecentServices = this.sortRecentServices(box.valuesBetween().toList());
+    final sortedRecentServices =
+        this.sortRecentServices(box.valuesBetween().toList());
 
     _recentService.value = sortedRecentServices;
   }

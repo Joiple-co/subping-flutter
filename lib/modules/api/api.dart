@@ -68,7 +68,7 @@ class API {
 
   static Future<RestResponse> get(String service, String path) async {
     print('[API GET] service : "${service}" path : "${path}"');
-      
+
     if (!await API.hasNetwork()) {
       print("[API] No Network");
 
@@ -97,7 +97,7 @@ class API {
   static Future<RestResponse> post(String service, String path,
       {Map<dynamic, dynamic> body}) async {
     print('[API POST] service : "${service}" path : "${path}"');
-    
+
     if (!await API.hasNetwork()) {
       print("[API] No Network");
 

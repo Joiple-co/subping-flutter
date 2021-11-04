@@ -7,7 +7,7 @@ class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
 
   AlramIcon({this.unreadAlarmCount});
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,7 +26,7 @@ class AlramIcon extends StatelessWidget {
           },
         ),
         unreadAlarmCount != 0
-         ? Positioned(
+            ? Positioned(
                 right: 0,
                 top: 0,
                 child: Container(
@@ -42,4 +42,3 @@ class AlramIcon extends StatelessWidget {
     );
   }
 }
-

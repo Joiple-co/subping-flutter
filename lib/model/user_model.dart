@@ -48,4 +48,3 @@ class UserModel {
     createdAt = json['createdAt'];
   }
 }
- 

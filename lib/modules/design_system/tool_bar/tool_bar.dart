@@ -10,11 +10,10 @@ class ToolBar extends StatelessWidget {
   final bool hasAlarmIcon;
   final int unreadAlarmCount;
 
-  ToolBar({
-    this.hasSearchIcon = false,
-    this.hasAlarmIcon = false,
-    this.unreadAlarmCount = 0
-  });
+  ToolBar(
+      {this.hasSearchIcon = false,
+      this.hasAlarmIcon = false,
+      this.unreadAlarmCount = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,9 @@ class ToolBar extends StatelessWidget {
             hasAlarmIcon
                 ? Row(
                     children: [
-                      AlramIcon(unreadAlarmCount: unreadAlarmCount,),
+                      AlramIcon(
+                        unreadAlarmCount: unreadAlarmCount,
+                      ),
                     ],
                   )
                 : Container()

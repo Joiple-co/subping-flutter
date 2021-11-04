@@ -12,7 +12,7 @@ class MyPage extends StatelessWidget {
   const MyPage() : super();
   Widget build(BuildContext context) {
     final userViewModel = Get.find<UserViewModel>();
-    
+
     return HeaderSafe(
         hasBottomSafe: false,
         child: Scaffold(

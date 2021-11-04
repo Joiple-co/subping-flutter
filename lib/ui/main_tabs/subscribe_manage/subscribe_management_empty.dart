@@ -17,7 +17,7 @@ class SubscribeManagementEmpty extends StatelessWidget {
           paidPrice: 0,
           totalPrice: 0,
         ),
-         Container(
+        Container(
           height: 10,
           color: SubpingColor.back20,
         ),

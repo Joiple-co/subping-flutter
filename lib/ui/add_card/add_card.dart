@@ -13,7 +13,6 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import 'package:subping/viewmodel/local/add_card/add_card_viewmodel.dart';
 
-
 class AddCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,8 @@ class CardName extends StatelessWidget {
   Widget build(BuildContext context) {
     final addCardViewModel = Get.find<AddCardViewModel>();
 
-    return Obx(() => Scaffold(
+    return Obx(
+      () => Scaffold(
         backgroundColor: SubpingColor.white100,
         appBar: TitleAppBar(
           "카드 등록",
@@ -119,42 +119,42 @@ class IamportAssign extends StatelessWidget {
     final userEmail = userViewModel.email;
 
     return IamportPayment(
-        appBar: TitleAppBar(
-          "카드 등록",
-          hasBackButton: true,
-        ),
-        /* 웹뷰 로딩 컴포넌트 */
-        initialChild: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/iamport-logo.png'),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-                  child: Text('잠시만 기다려주세요...', style: TextStyle(fontSize: 20.0)),
-                ),
-              ],
-            ),
+      appBar: TitleAppBar(
+        "카드 등록",
+        hasBackButton: true,
+      ),
+      /* 웹뷰 로딩 컴포넌트 */
+      initialChild: Container(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/iamport-logo.png'),
+              Container(
+                padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                child: Text('잠시만 기다려주세요...', style: TextStyle(fontSize: 20.0)),
+              ),
+            ],
           ),
         ),
-        userCode: 'imp90315868',
-        data: PaymentData(
-          payMethod: 'card',
-          name: '구독의 모든것! 섭핑',
-          merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}',
-          amount: 0,
-          customerUid: "${userEmail}-${UUID.getUUID()}",
-          buyerName: userName,
-          buyerTel: userPhoneNumber,
-          buyerEmail: userEmail,
-          appScheme: 'subping',
-        ),
-        /* [필수입력] 콜백 함수 */
-        callback: (Map<String, String> result) {
-          print(result);
-          addCardViewModel.onAddCardDone(result);
-        },
+      ),
+      userCode: 'imp90315868',
+      data: PaymentData(
+        payMethod: 'card',
+        name: '구독의 모든것! 섭핑',
+        merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}',
+        amount: 0,
+        customerUid: "${userEmail}-${UUID.getUUID()}",
+        buyerName: userName,
+        buyerTel: userPhoneNumber,
+        buyerEmail: userEmail,
+        appScheme: 'subping',
+      ),
+      /* [필수입력] 콜백 함수 */
+      callback: (Map<String, String> result) {
+        print(result);
+        addCardViewModel.onAddCardDone(result);
+      },
     );
   }
 }
@@ -166,7 +166,8 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     final userViewModel = Get.find<UserViewModel>();
 
-    return Obx(() => Scaffold(
+    return Obx(
+      () => Scaffold(
           backgroundColor: SubpingColor.white100,
           appBar: TitleAppBar(
             "카드 등록",

@@ -48,16 +48,19 @@ class StartSubscribe extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                  ClipOval(
-                    child: 
-                    Image.network(service.serviceLogoUrl, height: 80)
-                  ,),
-                  startSubscribeViewModel.isLoading ?
-                    SubpingLoading() : startSubscribeViewModel.success ?
-                    Lottie.asset("assets/lottie/payment_success.json", height: 100, repeat: false) : 
-                    Lottie.asset("assets/lottie/payment_failed.json", height: 100, repeat: false),
-                  SubpingText(service.name, size: SubpingFontSize.title5)
-                ],),
+                    ClipOval(
+                      child: Image.network(service.serviceLogoUrl, height: 80),
+                    ),
+                    startSubscribeViewModel.isLoading
+                        ? SubpingLoading()
+                        : startSubscribeViewModel.success
+                            ? Lottie.asset("assets/lottie/payment_success.json",
+                                height: 100, repeat: false)
+                            : Lottie.asset("assets/lottie/payment_failed.json",
+                                height: 100, repeat: false),
+                    SubpingText(service.name, size: SubpingFontSize.title5)
+                  ],
+                ),
               ),
             ));
       }

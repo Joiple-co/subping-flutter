@@ -5,9 +5,9 @@ class CardIcon extends StatelessWidget {
   final CardVendor vendor;
   final double size;
 
-  const CardIcon({ Key key, this.vendor, this.size }) : super(key: key);
+  const CardIcon({Key key, this.vendor, this.size}) : super(key: key);
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     final assetLink = CardVendorAsset[vendor];
 
@@ -15,7 +15,8 @@ class CardIcon extends StatelessWidget {
       child: Image.asset(
         assetLink,
         width: size,
-        height: size,),
+        height: size,
+      ),
     );
   }
 }

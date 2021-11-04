@@ -12,7 +12,8 @@ class AddressManagement extends StatelessWidget {
     userViewModel.updateUserAddresses();
     final addresses = userViewModel.userAddreses;
 
-    return Obx(() => Scaffold(
+    return Obx(
+      () => Scaffold(
         appBar: TitleAppBar("등록 주소 관리", hasBackButton: true),
         backgroundColor: SubpingColor.white100,
         body: RefreshIndicator(
@@ -23,7 +24,7 @@ class AddressManagement extends StatelessWidget {
           child: ListView(children: [
             ...List.generate(addresses.length, (index) {
               final addressId = addresses.keys.elementAt(index);
-            
+
               return HorizontalPadding(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,

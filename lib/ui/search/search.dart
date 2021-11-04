@@ -60,8 +60,8 @@ class Search extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 14),
                             child: Row(
-                              children: [                                
-                                Container(                                 
+                              children: [
+                                Container(
                                   height: 30,
                                   width: 30,
                                   decoration: BoxDecoration(
@@ -107,4 +107,3 @@ class Search extends StatelessWidget {
     );
   }
 }
-

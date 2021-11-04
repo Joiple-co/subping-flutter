@@ -90,7 +90,7 @@ class AddAddressViewModel extends GetxController {
       await _userViewModel.updateUserAddresses();
 
       loading.value = false;
-      
+
       Get.back();
     }
   }

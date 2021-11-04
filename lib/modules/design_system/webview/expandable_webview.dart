@@ -37,17 +37,15 @@ class _ExpandableWebViewState extends State<ExpandableWebView> {
     return InAppWebView(
         initialOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(
-            supportZoom: false,
-            javaScriptEnabled: true,
-            disableHorizontalScroll: true,
-            disableVerticalScroll: true,
-            disableContextMenu: true
-          ),
+              supportZoom: false,
+              javaScriptEnabled: true,
+              disableHorizontalScroll: true,
+              disableVerticalScroll: true,
+              disableContextMenu: true),
         ),
         initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
         onLoadStop: (InAppWebViewController controller, Uri url) async {
-          controller.injectCSSCode(source: 
-          """
+          controller.injectCSSCode(source: """
             html {
               -ms-user-select: none; 
               -moz-user-select: -moz-none;
@@ -55,8 +53,8 @@ class _ExpandableWebViewState extends State<ExpandableWebView> {
               -webkit-user-select: none;
               user-select: none;
             }
-          """); 
-          
+          """);
+
           final height = (await controller.getContentHeight()).toDouble();
 
           setState(() {

@@ -32,7 +32,7 @@ class SubscribeRepository {
       if (response.success) {
         return "success";
       } else {
-        if(response.message == "UserHasSameServiceSubscribeException") {
+        if (response.message == "UserHasSameServiceSubscribeException") {
           return response.message;
         } else if (response.message == "MakeSubscribeException") {
           return response.message;
@@ -41,7 +41,7 @@ class SubscribeRepository {
         } else {
           return "WrongAccessException";
         }
-    }
+      }
     } catch (e) {
       return "UnknownException";
     }
@@ -79,24 +79,24 @@ class SubscribeRepository {
     return subscribe;
   }
 
-  Future<Map<String, Map<String, List<SubscribeScheduleModel>>>> getSubscribeSchedule() async {
+  Future<Map<String, Map<String, List<SubscribeScheduleModel>>>>
+      getSubscribeSchedule() async {
     Map<String, Map<String, List<SubscribeScheduleModel>>> schedules = {};
 
-    final rawResponse =
-        await API.get("user", "/getSchedule");
+    final rawResponse = await API.get("user", "/getSchedule");
     final decodedResponse = utf8.decode(rawResponse.data);
     BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-    if(response.success) {
+    if (response.success) {
       final months = response.message.keys;
-      
+
       months.forEach((month) {
         schedules[month] = {};
         List<SubscribeScheduleModel> schedulesOfDate = [];
-        
+
         final scheduleOfMonths = response.message[month];
         final dateOfSchedule = scheduleOfMonths.keys;
-        
+
         dateOfSchedule.forEach((date) {
           final scheduleOfDate = scheduleOfMonths[date];
 

@@ -94,10 +94,15 @@ class SelectProduct extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                SubpingText(product.name, size: SubpingFontSize.body1),
+                                                SubpingText(product.name,
+                                                    size:
+                                                        SubpingFontSize.body1),
                                                 SubpingText(product.summary),
                                                 SubpingText(
-                                                    "${Helper.setComma(product.price)}원", color: SubpingColor.subping100, fontWeight: FontWeight.bold)
+                                                    "${Helper.setComma(product.price)}원",
+                                                    color:
+                                                        SubpingColor.subping100,
+                                                    fontWeight: FontWeight.bold)
                                               ],
                                             ),
                                           )

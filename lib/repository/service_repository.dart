@@ -19,7 +19,7 @@ class ServiceRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      if(response.success) {
+      if (response.success) {
         response.message.forEach((value) {
           services.add(ServiceModel.fromJson(value));
         });
@@ -75,10 +75,10 @@ class ServiceRepository {
       final rawResponse = await API
           .post("service", "/getService", body: {"service": serviceId});
       final decodedResponse = utf8.decode(rawResponse.data);
-      
+
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      ServiceModel service = ServiceModel.fromJson(response.message[0]); 
+      ServiceModel service = ServiceModel.fromJson(response.message[0]);
 
       return service;
     } catch (e) {
@@ -94,7 +94,7 @@ class ServiceRepository {
 
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
-      
+
       response.message.forEach((value) {
         services.add(ServiceModel.fromJson(value));
       });
@@ -108,8 +108,8 @@ class ServiceRepository {
 
   Future<bool> toggleUserLike(String serviceId, bool toggle) async {
     try {
-      final rawResponse = await API
-          .post("user", "/toggleUserLike", body: {"serviceId": serviceId, "toggle": toggle});
+      final rawResponse = await API.post("user", "/toggleUserLike",
+          body: {"serviceId": serviceId, "toggle": toggle});
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 

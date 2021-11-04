@@ -10,10 +10,11 @@ class LikeService extends StatelessWidget {
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
     final likeServiceViewModel = Get.find<LikeServiceViewModel>();
-    
+
     likeServiceViewModel.updateLikeServices();
 
-    return Obx(() => HeaderSafe(
+    return Obx(
+      () => HeaderSafe(
         hasBottomSafe: false,
         child: Scaffold(
             appBar: TitleAppBar(
@@ -29,8 +30,12 @@ class LikeService extends StatelessWidget {
                     itemCount: serviceViewModel.likes.length,
                     itemBuilder: (context, index) {
                       return LikeServiceItem(
-                          service: serviceViewModel.services[serviceViewModel.likes.elementAt(index)].value,
-                          isLast: index == serviceViewModel.likes.length- 1 ? false : true,
+                          service: serviceViewModel
+                              .services[serviceViewModel.likes.elementAt(index)]
+                              .value,
+                          isLast: index == serviceViewModel.likes.length - 1
+                              ? false
+                              : true,
                           toggleUserLike: serviceViewModel.toggleUserLike);
                     }),
               ),

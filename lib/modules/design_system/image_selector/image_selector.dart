@@ -9,9 +9,10 @@ class ImageSelector extends StatelessWidget {
   // pickedImages는 반드시 List<XFile>을 인자로 받아야 함.
   // 예 ) (List<XFile> pickedImages) => void
   final Function onSelectImage;
-final Function onClickDelete;
+  final Function onClickDelete;
 
-  const ImageSelector({Key key, this.images, this.onSelectImage, this.onClickDelete})
+  const ImageSelector(
+      {Key key, this.images, this.onSelectImage, this.onClickDelete})
       : super(key: key);
 
   @override
@@ -34,7 +35,9 @@ final Function onClickDelete;
                           child: GestureDetector(
                             onTap: () => onClickDelete(index),
                             child: Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: SubpingColor.warning100),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: SubpingColor.warning100),
                               child: ClipOval(
                                   child: Icon(
                                 Icons.remove_sharp,
@@ -64,10 +67,7 @@ final Function onClickDelete;
                   color: SubpingColor.black30,
                 ),
                 child: Center(
-                  child: Icon(
-                    Icons.add_outlined,
-                    color: SubpingColor.black60
-                  ),
+                  child: Icon(Icons.add_outlined, color: SubpingColor.black60),
                 )),
           )
         ]));

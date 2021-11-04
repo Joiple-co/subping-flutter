@@ -31,14 +31,16 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
         decoration: BoxDecoration(
             color: SubpingColor.back20,
             borderRadius: BorderRadius.all(Radius.circular(15))),
-        child: Obx(() => TextField(
+        child: Obx(
+          () => TextField(
             controller: searchViewModel.searchTextEditingController,
             onChanged: searchViewModel.onChangeSearchText,
             cursorColor: SubpingColor.subping100,
             cursorHeight: SubpingSize.large24,
             style: TextStyle(fontSize: SubpingFontSize.title6),
             inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[ㄱ-ㅎ 가-힣 a-z A-Z 0-9]')),
+              FilteringTextInputFormatter.allow(
+                  RegExp(r'[ㄱ-ㅎ 가-힣 a-z A-Z 0-9]')),
             ],
             decoration: InputDecoration(
                 border: InputBorder.none,
@@ -47,15 +49,13 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
                 hintStyle: TextStyle(
                     fontSize: SubpingFontSize.title6,
                     color: SubpingColor.black60),
-                suffixIcon:
-                    searchViewModel.searchText.length == 0
-                        ? null
-                        : IconButton(
-                            icon: new Image.asset(
-                              'assets/icon/clear_X_Icon.png',
-                              width: 24, height: 24 ),
-                            onPressed: searchViewModel.onClickClear,
-                          )),
+                suffixIcon: searchViewModel.searchText.length == 0
+                    ? null
+                    : IconButton(
+                        icon: new Image.asset('assets/icon/clear_X_Icon.png',
+                            width: 24, height: 24),
+                        onPressed: searchViewModel.onClickClear,
+                      )),
           ),
         ),
       ),

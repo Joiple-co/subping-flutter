@@ -10,7 +10,8 @@ class UserInfoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+    return Obx(
+      () => Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         GestureDetector(
           child: CircleAvatar(
             radius: 20,

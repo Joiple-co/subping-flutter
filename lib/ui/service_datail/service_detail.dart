@@ -18,11 +18,11 @@ class ServiceDetail extends StatelessWidget {
     final serviceViewModel = Get.find<ServiceViewModel>();
     final productViewModel = Get.find<ProductViewModel>();
     final subscribeViewModel = Get.find<SubscribeViewModel>();
-    
+
     serviceViewModel.updateService(serviceId, page: true);
     productViewModel.updateProducts(serviceId);
     subscribeViewModel.updateSubscribe(serviceId);
-    
+
     return Obx(() {
       final service = serviceViewModel.services[serviceId].value;
       final products = productViewModel.getProducts(serviceId);
@@ -149,12 +149,12 @@ class ServiceDetail extends StatelessWidget {
               ]),
             ),
             ServiceFooter(
-              userLike: service.like,
-              toggleUserLike: () => serviceViewModel.toggleUserLike(serviceId),
-              serviceId: serviceId,
-              products: products,
-              subscribes: subscribeViewModel.subscribe
-            )
+                userLike: service.like,
+                toggleUserLike: () =>
+                    serviceViewModel.toggleUserLike(serviceId),
+                serviceId: serviceId,
+                products: products,
+                subscribes: subscribeViewModel.subscribe)
           ]),
         ),
       );

@@ -16,7 +16,10 @@ class SubscribePaymentInfo extends StatelessWidget {
     return HorizontalPadding(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Space(size: SubpingSize.large20),
-        SubpingText(totalPrice != 0 ? "${DateTime.now().month}월 총 결제액" : "섭핑에서 구독하고\n섭핑에서 관리해요",
+        SubpingText(
+            totalPrice != 0
+                ? "${DateTime.now().month}월 총 결제액"
+                : "섭핑에서 구독하고\n섭핑에서 관리해요",
             size: SubpingFontSize.title6),
         Space(size: SubpingSize.medium14),
         Row(
@@ -35,48 +38,53 @@ class SubscribePaymentInfo extends StatelessWidget {
         Space(
           size: SubpingSize.tiny5,
         ),
-        paidPrice != 0 ?
-          Stack(children: [
-            Container(
-              height: 25,
-              width: width - 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(180, 215, 255, 0.2),
-              ),
-            ),
-            Container(
-              height: 25,
-              width: (width - 40) * (paidPrice / totalPrice) < 25 ? 25 : (width - 40) * (paidPrice / totalPrice),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: SubpingColor.subping100),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        paidPrice != 0
+            ? Stack(children: [
                 Container(
-                    child: SubpingText("${((paidPrice / totalPrice) * 100).round()}%",
-                        fontWeight: SubpingFontWeight.medium,
-                        size: SubpingFontSize.body4,
-                        color: SubpingColor.white100))
+                  height: 25,
+                  width: width - 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromRGBO(180, 215, 255, 0.2),
+                  ),
+                ),
+                Container(
+                  height: 25,
+                  width: (width - 40) * (paidPrice / totalPrice) < 25
+                      ? 25
+                      : (width - 40) * (paidPrice / totalPrice),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: SubpingColor.subping100),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            child: SubpingText(
+                                "${((paidPrice / totalPrice) * 100).round()}%",
+                                fontWeight: SubpingFontWeight.medium,
+                                size: SubpingFontSize.body4,
+                                color: SubpingColor.white100))
+                      ]),
+                ),
+              ])
+            : Stack(children: [
+                Container(
+                  height: 25,
+                  width: width - 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Color.fromRGBO(180, 215, 255, 0.2),
+                  ),
+                ),
+                Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color.fromRGBO(180, 215, 255, 0.2)),
+                ),
               ]),
-            ),
-          ]) :
-          Stack(children: [
-            Container(
-              height: 25,
-              width: width - 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Color.fromRGBO(180, 215, 255, 0.2),
-              ),
-            ),
-            Container(
-              height: 25,
-              width: 25,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Color.fromRGBO(180, 215, 255, 0.2)),
-            ),
-          ]),
         Space(
           size: SubpingSize.tiny5,
         ),

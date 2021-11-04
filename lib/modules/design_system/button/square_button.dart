@@ -68,9 +68,11 @@ class SquareButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double indicatorSize = height - height / 2;
-    double buttonWidth = this.width == null ? this.twoButton
-        ? (MediaQuery.of(context).size.width - 50) / 2
-        : MediaQuery.of(context).size.width - 40 : this.width;
+    double buttonWidth = this.width == null
+        ? this.twoButton
+            ? (MediaQuery.of(context).size.width - 50) / 2
+            : MediaQuery.of(context).size.width - 40
+        : this.width;
 
     return TextButton(
       child: loading

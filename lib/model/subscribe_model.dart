@@ -28,8 +28,8 @@ class SubscribeModel {
       this.serviceName,
       this.serviceLogoUrl,
       this.createdAt});
-  
-   void updateSubscribeModel(SubscribeModel subscribe) {
+
+  void updateSubscribeModel(SubscribeModel subscribe) {
     id = subscribe.id ?? this.id;
     subscribeDate = subscribe.subscribeDate ?? this.subscribeDate;
     expiredDate = subscribe.expiredDate ?? this.expiredDate;
@@ -61,13 +61,13 @@ class SubscribeModel {
     serviceId = _subscribeItems[0].product.serviceId;
     subscribeItems = _subscribeItems;
 
-    if(json['subscribeItems'][0]['product'] != null && json['subscribeItems'][0]['product']['service'] != null) {
-      serviceName = json['subscribeItems'][0]['product']['service']['name']; 
+    if (json['subscribeItems'][0]['product'] != null &&
+        json['subscribeItems'][0]['product']['service'] != null) {
+      serviceName = json['subscribeItems'][0]['product']['service']['name'];
       serviceLogoUrl =
           json['subscribeItems'][0]['product']['service']['serviceLogoUrl'];
     }
   }
-
 
   num totalPrice() {
     num totalPrice = 0;

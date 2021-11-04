@@ -10,10 +10,7 @@ import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
-enum StartSubscribeStep {
-  SELECT,
-  RESULT
-}
+enum StartSubscribeStep { SELECT, RESULT }
 
 class StartSubscribeViewModel extends GetxController {
   RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
@@ -36,10 +33,10 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void initProducts(List<ProductModel> products) {
-    products.forEach((element) { 
+    products.forEach((element) {
       _products[element.id] = element;
     });
-    
+
     _selectedProducts.value = {};
     _selectedProducts[_products[_products.keys.elementAt(0)].id] = 1;
   }
@@ -47,11 +44,11 @@ class StartSubscribeViewModel extends GetxController {
   void initAddresses(Map<String, UserAddressModel> addresses) {
     final addressIds = addresses.keys;
 
-    if(addressIds.length != 0) {
+    if (addressIds.length != 0) {
       _selectedAddress.value = addressIds.elementAt(0);
 
       addressIds.forEach((id) {
-        if(addresses[id].isDefault != null && addresses[id].isDefault) {
+        if (addresses[id].isDefault != null && addresses[id].isDefault) {
           _selectedAddress.value = id;
         }
       });
@@ -59,7 +56,7 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   void initPeriods(List<dynamic> periods) {
-    if(periods.length != 0) {
+    if (periods.length != 0) {
       _selectedPeriod.value = periods[0];
     } else {
       ErrorHandler.errorHandler("StartSubscribeInitializeException");
@@ -69,19 +66,19 @@ class StartSubscribeViewModel extends GetxController {
   void initCards(Map<String, UserCardModel> cards) {
     final cardIds = cards.keys;
 
-    if(cardIds.length != 0) {
+    if (cardIds.length != 0) {
       _selectedCard.value = cardIds.elementAt(0);
     }
   }
-  
+
   void onSelectProduct(String productId, int amount, {bool customizable}) {
-    if(amount < 0) {
+    if (amount < 0) {
       return;
     }
 
-    if(customizable) {
-      if(amount == 0) {
-        if(getSelectedTotalCount() > 1) {
+    if (customizable) {
+      if (amount == 0) {
+        if (getSelectedTotalCount() > 1) {
           _selectedProducts.remove(productId);
         }
       } else {
@@ -91,7 +88,7 @@ class StartSubscribeViewModel extends GetxController {
       _selectedProducts.value = {};
       _selectedProducts[productId] = amount;
     }
-    
+
     _selectedProducts.refresh();
   }
 
@@ -101,19 +98,18 @@ class StartSubscribeViewModel extends GetxController {
 
     final subscribeItems = [];
 
-    _selectedProducts.forEach((key, value) => subscribeItems.add({
-      "id": key, "amount": value 
-    }));
+    _selectedProducts.forEach(
+        (key, value) => subscribeItems.add({"id": key, "amount": value}));
 
     final result = await _subscribeRepository.makeSubscribe(
-      subscribeItems: subscribeItems,
-      userCardId: _selectedCard.value,
-      addressId: _selectedAddress.value,
-      period: PeriodInnerString[_selectedPeriod.value],
-      serviceId: _service.id
-    );
+        subscribeItems: subscribeItems,
+        userCardId: _selectedCard.value,
+        addressId: _selectedAddress.value,
+        period: PeriodInnerString[_selectedPeriod.value],
+        serviceId: _service.id);
 
-    if(result == "success") { // 성공시
+    if (result == "success") {
+      // 성공시
       final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
       final _subscribeViewModel = Get.find<SubscribeViewModel>();
 
@@ -125,8 +121,9 @@ class StartSubscribeViewModel extends GetxController {
     } else {
       _success.value = false;
 
-      if(result == "UserHasSameServiceSubscribeException") {
-        _loadingMessage.value = "이미 해당 서비스를 구독하고 있어요!\n구독 관리를 통해 구독을 변경할 수 있어요.";
+      if (result == "UserHasSameServiceSubscribeException") {
+        _loadingMessage.value =
+            "이미 해당 서비스를 구독하고 있어요!\n구독 관리를 통해 구독을 변경할 수 있어요.";
       } else if (result == "MakeSubscribeException") {
         _loadingMessage.value = "구독을 만드는데 실패했어요.\n잠시 뒤에 다시 시도해주세요.";
       } else if (result == "PaymentException") {
@@ -142,7 +139,7 @@ class StartSubscribeViewModel extends GetxController {
   void onSelectPeriod(Period period) {
     _selectedPeriod.value = period;
   }
-  
+
   void onSelectAddress(String addressId) {
     _selectedAddress.value = addressId;
   }
@@ -154,7 +151,7 @@ class StartSubscribeViewModel extends GetxController {
   int getSelectedTotalAmount() {
     int total = 0;
 
-    _selectedProducts.forEach((key, value) { 
+    _selectedProducts.forEach((key, value) {
       total += _products[key].price * value;
     });
 
@@ -164,13 +161,13 @@ class StartSubscribeViewModel extends GetxController {
   int getSelectedTotalCount() {
     int total = 0;
 
-    _selectedProducts.forEach((key, value) { 
+    _selectedProducts.forEach((key, value) {
       total += value;
     });
-    
+
     return total;
   }
-  
+
   Map<String, int> get selectedProducts {
     return _selectedProducts.value;
   }
@@ -192,9 +189,11 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   bool get isValid {
-    bool valid = getSelectedTotalCount() != 0 && _selectedPeriod != null && _selectedCard.value != "";
+    bool valid = getSelectedTotalCount() != 0 &&
+        _selectedPeriod != null &&
+        _selectedCard.value != "";
 
-    if(_service.type != "online") {
+    if (_service.type != "online") {
       valid = valid && _selectedAddress.value != "";
     }
 

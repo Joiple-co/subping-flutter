@@ -43,7 +43,7 @@ class MyPageServiceListContainer extends StatelessWidget {
             color: SubpingColor.black60,
           ),
           Space(size: SubpingSize.large20),
-           GestureDetector(
+          GestureDetector(
             onTap: () => Get.toNamed("/addressManagement"),
             child: SubpingText(
               "등록 주소 관리",
@@ -61,7 +61,6 @@ class MyPageServiceListContainer extends StatelessWidget {
             ),
           ),
           Space(size: SubpingSize.large20),
-          
           GestureDetector(
             child: SubpingText(
               "잠금 및 보안",

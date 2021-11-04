@@ -66,12 +66,15 @@ class SubscribeAddress extends StatelessWidget {
                         ],
                       )
                     : Row(
-                      children: [
-                        Icon(Icons.local_shipping, color: SubpingColor.warning100),
-                        Space(size: SubpingSize.medium10),
-                        SubpingText("배송지를 선택해주세요", size: SubpingFontSize.body1, color: SubpingColor.warning100)
-                      ],
-                    )),
+                        children: [
+                          Icon(Icons.local_shipping,
+                              color: SubpingColor.warning100),
+                          Space(size: SubpingSize.medium10),
+                          SubpingText("배송지를 선택해주세요",
+                              size: SubpingFontSize.body1,
+                              color: SubpingColor.warning100)
+                        ],
+                      )),
             Space(
               size: SubpingSize.large20,
             ),
@@ -118,11 +121,10 @@ class SubscribeAddress extends StatelessWidget {
                                         children: [
                                           GestureDetector(
                                             onTap: () {
-                                                    startSubscriveViewModel
-                                                        .onSelectAddress(
-                                                            addressId);
-                                                    Get.back();
-                                                  },
+                                              startSubscriveViewModel
+                                                  .onSelectAddress(addressId);
+                                              Get.back();
+                                            },
                                             child: Container(
                                               color: SubpingColor.white100,
                                               width: double.infinity,
@@ -211,24 +213,28 @@ class SubscribeAddress extends StatelessWidget {
                                                                   .subping100),
                                                         )),
                                                       ),
-                                                      Space(size: SubpingSize.medium10),
+                                                      Space(
+                                                          size: SubpingSize
+                                                              .medium10),
                                                       !addresses[addressId]
-                                                                  .isDefault ?
-                                                        GestureDetector(
-                                                          onTap: () => Get.toNamed(
-                                                              "/editAddress/${addresses[addressId].id}",
-                                                              preventDuplicates:
-                                                                  false),
-                                                          child: Container(
-                                                              child: Align(
-                                                            alignment:
-                                                                Alignment.topLeft,
-                                                            child: SubpingText(
-                                                                "삭제하기",
-                                                                color: SubpingColor
-                                                                    .black60),
-                                                          )),
-                                                        ) : Container()
+                                                              .isDefault
+                                                          ? GestureDetector(
+                                                              onTap: () => Get.toNamed(
+                                                                  "/editAddress/${addresses[addressId].id}",
+                                                                  preventDuplicates:
+                                                                      false),
+                                                              child: Container(
+                                                                  child: Align(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .topLeft,
+                                                                child: SubpingText(
+                                                                    "삭제하기",
+                                                                    color: SubpingColor
+                                                                        .black60),
+                                                              )),
+                                                            )
+                                                          : Container()
                                                     ],
                                                   )
                                                 ],

@@ -22,5 +22,6 @@ class RecentService {
   @HiveField(5)
   DateTime createdAt;
 
-  RecentService(this.serviceId, this.serviceName, this.serviceSummary, this.serviceLogoUrl, this.serviceTags, this.createdAt);
+  RecentService(this.serviceId, this.serviceName, this.serviceSummary,
+      this.serviceLogoUrl, this.serviceTags, this.createdAt);
 }

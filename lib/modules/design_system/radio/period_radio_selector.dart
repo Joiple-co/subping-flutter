@@ -17,9 +17,12 @@ class PeriodRadioSelector extends StatelessWidget {
       children: List.generate(
           period.length,
           (index) => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SubpingText(PeriodString[period[index]], size: SubpingFontSize.title6,),
+                  SubpingText(
+                    PeriodString[period[index]],
+                    size: SubpingFontSize.title6,
+                  ),
                   Radio(
                       value: period[index],
                       groupValue: value,

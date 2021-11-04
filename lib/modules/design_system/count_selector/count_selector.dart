@@ -14,27 +14,40 @@ class CountSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-         GestureDetector(
-           onTap: onClickMinus,
-           child: Container(
+        GestureDetector(
+          onTap: onClickMinus,
+          child: Container(
             width: 35,
             height: 35,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: SubpingColor.black30),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                color: SubpingColor.black30),
             child: Icon(Icons.remove, size: SubpingFontSize.title6),
-                 ),
-         ),
+          ),
+        ),
         Container(
           width: 40,
           height: 30,
-          child: Center(child: SubpingText(value.toString(), color: SubpingColor.subping100, size: SubpingFontSize.title6, fontWeight: SubpingFontWeight.bold,)),
+          child: Center(
+              child: SubpingText(
+            value.toString(),
+            color: SubpingColor.subping100,
+            size: SubpingFontSize.title6,
+            fontWeight: SubpingFontWeight.bold,
+          )),
         ),
         GestureDetector(
           onTap: onClickPlus,
           child: Container(
             width: 35,
             height: 35,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), color: SubpingColor.black30),
-            child: Icon(Icons.add, size: SubpingFontSize.title6,),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                color: SubpingColor.black30),
+            child: Icon(
+              Icons.add,
+              size: SubpingFontSize.title6,
+            ),
           ),
         ),
       ],

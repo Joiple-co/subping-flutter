@@ -54,9 +54,7 @@ class RecentReview extends StatelessWidget {
                 ),
               ),
             ]),
-            Space(
-              size: SubpingSize.large24
-            ),
+            Space(size: SubpingSize.large24),
             Column(
               children: List.generate(3, (index) {
                 return Column(children: [

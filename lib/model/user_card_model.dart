@@ -5,13 +5,8 @@ class UserCardModel {
   String cardVendor;
   String method;
 
-  UserCardModel({
-    this.id,
-    this.user,
-    this.cardName,
-    this.cardVendor,
-    this.method
-  });
+  UserCardModel(
+      {this.id, this.user, this.cardName, this.cardVendor, this.method});
 
   UserCardModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -21,4 +16,3 @@ class UserCardModel {
     method = json['method'];
   }
 }
- 

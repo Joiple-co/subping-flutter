@@ -15,15 +15,14 @@ class SearchViewModel extends GetxController {
     super.onInit();
 
     debounce(_searchText, (String text) async {
-      if(text.length != 0) {
+      if (text.length != 0) {
         _searchResult.value = await _searchRepository.getSearch(text);
         _searchResult.refresh();
       } else {
         _searchResult.value = SearchModel();
         _searchResult.refresh();
       }
-    },
-    time: Duration(seconds: 1));
+    }, time: Duration(seconds: 1));
   }
 
   void onChangeSearchText(String text) {

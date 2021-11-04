@@ -1,14 +1,4 @@
-enum CardVendor {
-  HANA,
-  SHINHAN,
-  KB,
-  NH,
-  LOTTE,
-  HYNUDAI,
-  BC,
-  SAMSUNG,
-  WOORI
-}
+enum CardVendor { HANA, SHINHAN, KB, NH, LOTTE, HYNUDAI, BC, SAMSUNG, WOORI }
 
 const CardVendorAsset = {
   CardVendor.BC: "assets/cardLogo/bc.png",

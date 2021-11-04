@@ -56,7 +56,7 @@ void main() async {
   await GetStorage.init();
   await Hive.initFlutter();
   Hive.registerAdapter(RecentServiceAdapter());
-  
+
   await Hive.openBox<RecentService>("recentView");
 
   runApp(SubpingApp());
@@ -173,8 +173,11 @@ class _SubpingAppState extends State<SubpingApp> {
                     binding: AddCardBindings()),
                 GetPage(name: "/cardManagement", page: () => CardManagement()),
                 GetPage(
-                    name: "/addressManagement", page: () => AddressManagement()),
-                GetPage(name: "/recentServiceHistory", page: () => RecentServiceHistory())
+                    name: "/addressManagement",
+                    page: () => AddressManagement()),
+                GetPage(
+                    name: "/recentServiceHistory",
+                    page: () => RecentServiceHistory())
               ],
             ));
   }

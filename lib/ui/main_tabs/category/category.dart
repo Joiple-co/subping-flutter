@@ -17,7 +17,7 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
-    
+
     serviceViewModel.updateCategory(updateServices: true);
 
     return Obx(
@@ -81,8 +81,12 @@ class _CategoryState extends State<Category> {
                       controller: tabController,
                       children: List.generate(
                           serviceViewModel.categories.length, (index) {
-                        return CategoryViewer(index.toString(),
-                            serviceViewModel.categories[index], serviceViewModel, serviceViewModel.categoryServices[serviceViewModel.categories[index].name]);
+                        return CategoryViewer(
+                            index.toString(),
+                            serviceViewModel.categories[index],
+                            serviceViewModel,
+                            serviceViewModel.categoryServices[
+                                serviceViewModel.categories[index].name]);
                       }),
                     ),
                   ),

@@ -28,7 +28,7 @@ class CreateNickNameViewModel extends GetxController {
         nickNameVaild.value = false;
       } else {
         nickNameVaild.value = true;
-         nickNameError.value = "";
+        nickNameError.value = "";
       }
     } else {
       nickNameVaild.value = false;
@@ -44,10 +44,10 @@ class CreateNickNameViewModel extends GetxController {
     loading.value = true;
 
     final result = await _userRepository.updateNickName(nickName.value);
-    
+
     loading.value = false;
 
-    if(result) {
+    if (result) {
       Get.offAndToNamed("/mainTabs");
     }
   }
