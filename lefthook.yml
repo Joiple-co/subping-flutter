@@ -4,6 +4,6 @@ pre-commit:
       glob: '*.dart'
       run: flutter format {staged_files} && git add {staged_files}
     linter:
-      run: flutter analyze {staged_files}
+      run: flutter analyze
     tests:
       run: flutter test 
