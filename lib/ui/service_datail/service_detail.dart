@@ -77,7 +77,7 @@ class ServiceDetail extends StatelessWidget {
                               SubpingText(service.summary),
                               Space(size: SubpingSize.large20),
                               SubpingText(
-                                "${productViewModel.getCheapeastPrice(serviceId)}원 ~",
+                                "${productViewModel.getCheapeastPriceInService(serviceId)}원 ~",
                                 size: SubpingFontSize.title6,
                                 fontWeight: SubpingFontWeight.bold,
                               ),

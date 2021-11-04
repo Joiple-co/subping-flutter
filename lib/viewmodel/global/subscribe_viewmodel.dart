@@ -50,4 +50,8 @@ class SubscribeViewModel extends GetxController {
   Map<String, SubscribeModel> get subscribe {
     return _subscribe;
   }
+
+  set subscribe(Map<String, SubscribeModel> subscribes) {
+    _subscribe.value = subscribes;
+  }
 }

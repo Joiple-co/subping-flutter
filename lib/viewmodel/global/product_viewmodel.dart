@@ -10,7 +10,7 @@ class ProductViewModel extends GetxController {
 
   Future<void> updateProducts(String serviceId) async {
     final products = await _productRepository.getProducts(serviceId);
-    
+
     products.sort((a, b) {
       return b.price - a.price;
     });
@@ -24,21 +24,27 @@ class ProductViewModel extends GetxController {
     _products[serviceId].refresh();
   }
 
-  String getCheapeastPrice(String serviceId) {
-    if (_products[serviceId] != null) {
-      num cheapestPrice = double.infinity;
+  String getCheapestPrice(List<ProductModel> products) {
+    num cheapestPrice = double.infinity;
 
-      _products[serviceId].forEach((element) { 
-        if(element.price != null && element.price < cheapestPrice) {
-          cheapestPrice = element.price;
-        }
-      });
-
-      if(cheapestPrice != double.infinity) {
-        return Helper.setComma(cheapestPrice);
-      } else {
-        return "0";
+    products.forEach((element) {
+      if (element.price != null && element.price < cheapestPrice) {
+        cheapestPrice = element.price;
       }
+    });
+
+    if (cheapestPrice != double.infinity) {
+      return Helper.setComma(cheapestPrice);
+    } else {
+      return "0";
+    }
+  }
+
+  String getCheapeastPriceInService(String serviceId) {
+    final products = _products[serviceId];
+
+    if (products != null) {
+      return getCheapestPrice(products);
     } else {
       return "0";
     }
@@ -52,6 +58,9 @@ class ProductViewModel extends GetxController {
     }
   }
 
+  Map<String, RxList<ProductModel>> get products {
+    return _products;
+  }
 
   @override
   void onInit() {
