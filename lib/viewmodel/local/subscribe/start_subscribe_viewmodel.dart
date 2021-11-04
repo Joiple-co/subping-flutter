@@ -10,13 +10,23 @@ import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
+enum StartSubscribeStep {
+  SELECT,
+  RESULT
+}
+
 class StartSubscribeViewModel extends GetxController {
   RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
   RxMap<String, int> _selectedProducts = <String, int>{}.obs;
   Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
   RxString _selectedAddress = "".obs;
   RxString _selectedCard = "".obs;
+  Rx<StartSubscribeStep> _step = StartSubscribeStep.SELECT.obs;
+
   RxBool _isLoading = false.obs;
+  RxBool _success = false.obs;
+  RxString _loadingMessage = "구독을 만드는 중입니다.".obs;
+
   ServiceModel _service;
 
   SubscribeRepository _subscribeRepository = SubscribeRepository();
@@ -87,7 +97,8 @@ class StartSubscribeViewModel extends GetxController {
 
   void onStartSubscribe() async {
     _isLoading.value = true;
-    
+    _step.value = StartSubscribeStep.RESULT;
+
     final subscribeItems = [];
 
     _selectedProducts.forEach((key, value) => subscribeItems.add({
@@ -102,15 +113,28 @@ class StartSubscribeViewModel extends GetxController {
       serviceId: _service.id
     );
 
-    if(result) { // 성공시
+    if(result == "success") { // 성공시
       final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
       final _subscribeViewModel = Get.find<SubscribeViewModel>();
 
       _subscribeManageViewModel.updateSubscribeSchedule();
       _subscribeViewModel.getSubscribes();
 
-      Get.back();
-    } 
+      _success.value = true;
+      _loadingMessage.value = "구독을 만들었어요!";
+    } else {
+      _success.value = false;
+
+      if(result == "UserHasSameServiceSubscribeException") {
+        _loadingMessage.value = "이미 해당 서비스를 구독하고 있어요!\n구독 관리를 통해 구독을 변경할 수 있어요.";
+      } else if (result == "MakeSubscribeException") {
+        _loadingMessage.value = "구독을 만드는데 실패했어요.\n잠시 뒤에 다시 시도해주세요.";
+      } else if (result == "PaymentException") {
+        _loadingMessage.value == "결제에 실패했어요.\n카드를 확인해주세요!\n(한도초과, 분실, 정지 등)";
+      } else {
+        _loadingMessage.value == "알 수 없는 에러입니다.\n고객센터로 문의 부탁드립니다.";
+      }
+    }
 
     _isLoading.value = false;
   }
@@ -179,5 +203,13 @@ class StartSubscribeViewModel extends GetxController {
 
   bool get isLoading {
     return _isLoading.value;
+  }
+
+  bool get success {
+    return _success.value;
+  }
+
+  StartSubscribeStep get step {
+    return _step.value;
   }
 }

@@ -8,7 +8,7 @@ import 'package:subping/modules/api/api.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 
 class SubscribeRepository {
-  Future<bool> makeSubscribe(
+  Future<String> makeSubscribe(
       {userCardId: String,
       subscribeItems: List,
       addressId: String,
@@ -30,24 +30,20 @@ class SubscribeRepository {
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
       if (response.success) {
-        return true;
+        return "success";
       } else {
-        print(response.message);
-
         if(response.message == "UserHasSameServiceSubscribeException") {
-          ErrorHandler.errorHandler(response.message);
+          return response.message;
         } else if (response.message == "MakeSubscribeException") {
-          ErrorHandler.errorHandler(response.message);
+          return response.message;
         } else if (response.message == "PaymentException") {
-          ErrorHandler.errorHandler(response.message);
+          return response.message;
         } else {
-          ErrorHandler.errorHandler("WrongAccess");
+          return "WrongAccessException";
         }
-        return false;
-      }
+    }
     } catch (e) {
-      ErrorHandler.errorHandler("default");
-      return false;
+      return "UnknownException";
     }
   }
 
