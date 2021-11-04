@@ -178,47 +178,47 @@ extension SubpingFontSize on SubpingFontSizeExtension {
 
 extension SubpingColor on SubpingColorExtension {
   static Color get subping100 {
-    return Color.fromRGBO(80, 110, 225, 1);
+    return const Color.fromRGBO(80, 110, 225, 1);
   }
 
   static Color get subpingAlpha {
-    return Color.fromRGBO(80, 110, 225, 0.1);
+    return const Color.fromRGBO(80, 110, 225, 0.1);
   }
 
   static Color get subping50 {
-    return Color.fromRGBO(80, 140, 255, 1);
+    return const Color.fromRGBO(80, 140, 255, 1);
   }
 
   static Color get subping30 {
-    return Color.fromRGBO(180, 209, 255, 1);
+    return const Color.fromRGBO(180, 209, 255, 1);
   }
 
   static Color get warning100 {
-    return Color.fromRGBO(250, 60, 90, 1);
+    return const Color.fromRGBO(250, 60, 90, 1);
   }
 
   static Color get black100 {
-    return Color.fromRGBO(20, 20, 20, 1);
+    return const Color.fromRGBO(20, 20, 20, 1);
   }
 
   static Color get black80 {
-    return Color.fromRGBO(85, 85, 95, 1);
+    return const Color.fromRGBO(85, 85, 95, 1);
   }
 
   static Color get black60 {
-    return Color.fromRGBO(170, 176, 195, 1);
+    return const Color.fromRGBO(170, 176, 195, 1);
   }
 
   static Color get black30 {
-    return Color.fromRGBO(233, 233, 238, 1);
+    return const Color.fromRGBO(233, 233, 238, 1);
   }
 
   static Color get back20 {
-    return Color.fromRGBO(246, 246, 247, 1);
+    return const Color.fromRGBO(246, 246, 247, 1);
   }
 
   static Color get white100 {
-    return Color.fromRGBO(255, 255, 255, 1);
+    return const Color.fromRGBO(255, 255, 255, 1);
   }
 }
 

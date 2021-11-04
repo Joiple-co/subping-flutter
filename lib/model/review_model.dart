@@ -1,5 +1,3 @@
-import 'package:subping/model/body_model.dart';
-
 class ReviewModel {
   String id;
   String userEmail;

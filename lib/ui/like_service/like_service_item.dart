@@ -8,13 +8,15 @@ class LikeServiceItem extends StatelessWidget {
   final bool isLast;
   final Function toggleUserLike;
 
-  const LikeServiceItem({this.service, this.isLast, this.toggleUserLike});
+  const LikeServiceItem(
+      {this.service, this.isLast, this.toggleUserLike, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
         child: Container(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
       decoration: BoxDecoration(
         border: isLast
             ? Border(bottom: BorderSide(width: 2, color: SubpingColor.black30))

@@ -9,8 +9,6 @@ class CirclularRevealTransition extends PageRouteBuilder {
   final Offset centerOffset;
   final double minRadius;
   final double maxRadius;
-  @override
-  final Duration transitionDuration;
 
   CirclularRevealTransition(
       {@required this.page,
@@ -18,10 +16,11 @@ class CirclularRevealTransition extends PageRouteBuilder {
       @required this.maxRadius,
       this.centerAlignment,
       this.centerOffset,
-      this.transitionDuration,
+      transitionDuration,
       name})
       : assert(centerOffset != null || centerAlignment != null),
         super(
+            transitionDuration: transitionDuration,
             pageBuilder: (
               BuildContext context,
               Animation<double> animation,

@@ -19,7 +19,7 @@ class RecentServiceHistory extends StatelessWidget {
       return HeaderSafe(
         hasBottomSafe: false,
         child: Scaffold(
-            appBar: TitleAppBar(
+            appBar: const TitleAppBar(
               "최근 본 상품",
               hasBackButton: true,
             ),

@@ -5,7 +5,6 @@ import 'package:subping/model/body_model.dart';
 import 'package:subping/model/subscribe_model.dart';
 import 'package:subping/model/subscribe_schedule_model.dart';
 import 'package:subping/modules/api/api.dart';
-import 'package:subping/modules/error_handler/error_handler.dart';
 
 class SubscribeRepository {
   Future<String> makeSubscribe(
@@ -15,7 +14,7 @@ class SubscribeRepository {
       period = String,
       serviceId = String}) async {
     try {
-      final now = (await NTP.now()).toUtc().add(Duration(hours: 9));
+      final now = (await NTP.now()).toUtc().add(const Duration(hours: 9));
 
       final rawResponse = await API.post("user", "/makeSubscribe", body: {
         "serviceId": serviceId,

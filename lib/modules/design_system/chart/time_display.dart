@@ -5,7 +5,7 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 class TimeDisplay extends StatelessWidget {
   final String time;
 
-  const TimeDisplay(this.time) : super();
+  const TimeDisplay(this.time, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

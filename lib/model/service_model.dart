@@ -61,7 +61,7 @@ class ServiceModel {
     customizable = json["customizable"] == 1 ? true : false;
     period = json['period'] != null
         ? List.generate(json["period"].length,
-            (index) => PeriodMapper[json["period"][index]])
+            (index) => periodMapper[json["period"][index]])
         : null;
   }
 }

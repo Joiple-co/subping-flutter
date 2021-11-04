@@ -1,5 +1,4 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
@@ -46,7 +45,6 @@ class PassAuthViewModel extends GetxController {
 
       loading.value = false;
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("default");
     }
   }

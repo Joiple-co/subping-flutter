@@ -4,7 +4,7 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/local/onboarding/pass_auth_viewmodel.dart';
 
 class PassAuth extends StatelessWidget {
-  const PassAuth() : super();
+  const PassAuth({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

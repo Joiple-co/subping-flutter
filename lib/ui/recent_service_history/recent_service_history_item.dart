@@ -8,13 +8,14 @@ class RecentServiceHistoryItem extends StatelessWidget {
   final RecentService service;
   final bool isLast;
 
-  const RecentServiceHistoryItem({this.service, this.isLast});
+  const RecentServiceHistoryItem({this.service, this.isLast, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
         child: Container(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
       decoration: BoxDecoration(
         border: isLast
             ? Border(bottom: BorderSide(width: 2, color: SubpingColor.black30))

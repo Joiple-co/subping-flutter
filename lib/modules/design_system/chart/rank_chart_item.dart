@@ -7,7 +7,7 @@ class RankChartItem extends StatelessWidget {
   final ServiceModel service;
   final int lastRank;
 
-  const RankChartItem({this.service, this.lastRank});
+  const RankChartItem({this.service, this.lastRank, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class RankChartItem extends StatelessWidget {
         child: InkWell(
             onTap: () => Get.toNamed("/serviceDetail/${service.id}"),
             child: Container(
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+              padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
               decoration: BoxDecoration(
                 border: service.rank != lastRank
                     ? Border(

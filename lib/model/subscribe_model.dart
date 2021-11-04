@@ -54,7 +54,7 @@ class SubscribeModel {
     subscribeDate = json['subscribeDate'];
     expiredDate = json['expiredDate'];
     reSubscribeDate = json['reSubscribeDate'];
-    period = PeriodMapper[json['period']];
+    period = periodMapper[json['period']];
     createdAt = json['createdAt'];
     userCardId = json['userCardId'];
     addressId = json['addressId'];

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'dart:math' as math;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RankShape extends StatelessWidget {
   final int rank;
 
-  const RankShape(this.rank) : super();
+  const RankShape(this.rank, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +14,10 @@ class RankShape extends StatelessWidget {
       height: 90.w,
       decoration: BoxDecoration(
           image: rank <= 3
-              ? DecorationImage(image: AssetImage("assets/rankColored.png"))
-              : DecorationImage(image: AssetImage("assets/rankUnColored.png"))),
+              ? const DecorationImage(
+                  image: AssetImage("assets/rankColored.png"))
+              : const DecorationImage(
+                  image: AssetImage("assets/rankUnColored.png"))),
       child: SubpingText(
         rank.toString(),
         textAlign: TextAlign.center,

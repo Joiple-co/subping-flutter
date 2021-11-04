@@ -9,7 +9,8 @@ class AlterPage extends StatelessWidget {
   final Map<String, dynamic> blankType;
   final Widget child;
 
-  const AlterPage({this.blankType, this.condition, this.child});
+  const AlterPage({this.blankType, this.condition, this.child, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

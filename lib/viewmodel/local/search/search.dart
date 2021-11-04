@@ -23,7 +23,7 @@ class SearchViewModel extends GetxController {
         _searchResult.value = SearchModel();
         _searchResult.refresh();
       }
-    }, time: Duration(seconds: 1));
+    }, time: const Duration(seconds: 1));
   }
 
   void onChangeSearchText(String text) {

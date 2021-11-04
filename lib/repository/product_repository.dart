@@ -23,6 +23,7 @@ class ProductRepository {
 
       return products;
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       return [];
     }

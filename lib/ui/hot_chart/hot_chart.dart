@@ -4,6 +4,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class HotChart extends StatelessWidget {
+  const HotChart({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();

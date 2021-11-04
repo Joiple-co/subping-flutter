@@ -51,7 +51,7 @@ class EditAddressViewModel extends GetxController {
   void routingKopo(BuildContext context) async {
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => KpostalView(
-              appBar: TitleAppBar(
+              appBar: const TitleAppBar(
                 "우편번호 찾기",
                 hasBackButton: true,
               ),

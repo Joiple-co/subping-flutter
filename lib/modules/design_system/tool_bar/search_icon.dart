@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SearchIcon extends StatelessWidget {
+  const SearchIcon({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return IconButton(

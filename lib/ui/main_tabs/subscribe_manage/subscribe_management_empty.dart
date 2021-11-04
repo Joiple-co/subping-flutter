@@ -7,21 +7,19 @@ class SubscribeManagementEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView(children: [
-        Container(
-          height: 10,
-          color: SubpingColor.back20,
-        ),
-        SubscribePaymentInfo(
-          paidPrice: 0,
-          totalPrice: 0,
-        ),
-        Container(
-          height: 10,
-          color: SubpingColor.back20,
-        ),
-      ]),
-    );
+    return ListView(children: [
+      Container(
+        height: 10,
+        color: SubpingColor.back20,
+      ),
+      const SubscribePaymentInfo(
+        paidPrice: 0,
+        totalPrice: 0,
+      ),
+      Container(
+        height: 10,
+        color: SubpingColor.back20,
+      ),
+    ]);
   }
 }

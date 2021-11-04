@@ -14,9 +14,6 @@ class SearchModel {
     json['serviceResult'].forEach((item) {
       serviceResult.add(ServiceResult.fromJson(item));
     });
-
-    print(tagResult);
-    print(serviceResult);
   }
 }
 

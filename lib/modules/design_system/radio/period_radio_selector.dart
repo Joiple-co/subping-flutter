@@ -20,7 +20,7 @@ class PeriodRadioSelector extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SubpingText(
-                    PeriodString[period[index]],
+                    periodString[period[index]],
                     size: SubpingFontSize.title6,
                   ),
                   Radio(

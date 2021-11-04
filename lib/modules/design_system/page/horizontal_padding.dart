@@ -8,7 +8,7 @@ class HorizontalPadding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: child,
     );
   }

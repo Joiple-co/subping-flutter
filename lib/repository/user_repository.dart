@@ -21,13 +21,13 @@ class UserRepository {
       } else {
         if (response.message == "NoUserExistException") {
           ErrorHandler.errorHandler("NoUserExistException");
+          return UserModel();
         } else {
           ErrorHandler.errorHandler("GetUserException");
           return UserModel();
         }
       }
     } catch (e) {
-      print("[UserRepository Error] getUser : $e");
       return UserModel(nickName: "사용자님");
     }
   }
@@ -47,7 +47,6 @@ class UserRepository {
         return false;
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("NickNameDuplicateException");
       return false;
     }
@@ -109,8 +108,6 @@ class UserRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      print(response.message);
-
       if (!response.success) {
         ErrorHandler.errorHandler("MakeUserAddressException");
       }
@@ -141,6 +138,7 @@ class UserRepository {
       return response.success;
     } catch (e) {
       ErrorHandler.errorHandler("EditUserAddressException");
+      return false;
     }
   }
 
@@ -160,7 +158,6 @@ class UserRepository {
         ErrorHandler.errorHandler("GetUserCardsException");
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("GetUserCardsException");
     }
 
@@ -181,13 +178,10 @@ class UserRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      print(response.message);
-
       if (!response.success) {
         ErrorHandler.errorHandler("AddCardException");
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("AddCardException");
     }
   }
@@ -200,16 +194,14 @@ class UserRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
-      print(response.message);
-
       if (!response.success) {
         ErrorHandler.errorHandler("DeleteCardException");
       }
 
       return response.success;
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("DeleteCardException");
+      return false;
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/blank_page/alter_page.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/page/header_safe.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/alarm/alarm_item.dart';
@@ -9,13 +9,15 @@ import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Alarm extends StatelessWidget {
+  const Alarm({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final alarmViewModel = Get.find<AlarmsViewModel>();
 
     return Scaffold(
       backgroundColor: SubpingColor.white100,
-      appBar: TitleAppBar(
+      appBar: const TitleAppBar(
         "알림",
         hasBackButton: true,
       ),
@@ -27,7 +29,7 @@ class Alarm extends StatelessWidget {
               },
               child: Obx(
                 () => alarmViewModel.isLoading
-                    ? SubpingLoading()
+                    ? const SubpingLoading()
                     : ListView(
                         shrinkWrap: isBlank ? true : false,
                         physics: const BouncingScrollPhysics(

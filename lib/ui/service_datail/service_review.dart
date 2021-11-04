@@ -7,7 +7,7 @@ import 'package:subping/ui/write_review/write_review_bottomsheet.dart';
 class ServiceReview extends StatelessWidget {
   final List<ReviewModel> reviews;
 
-  const ServiceReview({this.reviews});
+  const ServiceReview({this.reviews, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,8 @@ class ServiceReview extends StatelessWidget {
                         color: SubpingColor.subping100)
                   ])),
                   GestureDetector(
-                    onTap: () => Get.bottomSheet(WriteReviewBottomSheet()),
+                    onTap: () =>
+                        Get.bottomSheet(const WriteReviewBottomSheet()),
                     child: Container(
                       padding: EdgeInsets.fromLTRB(
                           SubpingSize.medium10, 5, SubpingSize.medium10, 5),

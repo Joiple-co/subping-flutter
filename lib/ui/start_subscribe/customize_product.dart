@@ -14,7 +14,7 @@ class CustomizeProduct extends StatelessWidget {
     final products = startSubscribeViewModel.products.values;
 
     return Scaffold(
-        appBar: TitleAppBar(
+        appBar: const TitleAppBar(
           "구성 변경하기",
           hasBackButton: true,
         ),
@@ -83,12 +83,17 @@ class CustomizeProduct extends StatelessWidget {
                                                 SubpingText(product.name,
                                                     size:
                                                         SubpingFontSize.body1),
-                                                SubpingText(product.summary),
                                                 SubpingText(
-                                                    "${Helper.setComma(product.price)}원",
-                                                    color:
-                                                        SubpingColor.subping100,
-                                                    fontWeight: FontWeight.bold)
+                                                  product.summary,
+                                                  size: null,
+                                                ),
+                                                SubpingText(
+                                                  "${Helper.setComma(product.price)}원",
+                                                  color:
+                                                      SubpingColor.subping100,
+                                                  fontWeight: FontWeight.bold,
+                                                  size: null,
+                                                )
                                               ],
                                             ),
                                           ),
@@ -125,7 +130,7 @@ class CustomizeProduct extends StatelessWidget {
                                     ],
                                   ),
                                   index != products.length - 1
-                                      ? Divider()
+                                      ? const Divider()
                                       : Container()
                                 ],
                               );

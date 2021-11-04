@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/viewmodel/local/main_tabs/main_tabs_viewmodel.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewmodel.dart';
 
 class MyPageServiceListContainer extends StatelessWidget {
+  const MyPageServiceListContainer({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final mainTabsViewModel = Get.find<MainTabsViewModel>();
@@ -35,7 +37,7 @@ class MyPageServiceListContainer extends StatelessWidget {
             ),
           ),
           Space(size: SubpingSize.large20),
-          SubpingDivider(),
+          const SubpingDivider(),
           Space(size: SubpingSize.large15),
           SubpingText(
             "사용자",
@@ -69,7 +71,7 @@ class MyPageServiceListContainer extends StatelessWidget {
             ),
           ),
           Space(size: SubpingSize.large15),
-          SubpingDivider(),
+          const SubpingDivider(),
           Space(size: SubpingSize.large15),
           SubpingText(
             "공지사항",
@@ -93,7 +95,7 @@ class MyPageServiceListContainer extends StatelessWidget {
             ),
           ),
           Space(size: SubpingSize.large15),
-          SubpingDivider(),
+          const SubpingDivider(),
           Space(size: SubpingSize.large15),
           SubpingText(
             "고객센터",

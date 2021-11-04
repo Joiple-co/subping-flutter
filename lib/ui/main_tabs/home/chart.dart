@@ -8,82 +8,79 @@ class Chart extends StatelessWidget {
   final int limitItem;
   final CurrentHotChartModel hotChartData;
 
-  const Chart({this.limitItem, this.hotChartData});
+  const Chart({this.limitItem, this.hotChartData, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (limitItem != 0) {
       return HorizontalPadding(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text.rich(SubpingTextSpan(children: [
-                        SubpingTextSpan(
-                          text: "인기차트",
-                          fontSize: SubpingFontSize.title6,
-                          fontWeight: SubpingFontWeight.bold,
-                        ),
-                      ])),
-                      Space(size: SubpingSize.tiny5),
-                      Container(
-                          padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
-                          decoration: BoxDecoration(),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 27.w,
-                                height: 27.w,
-                                child: Image.asset(
-                                  "assets/icon/clock.png",
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
-                                child: SubpingText(hotChartData.standardTime,
-                                    fontWeight: SubpingFontWeight.medium,
-                                    size: SubpingFontSize.body3,
-                                    color: SubpingColor.black60),
-                              )
-                            ],
-                          ))
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () => Get.toNamed("/hotChart"),
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(
-                          SubpingSize.medium10, 5, SubpingSize.medium10, 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: SubpingColor.back20),
-                      child: SubpingText(
-                        '더보기',
-                        color: SubpingColor.subping50,
-                        size: SubpingFontSize.body3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Text.rich(SubpingTextSpan(children: [
+                      SubpingTextSpan(
+                        text: "인기차트",
+                        fontSize: SubpingFontSize.title6,
                         fontWeight: SubpingFontWeight.bold,
                       ),
+                    ])),
+                    Space(size: SubpingSize.tiny5),
+                    Container(
+                        padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 27.w,
+                              height: 27.w,
+                              child: Image.asset(
+                                "assets/icon/clock.png",
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(10.w, 0, 0, 5.h),
+                              child: SubpingText(hotChartData.standardTime,
+                                  fontWeight: SubpingFontWeight.medium,
+                                  size: SubpingFontSize.body3,
+                                  color: SubpingColor.black60),
+                            )
+                          ],
+                        ))
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () => Get.toNamed("/hotChart"),
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(
+                        SubpingSize.medium10, 5, SubpingSize.medium10, 5),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: SubpingColor.back20),
+                    child: SubpingText(
+                      '더보기',
+                      color: SubpingColor.subping50,
+                      size: SubpingFontSize.body3,
+                      fontWeight: SubpingFontWeight.bold,
                     ),
                   ),
-                ],
-              ),
-              Container(
-                  child: Column(
-                      children: List.generate(limitItem, (index) {
-                return RankChartItem(
-                    lastRank: limitItem,
-                    service: hotChartData?.serviceRank[index]);
-              })))
-            ],
-          ),
+                ),
+              ],
+            ),
+            Column(
+                children: List.generate(limitItem, (index) {
+              return RankChartItem(
+                  lastRank: limitItem,
+                  service: hotChartData?.serviceRank[index]);
+            }))
+          ],
         ),
       );
     } else {

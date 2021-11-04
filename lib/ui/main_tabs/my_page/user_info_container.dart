@@ -6,7 +6,7 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 class UserInfoContainer extends StatelessWidget {
   final UserViewModel userData;
 
-  const UserInfoContainer({this.userData});
+  const UserInfoContainer({this.userData, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

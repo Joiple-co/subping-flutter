@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PoundButton extends StatelessWidget {
   final String text;
   final bool marginFlag;
   final String clickTo;
 
-  const PoundButton(
-    this.text, {
-    this.marginFlag,
-    this.clickTo,
-  });
+  const PoundButton(this.text, {this.marginFlag, this.clickTo, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -10,22 +10,25 @@ import 'package:get/get.dart';
 import './home/home.dart';
 
 class MainTabs extends StatelessWidget {
+  const MainTabs({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MainTabsViewModel());
+    Get.put(MainTabsViewModel());
 
-    List<Widget> pageList = [Home(), Category(), SubscribeManage(), MyPage()];
+    List<Widget> pageList = [
+      const Home(),
+      const Category(),
+      const SubscribeManage(),
+      const MyPage()
+    ];
 
     return GetBuilder<MainTabsViewModel>(
         builder: (controller) => Obx(() => Scaffold(
-            body: Container(
-              child: IndexedStack(
-                index: controller.tabIndex.value,
-                children: pageList,
-              ),
+            body: IndexedStack(
+              index: controller.tabIndex.value,
+              children: pageList,
             ),
-            bottomNavigationBar: Container(
-              child: BottomNavBar(controller),
-            ))));
+            bottomNavigationBar: BottomNavBar(controller))));
   }
 }

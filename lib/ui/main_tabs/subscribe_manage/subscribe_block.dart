@@ -5,9 +5,9 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'subscribe_block_item.dart';
 
 class SubscribeBlock extends StatelessWidget {
-  List<SubScribeBlockItemModel> subscribeDataOfDay;
+  final List<SubScribeBlockItemModel> subscribeDataOfDay;
 
-  SubscribeBlock({this.subscribeDataOfDay});
+  const SubscribeBlock({this.subscribeDataOfDay, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

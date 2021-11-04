@@ -9,7 +9,7 @@ class CardIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final assetLink = CardVendorAsset[vendor];
+    final assetLink = cardVendorAsset[vendor];
 
     return ClipOval(
       child: Image.asset(

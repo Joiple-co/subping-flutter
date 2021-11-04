@@ -4,10 +4,11 @@ class SubpingDivider extends StatelessWidget {
   final Color color;
   final double thickness;
 
-  const SubpingDivider({
-    this.color = const Color.fromRGBO(246, 246, 247, 1),
-    this.thickness = 1,
-  });
+  const SubpingDivider(
+      {this.color = const Color.fromRGBO(246, 246, 247, 1),
+      this.thickness = 1,
+      Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

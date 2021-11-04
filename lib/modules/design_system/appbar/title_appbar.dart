@@ -4,22 +4,22 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
-  @override
   final String title;
   final Widget rear;
   final bool hasBackButton;
   @override
   final Size preferredSize;
 
-  TitleAppBar(this.title, {this.hasBackButton = false, this.rear, Key key})
-      : preferredSize = Size.fromHeight(56),
+  const TitleAppBar(this.title,
+      {this.hasBackButton = false, this.rear, Key key})
+      : preferredSize = const Size.fromHeight(56),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: SubpingColor.white100,
-      flexibleSpace: FlexibleSpaceBar(
+      flexibleSpace: const FlexibleSpaceBar(
         centerTitle: true,
         collapseMode: CollapseMode.pin,
       ),

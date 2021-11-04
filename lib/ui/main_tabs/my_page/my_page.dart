@@ -9,7 +9,7 @@ import 'user_info_container.dart';
 import 'my_page_service_list_container.dart';
 
 class MyPage extends StatelessWidget {
-  const MyPage() : super();
+  const MyPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final userViewModel = Get.find<UserViewModel>();
@@ -19,7 +19,7 @@ class MyPage extends StatelessWidget {
         child: Scaffold(
             appBar: TitleAppBar("마이 페이지",
                 rear: Container(
-                    child: ToolBar(hasAlarmIcon: true),
+                    child: const ToolBar(hasAlarmIcon: true),
                     decoration: BoxDecoration(boxShadow: [
                       BoxShadow(
                           color: SubpingColor.black30,
@@ -27,45 +27,41 @@ class MyPage extends StatelessWidget {
                           blurRadius: 14)
                     ]))),
             body: ListView(children: <Widget>[
-              Container(
-                child: Column(children: [
-                  Space(size: SubpingSize.large15),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(15, 0.0, 15, 15),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: SubpingColor.white100,
-                        boxShadow: [
-                          BoxShadow(
-                              color: SubpingColor.black30,
-                              offset: Offset(0, 0),
-                              blurRadius: 20)
-                        ]),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 70,
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                          child: UserInfoContainer(userData: userViewModel),
-                        ),
-                        Container(
-                          height: 80,
-                          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                          child: UserHistoryContainer(),
-                        ),
-                      ],
-                    ),
+              Column(children: [
+                Space(size: SubpingSize.large15),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(15, 0.0, 15, 15),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: SubpingColor.white100,
+                      boxShadow: [
+                        BoxShadow(
+                            color: SubpingColor.black30,
+                            offset: const Offset(0, 0),
+                            blurRadius: 20)
+                      ]),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 70,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        child: UserInfoContainer(userData: userViewModel),
+                      ),
+                      Container(
+                        height: 80,
+                        padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        child: const UserHistoryContainer(),
+                      ),
+                    ],
                   ),
-                ]),
-              ),
-              Container(
-                child: Divider(
-                  color: SubpingColor.back20,
-                  thickness: 20.h,
                 ),
+              ]),
+              Divider(
+                color: SubpingColor.back20,
+                thickness: 20.h,
               ),
-              MyPageServiceListContainer(),
+              const MyPageServiceListContainer(),
             ])));
   }
 }

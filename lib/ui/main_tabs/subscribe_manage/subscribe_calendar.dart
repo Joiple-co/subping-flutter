@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/calendar_date.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_calendar_empty.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/timeline_status.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewmodel.dart';
 
 class SubscribeCalendar extends StatelessWidget {
+  const SubscribeCalendar({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final subscribeViewModel = Get.find<SubscribeViewModel>();
@@ -23,11 +25,13 @@ class SubscribeCalendar extends StatelessWidget {
 
       if (subscribeViewModel.subscribe.keys.isEmpty) {
         return Container(
-            color: SubpingColor.white100, child: SubscribeCalendarEmpty());
+            color: SubpingColor.white100,
+            child: const SubscribeCalendarEmpty());
       }
 
       if (schedules == null) {
-        return Container(color: SubpingColor.white100, child: SubpingLoading());
+        return Container(
+            color: SubpingColor.white100, child: const SubpingLoading());
       }
 
       final sortedDates = schedules.keys.toList()..sort();
@@ -46,7 +50,7 @@ class SubscribeCalendar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 20),
                     child: GestureDetector(
                       onTap: subscribeManageViewModel.toggleFocusedMonth,
                       child: Column(
@@ -73,9 +77,9 @@ class SubscribeCalendar extends StatelessWidget {
                   SizedBox(
                       height: 140,
                       child: ListView(
-                          padding:
-                              EdgeInsets.only(left: 20, top: 10, bottom: 10),
-                          physics: AlwaysScrollableScrollPhysics(),
+                          padding: const EdgeInsets.only(
+                              left: 20, top: 10, bottom: 10),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           children: List.generate(sortedDates.length, (index) {
                             final date = sortedDates[index];
@@ -98,10 +102,10 @@ class SubscribeCalendar extends StatelessWidget {
                   Space(size: SubpingSize.medium14),
                   Expanded(
                     child: Container(
-                      padding: EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.only(right: 10),
                       child: ScrollablePositionedList.builder(
-                        padding: EdgeInsets.only(top: 10),
-                        physics: AlwaysScrollableScrollPhysics(),
+                        padding: const EdgeInsets.only(top: 10),
+                        physics: const AlwaysScrollableScrollPhysics(),
                         itemCount: sortedDates.length,
                         itemBuilder: (context, index) {
                           final date = sortedDates[index];
@@ -134,7 +138,7 @@ class SubscribeCalendar extends StatelessWidget {
                                             color: SubpingColor.back20,
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        padding: EdgeInsets.all(10),
+                                        padding: const EdgeInsets.all(10),
                                         child: Column(
                                           children: [
                                             Row(
@@ -262,7 +266,7 @@ class SubscribeCalendar extends StatelessWidget {
                       subscribeManageViewModel.onChangeMinIndex(minIndex);
                     });
                   }
-                  return SizedBox.shrink();
+                  return const SizedBox.shrink();
                 }),
           ],
         ),

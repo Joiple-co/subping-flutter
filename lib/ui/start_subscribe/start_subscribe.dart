@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/ui/add_card/add_card.dart';
 import 'package:subping/ui/start_subscribe/subscribe_address.dart';
 import 'package:subping/ui/start_subscribe/subscribe_card.dart';
 import 'package:subping/ui/start_subscribe/subscribe_item.dart';
@@ -40,7 +39,7 @@ class StartSubscribe extends StatelessWidget {
     }
 
     return Obx(() {
-      if (startSubscribeViewModel.step != StartSubscribeStep.RESULT) {
+      if (startSubscribeViewModel.step == StartSubscribeStep.result) {
         return Scaffold(
             backgroundColor: SubpingColor.white100,
             body: HeaderSafe(
@@ -52,7 +51,7 @@ class StartSubscribe extends StatelessWidget {
                       child: Image.network(service.serviceLogoUrl, height: 80),
                     ),
                     startSubscribeViewModel.isLoading
-                        ? SubpingLoading()
+                        ? const SubpingLoading()
                         : startSubscribeViewModel.success
                             ? Lottie.asset("assets/lottie/payment_success.json",
                                 height: 100, repeat: false)
@@ -77,31 +76,25 @@ class StartSubscribe extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      HorizontalPadding(
+                          child: SubscribeService(
+                        service: service,
+                      )),
                       Container(
-                        child: HorizontalPadding(
-                            child: SubscribeService(
+                          height: SubpingSize.medium10,
+                          color: SubpingColor.back20),
+                      HorizontalPadding(
+                          child: SubscribeItem(
+                              customizable: service.customizable,
+                              startSubscribeViewModel:
+                                  startSubscribeViewModel)),
+                      Container(
+                          height: SubpingSize.medium10,
+                          color: SubpingColor.back20),
+                      HorizontalPadding(
+                        child: SubscribePeriod(
                           service: service,
-                        )),
-                      ),
-                      Container(
-                          height: SubpingSize.medium10,
-                          color: SubpingColor.back20),
-                      Container(
-                        child: HorizontalPadding(
-                            child: SubscribeItem(
-                                customizable: service.customizable,
-                                startSubscribeViewModel:
-                                    startSubscribeViewModel)),
-                      ),
-                      Container(
-                          height: SubpingSize.medium10,
-                          color: SubpingColor.back20),
-                      Container(
-                        child: HorizontalPadding(
-                          child: SubscribePeriod(
-                            service: service,
-                            startSubscribeViewModel: startSubscribeViewModel,
-                          ),
+                          startSubscribeViewModel: startSubscribeViewModel,
                         ),
                       ),
                       service.type != "online"
@@ -110,24 +103,20 @@ class StartSubscribe extends StatelessWidget {
                               color: SubpingColor.back20)
                           : Container(),
                       service.type != "online"
-                          ? Container(
-                              child: HorizontalPadding(
-                                child: SubscribeAddress(
-                                    userViewModel: userViewModel,
-                                    startSubscriveViewModel:
-                                        startSubscribeViewModel),
-                              ),
+                          ? HorizontalPadding(
+                              child: SubscribeAddress(
+                                  userViewModel: userViewModel,
+                                  startSubscriveViewModel:
+                                      startSubscribeViewModel),
                             )
                           : Container(),
                       Container(
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
-                      Container(
-                        child: HorizontalPadding(
-                          child: SubscribeCard(
-                            userViewModel: userViewModel,
-                            startSubscribeViewModel: startSubscribeViewModel,
-                          ),
+                      HorizontalPadding(
+                        child: SubscribeCard(
+                          userViewModel: userViewModel,
+                          startSubscribeViewModel: startSubscribeViewModel,
                         ),
                       ),
                       Space(size: SubpingSize.medium14),

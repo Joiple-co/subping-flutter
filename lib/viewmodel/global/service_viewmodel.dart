@@ -5,7 +5,6 @@ import 'package:hive/hive.dart';
 import 'package:subping/hive/recent_service.dart';
 import 'package:subping/model/category_model.dart';
 import 'package:subping/model/current_hot_chart_model.dart';
-import 'package:subping/model/review_model.dart';
 import 'package:subping/model/service_model.dart';
 import 'package:subping/repository/service_repository.dart';
 
@@ -19,8 +18,6 @@ class ServiceViewModel extends GetxController {
   final Rx<CurrentHotChartModel> _chart = CurrentHotChartModel().obs;
   final RxBool _chartLoading = false.obs;
   final RxList<RecentService> _recentService = <RecentService>[].obs;
-  final Map<String, RxList<ReviewModel>> _reviews =
-      <String, RxList<ReviewModel>>{};
   final RxSet<String> _likes = <String>{}.obs;
   Map<String, Function> _likesReserved = {};
 
@@ -40,6 +37,7 @@ class ServiceViewModel extends GetxController {
 
       _chart.refresh();
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -81,6 +79,7 @@ class ServiceViewModel extends GetxController {
   Future<void> updateLikeServices() async {
     final services = await _serviceRepository.getLikeServices();
 
+    // ignore: invalid_use_of_protected_member
     _likes.value = {};
 
     for (var item in services) {

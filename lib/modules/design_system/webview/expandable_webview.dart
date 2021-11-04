@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:subping/modules/design_system/loading/subping_loading,.dart';
+import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class ExpandableWebView extends StatefulWidget {
@@ -29,7 +29,10 @@ class _ExpandableWebViewState extends State<ExpandableWebView> {
         height: contentHeight,
         child: Stack(
           alignment: Alignment.topCenter,
-          children: [_buildWebView(context), if (!loaded) SubpingLoading()],
+          children: [
+            _buildWebView(context),
+            if (!loaded) const SubpingLoading()
+          ],
         ));
   }
 

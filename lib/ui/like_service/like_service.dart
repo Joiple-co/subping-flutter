@@ -6,6 +6,8 @@ import 'package:subping/viewmodel/global/service_viewmodel.dart';
 import 'package:subping/viewmodel/local/like_service/like_service_viewmodel.dart';
 
 class LikeService extends StatelessWidget {
+  const LikeService({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
@@ -17,7 +19,7 @@ class LikeService extends StatelessWidget {
       () => HeaderSafe(
         hasBottomSafe: false,
         child: Scaffold(
-            appBar: TitleAppBar(
+            appBar: const TitleAppBar(
               "내가 찜한 상품",
               hasBackButton: true,
             ),

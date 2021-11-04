@@ -19,12 +19,12 @@ class EditAddress extends StatelessWidget {
 
     addressViewModel.setExistAddress(address);
 
-    address ??= new UserAddressModel(isDefault: false);
+    address ??= UserAddressModel(isDefault: false);
 
     return Obx(
       () => Scaffold(
           backgroundColor: SubpingColor.white100,
-          appBar: TitleAppBar(
+          appBar: const TitleAppBar(
             "주소 수정하기",
             hasBackButton: true,
           ),
@@ -79,15 +79,14 @@ class EditAddress extends StatelessWidget {
                             Space(size: SubpingSize.tiny7),
                             Flexible(
                                 flex: 2529,
-                                child: Container(
-                                    child: SubpingTextField(
+                                child: SubpingTextField(
                                   controller:
                                       addressViewModel.postCodeController,
                                   labelText: "우편 번호",
                                   readOnly: true,
                                   onChanged: (_) =>
                                       addressViewModel.checkValid(),
-                                ))),
+                                )),
                           ],
                         ),
                         Space(size: SubpingSize.medium14),
@@ -95,32 +94,28 @@ class EditAddress extends StatelessWidget {
                           children: [
                             Flexible(
                               flex: 1,
-                              child: Container(
-                                  child: SubpingTextField(
+                              child: SubpingTextField(
                                 controller: addressViewModel.addressController,
                                 readOnly: true,
                                 labelText: "배송지",
                                 onChanged: (_) => addressViewModel.checkValid(),
-                              )),
+                              ),
                             )
                           ],
                         ),
                         Space(size: SubpingSize.medium14),
-                        Container(
-                          child: SubpingTextField(
-                            labelText: "상세 주소",
-                            controller:
-                                addressViewModel.detailedAddressController,
-                            maxLines: 1,
-                            focusNode:
-                                addressViewModel.detailedAddressFocusNode,
-                            onChanged: (_) => addressViewModel.checkValid(),
-                            onSubmitted: (String str) {
-                              if (addressViewModel.isValid.value) {
-                                addressViewModel.onSubmit();
-                              }
-                            },
-                          ),
+                        SubpingTextField(
+                          labelText: "상세 주소",
+                          controller:
+                              addressViewModel.detailedAddressController,
+                          maxLines: 1,
+                          focusNode: addressViewModel.detailedAddressFocusNode,
+                          onChanged: (_) => addressViewModel.checkValid(),
+                          onSubmitted: (String str) {
+                            if (addressViewModel.isValid.value) {
+                              addressViewModel.onSubmit();
+                            }
+                          },
                         ),
                         !(address.isDefault)
                             ? Obx(

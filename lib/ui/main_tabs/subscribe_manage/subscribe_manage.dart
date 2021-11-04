@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_calendar.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_management.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewmodel.dart';
 
 class SubscribeManage extends StatelessWidget {
-  const SubscribeManage() : super();
+  const SubscribeManage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +18,16 @@ class SubscribeManage extends StatelessWidget {
       child: HeaderSafe(
           hasBottomSafe: false,
           child: Scaffold(
-            appBar: TitleAppBar("구독관리"),
+            appBar: const TitleAppBar("구독관리"),
             backgroundColor: SubpingColor.back20,
             body: Column(children: [
               Container(
                 color: SubpingColor.white100,
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                constraints: BoxConstraints(maxHeight: 35),
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                constraints: const BoxConstraints(maxHeight: 35),
                 child: TabBar(
-                  labelStyle: TextStyle(fontSize: 14),
+                  labelStyle: const TextStyle(fontSize: 14),
                   labelColor: SubpingColor.white100,
                   unselectedLabelColor: SubpingColor.black100,
                   indicator: BoxDecoration(
@@ -39,7 +39,11 @@ class SubscribeManage extends StatelessWidget {
                   isScrollable: true,
                   tabs: List.generate(
                     2,
-                    (index) => Tab(child: SubpingText(["관리", "캘린더"][index])),
+                    (index) => Tab(
+                        child: SubpingText(
+                      ["관리", "캘린더"][index],
+                      size: null,
+                    )),
                   ),
                   controller: subscribeManageViewModel.tabController,
                 ),
@@ -47,7 +51,10 @@ class SubscribeManage extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                     controller: subscribeManageViewModel.tabController,
-                    children: [SubscribeManagement(), SubscribeCalendar()]),
+                    children: const [
+                      SubscribeManagement(),
+                      SubscribeCalendar()
+                    ]),
               ),
             ]),
           )),

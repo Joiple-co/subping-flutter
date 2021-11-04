@@ -52,7 +52,7 @@ class ProductViewModel extends GetxController {
 
   List<ProductModel> getProducts(String serviceId) {
     if (_products[serviceId] != null) {
-      return _products[serviceId].value;
+      return _products[serviceId];
     } else {
       return [];
     }

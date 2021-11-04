@@ -3,8 +3,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
 
 class SubscribePaymentInfo extends StatelessWidget {
-  final totalPrice;
-  final paidPrice;
+  final num totalPrice;
+  final num paidPrice;
 
   const SubscribePaymentInfo({Key key, this.totalPrice, this.paidPrice})
       : super(key: key);
@@ -45,7 +45,7 @@ class SubscribePaymentInfo extends StatelessWidget {
                   width: width - 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Color.fromRGBO(180, 215, 255, 0.2),
+                    color: const Color.fromRGBO(180, 215, 255, 0.2),
                   ),
                 ),
                 Container(
@@ -59,12 +59,11 @@ class SubscribePaymentInfo extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                            child: SubpingText(
-                                "${((paidPrice / totalPrice) * 100).round()}%",
-                                fontWeight: SubpingFontWeight.medium,
-                                size: SubpingFontSize.body4,
-                                color: SubpingColor.white100))
+                        SubpingText(
+                            "${((paidPrice / totalPrice) * 100).round()}%",
+                            fontWeight: SubpingFontWeight.medium,
+                            size: SubpingFontSize.body4,
+                            color: SubpingColor.white100)
                       ]),
                 ),
               ])
@@ -74,7 +73,7 @@ class SubscribePaymentInfo extends StatelessWidget {
                   width: width - 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Color.fromRGBO(180, 215, 255, 0.2),
+                    color: const Color.fromRGBO(180, 215, 255, 0.2),
                   ),
                 ),
                 Container(
@@ -82,7 +81,7 @@ class SubscribePaymentInfo extends StatelessWidget {
                   width: 25,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: Color.fromRGBO(180, 215, 255, 0.2)),
+                      color: const Color.fromRGBO(180, 215, 255, 0.2)),
                 ),
               ]),
         Space(

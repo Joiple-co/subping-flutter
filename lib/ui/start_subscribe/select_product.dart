@@ -14,7 +14,7 @@ class SelectProduct extends StatelessWidget {
     final products = startSubscribeViewModel.products.values;
 
     return Scaffold(
-        appBar: TitleAppBar(
+        appBar: const TitleAppBar(
           "상품 선택하기",
           hasBackButton: true,
         ),
@@ -62,7 +62,7 @@ class SelectProduct extends StatelessWidget {
                                         .onSelectProduct(product.id, 1,
                                             customizable: false),
                                     child: Container(
-                                      padding: EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               width: 2,
@@ -97,12 +97,17 @@ class SelectProduct extends StatelessWidget {
                                                 SubpingText(product.name,
                                                     size:
                                                         SubpingFontSize.body1),
-                                                SubpingText(product.summary),
                                                 SubpingText(
-                                                    "${Helper.setComma(product.price)}원",
-                                                    color:
-                                                        SubpingColor.subping100,
-                                                    fontWeight: FontWeight.bold)
+                                                  product.summary,
+                                                  size: null,
+                                                ),
+                                                SubpingText(
+                                                  "${Helper.setComma(product.price)}원",
+                                                  color:
+                                                      SubpingColor.subping100,
+                                                  fontWeight: FontWeight.bold,
+                                                  size: null,
+                                                )
                                               ],
                                             ),
                                           )

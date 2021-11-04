@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class CategoryServiceItem extends StatelessWidget {
   final ServiceModel item;
 
-  const CategoryServiceItem({this.item}) : super();
+  const CategoryServiceItem({this.item, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

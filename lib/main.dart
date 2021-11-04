@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -63,7 +65,7 @@ void main() async {
 }
 
 class SubpingApp extends StatefulWidget {
-  const SubpingApp() : super();
+  const SubpingApp({Key key}) : super(key: key);
 
   @override
   _SubpingAppState createState() => _SubpingAppState();
@@ -88,6 +90,7 @@ class _SubpingAppState extends State<SubpingApp> {
     try {
       await Amplify.configure(getAmplifyCongig("dev"));
     } on AmplifyAlreadyConfiguredException {
+      // ignore: avoid_print
       print(
           "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
     }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:subping/modules/design_system/setting_table.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,7 +8,7 @@ import '../../viewmodel/local/main_tabs/main_tabs_viewmodel.dart';
 class BottomNavBar extends StatelessWidget {
   final MainTabsViewModel controller;
 
-  const BottomNavBar(this.controller);
+  const BottomNavBar(this.controller, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

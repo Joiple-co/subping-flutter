@@ -6,6 +6,8 @@ import 'package:subping/ui/main_tabs/category/category_viewer.dart';
 import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class Category extends StatefulWidget {
+  const Category({Key key}) : super(key: key);
+
   @override
   _CategoryState createState() => _CategoryState();
 }
@@ -53,10 +55,10 @@ class _CategoryState extends State<Category> {
                   Container(
                     color: SubpingColor.white100,
                     alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
-                    constraints: BoxConstraints(maxHeight: 35),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+                    constraints: const BoxConstraints(maxHeight: 35),
                     child: TabBar(
-                      labelStyle: TextStyle(fontSize: 14),
+                      labelStyle: const TextStyle(fontSize: 14),
                       labelColor: SubpingColor.white100,
                       unselectedLabelColor: SubpingColor.black100,
                       indicator: BoxDecoration(
@@ -71,7 +73,9 @@ class _CategoryState extends State<Category> {
                         serviceViewModel.categories.length,
                         (index) => Tab(
                             child: SubpingText(
-                                serviceViewModel.categories[index].name)),
+                          serviceViewModel.categories[index].name,
+                          size: null,
+                        )),
                       ),
                       controller: tabController,
                     ),

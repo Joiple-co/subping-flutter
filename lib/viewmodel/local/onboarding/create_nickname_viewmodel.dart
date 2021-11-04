@@ -17,7 +17,7 @@ class CreateNickNameViewModel extends GetxController {
 
     debounce(nickName, (text) async {
       checkNickNameValid();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
   }
 
   Future<void> checkNickNameValid() async {

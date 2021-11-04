@@ -29,7 +29,8 @@ class CalendarDate extends StatelessWidget {
                         color: SubpingColor.black30,
                         spreadRadius: 3,
                         blurRadius: 5,
-                        offset: Offset(0, 0), // changes position of shadow
+                        offset:
+                            const Offset(0, 0), // changes position of shadow
                       )
                     ]
                   : [],
@@ -39,7 +40,7 @@ class CalendarDate extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SubpingText(WeekOfDayToString[date.weekday],
+              SubpingText(weekOfDayToString[date.weekday],
                   size: SubpingFontSize.tiny1, color: SubpingColor.black80),
               SubpingText(date.day.toString(),
                   size: SubpingFontSize.title3, color: SubpingColor.black80),

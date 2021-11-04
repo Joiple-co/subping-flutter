@@ -11,7 +11,8 @@ class SubscribeItem extends StatelessWidget {
   final bool customizable;
 
   const SubscribeItem(
-      {Key key, this.startSubscribeViewModel, this.customizable});
+      {Key key, this.startSubscribeViewModel, this.customizable})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class SubscribeItem extends StatelessWidget {
                         fontSize: SubpingFontSize.title6,
                         fontWeight: SubpingFontWeight.bold,
                         color: SubpingColor.subping100)
-                    : SubpingTextSpan()
+                    : const SubpingTextSpan()
               ])),
             ],
           ),
@@ -54,7 +55,7 @@ class SubscribeItem extends StatelessWidget {
             decoration: BoxDecoration(
                 color: SubpingColor.back20,
                 borderRadius: BorderRadius.circular(10)),
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
                 children: List.generate(
                     startSubscribeViewModel.selectedProducts.length, (index) {
@@ -93,17 +94,21 @@ class SubscribeItem extends StatelessWidget {
                                 "${Helper.setComma(product.price)}원",
                                 color: SubpingColor.black80,
                                 fontWeight: FontWeight.bold,
+                                size: null,
                               ),
                               customizable
                                   ? SubpingText(
                                       " | ",
                                       color: SubpingColor.black30,
+                                      size: null,
                                     )
                                   : Container(),
                               customizable
                                   ? SubpingText(
                                       "${startSubscribeViewModel.selectedProducts[productId]}개",
-                                      color: SubpingColor.black80)
+                                      color: SubpingColor.black80,
+                                      size: null,
+                                    )
                                   : Container(),
                             ],
                           ),
@@ -158,8 +163,8 @@ class SubscribeItem extends StatelessWidget {
           SquareButton(
               text: customizable ? "구성 변경하기" : "상품 변겅하기",
               onPressed: customizable
-                  ? () => Get.to(CustomizeProduct())
-                  : () => Get.to(SelectProduct()),
+                  ? () => Get.to(const CustomizeProduct())
+                  : () => Get.to(const SelectProduct()),
               type: "outline"),
           Space(
             size: SubpingSize.medium14,

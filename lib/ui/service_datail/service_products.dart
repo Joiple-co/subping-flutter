@@ -4,20 +4,20 @@ import 'package:subping/model/product_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
 
-const CARD_HEIGHT = 220.0;
-const CARD_WIDTH = 200.0;
+const cardHeight = 220.0;
+const cardWidth = 200.0;
 
 class ServiceProducts extends StatelessWidget {
-  List<ProductModel> products;
+  final List<ProductModel> products;
 
-  ServiceProducts({Key key, this.products}) : super(key: key);
+  const ServiceProducts({Key key, this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 1.sw,
       height: 300,
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,20 +35,20 @@ class ServiceProducts extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              padding: EdgeInsets.only(left: 10),
+              padding: const EdgeInsets.only(left: 10),
               scrollDirection: Axis.horizontal,
               children: List.generate(
                   products.length,
                   (index) => Row(children: [
                         SizedBox(
-                          width: CARD_WIDTH,
-                          height: CARD_HEIGHT,
+                          width: cardWidth,
+                          height: cardHeight,
                           child: Column(children: [
                             Container(
-                              width: CARD_WIDTH,
-                              height: CARD_HEIGHT / 1.8,
+                              width: cardWidth,
+                              height: cardHeight / 1.8,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(10),
                                     topRight: Radius.circular(10)),
                                 image: DecorationImage(
@@ -58,14 +58,14 @@ class ServiceProducts extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              width: CARD_WIDTH,
-                              height: CARD_HEIGHT - CARD_HEIGHT / 1.8 - 2,
-                              padding: EdgeInsets.all(10),
+                              width: cardWidth,
+                              height: cardHeight - cardHeight / 1.8 - 2,
+                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                   color: SubpingColor.white100,
                                   border: Border.all(
                                       width: 0.5, color: SubpingColor.black60),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       bottomLeft: Radius.circular(10),
                                       bottomRight: Radius.circular(10))),
                               child: Column(
@@ -93,7 +93,7 @@ class ServiceProducts extends StatelessWidget {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: CARD_WIDTH,
+                                    width: cardWidth,
                                     child: SubpingText(
                                       "${Helper.setComma(products[index].price)}원",
                                       textAlign: TextAlign.right,

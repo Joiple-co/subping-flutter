@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
-import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
 
 class SubscribeList extends StatelessWidget {
   const SubscribeList({Key key}) : super(key: key);
@@ -11,11 +9,9 @@ class SubscribeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final subscribeViewModel = Get.find<SubscribeViewModel>();
-    final subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
 
     return Obx(
-      () => Container(
-          child: HorizontalPadding(
+      () => HorizontalPadding(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,15 +42,15 @@ class SubscribeList extends StatelessWidget {
                   final subscribe = subscribeViewModel.subscribe[subscribeId];
 
                   return Container(
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.only(bottom: 15),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(bottom: 15),
                     decoration: BoxDecoration(
                         color: SubpingColor.white100,
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
                               color: SubpingColor.black30,
-                              offset: Offset(0, 0),
+                              offset: const Offset(0, 0),
                               blurRadius: 14)
                         ]),
                     child: Column(
@@ -115,7 +111,7 @@ class SubscribeList extends StatelessWidget {
             ))
           ],
         ),
-      )),
+      ),
     );
   }
 }

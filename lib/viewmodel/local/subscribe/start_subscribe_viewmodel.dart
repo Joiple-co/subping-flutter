@@ -6,19 +6,18 @@ import 'package:subping/model/user_address_model.dart';
 import 'package:subping/model/user_card_model.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/repository/subscribe_repository.dart';
-import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_manage.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewmodel.dart';
 
-enum StartSubscribeStep { SELECT, RESULT }
+enum StartSubscribeStep { select, result }
 
 class StartSubscribeViewModel extends GetxController {
   final RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
   final RxMap<String, int> _selectedProducts = <String, int>{}.obs;
-  final Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
+  final Rx<Period> _selectedPeriod = Period.oneMonth.obs;
   final RxString _selectedAddress = "".obs;
   final RxString _selectedCard = "".obs;
-  final Rx<StartSubscribeStep> _step = StartSubscribeStep.SELECT.obs;
+  final Rx<StartSubscribeStep> _step = StartSubscribeStep.select.obs;
 
   final RxBool _isLoading = false.obs;
   final RxBool _success = false.obs;
@@ -94,7 +93,7 @@ class StartSubscribeViewModel extends GetxController {
 
   void onStartSubscribe() async {
     _isLoading.value = true;
-    _step.value = StartSubscribeStep.RESULT;
+    _step.value = StartSubscribeStep.result;
 
     final subscribeItems = [];
 
@@ -105,7 +104,7 @@ class StartSubscribeViewModel extends GetxController {
         subscribeItems: subscribeItems,
         userCardId: _selectedCard.value,
         addressId: _selectedAddress.value,
-        period: PeriodInnerString[_selectedPeriod.value],
+        period: periodInnerString[_selectedPeriod.value],
         serviceId: _service.id);
 
     if (result == "success") {
@@ -169,11 +168,11 @@ class StartSubscribeViewModel extends GetxController {
   }
 
   Map<String, int> get selectedProducts {
-    return _selectedProducts.value;
+    return _selectedProducts;
   }
 
   Map<String, ProductModel> get products {
-    return _products.value;
+    return _products;
   }
 
   Period get selectedPeriod {

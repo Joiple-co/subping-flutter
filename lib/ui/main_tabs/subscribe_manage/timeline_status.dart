@@ -8,24 +8,24 @@ class TimeLineStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorMapper = {
+    final colorMapper = {
       "결제 완료": {"back": SubpingColor.black30, "text": SubpingColor.black60},
       "결제 예정": {"back": SubpingColor.subping100, "text": SubpingColor.white100},
       "결제 실패": {"back": SubpingColor.warning100, "text": SubpingColor.white100},
     };
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 1.5, horizontal: 5),
+      padding: const EdgeInsets.symmetric(vertical: 1.5, horizontal: 5),
       decoration: BoxDecoration(
-          color: ColorMapper[status] != null
-              ? ColorMapper[status]['back']
+          color: colorMapper[status] != null
+              ? colorMapper[status]['back']
               : SubpingColor.subping100,
           borderRadius: BorderRadius.circular(5)),
       child: SubpingText(
         status,
         size: SubpingFontSize.body5,
-        color: ColorMapper[status] != null
-            ? ColorMapper[status]['text']
+        color: colorMapper[status] != null
+            ? colorMapper[status]['text']
             : SubpingColor.white100,
       ),
     );

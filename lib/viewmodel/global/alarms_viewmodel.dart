@@ -16,6 +16,7 @@ class AlarmsViewModel extends GetxController {
 
       _isLoading = false.obs;
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }

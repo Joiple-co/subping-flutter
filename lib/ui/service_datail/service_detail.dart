@@ -13,6 +13,8 @@ import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 class ServiceDetail extends StatelessWidget {
   final serviceId = Get.parameters['param'];
 
+  ServiceDetail({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final serviceViewModel = Get.find<ServiceViewModel>();
@@ -74,7 +76,10 @@ class ServiceDetail extends StatelessWidget {
                               Space(
                                 size: SubpingSize.medium10,
                               ),
-                              SubpingText(service.summary),
+                              SubpingText(
+                                service.summary,
+                                size: null,
+                              ),
                               Space(size: SubpingSize.large20),
                               SubpingText(
                                 "${productViewModel.getCheapeastPriceInService(serviceId)}원 ~",
@@ -82,33 +87,42 @@ class ServiceDetail extends StatelessWidget {
                                 fontWeight: SubpingFontWeight.bold,
                               ),
                               Space(size: SubpingSize.large20),
-                              Divider(),
+                              const Divider(),
                               Space(
                                 size: SubpingSize.large15,
                               ),
                               Row(
                                 children: [
-                                  SubpingText("카테고리",
-                                      color: SubpingColor.black60),
+                                  SubpingText(
+                                    "카테고리",
+                                    color: SubpingColor.black60,
+                                    size: null,
+                                  ),
                                   Space(
                                     size: SubpingSize.large25,
                                   ),
-                                  SubpingText(service.category != null
-                                      ? service.category.join(",")
-                                      : "")
+                                  SubpingText(
+                                    service.category != null
+                                        ? service.category.join(",")
+                                        : "",
+                                    size: null,
+                                  )
                                 ],
                               ),
                               Space(
                                 size: SubpingSize.large15,
                               ),
-                              Divider(),
+                              const Divider(),
                               Space(
                                 size: SubpingSize.large15,
                               ),
                               Row(
                                 children: [
-                                  SubpingText("제품설명",
-                                      color: SubpingColor.black60),
+                                  SubpingText(
+                                    "제품설명",
+                                    color: SubpingColor.black60,
+                                    size: null,
+                                  ),
                                   Space(
                                     size: SubpingSize.large25,
                                   ),
@@ -136,13 +150,13 @@ class ServiceDetail extends StatelessWidget {
                       Container(
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
-                      ServiceReview(
-                        reviews: const [],
+                      const ServiceReview(
+                        reviews: [],
                       ),
                       Container(
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
-                      ServiceInfo()
+                      const ServiceInfo()
                     ],
                   ),
                 ),

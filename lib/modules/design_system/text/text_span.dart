@@ -1,19 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../setting_table.dart';
 
 class SubpingTextSpan extends TextSpan {
-  @override
-  final List<SubpingTextSpan> children;
-  @override
-  final String text;
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
 
   const SubpingTextSpan(
-      {this.text, this.children, this.color, this.fontWeight, this.fontSize});
+      {text, children, this.color, this.fontWeight, this.fontSize})
+      : super(children: children, text: text);
 
   @override
   void build(ParagraphBuilder builder,

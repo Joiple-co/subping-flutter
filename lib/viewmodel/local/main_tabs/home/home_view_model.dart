@@ -7,7 +7,7 @@ class HomeViewModel extends GetxController {
   Rx<CurrentHotChartModel> charts = CurrentHotChartModel().obs;
 
   Future<CurrentHotChartModel> getChartData() async {
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
     charts.value = await _serviceRepository.getCurrentChart();
     return charts.value;
   }

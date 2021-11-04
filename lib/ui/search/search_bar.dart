@@ -9,7 +9,7 @@ import 'package:subping/viewmodel/local/search/search.dart';
 class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   final SearchViewModel searchViewModel;
 
-  const SearchBar({this.searchViewModel});
+  const SearchBar({this.searchViewModel, Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +26,11 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       title: Container(
-        padding: EdgeInsets.fromLTRB(13, 5, 13, 5),
+        padding: const EdgeInsets.fromLTRB(13, 5, 13, 5),
         width: 680.w,
         decoration: BoxDecoration(
             color: SubpingColor.back20,
-            borderRadius: BorderRadius.all(Radius.circular(15))),
+            borderRadius: const BorderRadius.all(Radius.circular(15))),
         child: Obx(
           () => TextField(
             controller: searchViewModel.searchTextEditingController,
@@ -44,7 +44,7 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
             ],
             decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(vertical: 9),
+                contentPadding: const EdgeInsets.symmetric(vertical: 9),
                 hintText: "검색어를 입력해주세요",
                 hintStyle: TextStyle(
                     fontSize: SubpingFontSize.title6,
@@ -63,5 +63,5 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(65);
+  Size get preferredSize => const Size.fromHeight(65);
 }

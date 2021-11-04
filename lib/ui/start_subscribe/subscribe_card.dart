@@ -47,7 +47,7 @@ class SubscribeCard extends StatelessWidget {
                       ? Row(
                           children: [
                             CardIcon(
-                              vendor: CardVendorMapper[userViewModel
+                              vendor: cardVendorMapper[userViewModel
                                   .cards[startSubscribeViewModel.selectedCard]
                                   .cardVendor],
                               size: 50,
@@ -121,7 +121,7 @@ class SelectCardBottomSheet extends StatelessWidget {
         height: 300,
         decoration: BoxDecoration(
             color: SubpingColor.white100,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
             )),
@@ -159,7 +159,7 @@ class SelectCardBottomSheet extends StatelessWidget {
                       Row(
                         children: [
                           CardIcon(
-                            vendor: CardVendorMapper[card.cardVendor],
+                            vendor: cardVendorMapper[card.cardVendor],
                             size: 50,
                           ),
                           Space(

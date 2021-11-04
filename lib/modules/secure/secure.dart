@@ -15,7 +15,7 @@ class Secure {
     RSAModel data = RSAModel.fromJson(response);
 
     if (data.success) {
-      final store = FlutterSecureStorage();
+      const store = FlutterSecureStorage();
       store.write(key: "RSAKey", value: data.publicKey);
 
       return true;
@@ -25,10 +25,8 @@ class Secure {
   }
 
   Future<String> encrpytRSA(String value) async {
-    final store = FlutterSecureStorage();
+    const store = FlutterSecureStorage();
     final pemKey = await store.read(key: "RSAKey");
-
-    print(pemKey);
 
     if (pemKey != null) {
       final key = RSAPublicKey.fromPEM(pemKey);

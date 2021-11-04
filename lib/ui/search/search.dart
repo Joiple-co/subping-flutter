@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:subping/model/search_model.dart';
-import 'package:subping/modules/design_system/page/header_safe.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:subping/ui/search/search_bar.dart';
 import 'package:subping/ui/search/search_item.dart';
 
 import 'package:subping/viewmodel/local/search/search.dart';
 
 class Search extends StatelessWidget {
+  const Search({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final searchViewModel = Get.find<SearchViewModel>();
@@ -39,11 +38,9 @@ class Search extends StatelessWidget {
                     Space(
                       size: SubpingSize.tiny5,
                     ),
-                    Container(
-                      child: Divider(
-                        color: SubpingColor.back20,
-                        thickness: 2,
-                      ),
+                    Divider(
+                      color: SubpingColor.back20,
+                      thickness: 2,
                     ),
                     Space(size: SubpingSize.tiny5),
                     SubpingText("검색어 제안",
@@ -64,7 +61,7 @@ class Search extends StatelessWidget {
                                 Container(
                                   height: 30,
                                   width: 30,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(

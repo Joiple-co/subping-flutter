@@ -4,6 +4,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Recommand extends StatelessWidget {
+  const Recommand({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

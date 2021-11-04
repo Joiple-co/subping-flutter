@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -63,14 +61,6 @@ class SubscribeManageViewModel extends GetxController
     }
 
     return result;
-  }
-
-  int get getPaidPriceOfThisMonth {
-    if (_schedules.keys.isNotEmpty) {
-      final month = _schedules.keys.elementAt(0);
-    } else {
-      return 0;
-    }
   }
 
   String get focusedMonth {

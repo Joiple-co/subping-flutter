@@ -19,7 +19,7 @@ class SubpingText extends StatelessWidget {
   final TextHeightBehavior textHeightBehavior;
 
   const SubpingText(
-    @required this.text, {
+    this.text, {
     @required this.size,
     Key key,
     this.color,

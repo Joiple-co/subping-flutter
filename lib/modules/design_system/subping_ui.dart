@@ -15,7 +15,7 @@ export './shape/chart_rank.dart';
 export './appbar/title_appbar.dart';
 export './chart/rank_chart_item.dart';
 export './chart/time_display.dart';
-import './loading/subping_loading,.dart';
+export './loading/subping_loading.dart';
 export './divider/divider.dart';
 export './image_selector/image_selector.dart';
 export './radio/period_radio_selector.dart';

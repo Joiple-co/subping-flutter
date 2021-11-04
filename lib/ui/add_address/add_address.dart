@@ -5,6 +5,8 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 import 'package:subping/viewmodel/local/add_address/add_address_viewmodel.dart';
 
 class AddAddress extends StatelessWidget {
+  const AddAddress({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final addressViewModel = Get.put(AddAddressViewModel());
@@ -17,7 +19,7 @@ class AddAddress extends StatelessWidget {
       () => Scaffold(
           backgroundColor: SubpingColor.white100,
           resizeToAvoidBottomInset: false,
-          appBar: TitleAppBar(
+          appBar: const TitleAppBar(
             "주소 추가하기",
             hasBackButton: true,
           ),
@@ -72,13 +74,12 @@ class AddAddress extends StatelessWidget {
                             Space(size: SubpingSize.tiny7),
                             Flexible(
                                 flex: 2529,
-                                child: Container(
-                                    child: SubpingTextField(
+                                child: SubpingTextField(
                                   controller:
                                       addressViewModel.zipCodeController,
                                   labelText: "우편 번호",
                                   readOnly: true,
-                                ))),
+                                )),
                           ],
                         ),
                         Space(size: SubpingSize.medium14),
@@ -86,29 +87,25 @@ class AddAddress extends StatelessWidget {
                           children: [
                             Flexible(
                               flex: 1,
-                              child: Container(
-                                  child: SubpingTextField(
+                              child: SubpingTextField(
                                 controller: addressViewModel.addressController,
                                 readOnly: true,
                                 labelText: "배송지",
-                              )),
+                              ),
                             )
                           ],
                         ),
                         Space(size: SubpingSize.medium14),
-                        Container(
-                          child: SubpingTextField(
-                            labelText: "상세 주소",
-                            maxLines: 1,
-                            focusNode:
-                                addressViewModel.detailedAddressFocusNode,
-                            onChanged: addressViewModel.onChangeDetailAddress,
-                            onSubmitted: (String str) {
-                              if (addressViewModel.isValid.value) {
-                                addressViewModel.onSubmit();
-                              }
-                            },
-                          ),
+                        SubpingTextField(
+                          labelText: "상세 주소",
+                          maxLines: 1,
+                          focusNode: addressViewModel.detailedAddressFocusNode,
+                          onChanged: addressViewModel.onChangeDetailAddress,
+                          onSubmitted: (String str) {
+                            if (addressViewModel.isValid.value) {
+                              addressViewModel.onSubmit();
+                            }
+                          },
                         ),
                         Row(children: [
                           Checkbox(

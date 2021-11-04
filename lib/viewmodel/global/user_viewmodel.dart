@@ -77,7 +77,7 @@ class UserViewModel extends GetxController {
   }
 
   Map<String, UserCardModel> get cards {
-    return _cards.value;
+    return _cards;
   }
 
   Map<String, UserAddressModel> get userAddreses {

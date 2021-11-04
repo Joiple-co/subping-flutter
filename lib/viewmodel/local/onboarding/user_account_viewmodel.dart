@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:subping/model/body_model.dart';
 import 'package:subping/modules/cognito/cognito.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
 import 'package:subping/viewmodel/global/auth_viewmodel.dart';
@@ -68,15 +67,15 @@ class UserAccountViewModel extends GetxController {
 
     debounce(email, (text) async {
       checkEmailVaild();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
 
     debounce(password, (text) {
       checkPasswordValid();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
 
     debounce(passwordCheck, (text) {
       checkPasswordValid();
-    }, time: Duration(milliseconds: 500));
+    }, time: const Duration(milliseconds: 500));
   }
 
   Future<bool> checkEmailVaild() async {
@@ -102,6 +101,7 @@ class UserAccountViewModel extends GetxController {
       return false;
     } catch (e) {
       ErrorHandler.errorHandler("default");
+      return false;
     }
   }
 

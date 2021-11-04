@@ -5,7 +5,7 @@ import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_list.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_management_empty.dart';
 import 'package:subping/ui/main_tabs/subscribe_manage/subscribe_payment_info.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
-import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewModel.dart';
+import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_manage_viewmodel.dart';
 
 class SubscribeManagement extends StatelessWidget {
   const SubscribeManagement({Key key}) : super(key: key);
@@ -21,7 +21,8 @@ class SubscribeManagement extends StatelessWidget {
 
       if (subscribeViewModel.subscribe.keys.isEmpty) {
         return Container(
-            color: SubpingColor.white100, child: SubscribeManagementEmpty());
+            color: SubpingColor.white100,
+            child: const SubscribeManagementEmpty());
       }
 
       return Container(
@@ -40,7 +41,7 @@ class SubscribeManagement extends StatelessWidget {
                 height: 10,
                 color: SubpingColor.back20,
               ),
-              SubscribeList()
+              const SubscribeList()
             ],
           ));
     });
