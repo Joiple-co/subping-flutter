@@ -67,14 +67,14 @@ class API {
   }
 
   static Future<RestResponse> get(String service, String path) async {
-    print('[API GET] service : "${service}" path : "${path}"');
+    print('[API GET] service : "$service" path : "$path"');
 
     if (!await API.hasNetwork()) {
       print("[API] No Network");
 
-      API.requests.forEach((request) {
+      for (var request in API.requests) {
         request.cancel();
-      });
+      }
 
       ErrorHandler.errorHandler("NoNetworkException");
       return null;
@@ -96,14 +96,14 @@ class API {
 
   static Future<RestResponse> post(String service, String path,
       {Map<dynamic, dynamic> body}) async {
-    print('[API POST] service : "${service}" path : "${path}"');
+    print('[API POST] service : "$service" path : "$path"');
 
     if (!await API.hasNetwork()) {
       print("[API] No Network");
 
-      API.requests.forEach((request) {
+      for (var request in API.requests) {
         request.cancel();
-      });
+      }
 
       ErrorHandler.errorHandler("NoNetworkException");
       return null;

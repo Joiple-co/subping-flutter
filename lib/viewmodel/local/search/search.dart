@@ -5,17 +5,18 @@ import 'package:subping/model/search_model.dart';
 import 'package:subping/repository/search_repository.dart';
 
 class SearchViewModel extends GetxController {
-  SearchRepository _searchRepository = SearchRepository();
-  RxString _searchText = "".obs;
-  Rx<SearchModel> _searchResult = SearchModel().obs;
-  TextEditingController _searchTextEditingController = TextEditingController();
+  final SearchRepository _searchRepository = SearchRepository();
+  final RxString _searchText = "".obs;
+  final Rx<SearchModel> _searchResult = SearchModel().obs;
+  final TextEditingController _searchTextEditingController =
+      TextEditingController();
 
   @override
   void onInit() {
     super.onInit();
 
     debounce(_searchText, (String text) async {
-      if (text.length != 0) {
+      if (text.isNotEmpty) {
         _searchResult.value = await _searchRepository.getSearch(text);
         _searchResult.refresh();
       } else {

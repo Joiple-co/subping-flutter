@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:subping/viewmodel/local/splash/splash_viewmodel.dart';
 
 class Splash extends StatelessWidget {
-  final viewModel = new SplashViewModel();
+  final viewModel = SplashViewModel();
 
   @override
   Widget build(BuildContext context) {
-    new Future.delayed(
-        const Duration(seconds: 1), () => viewModel.goNextScene());
+    Future.delayed(const Duration(seconds: 1), () => viewModel.goNextScene());
 
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,

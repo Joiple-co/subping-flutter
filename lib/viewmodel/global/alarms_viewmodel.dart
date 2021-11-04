@@ -4,8 +4,8 @@ import 'package:subping/model/alarms/alarms_model.dart';
 import 'package:subping/repository/alarm_repository.dart';
 
 class AlarmsViewModel extends GetxController {
-  AlarmRepository _alarmRepository = AlarmRepository();
-  Rx<AlarmsModel> _alarms = AlarmsModel().obs;
+  final AlarmRepository _alarmRepository = AlarmRepository();
+  final Rx<AlarmsModel> _alarms = AlarmsModel().obs;
   Rx<bool> _isLoading = false.obs;
 
   Future<void> updateAlarm() async {

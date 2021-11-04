@@ -4,7 +4,7 @@ import 'package:subping/viewmodel/global/service_viewmodel.dart';
 
 class LikeServiceViewModel extends GetxController {
   final GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
-      new GlobalKey<RefreshIndicatorState>();
+      GlobalKey<RefreshIndicatorState>();
 
   Future<void> updateLikeServices() async {
     final serviceViewModel = Get.find<ServiceViewModel>();

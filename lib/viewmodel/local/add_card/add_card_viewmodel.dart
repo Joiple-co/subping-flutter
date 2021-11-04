@@ -8,15 +8,15 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 enum AddCardStep { CARD_NAME, PG, LOADING, DONE }
 
 class AddCardViewModel extends GetxController {
-  Rx<AddCardStep> _step = AddCardStep.CARD_NAME.obs;
-  RxBool _available = false.obs;
-  RxString _cardName = "".obs;
-  UserRepository _userRepository = UserRepository();
+  final Rx<AddCardStep> _step = AddCardStep.CARD_NAME.obs;
+  final RxBool _available = false.obs;
+  final RxString _cardName = "".obs;
+  final UserRepository _userRepository = UserRepository();
 
   void onChangeCardName(String cardName) {
     _cardName.value = cardName;
 
-    if (_cardName.value.length > 0) {
+    if (_cardName.value.isNotEmpty) {
       _available.value = true;
     } else {
       _available.value = false;

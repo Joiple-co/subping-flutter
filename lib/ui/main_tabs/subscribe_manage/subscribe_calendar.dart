@@ -21,7 +21,7 @@ class SubscribeCalendar extends StatelessWidget {
       final schedules = subscribeManageViewModel
           .schedules[subscribeManageViewModel.focusedMonth];
 
-      if (subscribeViewModel.subscribe.keys.length == 0) {
+      if (subscribeViewModel.subscribe.keys.isEmpty) {
         return Container(
             color: SubpingColor.white100, child: SubscribeCalendarEmpty());
       }
@@ -70,7 +70,7 @@ class SubscribeCalendar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                       height: 140,
                       child: ListView(
                           padding:
@@ -110,7 +110,7 @@ class SubscribeCalendar extends StatelessWidget {
                           return Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 60,
                                 child: Align(
                                   alignment: Alignment.center,

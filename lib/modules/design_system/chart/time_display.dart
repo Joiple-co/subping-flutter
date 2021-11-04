@@ -7,6 +7,7 @@ class TimeDisplay extends StatelessWidget {
 
   const TimeDisplay(this.time) : super();
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(15.w, 8.h, 15.w, 8.h),
@@ -18,7 +19,7 @@ class TimeDisplay extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: 27.w,
             height: 27.h,
             child: Image.asset(

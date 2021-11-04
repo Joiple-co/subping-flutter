@@ -4,11 +4,11 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/design_system/webview/expandable_webview.dart';
 
 class ServiceInfo extends StatelessWidget {
-  ServiceInfo({Key key}) : super(key: key);
+  const ServiceInfo({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100.sw,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

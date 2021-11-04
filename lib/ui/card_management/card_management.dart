@@ -47,10 +47,10 @@ class CardManagement extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SubpingText(
-                                    "${userViewModel.cards[cardKey].cardName}",
+                                    userViewModel.cards[cardKey].cardName,
                                     size: SubpingFontSize.body1),
                                 SubpingText(
-                                    "${userViewModel.cards[cardKey].cardVendor}",
+                                    userViewModel.cards[cardKey].cardVendor,
                                     size: SubpingFontSize.body2,
                                     color: SubpingColor.black60),
                               ],

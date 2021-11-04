@@ -87,8 +87,8 @@ class SubscribeList extends StatelessWidget {
                                   subscribe.subscribeItems.length, (index) {
                                 return Text.rich(SubpingTextSpan(children: [
                                   SubpingTextSpan(
-                                      text:
-                                          "${subscribe.subscribeItems[index].product.name}",
+                                      text: subscribe
+                                          .subscribeItems[index].product.name,
                                       fontSize: SubpingFontSize.title6,
                                       fontWeight: SubpingFontWeight.medium),
                                   SubpingTextSpan(

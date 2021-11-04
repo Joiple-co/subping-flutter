@@ -13,7 +13,7 @@ class CategoryViewer extends StatelessWidget {
   final ServiceViewModel serviceViewModel;
   final List<ServiceModel> services;
 
-  CategoryViewer(
+  const CategoryViewer(
       this.index, this.categoryModel, this.serviceViewModel, this.services);
 
   @override
@@ -32,7 +32,7 @@ class CategoryViewer extends StatelessWidget {
                   color: SubpingColor.white100,
                   child: HorizontalPadding(
                     child: CustomScrollView(
-                        key: PageStorageKey("category_viewer_${index}"),
+                        key: PageStorageKey("category_viewer_$index"),
                         slivers: [
                           SliverList(
                               delegate: SliverChildListDelegate([

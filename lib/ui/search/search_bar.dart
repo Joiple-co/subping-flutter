@@ -9,7 +9,7 @@ import 'package:subping/viewmodel/local/search/search.dart';
 class SearchBar extends StatelessWidget implements PreferredSizeWidget {
   final SearchViewModel searchViewModel;
 
-  SearchBar({this.searchViewModel});
+  const SearchBar({this.searchViewModel});
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +49,10 @@ class SearchBar extends StatelessWidget implements PreferredSizeWidget {
                 hintStyle: TextStyle(
                     fontSize: SubpingFontSize.title6,
                     color: SubpingColor.black60),
-                suffixIcon: searchViewModel.searchText.length == 0
+                suffixIcon: searchViewModel.searchText.isEmpty
                     ? null
                     : IconButton(
-                        icon: new Image.asset('assets/icon/clear_X_Icon.png',
+                        icon: Image.asset('assets/icon/clear_X_Icon.png',
                             width: 24, height: 24),
                         onPressed: searchViewModel.onClickClear,
                       )),

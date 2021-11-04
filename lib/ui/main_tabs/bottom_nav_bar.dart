@@ -9,7 +9,7 @@ import '../../viewmodel/local/main_tabs/main_tabs_viewmodel.dart';
 class BottomNavBar extends StatelessWidget {
   final MainTabsViewModel controller;
 
-  BottomNavBar(this.controller);
+  const BottomNavBar(this.controller);
 
   @override
   Widget build(BuildContext context) {

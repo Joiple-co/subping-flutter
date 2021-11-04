@@ -8,6 +8,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget rear;
   final bool hasBackButton;
+  @override
   final Size preferredSize;
 
   TitleAppBar(this.title, {this.hasBackButton = false, this.rear, Key key})
@@ -37,7 +38,7 @@ class TitleAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: SubpingColor.black100,
             fontWeight: SubpingFontWeight.bold,
             size: SubpingFontSize.title5),
-        rear != null ? rear : Container(),
+        rear ?? Container(),
       ]),
       leadingWidth: hasBackButton ? null : 0,
       elevation: 0,

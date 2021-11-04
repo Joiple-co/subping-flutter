@@ -72,13 +72,13 @@ class Cognito {
         await API.post("auth", "/emailDuplicate", body: {"email": email});
 
     Map<String, dynamic> response =
-        jsonDecode(new String.fromCharCodes(rawResponse.data));
+        jsonDecode(String.fromCharCodes(rawResponse.data));
     BodyModel body = BodyModel.fromJson(response);
     return body;
   }
 
   Future<Map<String, String>> currentUser(
-      {email: bool, name: bool, cognitoId: bool}) async {
+      {email = bool, name = bool, cognitoId = bool}) async {
     var result = {"email": "", "name": "", "cognitoId": ""};
 
     if (await checkLoggedIn()) {

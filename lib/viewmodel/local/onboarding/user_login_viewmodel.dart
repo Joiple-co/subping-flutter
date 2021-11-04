@@ -17,6 +17,7 @@ class UserLoginViewModel extends GetxController {
   FocusNode emailFocus = FocusNode();
   FocusNode passwordFocus = FocusNode();
 
+  @override
   void onInit() {
     super.onInit();
 

@@ -21,7 +21,7 @@ class SubscribeCalendarEmpty extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 60,
                     child: Align(
                       alignment: Alignment.center,
@@ -111,7 +111,7 @@ class SubscribeCalendarEmpty extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 60,
                     child: Align(
                       alignment: Alignment.center,
@@ -207,13 +207,13 @@ class SubscribeCalendarEmpty extends StatelessWidget {
               gradient: LinearGradient(
                   begin: FractionalOffset.topCenter,
                   end: FractionalOffset.bottomCenter,
-                  colors: [
+                  colors: const [
                     Color.fromRGBO(255, 255, 255, 0.11),
                     Color.fromRGBO(233, 233, 233, 0.12),
                     Color.fromRGBO(77, 77, 77, 0.15),
                     Color.fromRGBO(0, 0, 0, 0.3),
                   ],
-                  stops: [
+                  stops: const [
                     0.0,
                     0.1,
                     0.2,

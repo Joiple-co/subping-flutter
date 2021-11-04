@@ -4,8 +4,8 @@ import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/repository/product_repository.dart';
 
 class ProductViewModel extends GetxController {
-  ProductRepository _productRepository = ProductRepository();
-  Map<String, RxList<ProductModel>> _products =
+  final ProductRepository _productRepository = ProductRepository();
+  final Map<String, RxList<ProductModel>> _products =
       <String, RxList<ProductModel>>{}.obs;
 
   Future<void> updateProducts(String serviceId) async {
@@ -27,11 +27,11 @@ class ProductViewModel extends GetxController {
   String getCheapestPrice(List<ProductModel> products) {
     num cheapestPrice = double.infinity;
 
-    products.forEach((element) {
+    for (var element in products) {
       if (element.price != null && element.price < cheapestPrice) {
         cheapestPrice = element.price;
       }
-    });
+    }
 
     if (cheapestPrice != double.infinity) {
       return Helper.setComma(cheapestPrice);

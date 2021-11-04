@@ -7,7 +7,7 @@ class RankChartItem extends StatelessWidget {
   final ServiceModel service;
   final int lastRank;
 
-  RankChartItem({this.service, this.lastRank});
+  const RankChartItem({this.service, this.lastRank});
 
   @override
   Widget build(BuildContext context) {

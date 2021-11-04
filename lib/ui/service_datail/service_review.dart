@@ -7,14 +7,14 @@ import 'package:subping/ui/write_review/write_review_bottomsheet.dart';
 class ServiceReview extends StatelessWidget {
   final List<ReviewModel> reviews;
 
-  ServiceReview({this.reviews});
+  const ServiceReview({this.reviews});
 
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Space(size: SubpingSize.large25),
       HorizontalPadding(
-        child: reviews.length == 0
+        child: reviews.isEmpty
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

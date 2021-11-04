@@ -144,7 +144,7 @@ class IamportAssign extends StatelessWidget {
         name: '구독의 모든것! 섭핑',
         merchantUid: 'mid_${DateTime.now().millisecondsSinceEpoch}',
         amount: 0,
-        customerUid: "${userEmail}-${UUID.getUUID()}",
+        customerUid: "$userEmail-${UUID.getUUID()}",
         buyerName: userName,
         buyerTel: userPhoneNumber,
         buyerEmail: userEmail,

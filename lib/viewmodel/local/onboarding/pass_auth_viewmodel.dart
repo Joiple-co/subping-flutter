@@ -10,6 +10,7 @@ class PassAuthViewModel extends GetxController {
       {"preTitle": "서비스 이용을 위해\n", "accent": "본인인증", "postTitle": "이 필요해요"}.obs;
   RxBool loading = false.obs;
 
+  @override
   void onInit() {
     super.onInit();
   }

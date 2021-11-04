@@ -123,12 +123,12 @@ class ServiceDetail extends StatelessWidget {
                               Space(size: SubpingSize.large25)
                             ]),
                       ),
-                      products.length != 0
+                      products.isNotEmpty
                           ? Container(
                               height: SubpingSize.medium10,
                               color: SubpingColor.back20)
                           : Container(),
-                      products.length != 0
+                      products.isNotEmpty
                           ? ServiceProducts(
                               products: products,
                             )
@@ -137,7 +137,7 @@ class ServiceDetail extends StatelessWidget {
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
                       ServiceReview(
-                        reviews: [],
+                        reviews: const [],
                       ),
                       Container(
                           height: SubpingSize.medium10,

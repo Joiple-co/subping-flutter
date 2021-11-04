@@ -43,19 +43,19 @@ class SubpingText extends StatelessWidget {
     return (Text(text,
         style: TextStyle(
             height: height,
-            fontSize: this.size,
-            color: this.color,
-            fontWeight: this.fontWeight),
-        locale: this.locale,
-        strutStyle: this.strutStyle,
-        textAlign: this.textAlign,
-        textWidthBasis: this.textWidthBasis,
-        textHeightBehavior: this.textHeightBehavior,
-        semanticsLabel: this.semanticsLabel,
-        overflow: this.overflow,
-        softWrap: this.softWrap,
-        textDirection: this.textDirection,
-        maxLines: this.maxLines,
-        textScaleFactor: this.textScaleFactor));
+            fontSize: size,
+            color: color,
+            fontWeight: fontWeight),
+        locale: locale,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        semanticsLabel: semanticsLabel,
+        overflow: overflow,
+        softWrap: softWrap,
+        textDirection: textDirection,
+        maxLines: maxLines,
+        textScaleFactor: textScaleFactor));
   }
 }

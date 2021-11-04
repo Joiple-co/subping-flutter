@@ -52,7 +52,8 @@ class SubscribeAddress extends StatelessWidget {
                             size: SubpingSize.tiny5,
                           ),
                           SubpingText(
-                              "${addresses[startSubscriveViewModel.selectedAddress].userPhoneNumber}",
+                              addresses[startSubscriveViewModel.selectedAddress]
+                                  .userPhoneNumber,
                               color: SubpingColor.black60,
                               size: SubpingFontSize.body2),
                           SubpingText(
@@ -176,7 +177,8 @@ class SubscribeAddress extends StatelessWidget {
                                                         size: SubpingSize.tiny5,
                                                       ),
                                                       SubpingText(
-                                                          "${addresses[addressId].userPhoneNumber}",
+                                                          addresses[addressId]
+                                                              .userPhoneNumber,
                                                           color: SubpingColor
                                                               .black60,
                                                           size: SubpingFontSize

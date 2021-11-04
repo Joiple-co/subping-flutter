@@ -59,10 +59,16 @@ class SubscribeCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SubpingText(
-                                    "${userViewModel.cards[startSubscribeViewModel.selectedCard].cardName}",
+                                    userViewModel
+                                        .cards[startSubscribeViewModel
+                                            .selectedCard]
+                                        .cardName,
                                     size: SubpingFontSize.body1),
                                 SubpingText(
-                                    "${userViewModel.cards[startSubscribeViewModel.selectedCard].cardVendor}",
+                                    userViewModel
+                                        .cards[startSubscribeViewModel
+                                            .selectedCard]
+                                        .cardVendor,
                                     size: SubpingFontSize.body2,
                                     color: SubpingColor.black60),
                               ],
@@ -162,13 +168,13 @@ class SelectCardBottomSheet extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SubpingText("${card.cardName}",
+                              SubpingText(card.cardName,
                                   size: SubpingFontSize.body1,
                                   color: startSubscribeViewModel.selectedCard ==
                                           card.id
                                       ? SubpingColor.subping100
                                       : SubpingColor.black100),
-                              SubpingText("${card.cardVendor}",
+                              SubpingText(card.cardVendor,
                                   size: SubpingFontSize.body2,
                                   color: SubpingColor.black60),
                             ],

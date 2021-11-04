@@ -7,7 +7,7 @@ class PoundButton extends StatelessWidget {
   final bool marginFlag;
   final String clickTo;
 
-  PoundButton(
+  const PoundButton(
     this.text, {
     this.marginFlag,
     this.clickTo,
@@ -27,7 +27,7 @@ class PoundButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(2.5)),
           child: Center(
             child: SubpingText(
-              '${this.text}',
+              text,
               size: SubpingFontSize.body4,
               color: SubpingColor.black60,
             ),

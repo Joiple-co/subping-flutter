@@ -23,16 +23,16 @@ class UserModel {
       this.createdAt});
 
   void updateUserModel(UserModel user) {
-    email = user.email ?? this.email;
-    name = user.name ?? this.name;
-    nickName = user.nickName ?? this.nickName;
-    userProfileImageUrl = user.userProfileImageUrl ?? this.userProfileImageUrl;
-    birthday = user.birthday ?? this.birthday;
-    gender = user.gender ?? this.gender;
-    ci = user.ci ?? this.ci;
-    carrier = user.carrier ?? this.carrier;
-    phoneNumber = user.phoneNumber ?? this.phoneNumber;
-    createdAt = user.createdAt ?? this.createdAt;
+    email = user.email ?? email;
+    name = user.name ?? name;
+    nickName = user.nickName ?? nickName;
+    userProfileImageUrl = user.userProfileImageUrl ?? userProfileImageUrl;
+    birthday = user.birthday ?? birthday;
+    gender = user.gender ?? gender;
+    ci = user.ci ?? ci;
+    carrier = user.carrier ?? carrier;
+    phoneNumber = user.phoneNumber ?? phoneNumber;
+    createdAt = user.createdAt ?? createdAt;
   }
 
   UserModel.fromJson(Map<String, dynamic> json) {

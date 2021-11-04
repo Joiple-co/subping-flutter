@@ -8,7 +8,7 @@ class RecentServiceHistoryItem extends StatelessWidget {
   final RecentService service;
   final bool isLast;
 
-  RecentServiceHistoryItem({this.service, this.isLast});
+  const RecentServiceHistoryItem({this.service, this.isLast});
 
   @override
   Widget build(BuildContext context) {

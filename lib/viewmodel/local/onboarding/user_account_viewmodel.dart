@@ -36,6 +36,7 @@ class UserAccountViewModel extends GetxController {
   FocusNode passwordFocus = FocusNode();
   FocusNode passwordCheckFocus = FocusNode();
 
+  @override
   void onInit() {
     super.onInit();
 

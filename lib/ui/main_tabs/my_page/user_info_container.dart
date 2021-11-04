@@ -6,7 +6,7 @@ import 'package:subping/viewmodel/global/user_viewmodel.dart';
 class UserInfoContainer extends StatelessWidget {
   final UserViewModel userData;
 
-  UserInfoContainer({this.userData});
+  const UserInfoContainer({this.userData});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class UserInfoContainer extends StatelessWidget {
             SubpingText("${userData.name}님 / ${userData.nickName}",
                 fontWeight: FontWeight.bold, size: SubpingFontSize.body2),
             SubpingText(
-              "${userData.email}",
+              userData.email,
               color: SubpingColor.black60,
               size: SubpingFontSize.tiny1,
             )

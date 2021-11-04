@@ -5,7 +5,7 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/local/write_review/write_review_bottomsheet_viewmodel.dart';
 
 class WriteReviewBottomSheet extends StatelessWidget {
-  WriteReviewBottomSheet({Key key}) : super(key: key);
+  const WriteReviewBottomSheet({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class WriteReviewBottomSheet extends StatelessWidget {
     return HeaderSafe(
       hasBottomSafe: true,
       child: HorizontalPadding(
-        child: Container(
+        child: SizedBox(
           height: 260,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

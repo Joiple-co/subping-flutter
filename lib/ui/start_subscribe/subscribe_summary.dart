@@ -34,7 +34,7 @@ class SubscribeSummary extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
+              children: const [],
             ),
           ],
         ),

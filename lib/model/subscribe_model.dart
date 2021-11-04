@@ -30,18 +30,18 @@ class SubscribeModel {
       this.createdAt});
 
   void updateSubscribeModel(SubscribeModel subscribe) {
-    id = subscribe.id ?? this.id;
-    subscribeDate = subscribe.subscribeDate ?? this.subscribeDate;
-    expiredDate = subscribe.expiredDate ?? this.expiredDate;
-    reSubscribeDate = subscribe.reSubscribeDate ?? this.reSubscribeDate;
-    period = subscribe.period ?? this.period;
-    userCardId = subscribe.userCardId ?? this.userCardId;
-    addressId = subscribe.addressId ?? this.addressId;
-    serviceId = subscribe.serviceId ?? this.serviceId;
-    subscribeItems = subscribe.subscribeItems ?? this.subscribeItems;
-    serviceLogoUrl = subscribe.serviceLogoUrl ?? this.serviceLogoUrl;
-    serviceName = subscribe.serviceName ?? this.serviceName;
-    createdAt = subscribe.createdAt ?? this.createdAt;
+    id = subscribe.id ?? id;
+    subscribeDate = subscribe.subscribeDate ?? subscribeDate;
+    expiredDate = subscribe.expiredDate ?? expiredDate;
+    reSubscribeDate = subscribe.reSubscribeDate ?? reSubscribeDate;
+    period = subscribe.period ?? period;
+    userCardId = subscribe.userCardId ?? userCardId;
+    addressId = subscribe.addressId ?? addressId;
+    serviceId = subscribe.serviceId ?? serviceId;
+    subscribeItems = subscribe.subscribeItems ?? subscribeItems;
+    serviceLogoUrl = subscribe.serviceLogoUrl ?? serviceLogoUrl;
+    serviceName = subscribe.serviceName ?? serviceName;
+    createdAt = subscribe.createdAt ?? createdAt;
   }
 
   SubscribeModel.fromJson(Map<String, dynamic> json) {
@@ -72,9 +72,9 @@ class SubscribeModel {
   num totalPrice() {
     num totalPrice = 0;
 
-    subscribeItems.forEach((element) {
+    for (var element in subscribeItems) {
       totalPrice += element.amount * element.product.price;
-    });
+    }
 
     return totalPrice;
   }

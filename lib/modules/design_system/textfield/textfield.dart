@@ -15,6 +15,7 @@ class SubpingTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final String labelText;
   final String helperText;
+  @override
   final GlobalKey key;
   final Function onTab;
   final bool enableSuggestions;
@@ -28,7 +29,7 @@ class SubpingTextField extends StatelessWidget {
   final String hintText;
   final int maxLength;
 
-  SubpingTextField(
+  const SubpingTextField(
       {this.focusNode,
       this.onChanged,
       this.readOnly = false,
@@ -53,7 +54,7 @@ class SubpingTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       key: key,
-      color: this.readOnly ? SubpingColor.back20 : null,
+      color: readOnly ? SubpingColor.back20 : null,
       child: TextField(
         onTap: onTab,
         controller: controller,
@@ -66,8 +67,8 @@ class SubpingTextField extends StatelessWidget {
         obscuringCharacter: obscuringCharacter,
         enableInteractiveSelection: readOnly ? false : true,
         inputFormatters: inputFormatters,
-        maxLines: this.maxLines,
-        maxLength: this.maxLength,
+        maxLines: maxLines,
+        maxLength: maxLength,
         style: TextStyle(
           fontSize: 15,
         ),

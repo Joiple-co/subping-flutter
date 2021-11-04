@@ -5,7 +5,7 @@ class HeaderSafe extends StatelessWidget {
   final Widget child;
   final bool hasBottomSafe;
 
-  HeaderSafe({Key key, this.child, this.hasBottomSafe = true})
+  const HeaderSafe({Key key, this.child, this.hasBottomSafe = true})
       : super(key: key);
 
   @override

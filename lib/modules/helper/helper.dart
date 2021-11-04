@@ -13,7 +13,7 @@ class Helper {
   }
 
   static String refineDate(String date) {
-    DateTime to = new DateTime.now();
+    DateTime to = DateTime.now();
     DateTime from = DateTime.parse(date);
 
     final diff = to.difference(from);

@@ -40,7 +40,7 @@ class ServiceProducts extends StatelessWidget {
               children: List.generate(
                   products.length,
                   (index) => Row(children: [
-                        Container(
+                        SizedBox(
                           width: CARD_WIDTH,
                           height: CARD_HEIGHT,
                           child: Column(children: [
@@ -92,7 +92,7 @@ class ServiceProducts extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: CARD_WIDTH,
                                     child: SubpingText(
                                       "${Helper.setComma(products[index].price)}원",

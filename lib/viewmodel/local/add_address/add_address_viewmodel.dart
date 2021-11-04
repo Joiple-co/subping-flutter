@@ -15,7 +15,7 @@ class AddAddressViewModel extends GetxController {
   RxBool isValid = false.obs;
   RxBool loading = false.obs;
 
-  UserRepository _userRepository = UserRepository();
+  final UserRepository _userRepository = UserRepository();
 
   FocusNode detailedAddressFocusNode = FocusNode();
   TextEditingController userNameController = TextEditingController();
@@ -23,7 +23,7 @@ class AddAddressViewModel extends GetxController {
   TextEditingController zipCodeController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  MaskTextInputFormatter phoneNumberFormatter = new MaskTextInputFormatter(
+  MaskTextInputFormatter phoneNumberFormatter = MaskTextInputFormatter(
       mask: '###-####-####', filter: {"#": RegExp(r'[0-9]')});
 
   void setUserDefaultInfo(String userName, String phoneNumber) {
@@ -65,9 +65,9 @@ class AddAddressViewModel extends GetxController {
   }
 
   void checkValid() {
-    isValid.value = !(postCode.length == 0 ||
-        postCode.length == 0 ||
-        detailAddress.length == 0 ||
+    isValid.value = !(postCode.isEmpty ||
+        postCode.isEmpty ||
+        detailAddress.isEmpty ||
         userNameController.text.length < 2 ||
         phoneNumberFormatter.unmaskText(phoneNumberController.text).length <
             10);

@@ -7,7 +7,7 @@ import 'package:subping/viewmodel/global/alarms_viewmodel.dart';
 class AlramIcon extends StatelessWidget {
   final int unreadAlarmCount;
 
-  AlramIcon({this.unreadAlarmCount});
+  const AlramIcon({this.unreadAlarmCount});
   @override
   Widget build(BuildContext context) {
     return Stack(

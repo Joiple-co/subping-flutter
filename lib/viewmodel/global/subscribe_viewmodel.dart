@@ -3,8 +3,9 @@ import 'package:subping/model/subscribe_model.dart';
 import 'package:subping/repository/subscribe_repository.dart';
 
 class SubscribeViewModel extends GetxController {
-  SubscribeRepository _subscribeRepository = SubscribeRepository();
-  RxMap<String, SubscribeModel> _subscribe = <String, SubscribeModel>{}.obs;
+  final SubscribeRepository _subscribeRepository = SubscribeRepository();
+  final RxMap<String, SubscribeModel> _subscribe =
+      <String, SubscribeModel>{}.obs;
 
   void getSubscribes() async {
     List<SubscribeModel> subscribes =
@@ -12,10 +13,10 @@ class SubscribeViewModel extends GetxController {
 
     _subscribe.value = {};
 
-    subscribes.forEach((subscribe) {
+    for (var subscribe in subscribes) {
       final serviceId = subscribe.serviceId;
       _subscribe[serviceId] = subscribe;
-    });
+    }
 
     _subscribe.refresh();
   }
@@ -41,9 +42,9 @@ class SubscribeViewModel extends GetxController {
     num totalPrice = 0;
 
     _subscribe.forEach((key, value) {
-      value.subscribeItems.forEach((element) {
+      for (var element in value.subscribeItems) {
         totalPrice += element.amount * element.product.price;
-      });
+      }
     });
 
     return totalPrice;

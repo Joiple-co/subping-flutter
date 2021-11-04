@@ -7,7 +7,7 @@ class ExpandableWebView extends StatefulWidget {
   final String url;
   final EdgeInsets padding;
 
-  ExpandableWebView(
+  const ExpandableWebView(
     this.url, {
     Key key,
     this.padding = const EdgeInsets.all(0),

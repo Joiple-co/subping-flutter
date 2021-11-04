@@ -13,13 +13,13 @@ class RecentReview extends StatelessWidget {
   String reviewContent;
 
   RecentReview() {
-    this.reviewPK = "";
-    this.servicePK = "";
-    this.serviceName = "넷플릭스";
-    this.reviewRating = 4.5;
-    this.reviewContent =
+    reviewPK = "";
+    servicePK = "";
+    serviceName = "넷플릭스";
+    reviewRating = 4.5;
+    reviewContent =
         "정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!정말 졸아요!";
-    this.reviewPrimaryImageUrl =
+    reviewPrimaryImageUrl =
         "https://media-exp1.licdn.com/dms/image/C4E0BAQEVb0ZISWk8vQ/company-logo_200_200/0/1519896425167?e=2159024400&v=beta&t=mtbBYcyzfcDB7Seolq93YaKMruv36fIUCYMcI9g5itk";
   }
 

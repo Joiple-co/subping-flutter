@@ -19,7 +19,7 @@ class SubscribeManagement extends StatelessWidget {
       final paidAndTotalPriceOfThisMonth =
           subscribeManageViewModel.paidAndTotalPriceOfThisMonth;
 
-      if (subscribeViewModel.subscribe.keys.length == 0) {
+      if (subscribeViewModel.subscribe.keys.isEmpty) {
         return Container(
             color: SubpingColor.white100, child: SubscribeManagementEmpty());
       }

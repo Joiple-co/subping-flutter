@@ -8,7 +8,7 @@ class Chart extends StatelessWidget {
   final int limitItem;
   final CurrentHotChartModel hotChartData;
 
-  Chart({this.limitItem, this.hotChartData});
+  const Chart({this.limitItem, this.hotChartData});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class Chart extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
+                              SizedBox(
                                 width: 27.w,
                                 height: 27.w,
                                 child: Image.asset(

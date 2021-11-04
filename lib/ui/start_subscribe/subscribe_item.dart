@@ -128,7 +128,7 @@ class SubscribeItem extends StatelessWidget {
                       size: SubpingSize.medium10,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                      Container(
+                      SizedBox(
                         width: 25,
                         height: 25,
                         child: Image.asset(

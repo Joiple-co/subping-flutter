@@ -18,7 +18,7 @@ class RankShape extends StatelessWidget {
               ? DecorationImage(image: AssetImage("assets/rankColored.png"))
               : DecorationImage(image: AssetImage("assets/rankUnColored.png"))),
       child: SubpingText(
-        this.rank.toString(),
+        rank.toString(),
         textAlign: TextAlign.center,
         color: SubpingColor.white100,
         fontWeight: SubpingFontWeight.bold,

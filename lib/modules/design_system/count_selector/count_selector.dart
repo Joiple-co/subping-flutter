@@ -25,7 +25,7 @@ class CountSelector extends StatelessWidget {
             child: Icon(Icons.remove, size: SubpingFontSize.title6),
           ),
         ),
-        Container(
+        SizedBox(
           width: 40,
           height: 30,
           child: Center(

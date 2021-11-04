@@ -19,9 +19,7 @@ class EditAddress extends StatelessWidget {
 
     addressViewModel.setExistAddress(address);
 
-    if (address == null) {
-      address = new UserAddressModel(isDefault: false);
-    }
+    address ??= new UserAddressModel(isDefault: false);
 
     return Obx(
       () => Scaffold(

@@ -13,8 +13,8 @@ class EditAddressViewModel extends GetxController {
   RxBool isValid = false.obs;
   RxBool loading = false.obs;
 
-  UserRepository _userRepository = UserRepository();
-  UserViewModel _userViewModel = Get.find<UserViewModel>();
+  final UserRepository _userRepository = UserRepository();
+  final UserViewModel _userViewModel = Get.find<UserViewModel>();
 
   FocusNode detailedAddressFocusNode = FocusNode();
   TextEditingController userNameController = TextEditingController();
@@ -23,14 +23,14 @@ class EditAddressViewModel extends GetxController {
   TextEditingController addressController = TextEditingController();
   TextEditingController detailedAddressController = TextEditingController();
 
-  MaskTextInputFormatter phoneNumberFormatter = new MaskTextInputFormatter(
+  MaskTextInputFormatter phoneNumberFormatter = MaskTextInputFormatter(
       mask: '###-####-####', filter: {"#": RegExp(r'[0-9]')});
 
   UserAddressModel beforeAddress;
 
   void setExistAddress(UserAddressModel address) {
     if (address == null) {
-      address = new UserAddressModel();
+      address = UserAddressModel();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ErrorHandler.errorHandler("NoExistAddressException");
       });
@@ -73,7 +73,7 @@ class EditAddressViewModel extends GetxController {
   }
 
   void checkValid() {
-    final newAddress = new UserAddressModel();
+    final newAddress = UserAddressModel();
 
     newAddress.userName = userNameController.text;
     newAddress.userPhoneNumber = phoneNumberController.text;
@@ -82,11 +82,11 @@ class EditAddressViewModel extends GetxController {
     newAddress.detailedAddress = detailedAddressController.text;
     newAddress.isDefault = isDefault.value;
 
-    if (userNameController.text.length > 0 &&
-        phoneNumberController.text.length > 0 &&
-        postCodeController.text.length > 0 &&
-        addressController.text.length > 0 &&
-        detailedAddressController.text.length > 0 &&
+    if (userNameController.text.isNotEmpty &&
+        phoneNumberController.text.isNotEmpty &&
+        postCodeController.text.isNotEmpty &&
+        addressController.text.isNotEmpty &&
+        detailedAddressController.text.isNotEmpty &&
         !beforeAddress.isSame(newAddress)) {
       isValid.value = true;
     } else {
@@ -98,7 +98,7 @@ class EditAddressViewModel extends GetxController {
     if (isValid.value) {
       loading.value = true;
 
-      final address = new UserAddressModel();
+      final address = UserAddressModel();
 
       address.id = beforeAddress.id;
       address.userName = userNameController.text;

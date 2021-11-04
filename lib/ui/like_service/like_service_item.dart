@@ -8,7 +8,7 @@ class LikeServiceItem extends StatelessWidget {
   final bool isLast;
   final Function toggleUserLike;
 
-  LikeServiceItem({this.service, this.isLast, this.toggleUserLike});
+  const LikeServiceItem({this.service, this.isLast, this.toggleUserLike});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class LikeServiceItem extends StatelessWidget {
           GestureDetector(
             onTap: () => toggleUserLike(service.id),
             child: service.like
-                ? Container(
+                ? SizedBox(
                     width: 55,
                     height: 55,
                     child: Align(
@@ -73,7 +73,7 @@ class LikeServiceItem extends StatelessWidget {
                           Icon(Icons.favorite, color: SubpingColor.warning100),
                     ),
                   )
-                : Container(
+                : SizedBox(
                     width: 55,
                     height: 55,
                     child: Align(

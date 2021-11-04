@@ -13,29 +13,29 @@ import 'package:subping/viewmodel/local/main_tabs/subscribe_manage/subscribe_man
 enum StartSubscribeStep { SELECT, RESULT }
 
 class StartSubscribeViewModel extends GetxController {
-  RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
-  RxMap<String, int> _selectedProducts = <String, int>{}.obs;
-  Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
-  RxString _selectedAddress = "".obs;
-  RxString _selectedCard = "".obs;
-  Rx<StartSubscribeStep> _step = StartSubscribeStep.SELECT.obs;
+  final RxMap<String, ProductModel> _products = <String, ProductModel>{}.obs;
+  final RxMap<String, int> _selectedProducts = <String, int>{}.obs;
+  final Rx<Period> _selectedPeriod = Period.ONE_MONTH.obs;
+  final RxString _selectedAddress = "".obs;
+  final RxString _selectedCard = "".obs;
+  final Rx<StartSubscribeStep> _step = StartSubscribeStep.SELECT.obs;
 
-  RxBool _isLoading = false.obs;
-  RxBool _success = false.obs;
-  RxString _loadingMessage = "구독을 만드는 중입니다.".obs;
+  final RxBool _isLoading = false.obs;
+  final RxBool _success = false.obs;
+  final RxString _loadingMessage = "구독을 만드는 중입니다.".obs;
 
   ServiceModel _service;
 
-  SubscribeRepository _subscribeRepository = SubscribeRepository();
+  final SubscribeRepository _subscribeRepository = SubscribeRepository();
 
   void initService(ServiceModel service) {
     _service = service;
   }
 
   void initProducts(List<ProductModel> products) {
-    products.forEach((element) {
+    for (var element in products) {
       _products[element.id] = element;
-    });
+    }
 
     _selectedProducts.value = {};
     _selectedProducts[_products[_products.keys.elementAt(0)].id] = 1;
@@ -44,19 +44,19 @@ class StartSubscribeViewModel extends GetxController {
   void initAddresses(Map<String, UserAddressModel> addresses) {
     final addressIds = addresses.keys;
 
-    if (addressIds.length != 0) {
+    if (addressIds.isNotEmpty) {
       _selectedAddress.value = addressIds.elementAt(0);
 
-      addressIds.forEach((id) {
+      for (var id in addressIds) {
         if (addresses[id].isDefault != null && addresses[id].isDefault) {
           _selectedAddress.value = id;
         }
-      });
+      }
     }
   }
 
   void initPeriods(List<dynamic> periods) {
-    if (periods.length != 0) {
+    if (periods.isNotEmpty) {
       _selectedPeriod.value = periods[0];
     } else {
       ErrorHandler.errorHandler("StartSubscribeInitializeException");
@@ -66,7 +66,7 @@ class StartSubscribeViewModel extends GetxController {
   void initCards(Map<String, UserCardModel> cards) {
     final cardIds = cards.keys;
 
-    if (cardIds.length != 0) {
+    if (cardIds.isNotEmpty) {
       _selectedCard.value = cardIds.elementAt(0);
     }
   }

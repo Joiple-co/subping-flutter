@@ -101,7 +101,7 @@ class AppIntro extends StatelessWidget {
                     child: Text.rich(TextSpan(
                         text: "이미 회원이에요.",
                         style: TextStyle(fontSize: 15),
-                        children: <TextSpan>[
+                        children: const <TextSpan>[
                           TextSpan(
                               text: "로그인 ",
                               style: TextStyle(

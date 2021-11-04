@@ -10,7 +10,7 @@ class ToolBar extends StatelessWidget {
   final bool hasAlarmIcon;
   final int unreadAlarmCount;
 
-  ToolBar(
+  const ToolBar(
       {this.hasSearchIcon = false,
       this.hasAlarmIcon = false,
       this.unreadAlarmCount = 0});

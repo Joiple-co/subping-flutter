@@ -9,11 +9,11 @@ import 'package:subping/modules/error_handler/error_handler.dart';
 
 class SubscribeRepository {
   Future<String> makeSubscribe(
-      {userCardId: String,
-      subscribeItems: List,
-      addressId: String,
-      period: String,
-      serviceId: String}) async {
+      {userCardId = String,
+      subscribeItems = List,
+      addressId = String,
+      period = String,
+      serviceId = String}) async {
     try {
       final now = (await NTP.now()).toUtc().add(Duration(hours: 9));
 
@@ -63,7 +63,7 @@ class SubscribeRepository {
     return subscribes;
   }
 
-  Future<SubscribeModel> getSubscribe({serviceId: String}) async {
+  Future<SubscribeModel> getSubscribe({serviceId = String}) async {
     SubscribeModel subscribe;
 
     final rawResponse =

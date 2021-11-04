@@ -17,7 +17,7 @@ class ImageSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 75,
         child: ListView(scrollDirection: Axis.horizontal, children: [
           ...List.generate(

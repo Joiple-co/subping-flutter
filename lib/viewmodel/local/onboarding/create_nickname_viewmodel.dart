@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:subping/repository/user_repository.dart';
 
 class CreateNickNameViewModel extends GetxController {
-  UserRepository _userRepository = UserRepository();
+  final UserRepository _userRepository = UserRepository();
   RxString nickName = "".obs;
   RxBool nickNameVaild = false.obs;
   RxBool loading = false.obs;
@@ -11,6 +11,7 @@ class CreateNickNameViewModel extends GetxController {
   RxString nickErrorText = "".obs;
   FocusNode inputFocusNode;
 
+  @override
   void onInit() {
     super.onInit();
 

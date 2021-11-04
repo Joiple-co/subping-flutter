@@ -10,12 +10,12 @@ class Secure {
   Future<bool> initRSA() async {
     RestResponse rawResponse = await API.get("auth", "/rsa");
     Map<String, dynamic> response =
-        jsonDecode(new String.fromCharCodes(rawResponse.data));
+        jsonDecode(String.fromCharCodes(rawResponse.data));
 
     RSAModel data = RSAModel.fromJson(response);
 
     if (data.success) {
-      final store = new FlutterSecureStorage();
+      final store = FlutterSecureStorage();
       store.write(key: "RSAKey", value: data.publicKey);
 
       return true;
@@ -25,7 +25,7 @@ class Secure {
   }
 
   Future<String> encrpytRSA(String value) async {
-    final store = new FlutterSecureStorage();
+    final store = FlutterSecureStorage();
     final pemKey = await store.read(key: "RSAKey");
 
     print(pemKey);

@@ -8,11 +8,11 @@ import 'package:subping/repository/subscribe_repository.dart';
 
 class SubscribeManageViewModel extends GetxController
     with SingleGetTickerProviderMixin {
-  SubscribeRepository _subscribeRepository = SubscribeRepository();
-  RxInt _focusedMonth = 0.obs;
-  RxMap<String, Map<String, List<SubscribeScheduleModel>>> _schedules =
+  final SubscribeRepository _subscribeRepository = SubscribeRepository();
+  final RxInt _focusedMonth = 0.obs;
+  final RxMap<String, Map<String, List<SubscribeScheduleModel>>> _schedules =
       <String, Map<String, List<SubscribeScheduleModel>>>{}.obs;
-  RxInt _highlightIndex = 0.obs;
+  final RxInt _highlightIndex = 0.obs;
 
   ItemScrollController itemScrollController = ItemScrollController();
   ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
@@ -48,17 +48,17 @@ class SubscribeManageViewModel extends GetxController
   Map<String, int> get paidAndTotalPriceOfThisMonth {
     final result = {"total": 0, "paid": 0};
 
-    if (_schedules.keys.length != 0) {
+    if (_schedules.keys.isNotEmpty) {
       final month = _schedules.keys.elementAt(0);
       final schedules = _schedules[month];
 
       schedules.forEach((key, value) {
-        value.forEach((schedule) {
+        for (var schedule in value) {
           result['total'] += schedule.totalPrice;
           if (schedule.status == "결제 완료") {
             result['paid'] += schedule.totalPrice;
           }
-        });
+        }
       });
     }
 
@@ -66,7 +66,7 @@ class SubscribeManageViewModel extends GetxController
   }
 
   int get getPaidPriceOfThisMonth {
-    if (_schedules.keys.length != 0) {
+    if (_schedules.keys.isNotEmpty) {
       final month = _schedules.keys.elementAt(0);
     } else {
       return 0;
@@ -74,7 +74,7 @@ class SubscribeManageViewModel extends GetxController
   }
 
   String get focusedMonth {
-    if (_schedules.keys.length != 0) {
+    if (_schedules.keys.isNotEmpty) {
       return _schedules.keys.elementAt(_focusedMonth.value);
     } else {
       return "00";
