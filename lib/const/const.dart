@@ -12,11 +12,21 @@ const cardVendorAsset = {
   CardVendor.woori: "assets/cardLogo/woori.png"
 };
 
+const int minReviewLength = 20;
+
 const cardVendorMapper = {
   "신한카드": CardVendor.shinhan,
   "삼성카드": CardVendor.samsung,
   "현대카드": CardVendor.hyundai
 };
+const List<String> ratingPharses = [
+  "",
+  "다시는 안사요",
+  "많이 아쉬웠어요",
+  "괜찮네요!",
+  "좋아요! 정말 마음에 들어요!",
+  "결혼할꺼에요!"
+];
 
 enum Period { oneMonth, twoMonth, threeMonth, oneWeek, twoWeek, threeWeek }
 

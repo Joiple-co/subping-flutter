@@ -7,6 +7,7 @@ import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,47 +15,50 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/add_card_bindings.dart';
 import 'package:subping/binding/app_intro_bindings.dart';
+import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/like_service_bindings.dart';
 import 'package:subping/binding/onboarding/create_nickname_bindings.dart';
+import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
+import 'package:subping/binding/onboarding/user_account_bindings.dart';
+import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/search_bindings.dart';
 import 'package:subping/binding/start_subscribe_bindings.dart';
 import 'package:subping/binding/write_review_bindings.dart';
 import 'package:subping/hive/recent_service.dart';
 import 'package:subping/main.mapper.g.dart';
-
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
 import 'package:subping/ui/add_address/add_address.dart';
 import 'package:subping/ui/add_card/add_card.dart';
+import 'package:subping/ui/alarm/alarm.dart';
 import 'package:subping/ui/address_management/address_management.dart';
 import 'package:subping/ui/card_management/card_management.dart';
 import 'package:subping/ui/edit_address/edit_address.dart';
-
+import 'package:subping/ui/gallery/gallery.dart';
 import 'package:subping/ui/hot_chart/hot_chart.dart';
 import 'package:subping/ui/like_service/like_service.dart';
 import 'package:subping/ui/main_tabs/main_tabs.dart';
+import 'package:subping/ui/main_tabs/my_page/my_review_history.dart';
 import 'package:subping/ui/onboarding/app_intro/app_intro.dart';
 import 'package:subping/ui/onboarding/pass_auth/pass_auth.dart';
 import 'package:subping/ui/onboarding/user_account/user_account.dart';
 import 'package:subping/ui/onboarding/user_login/user_login.dart';
 import 'package:subping/ui/onboarding/user_nickname/create_nickname.dart';
+import 'package:subping/ui/search/search.dart';
 import 'package:subping/ui/recent_service_history/recent_service_history.dart';
 import 'package:subping/ui/service_datail/service_detail.dart';
 import 'package:subping/ui/splash/splash.dart';
-import 'package:subping/ui/alarm/alarm.dart';
 import 'package:subping/ui/start_subscribe/start_subscribe.dart';
 import 'package:subping/ui/write_review/write_review.dart';
-import 'package:subping/ui/search/search.dart';
 
-import 'package:subping/binding/main_tabs_bindings.dart';
-import 'package:subping/binding/onboarding/user_account_bindings.dart';
-import 'package:subping/binding/onboarding/user_login_bindings.dart';
-import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
+import 'binding/gallery_bindings.dart';
+import 'binding/my_review_bindings.dart';
 
 void main() async {
   initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await GetStorage.init();
   await Hive.initFlutter();
   Hive.registerAdapter(RecentServiceAdapter());
@@ -154,6 +158,10 @@ class _SubpingAppState extends State<SubpingApp> {
                     page: () => WriteReview(),
                     binding: WriteReviewBindings()),
                 GetPage(
+                    name: "/myReviewHistory",
+                    page: () => MyReviewHistory(),
+                    binding: MyReviewHistoryBindings()),
+                GetPage(
                     name: "/likeService",
                     page: () => LikeService(),
                     binding: LikeServiceBindings(),
@@ -171,9 +179,18 @@ class _SubpingAppState extends State<SubpingApp> {
                     page: () => Search(),
                     binding: SearchBinidings()),
                 GetPage(
-                    name: "/addCard",
-                    page: () => AddCard(),
-                    binding: AddCardBindings()),
+                  name: "/addCard",
+                  page: () => AddCard(),
+                  binding: AddCardBindings(),
+                ),
+                GetPage(
+                    name: "/search",
+                    page: () => Search(),
+                    binding: SearchBinidings()),
+                GetPage(
+                    name: "/gallery",
+                    page: () => Gallery(),
+                    binding: GalleryBindings()),
                 GetPage(name: "/cardManagement", page: () => CardManagement()),
                 GetPage(
                     name: "/addressManagement",

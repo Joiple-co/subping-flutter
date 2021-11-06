@@ -33,8 +33,10 @@ class ServiceRepository {
 
   Future<CurrentHotChartModel> getCurrentChart() async {
     try {
-      final rawResponse =
-          await API.post("service", "/currentHotChart", body: {});
+      final rawResponse = await API.post("service", "/currentHotChart", body: {
+        "limit": 5,
+        "page": 1,
+      });
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 

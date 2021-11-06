@@ -64,7 +64,7 @@ class SubscribePeriod extends StatelessWidget {
             size: SubpingSize.large20,
           ),
           SquareButton(
-              text: "주기 변겅하기",
+              text: "주기 변경하기",
               onPressed: () => Get.bottomSheet(
                     Obx(
                       () => Wrap(children: [

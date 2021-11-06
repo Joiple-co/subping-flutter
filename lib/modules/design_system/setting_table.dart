@@ -26,6 +26,7 @@ enum SubpingColorExtension {
   subping50,
   subping30,
   warning100,
+  blackAlpha,
   black100,
   black80,
   black60,
@@ -177,6 +178,10 @@ extension SubpingFontSize on SubpingFontSizeExtension {
 }
 
 extension SubpingColor on SubpingColorExtension {
+  static Color get blackAlpha {
+    return const Color.fromRGBO(20, 20, 20, 0.4);
+  }
+
   static Color get subping100 {
     return const Color.fromRGBO(80, 110, 225, 1);
   }

@@ -1,28 +1,36 @@
 class ReviewModel {
-  String id;
-  String userEmail;
-  String productId;
+  String nickName;
+  String reviewId;
+  String userId;
   String title;
+  String serviceId;
   String content;
+  String createdAt;
+  String updatedAt;
   num rating;
-  List<String> imagesUrl;
+  List<String> reviewImage;
 
   ReviewModel(
-      {this.id,
-      this.userEmail,
-      this.productId,
+      {this.reviewId,
+      this.nickName,
+      this.createdAt,
+      this.userId,
+      this.serviceId,
       this.title,
+      this.updatedAt,
       this.content,
       this.rating,
-      this.imagesUrl});
+      this.reviewImage});
 
   ReviewModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userEmail = json['userEmail'];
-    productId = json['productId'];
+    reviewId = json['id'];
+    userId = json['userId'];
+    serviceId = json['serviceId'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
     title = json['title'];
     content = json['content'];
     rating = json['rating'];
-    imagesUrl = json['imagesUrl'];
+    reviewImage = json['reviewImage'];
   }
 }

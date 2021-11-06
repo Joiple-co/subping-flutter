@@ -5,7 +5,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/viewmodel/local/write_review/write_review_bottomsheet_viewmodel.dart';
 
 class WriteReviewBottomSheet extends StatelessWidget {
-  const WriteReviewBottomSheet({Key key}) : super(key: key);
+  final String serviceId;
+  const WriteReviewBottomSheet({Key key, this.serviceId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +74,11 @@ class WriteReviewBottomSheet extends StatelessWidget {
                       ),
                       SquareButton(
                         text: "상세 리뷰하기",
-                        onPressed: () =>
-                            Get.toNamed('/writeReview', arguments: {
-                          "rating": writeReviewBottomSheetViewModel.rating,
-                        }),
+                        onPressed: () => Get.toNamed('/writeReview',
+                            arguments: {
+                              "rating": writeReviewBottomSheetViewModel.rating,
+                              "serviceId": serviceId
+                            }),
                         twoButton: true,
                       )
                     ],

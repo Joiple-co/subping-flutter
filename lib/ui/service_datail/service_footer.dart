@@ -7,6 +7,8 @@ import 'package:subping/modules/design_system/subping_ui.dart';
 
 class ServiceFooter extends StatelessWidget {
   final String serviceId;
+  final String serviceName;
+  final String serviceLogoUrl;
   final bool userLike;
   final Function toggleUserLike;
   final List<ProductModel> products;
@@ -15,7 +17,9 @@ class ServiceFooter extends StatelessWidget {
   const ServiceFooter(
       {Key key,
       this.serviceId,
+      this.serviceLogoUrl,
       this.userLike,
+      this.serviceName,
       this.toggleUserLike,
       this.products,
       this.subscribes})
@@ -59,7 +63,11 @@ class ServiceFooter extends StatelessWidget {
                         type: "outline",
                         width: 330.w,
                         onPressed: () =>
-                            Get.toNamed("/startSubscribe/$serviceId"),
+                            Get.toNamed("/writeReview/", arguments: {
+                          "serviceId": serviceId,
+                          "serviceName": serviceName,
+                          "serviceLogoUrl": serviceLogoUrl
+                        }),
                       ),
                       Space(
                         size: SubpingSize.tiny5,

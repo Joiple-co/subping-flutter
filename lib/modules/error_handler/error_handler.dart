@@ -35,6 +35,19 @@ class ErrorHandler {
             ]));
         break;
 
+      case "FailedEnrollReview":
+        Get.dialog(AlertDialog(
+            title: const Text("리뷰 실패!"),
+            content: const Text("나중에 시도해주세요"),
+            actions: [
+              TextButton(
+                  onPressed: () => Get.back(),
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
       case "SplashException":
         Get.dialog(AlertDialog(
             title: const Text("확인이 필요해요!"),
@@ -283,6 +296,36 @@ class ErrorHandler {
               TextButton(
                   onPressed: () {
                     Get.back();
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
+      case "FillReviewLength":
+        Get.dialog(AlertDialog(
+            title: const Text("확인이 필요해요!"),
+            content: const Text("리뷰는 20글자 이상으로 부탁드립니다."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
+      case "MakeReviewFail":
+        Get.dialog(AlertDialog(
+            title: const Text("확인이 필요해요!"),
+            content: const Text("필요정보가 누락되었습니다.\n잠시뒤에 다시 시도해주세요."),
+            actions: [
+              TextButton(
+                  onPressed: () {
                     Get.back();
                   },
                   child: SubpingText("확인",

@@ -15,7 +15,7 @@ class SubpingTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final String labelText;
   final String helperText;
-  final Function onTab;
+  final Function onTap;
   final bool enableSuggestions;
   final bool autocorrect;
   final bool obscureText;
@@ -24,6 +24,7 @@ class SubpingTextField extends StatelessWidget {
   final Function onSubmitted;
   final List<TextInputFormatter> inputFormatters;
   final int maxLines;
+  final bool onlyNumber;
   final String hintText;
   final int maxLength;
 
@@ -35,12 +36,13 @@ class SubpingTextField extends StatelessWidget {
       this.keyboardType,
       this.labelText,
       this.helperText,
-      this.onTab,
+      this.onTap,
       this.enableSuggestions = true,
       this.autocorrect = true,
       this.obscureText = false,
       this.obscuringCharacter = "●",
       this.errorText,
+      this.onlyNumber = false,
       this.onSubmitted,
       this.inputFormatters,
       this.maxLines,
@@ -54,17 +56,21 @@ class SubpingTextField extends StatelessWidget {
     return Container(
       color: readOnly ? SubpingColor.back20 : null,
       child: TextField(
-        onTap: onTab,
+        onTap: onTap,
         controller: controller,
         focusNode: readOnly ? AlwaysDisabledFocusNode() : focusNode,
         onChanged: onChanged,
         enableSuggestions: enableSuggestions,
-        autocorrect: autocorrect,
+        autocorrect: false,
         obscureText: obscureText,
         onSubmitted: onSubmitted,
         obscuringCharacter: obscuringCharacter,
         enableInteractiveSelection: readOnly ? false : true,
-        inputFormatters: inputFormatters,
+        inputFormatters: onlyNumber
+            ? [
+                FilteringTextInputFormatter.digitsOnly,
+              ]
+            : inputFormatters,
         maxLines: maxLines,
         maxLength: maxLength,
         style: const TextStyle(

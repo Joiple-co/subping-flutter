@@ -150,8 +150,9 @@ class ServiceDetail extends StatelessWidget {
                       Container(
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
-                      const ServiceReview(
-                        reviews: [],
+                      ServiceReview(
+                        reviews: const [],
+                        serviceId: serviceId,
                       ),
                       Container(
                           height: SubpingSize.medium10,
@@ -163,6 +164,8 @@ class ServiceDetail extends StatelessWidget {
               ]),
             ),
             ServiceFooter(
+                serviceLogoUrl: service.serviceLogoUrl,
+                serviceName: service.name,
                 userLike: service.like,
                 toggleUserLike: () =>
                     serviceViewModel.toggleUserLike(serviceId),

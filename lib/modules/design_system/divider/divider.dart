@@ -12,6 +12,6 @@ class SubpingDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(color: color, thickness: thickness);
+    return Divider(color: color, thickness: thickness, height: 0);
   }
 }
