@@ -7,9 +7,9 @@ import 'package:subping/ui/gallery/picked_image_list.dart';
 import 'package:subping/viewmodel/local/write_review/gallery_viewmodel.dart';
 
 class Gallery extends StatelessWidget {
-  Function callback;
+  final Function callback;
 
-  Gallery({this.callback});
+  const Gallery({Key key, this.callback}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,11 @@ class Gallery extends StatelessWidget {
           hasBackButton: true,
           rear: GestureDetector(
             onTap: () async {
-              if (galleryController.imagePickedList.length == 0 || false) {
+              if (galleryController.imagePickedList.isEmpty || false) {
                 galleryController.showToast("선택한 이미지가 없습니다.");
                 return;
               }
-              await this.callback(galleryController.imagePickedList);
+              await callback(galleryController.imagePickedList);
               Get.back();
             },
             child: SubpingText(
@@ -37,7 +37,7 @@ class Gallery extends StatelessWidget {
           ),
         ),
         body: galleryController.isLoading
-            ? SubpingLoading()
+            ? const SubpingLoading()
             : Column(
                 children: [
                   PickedImageList(

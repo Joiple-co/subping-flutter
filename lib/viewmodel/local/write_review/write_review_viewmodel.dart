@@ -1,10 +1,7 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:subping/const/const.dart';
-import 'package:subping/methodChannel/subping_method_channel.dart';
 import 'package:subping/model/gallery_model.dart';
 import 'package:subping/model/subscribe_model.dart';
 import 'package:subping/modules/error_handler/error_handler.dart';
@@ -12,19 +9,18 @@ import 'package:subping/repository/review_repository.dart';
 import 'package:subping/repository/subscribe_repository.dart';
 
 class WriteReviewViewModel extends GetxController {
-  RxList<GalleryModel> _uploadImages = <GalleryModel>[].obs;
-  Rx<SubscribeModel> _reviewProductData = SubscribeModel().obs;
-  RxString _reviewContent = "".obs;
-  RxBool _fillContentLength = false.obs;
-  RxBool _loading = false.obs;
-  RxDouble _rating = 5.0.obs;
-  SubscribeRepository _subscribeRepository = SubscribeRepository();
-  ReviewRepository _reviewRepository = ReviewRepository();
+  final RxList<GalleryModel> _uploadImages = <GalleryModel>[].obs;
+  final Rx<SubscribeModel> _reviewProductData = SubscribeModel().obs;
+  final RxString _reviewContent = "".obs;
+  final RxBool _loading = false.obs;
+  final RxDouble _rating = 5.0.obs;
+  final SubscribeRepository _subscribeRepository = SubscribeRepository();
+  final ReviewRepository _reviewRepository = ReviewRepository();
   ScrollController reviewScrollController = ScrollController();
   FocusNode reviewFocusNode = FocusNode();
 
-  Future<void> onClickDelete(int index) {
-    _uploadImages.value.removeAt(index);
+  void onClickDelete(int index) {
+    _uploadImages.removeAt(index);
     _uploadImages.refresh();
   }
 
@@ -35,14 +31,13 @@ class WriteReviewViewModel extends GetxController {
           await _subscribeRepository.getSubscribe(serviceId: serviceId);
       _loading.value = false;
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("dafault");
     }
   }
 
   Future<void> onSubmitReview({String serviceId}) async {
     try {
-      if (_reviewContent.value.length > MIN_REVIEW_LENGTH) {
+      if (_reviewContent.value.length > minReviewLength) {
         await _reviewRepository.makeReview(
             rating: _rating.value,
             content: _reviewContent.value,
@@ -51,7 +46,6 @@ class WriteReviewViewModel extends GetxController {
         ErrorHandler.errorHandler("FillReviewLength");
       }
     } catch (e) {
-      print(e);
       ErrorHandler.errorHandler("MakeReviewFail");
     }
   }
@@ -60,7 +54,7 @@ class WriteReviewViewModel extends GetxController {
     _reviewContent.value = input;
   }
 
-  List<GalleryModel> get images => _uploadImages.value;
+  List<GalleryModel> get images => _uploadImages;
 
   double get rating => _rating.value;
 
@@ -80,10 +74,10 @@ class WriteReviewViewModel extends GetxController {
     super.onInit();
     reviewFocusNode.addListener(() {
       if (reviewFocusNode.hasFocus) {
-        Timer(Duration(milliseconds: 100), () {
+        Timer(const Duration(milliseconds: 100), () {
           reviewScrollController.position.animateTo(
               reviewScrollController.position.maxScrollExtent,
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.ease);
         });
       }

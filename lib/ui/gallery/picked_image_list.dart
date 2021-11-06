@@ -31,14 +31,14 @@ class _PickedImageListState extends State<PickedImageList> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.imagePickedList.length != 0) {
+    if (widget.imagePickedList.isNotEmpty) {
       _updateState();
     } else {
       _downContainer();
     }
     return AnimatedContainer(
       curve: Curves.easeInOutQuart,
-      duration: Duration(milliseconds: 230),
+      duration: const Duration(milliseconds: 230),
       clipBehavior: Clip.none,
       height: _height,
       child: ListView(

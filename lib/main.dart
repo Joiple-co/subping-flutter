@@ -6,14 +6,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_api/amplify_api.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -59,10 +54,6 @@ import 'package:subping/ui/write_review/write_review.dart';
 
 import 'binding/gallery_bindings.dart';
 import 'binding/my_review_bindings.dart';
-import 'package:subping/binding/main_tabs_bindings.dart';
-import 'package:subping/binding/onboarding/user_account_bindings.dart';
-import 'package:subping/binding/onboarding/user_login_bindings.dart';
-import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 
 void main() async {
   initializeJsonMapper();

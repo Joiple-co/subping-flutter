@@ -6,7 +6,7 @@ import 'package:subping/viewmodel/local/write_review/write_review_bottomsheet_vi
 
 class WriteReviewBottomSheet extends StatelessWidget {
   final String serviceId;
-  WriteReviewBottomSheet({Key key, this.serviceId}) : super(key: key);
+  const WriteReviewBottomSheet({Key key, this.serviceId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

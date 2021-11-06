@@ -20,7 +20,7 @@ class ImageSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 100,
         child: ListView(
             scrollDirection: Axis.horizontal,
@@ -52,6 +52,7 @@ class ImageSelector extends StatelessWidget {
                             color: SubpingColor.black60),
                         SubpingText(
                           "사진 ${writeReviewViewModel.images.length}/5",
+                          size: null,
                         )
                       ],
                     ),

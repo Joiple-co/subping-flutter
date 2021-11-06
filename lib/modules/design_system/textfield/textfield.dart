@@ -73,7 +73,7 @@ class SubpingTextField extends StatelessWidget {
             : inputFormatters,
         maxLines: maxLines,
         maxLength: maxLength,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 15,
         ),
         decoration: InputDecoration(

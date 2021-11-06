@@ -1,15 +1,11 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:subping/model/gallery_model.dart';
-import 'package:subping/modules/error_handler/error_handler.dart';
 
 class SubpingMethodChannel {
-  static const platform =
-      const MethodChannel("com.subping.SubpingmethodChannel");
+  static const platform = MethodChannel("com.subping.SubpingmethodChannel");
 
+  // ignore: missing_return
   static Future<List<GalleryModel>> getImageItemFromGallery() async {
     List<GalleryModel> imageBytesList = <GalleryModel>[];
 
@@ -36,8 +32,7 @@ class SubpingMethodChannel {
       imageCount = await platform.invokeMethod("getGalleryCount");
       return imageCount;
     } catch (e) {
-      print(e);
-      return imageCount;
+      return 0;
     }
   }
 }

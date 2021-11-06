@@ -12,14 +12,14 @@ const cardVendorAsset = {
   CardVendor.woori: "assets/cardLogo/woori.png"
 };
 
-const int MIN_REVIEW_LENGTH = 20;
+const int minReviewLength = 20;
 
 const cardVendorMapper = {
   "신한카드": CardVendor.shinhan,
   "삼성카드": CardVendor.samsung,
   "현대카드": CardVendor.hyundai
 };
-const List<String> RatingPharses = [
+const List<String> ratingPharses = [
   "",
   "다시는 안사요",
   "많이 아쉬웠어요",

@@ -179,7 +179,7 @@ extension SubpingFontSize on SubpingFontSizeExtension {
 
 extension SubpingColor on SubpingColorExtension {
   static Color get blackAlpha {
-    return Color.fromRGBO(20, 20, 20, 0.4);
+    return const Color.fromRGBO(20, 20, 20, 0.4);
   }
 
   static Color get subping100 {

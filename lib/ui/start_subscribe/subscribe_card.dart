@@ -16,7 +16,6 @@ class SubscribeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(userViewModel.cards[startSubscribeViewModel.selectedCard]);
     return Obx(
       () => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +147,6 @@ class SelectCardBottomSheet extends StatelessWidget {
               ...List.generate(userViewModel.cards.length, (index) {
                 final cardId = userViewModel.cards.keys.elementAt(index);
                 final card = userViewModel.cards[cardId];
-                print(card.cardVendor);
 
                 return GestureDetector(
                   onTap: () {

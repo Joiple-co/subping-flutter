@@ -6,7 +6,8 @@ class KeyboardDoneContainer extends StatelessWidget {
   final FocusNode focusItems;
   final Widget child;
 
-  KeyboardDoneContainer({this.focusItems, this.child});
+  const KeyboardDoneContainer({this.focusItems, this.child, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

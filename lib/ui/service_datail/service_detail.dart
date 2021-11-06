@@ -151,7 +151,7 @@ class ServiceDetail extends StatelessWidget {
                           height: SubpingSize.medium10,
                           color: SubpingColor.back20),
                       ServiceReview(
-                        reviews: [],
+                        reviews: const [],
                         serviceId: serviceId,
                       ),
                       Container(

@@ -1,15 +1,17 @@
-import 'dart:io';
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:subping/model/gallery_model.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 
 class GalleryItem extends StatelessWidget {
-  Function onTogglePick;
-  GalleryModel source;
-  int selectedIndex;
+  final Function onTogglePick;
+  final GalleryModel source;
+  final int selectedIndex;
 
-  GalleryItem({this.source, this.onTogglePick, this.selectedIndex});
+  const GalleryItem(
+      {Key key, this.source, this.onTogglePick, this.selectedIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class GalleryItem extends StatelessWidget {
         onTogglePick(source, isPicked);
       },
       child: Stack(children: [
-        Container(
+        SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Image.memory(
@@ -31,8 +33,8 @@ class GalleryItem extends StatelessWidget {
         Positioned(
             child: Container(
           color: isPicked
-              ? Color.fromRGBO(0, 0, 0, 0.5)
-              : Color.fromRGBO(0, 0, 0, 0),
+              ? const Color.fromRGBO(0, 0, 0, 0.5)
+              : const Color.fromRGBO(0, 0, 0, 0),
         )),
         Positioned(
           right: 7,

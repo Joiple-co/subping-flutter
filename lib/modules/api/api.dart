@@ -45,6 +45,8 @@ class API {
     email = user['email'];
     userId = user["cognitoId"];
 
+    print(userId);
+
     header = {
       "email": email,
       "id": userId,

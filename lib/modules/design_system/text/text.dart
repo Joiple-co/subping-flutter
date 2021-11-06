@@ -20,7 +20,7 @@ class SubpingText extends StatelessWidget {
 
   const SubpingText(
     this.text, {
-    @required this.size,
+    this.size,
     Key key,
     this.color,
     this.height,

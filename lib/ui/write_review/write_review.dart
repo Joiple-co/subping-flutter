@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:keyboard_actions/external/keyboard_avoider/keyboard_avoider.dart';
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:subping/const/const.dart';
-import 'package:subping/modules/design_system/keyboard_done/keyboard_done_container.dart';
 import 'package:subping/modules/design_system/loading/subping_loading.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/ui/write_review/subscirbe_product_swiper.dart';
@@ -15,8 +13,6 @@ class WriteReview extends StatelessWidget {
   WriteReview({Key key}) : super(key: key);
   final initialRating = Get.arguments['rating'];
   final serviceId = Get.arguments["serviceId"];
-  final serviceName = Get.arguments["serviceName"];
-  final serviceLogoUrl = Get.arguments["serviceLogoUrl"];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +21,7 @@ class WriteReview extends StatelessWidget {
 
     return Obx(
       () => Scaffold(
-          appBar: TitleAppBar(
+          appBar: const TitleAppBar(
             "리뷰 쓰기",
             hasBackButton: true,
           ),
@@ -38,7 +34,7 @@ class WriteReview extends StatelessWidget {
               child: SingleChildScrollView(
                 controller: reviewViewModel.reviewScrollController,
                 child: reviewViewModel.loading
-                    ? SubpingLoading()
+                    ? const SubpingLoading()
                     : HeaderSafe(
                         child: HorizontalPadding(
                         child: Column(
@@ -89,7 +85,7 @@ class WriteReview extends StatelessWidget {
                                         }),
                                     Space(size: SubpingSize.tiny6),
                                     SubpingText(
-                                      RatingPharses[
+                                      ratingPharses[
                                           reviewViewModel.rating.round()],
                                       size: SubpingFontSize.body1,
                                       color: SubpingColor.black80,

@@ -8,11 +8,11 @@ import 'package:subping/modules/helper/helper.dart';
 class SubScribeProductSwiper extends StatelessWidget {
   final SubscribeModel subscribeModel;
 
-  SubScribeProductSwiper({this.subscribeModel});
+  const SubScribeProductSwiper({Key key, this.subscribeModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(subscribeModel.subscribeItems);
     return (SizedBox(
       height: 100,
       child: Swiper(
@@ -21,14 +21,14 @@ class SubScribeProductSwiper extends StatelessWidget {
         pagination: subscribeModel.subscribeItems.length == 1
             ? null
             : SwiperPagination(
-                builder: new DotSwiperPaginationBuilder(
+                builder: DotSwiperPaginationBuilder(
                     color: SubpingColor.black60, size: 20.w, activeSize: 20.w)),
         itemBuilder: (BuildContext context, int index) {
           final productItem = subscribeModel.subscribeItems[index].product;
           return GestureDetector(
             child: Stack(
               children: [
-                Container(
+                SizedBox(
                     width: double.infinity,
                     height: 75,
                     child: Row(
@@ -61,7 +61,7 @@ class SubScribeProductSwiper extends StatelessWidget {
                                 size: SubpingFontSize.body2,
                               ),
                               SubpingText(
-                                "${productItem.summary}",
+                                productItem.summary,
                                 size: SubpingFontSize.body2,
                                 maxLines: 1,
                               ),

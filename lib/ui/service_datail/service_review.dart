@@ -10,7 +10,9 @@ class ServiceReview extends StatelessWidget {
   final List<ProductModel> productDetail;
   final String serviceId;
 
-  ServiceReview({this.reviews, this.productDetail, this.serviceId});
+  const ServiceReview(
+      {Key key, this.reviews, this.productDetail, this.serviceId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
