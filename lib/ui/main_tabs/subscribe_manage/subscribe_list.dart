@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
+import 'package:subping/modules/helper/helper.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 
 class SubscribeList extends StatelessWidget {
@@ -42,17 +43,11 @@ class SubscribeList extends StatelessWidget {
                   final subscribe = subscribeViewModel.subscribe[subscribeId];
 
                   return Container(
-                    padding: const EdgeInsets.all(10),
                     margin: const EdgeInsets.only(bottom: 15),
                     decoration: BoxDecoration(
-                        color: SubpingColor.white100,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                              color: SubpingColor.black30,
-                              offset: const Offset(0, 0),
-                              blurRadius: 14)
-                        ]),
+                      color: SubpingColor.white100,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Column(
                       children: [
                         Row(
@@ -60,49 +55,32 @@ class SubscribeList extends StatelessWidget {
                             ClipOval(
                               child: Image.network(
                                 subscribe.serviceLogoUrl,
-                                width: 25,
-                                height: 25,
+                                width: 50,
+                                height: 50,
                               ),
                             ),
                             Space(size: SubpingSize.tiny6),
-                            SubpingText(
-                              subscribe.serviceName,
-                              size: SubpingFontSize.body3,
-                              fontWeight: SubpingFontWeight.medium,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SubpingText(
+                                  subscribe.serviceName,
+                                  size: SubpingFontSize.body3,
+                                  fontWeight: SubpingFontWeight.medium,
+                                ),
+                                SubpingText(
+                                  Helper.setComma(subscribe.totalPrice()) + "원",
+                                  size: SubpingFontSize.body3,
+                                  fontWeight: SubpingFontWeight.medium,
+                                )
+                              ],
                             )
                           ],
                         ),
                         Space(
                           size: SubpingSize.medium12,
                         ),
-                        Row(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(
-                                  subscribe.subscribeItems.length, (index) {
-                                return Text.rich(SubpingTextSpan(children: [
-                                  SubpingTextSpan(
-                                      text: subscribe
-                                          .subscribeItems[index].product.name,
-                                      fontSize: SubpingFontSize.title6,
-                                      fontWeight: SubpingFontWeight.medium),
-                                  SubpingTextSpan(
-                                      text: " | ",
-                                      fontSize: SubpingFontSize.title6,
-                                      fontWeight: SubpingFontWeight.medium,
-                                      color: SubpingColor.black30),
-                                  SubpingTextSpan(
-                                      text:
-                                          "${subscribe.subscribeItems[index].amount}개",
-                                      fontSize: SubpingFontSize.title6,
-                                      fontWeight: SubpingFontWeight.medium)
-                                ]));
-                              }),
-                            )
-                            // SubpingText("${Helper.setComma(subscribe.totalPrice())}원")
-                          ],
-                        )
                       ],
                     ),
                   );

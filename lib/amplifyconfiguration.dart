@@ -69,5 +69,18 @@ const devAmplifyconfig = ''' {
         "region": "ap-northeast-2"
       }
     }
-  }
+  },
+  "analytics": {
+        "plugins": {
+            "awsPinpointAnalyticsPlugin": {
+                "pinpointAnalytics": {
+                    "appId": "618f7de94e7d4419ae556e1150eb1aae",
+                    "region": "ap-northeast-2"
+                },
+                "pinpointTargeting": {
+                    "region": "ap-northeast-2"
+                }
+            }
+        }
+    }
 }''';

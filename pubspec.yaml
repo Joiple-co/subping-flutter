@@ -27,6 +27,9 @@ dependencies:
   amplify_auth_cognito: '<1.0.0'
   amplify_api: '<1.0.0'
   amplify_storage_s3: '<1.0.0'
+  amplify_analytics_pinpoint: ^0.2.0
+  firebase_core: ^1.9.0
+  firebase_messaging: ^11.0.0
   get: '^4.1.4'
   get_storage: ^2.0.2 
   table_calendar: ^3.0.1
@@ -50,6 +53,7 @@ dependencies:
   ntp: ^2.0.0
   hive: ^2.0.4
   hive_flutter: ^1.1.0
+  flutter_local_notifications: ^9.0.2
 
 dev_dependencies:
   flutter_test:

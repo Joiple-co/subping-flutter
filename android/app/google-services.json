@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "406594262862",
+    "project_id": "subping-joiple",
+    "storage_bucket": "subping-joiple.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406594262862:android:3dd71e28f5c2a535d9b01f",
+        "android_client_info": {
+          "package_name": "com.joiple.subping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406594262862-22qk2ddhh3c7pmglknkjik0nivkjm46r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkZMSIdzzU8y_fIu0RuebI1C2X88rdUxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406594262862-22qk2ddhh3c7pmglknkjik0nivkjm46r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

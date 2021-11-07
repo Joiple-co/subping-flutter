@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -25,6 +28,7 @@ import 'package:subping/main.mapper.g.dart';
 import 'package:subping/middleware/alarm_page_middleware.dart';
 import 'package:subping/middleware/like_service_middleware.dart';
 import 'package:subping/middleware/service_detail_middleware.dart';
+import 'package:subping/notifications.dart';
 import 'package:subping/ui/add_address/add_address.dart';
 import 'package:subping/ui/add_card/add_card.dart';
 import 'package:subping/ui/address_management/address_management.dart';
@@ -55,10 +59,20 @@ import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
 void main() async {
   initializeJsonMapper();
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  // NotificationHandler _notificationHandler = NotificationHandler();
+
+  try {
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  } catch (e) {
+    // ignore: avoid_print
+    print(e);
+  }
   await GetStorage.init();
+
   await Hive.initFlutter();
   Hive.registerAdapter(RecentServiceAdapter());
-
   await Hive.openBox<RecentService>("recentView");
 
   runApp(SubpingApp());
@@ -82,10 +96,12 @@ class _SubpingAppState extends State<SubpingApp> {
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
     AmplifyAPI apiPlugin = AmplifyAPI();
     AmplifyStorageS3 s3Plugin = AmplifyStorageS3();
+    AmplifyAnalyticsPinpoint pinpointPlugin = AmplifyAnalyticsPinpoint();
 
     await Amplify.addPlugin(authPlugin);
     await Amplify.addPlugin(apiPlugin);
     await Amplify.addPlugin(s3Plugin);
+    await Amplify.addPlugin(pinpointPlugin);
 
     try {
       await Amplify.configure(getAmplifyCongig("dev"));

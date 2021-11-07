@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:subping/modules/cognito/cognito.dart';
@@ -23,8 +26,17 @@ class SplashViewModel {
   void goNextScene() async {
     bool isSecureInitSucess;
     bool isLoggedIn;
+    final FirebaseMessaging fcm = FirebaseMessaging.instance;
 
     try {
+      if (Platform.isIOS) {
+        NotificationSettings settings = await fcm.requestPermission();
+        if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+        } else if (settings.authorizationStatus ==
+            AuthorizationStatus.provisional) {
+        } else {}
+      }
+
       await Future.wait([initSecure(), _checkLoggedIn()]).then((value) {
         isSecureInitSucess = value[0];
         isLoggedIn = value[1];
