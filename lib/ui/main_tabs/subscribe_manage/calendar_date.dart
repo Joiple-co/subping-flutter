@@ -51,20 +51,38 @@ class CalendarDate extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(schedules.length, (index) {
                   final schedule = schedules[index];
-                  return Row(children: [
-                    ClipOval(
-                      child: Image.network(
-                        schedule.serviceLogoUrl,
-                        width: 20,
-                        height: 20,
+
+                  if (schedules.length > 3 && index >= 2) {
+                    if (index == 2) {
+                      return Row(children: [
+                        ClipOval(
+                          child: Image.asset(
+                            "assets/icon/more.png",
+                            width: 20,
+                            height: 20,
+                          ),
+                        ),
+                        Container()
+                      ]);
+                    } else {
+                      return Container();
+                    }
+                  } else {
+                    return Row(children: [
+                      ClipOval(
+                        child: Image.network(
+                          schedule.serviceLogoUrl,
+                          width: 20,
+                          height: 20,
+                        ),
                       ),
-                    ),
-                    index < schedules.length - 1
-                        ? Space(
-                            size: SubpingSize.tiny5,
-                          )
-                        : Container()
-                  ]);
+                      index < schedules.length - 1
+                          ? Space(
+                              size: SubpingSize.tiny5,
+                            )
+                          : Container()
+                    ]);
+                  }
                 }),
               ),
             ],
