@@ -12,12 +12,14 @@ class SubscribeRepository {
       subscribeItems = List,
       addressId = String,
       period = String,
-      serviceId = String}) async {
+      serviceId = String,
+      serviceName = String}) async {
     try {
       final now = (await NTP.now()).toUtc().add(const Duration(hours: 9));
 
       final rawResponse = await API.post("user", "/makeSubscribe", body: {
         "serviceId": serviceId,
+        "serviceName": serviceName,
         "subscribeProducts": subscribeItems,
         "period": period,
         "subscribeDate": now.toString().split(" ")[0],
@@ -36,6 +38,65 @@ class SubscribeRepository {
         } else if (response.message == "MakeSubscribeException") {
           return response.message;
         } else if (response.message == "PaymentException") {
+          return response.message;
+        } else {
+          return "WrongAccessException";
+        }
+      }
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
+  Future<String> updateSubscribe(String serviceId, String subscribeId,
+      {String userCardId,
+      List subscribeItems,
+      String addressId,
+      String period,
+      String serviceName}) async {
+    try {
+      final rawResponse = await API.post("user", "/updateSubscribe", body: {
+        "serviceId": serviceId,
+        "subscribeId": subscribeId,
+        "subscribeProducts": subscribeItems,
+        "period": period,
+        "card": userCardId,
+        "address": addressId
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        return "success";
+      } else {
+        if (response.message == "MakeSubscribeItemExcpetion") {
+          return response.message;
+        } else {
+          return "WrongAccessException";
+        }
+      }
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
+  Future<String> cancelSubscribeItemsChange(
+      String serviceId, String subscribeId) async {
+    try {
+      final rawResponse = await API.post("user", "/updateSubscribe", body: {
+        "serviceId": serviceId,
+        "subscribeId": subscribeId,
+        "cancelProductChange": true
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        return "success";
+      } else {
+        if (response.message == "DeleteSubscribeItemExcpetion") {
           return response.message;
         } else {
           return "WrongAccessException";

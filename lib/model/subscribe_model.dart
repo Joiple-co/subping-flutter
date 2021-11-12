@@ -1,5 +1,6 @@
 import 'package:subping/const/const.dart';
 import 'package:subping/model/product_model.dart';
+import 'package:subping/model/payment_model.dart';
 
 class SubscribeModel {
   String id;
@@ -14,6 +15,8 @@ class SubscribeModel {
   String serviceName;
   String serviceLogoUrl;
   List<SubscribeItem> subscribeItems;
+  List<SubscribeItem> subscribeReserved;
+  List<PaymentModel> payments;
 
   SubscribeModel(
       {this.id,
@@ -25,6 +28,8 @@ class SubscribeModel {
       this.addressId,
       this.serviceId,
       this.subscribeItems,
+      this.subscribeReserved,
+      this.payments,
       this.serviceName,
       this.serviceLogoUrl,
       this.createdAt});
@@ -39,6 +44,8 @@ class SubscribeModel {
     addressId = subscribe.addressId ?? addressId;
     serviceId = subscribe.serviceId ?? serviceId;
     subscribeItems = subscribe.subscribeItems ?? subscribeItems;
+    subscribeReserved = subscribe.subscribeReserved ?? subscribeReserved;
+    payments = subscribe.payments ?? payments;
     serviceLogoUrl = subscribe.serviceLogoUrl ?? serviceLogoUrl;
     serviceName = subscribe.serviceName ?? serviceName;
     createdAt = subscribe.createdAt ?? createdAt;
@@ -46,9 +53,21 @@ class SubscribeModel {
 
   SubscribeModel.fromJson(Map<String, dynamic> json) {
     List<SubscribeItem> _subscribeItems = [];
+    List<SubscribeItem> _subscribeReserved = [];
+    List<PaymentModel> _payments = [];
 
-    json['subscribeItems']
-        .forEach((item) => {_subscribeItems.add(SubscribeItem.fromJson(item))});
+    json['subscribeItems'].forEach((item) {
+      if (!item['reserved']) {
+        _subscribeItems.add(SubscribeItem.fromJson(item));
+      } else {
+        _subscribeReserved.add(SubscribeItem.fromJson(item));
+      }
+    });
+
+    json['payments']
+        .forEach((item) => _payments.add(PaymentModel.fromJson(item)));
+
+    _payments.sort((a, b) => b.paymentDate.compareTo(a.paymentDate));
 
     id = json["id"];
     subscribeDate = json['subscribeDate'];
@@ -60,6 +79,8 @@ class SubscribeModel {
     addressId = json['addressId'];
     serviceId = _subscribeItems[0].product.serviceId;
     subscribeItems = _subscribeItems;
+    subscribeReserved = _subscribeReserved;
+    payments = _payments;
 
     if (json['subscribeItems'][0]['product'] != null &&
         json['subscribeItems'][0]['product']['service'] != null) {
@@ -77,6 +98,38 @@ class SubscribeModel {
     }
 
     return totalPrice;
+  }
+
+  num totalReservedPrice() {
+    num totalPrice = 0;
+
+    for (var element in subscribeReserved) {
+      totalPrice += element.amount * element.product.price;
+    }
+
+    return totalPrice;
+  }
+
+  num totalPaidPrice() {
+    num totalPrice = 0;
+
+    for (var element in payments) {
+      if (element.paymentComplete) {
+        totalPrice += element.amount;
+      }
+    }
+
+    return totalPrice;
+  }
+
+  DateTime getNextPaymentDate() {
+    DateTime nextPayment = payments[0].paymentDate;
+
+    if (payments[0].paymentFailure) {
+      return null;
+    }
+
+    return nextPayment;
   }
 }
 

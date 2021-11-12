@@ -7,7 +7,7 @@ class SubscribeViewModel extends GetxController {
   final RxMap<String, SubscribeModel> _subscribe =
       <String, SubscribeModel>{}.obs;
 
-  void getSubscribes() async {
+  Future<void> getSubscribes() async {
     List<SubscribeModel> subscribes =
         await _subscribeRepository.getSubscribes();
 
@@ -21,7 +21,7 @@ class SubscribeViewModel extends GetxController {
     _subscribe.refresh();
   }
 
-  void updateSubscribe(String serviceId) async {
+  Future<void> updateSubscribe(String serviceId) async {
     SubscribeModel subscribe =
         await _subscribeRepository.getSubscribe(serviceId: serviceId);
 

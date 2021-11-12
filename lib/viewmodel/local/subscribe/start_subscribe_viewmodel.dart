@@ -105,7 +105,8 @@ class StartSubscribeViewModel extends GetxController {
         userCardId: _selectedCard.value,
         addressId: _selectedAddress.value,
         period: periodInnerString[_selectedPeriod.value],
-        serviceId: _service.id);
+        serviceId: _service.id,
+        serviceName: _service.name);
 
     if (result == "success") {
       // 성공시

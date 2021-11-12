@@ -9,13 +9,14 @@ const cardVendorAsset = {
   CardVendor.nh: "assets/cardLogo/nh.png",
   CardVendor.samsung: "assets/cardLogo/samsung.png",
   CardVendor.shinhan: "assets/cardLogo/shinhan.png",
-  CardVendor.woori: "assets/cardLogo/woori.png"
+  CardVendor.woori: "assets/cardLogo/woori.png",
 };
 
 const cardVendorMapper = {
   "신한카드": CardVendor.shinhan,
   "삼성카드": CardVendor.samsung,
-  "현대카드": CardVendor.hyundai
+  "현대카드": CardVendor.hyundai,
+  "KB국민": CardVendor.kb
 };
 
 enum Period { oneMonth, twoMonth, threeMonth, oneWeek, twoWeek, threeWeek }

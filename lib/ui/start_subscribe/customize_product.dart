@@ -37,7 +37,7 @@ class CustomizeProduct extends StatelessWidget {
                             fontWeight: SubpingFontWeight.bold,
                             color: SubpingColor.subping100),
                         SubpingTextSpan(
-                            text: '을\n선택해주세요 :)',
+                            text: '을\n선택해주세요 😀',
                             fontSize: SubpingFontSize.title4,
                             fontWeight: SubpingFontWeight.bold),
                       ])),

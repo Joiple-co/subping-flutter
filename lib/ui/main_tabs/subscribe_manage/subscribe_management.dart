@@ -27,22 +27,28 @@ class SubscribeManagement extends StatelessWidget {
 
       return Container(
           color: SubpingColor.white100,
-          child: ListView(
-            children: [
-              Container(
-                height: 10,
-                color: SubpingColor.back20,
-              ),
-              SubscribePaymentInfo(
-                totalPrice: paidAndTotalPriceOfThisMonth['total'],
-                paidPrice: paidAndTotalPriceOfThisMonth['paid'],
-              ),
-              Container(
-                height: 10,
-                color: SubpingColor.back20,
-              ),
-              const SubscribeList()
-            ],
+          child: RefreshIndicator(
+            backgroundColor: SubpingColor.white100,
+            onRefresh: () async {
+              await subscribeViewModel.getSubscribes();
+            },
+            child: ListView(
+              children: [
+                Container(
+                  height: 10,
+                  color: SubpingColor.back20,
+                ),
+                SubscribePaymentInfo(
+                  totalPrice: paidAndTotalPriceOfThisMonth['total'],
+                  paidPrice: paidAndTotalPriceOfThisMonth['paid'],
+                ),
+                Container(
+                  height: 10,
+                  color: SubpingColor.back20,
+                ),
+                const SubscribeList()
+              ],
+            ),
           ));
     });
   }

@@ -67,8 +67,8 @@ class ServiceFooter extends StatelessWidget {
                       SquareButton(
                         text: "관리하기",
                         width: 330.w,
-                        onPressed: () =>
-                            Get.toNamed("/startSubscribe/$serviceId"),
+                        onPressed: () => Get.toNamed(
+                            "/subsctribeDetailManage/${subscribes[serviceId].serviceId}?serviceName=${subscribes[serviceId].serviceName}"),
                       ),
                     ],
                   )

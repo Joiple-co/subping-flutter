@@ -17,6 +17,10 @@ class CardManagement extends StatelessWidget {
     return Obx(() {
       final userCard = userViewModel.cards;
 
+      if (userCard.isEmpty) {
+        return const SubpingLoading();
+      }
+
       return Scaffold(
         backgroundColor: SubpingColor.white100,
         appBar: const TitleAppBar("등록 카드 관리", hasBackButton: true),

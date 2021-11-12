@@ -50,11 +50,13 @@ import 'package:subping/ui/alarm/alarm.dart';
 import 'package:subping/ui/start_subscribe/start_subscribe.dart';
 import 'package:subping/ui/write_review/write_review.dart';
 import 'package:subping/ui/search/search.dart';
+import 'package:subping/ui/subscribe_detail_manage/subscribe_detail_manage.dart';
 
 import 'package:subping/binding/main_tabs_bindings.dart';
 import 'package:subping/binding/onboarding/user_account_bindings.dart';
 import 'package:subping/binding/onboarding/user_login_bindings.dart';
 import 'package:subping/binding/onboarding/pass_auth_bindings.dart';
+import 'package:subping/binding/subscribe_detail_manage_bindings.dart';
 
 void main() async {
   initializeJsonMapper();
@@ -196,7 +198,11 @@ class _SubpingAppState extends State<SubpingApp> {
                     page: () => AddressManagement()),
                 GetPage(
                     name: "/recentServiceHistory",
-                    page: () => RecentServiceHistory())
+                    page: () => RecentServiceHistory()),
+                GetPage(
+                    name: "/subsctribeDetailManage/:param",
+                    page: () => SubscribeDetailManage(),
+                    binding: SubscribeDetailManageBindings())
               ],
             ));
   }
