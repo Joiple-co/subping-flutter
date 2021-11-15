@@ -8,17 +8,47 @@ class CalendarDate extends StatelessWidget {
   final List<SubscribeScheduleModel> schedules;
   final bool highlight;
   final Function onClickDate;
+  final bool empty;
 
   const CalendarDate(
       {Key key,
       this.date,
       this.schedules,
       this.highlight = false,
+      this.empty = false,
       this.onClickDate})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (empty) {
+      return Container(
+          decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: SubpingColor.black30,
+                  spreadRadius: 3,
+                  blurRadius: 5,
+                  offset: const Offset(0, 0), // changes position of shadow
+                )
+              ],
+              color: SubpingColor.white100,
+              borderRadius: BorderRadius.circular(15)),
+          width: 90,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/icon/calender_empty.png",
+                width: 43.5,
+                height: 51.5,
+              ),
+              Space(size: SubpingSize.medium12),
+              SubpingText("없음", size: SubpingFontSize.tiny1)
+            ],
+          ));
+    }
+
     return GestureDetector(
       onTap: onClickDate,
       child: Container(

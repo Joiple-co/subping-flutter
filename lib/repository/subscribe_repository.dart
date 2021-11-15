@@ -107,6 +107,63 @@ class SubscribeRepository {
     }
   }
 
+  Future<String> cancelSubscribe(String subscribeId) async {
+    try {
+      final rawResponse = await API.post("user", "/cancelSubscribe", body: {
+        "subscribeId": subscribeId,
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        return "success";
+      } else {
+        return response.message;
+      }
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
+  Future<String> pauseSubscribe({String subscribeId, int pauseTimes}) async {
+    try {
+      final rawResponse = await API.post("user", "/pauseSubscribe",
+          body: {"subscribeId": subscribeId, "pauseTimes": pauseTimes});
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        return "success";
+      } else {
+        return response.message;
+      }
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
+  Future<String> cancelPauseSubscribe({String subscribeId}) async {
+    try {
+      final rawResponse = await API.post("user", "/pauseSubscribe", body: {
+        "cancelPause": true,
+        "subscribeId": subscribeId,
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        return "success";
+      } else {
+        return response.message;
+      }
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
   Future<List<SubscribeModel>> getSubscribes() async {
     List<SubscribeModel> subscribes = [];
 

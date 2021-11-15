@@ -31,25 +31,31 @@ class Helper {
     }
   }
 
-  static String addPeriod(DateTime from, Period period) {
-    DateTime date;
+  static String dateTimeToString(DateTime date) {
+    return "${date.year.toString()}년 ${date.month.toString().padLeft(2, '0')}월 ${date.day.toString().padLeft(2, '0')}일";
+  }
 
-    if (period == Period.oneMonth) {
-      date = DateTime(from.year, from.month + 1, from.day);
-    } else if (period == Period.twoMonth) {
-      date = DateTime(from.year, from.month + 2, from.day);
-    } else if (period == Period.threeMonth) {
-      date = DateTime(from.year, from.month + 3, from.day);
-    } else if (period == Period.oneWeek) {
-      date = DateTime(from.year, from.month, from.day + 7);
-    } else if (period == Period.twoWeek) {
-      date = DateTime(from.year, from.month, from.day + 14);
-    } else if (period == Period.threeWeek) {
-      date = DateTime(from.year, from.month, from.day + 21);
-    } else {
-      return "";
+  static DateTime addPeriod(DateTime from, Period period, {num times = 1}) {
+    DateTime date = from;
+
+    for (var _ = 0; _ < times; _++) {
+      if (period == Period.oneMonth) {
+        date = DateTime(date.year, date.month + 1, date.day);
+      } else if (period == Period.twoMonth) {
+        date = DateTime(date.year, date.month + 2, date.day);
+      } else if (period == Period.threeMonth) {
+        date = DateTime(date.year, date.month + 3, date.day);
+      } else if (period == Period.oneWeek) {
+        date = DateTime(date.year, date.month, date.day + 7);
+      } else if (period == Period.twoWeek) {
+        date = DateTime(date.year, date.month, date.day + 14);
+      } else if (period == Period.threeWeek) {
+        date = DateTime(date.year, date.month, date.day + 21);
+      } else {
+        throw "PeriodException";
+      }
     }
 
-    return "${date.year.toString()}년 ${date.month.toString().padLeft(2, '0')}월 ${date.day.toString().padLeft(2, '0')}일";
+    return date;
   }
 }

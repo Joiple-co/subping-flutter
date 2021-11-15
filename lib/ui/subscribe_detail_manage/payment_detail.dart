@@ -4,18 +4,25 @@ import 'package:subping/const/const.dart';
 import 'package:subping/modules/design_system/shape/card_icon.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
+import 'package:subping/ui/subscribe_detail_manage/subscribe_pause_bottomsheet.dart';
+import 'package:subping/ui/subscribe_detail_manage/subscribe_pause_indicator.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
 import 'package:subping/viewmodel/global/user_viewmodel.dart';
+import 'package:subping/viewmodel/local/subsctibe_detail_manage/subscribe_detail_manage_viewmodel.dart';
 
 class PaymentDetail extends StatelessWidget {
   final String serviceId;
+  final String subscribeId;
 
-  const PaymentDetail({Key key, this.serviceId}) : super(key: key);
+  const PaymentDetail({Key key, this.serviceId, this.subscribeId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final userViewModel = Get.find<UserViewModel>();
     final subscribeViewModel = Get.find<SubscribeViewModel>();
+    final subscribeDetailManageViewModel =
+        Get.find<SubscribeDetailManageViewModel>();
 
     return Obx(() {
       final subscribe = subscribeViewModel.subscribe[serviceId];
@@ -25,7 +32,6 @@ class PaymentDetail extends StatelessWidget {
       }
 
       return SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 72),
         child: Column(
           children: [
             Container(
@@ -45,14 +51,42 @@ class PaymentDetail extends StatelessWidget {
                             fontSize: SubpingFontSize.title6,
                             fontWeight: SubpingFontWeight.medium),
                         SubpingTextSpan(
-                            text: "결제를 잠깐 쉴 수 있어요",
+                            text: subscribe.reSubscribeDate != null
+                                ? "결제를 잠깐 쉬고 있어요!"
+                                : "결제를 잠깐 쉴 수 있어요",
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
-                      MiniSquareButton(text: "정지하기", onPressed: () {})
+                      MiniSquareButton(
+                          warning: subscribe.reSubscribeDate != null,
+                          loading: subscribeDetailManageViewModel
+                              .isSubscribePauseLoading,
+                          text: subscribe.reSubscribeDate != null
+                              ? "취소하기"
+                              : "정지하기",
+                          onPressed: () async {
+                            if (subscribe.reSubscribeDate != null) {
+                              await subscribeDetailManageViewModel
+                                  .updatePauseSubscribe(
+                                      subscribeId, subscribeId,
+                                      cancel: true);
+                            } else {
+                              Get.bottomSheet(SubscribePauseBottomSheet(
+                                subscribe: subscribe,
+                              ));
+                            }
+                          })
                     ],
                   ),
                   Space(size: SubpingSize.large20),
+                  subscribe.reSubscribeDate != null
+                      ? SubscribePauseIndicator(
+                          lastDate: subscribe.getLastPaymentDate(),
+                          nextDate: subscribe.getNextPaymentDate())
+                      : Container(),
+                  subscribe.reSubscribeDate != null
+                      ? Space(size: SubpingSize.large20)
+                      : Container(),
                   Container(height: 2, color: SubpingColor.back20),
                   Space(size: SubpingSize.large20),
                   Row(
@@ -60,19 +94,26 @@ class PaymentDetail extends StatelessWidget {
                     children: [
                       Text.rich(SubpingTextSpan(children: [
                         SubpingTextSpan(
-                            text: "구독 취소\n",
+                            text: "구독 해지\n",
                             fontSize: SubpingFontSize.title6,
                             fontWeight: SubpingFontWeight.medium),
                         SubpingTextSpan(
-                            text: "구독을 취소할 수 있어요",
+                            text: subscribe.reSubscribeDate != null
+                                ? "일시정지 중에는 해지가 불가능해요"
+                                : "구독을 해지할 수 있어요",
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
                       MiniSquareButton(
-                        text: "취소하기",
-                        onPressed: () {},
-                        warning: true,
-                      )
+                          disabled: subscribe.reSubscribeDate != null,
+                          text: "취소하기",
+                          onPressed: () async {
+                            await subscribeDetailManageViewModel
+                                .cancelSubscribe(subscribe.id);
+                          },
+                          warning: true,
+                          loading: subscribeDetailManageViewModel
+                              .isSubscribeCancelLoading)
                     ],
                   ),
                   Space(size: SubpingSize.large20),
@@ -194,7 +235,7 @@ class PaymentDetail extends StatelessWidget {
                   )
                 ],
               ),
-            )
+            ),
           ],
         ),
       );

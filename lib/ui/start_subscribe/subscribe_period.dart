@@ -53,8 +53,8 @@ class SubscribePeriod extends StatelessWidget {
                 children: [
                   SubpingText("다음 구독 예정일", size: SubpingFontSize.body1),
                   SubpingText(
-                      Helper.addPeriod(DateTime.now(),
-                          startSubscribeViewModel.selectedPeriod),
+                      Helper.dateTimeToString(Helper.addPeriod(DateTime.now(),
+                          startSubscribeViewModel.selectedPeriod)),
                       size: SubpingFontSize.body1),
                 ],
               ),

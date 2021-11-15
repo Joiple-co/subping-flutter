@@ -74,177 +74,237 @@ class SubscribeCalendar extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
-                      height: 140,
-                      child: ListView(
-                          padding: const EdgeInsets.only(
-                              left: 20, top: 10, bottom: 10),
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          children: List.generate(sortedDates.length, (index) {
-                            final date = sortedDates[index];
-                            final schedulesOfDate = schedules[date];
+                  sortedDates.isNotEmpty
+                      ? SizedBox(
+                          height: 140,
+                          child: ListView(
+                              padding: const EdgeInsets.only(
+                                  left: 20, top: 10, bottom: 10),
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              children:
+                                  List.generate(sortedDates.length, (index) {
+                                final date = sortedDates[index];
+                                final schedulesOfDate = schedules[date];
 
-                            return Row(children: [
-                              CalendarDate(
-                                  highlight:
-                                      subscribeManageViewModel.highlightIndex ==
+                                return Row(children: [
+                                  CalendarDate(
+                                      highlight: subscribeManageViewModel
+                                              .highlightIndex ==
                                           index,
-                                  date: DateTime.parse(date),
-                                  schedules: schedulesOfDate,
-                                  onClickDate: () => subscribeManageViewModel
-                                      .jumpToIndex(index)),
-                              Space(
-                                size: SubpingSize.medium14,
-                              )
-                            ]);
-                          }))),
+                                      date: DateTime.parse(date),
+                                      schedules: schedulesOfDate,
+                                      onClickDate: () =>
+                                          subscribeManageViewModel
+                                              .jumpToIndex(index)),
+                                  Space(
+                                    size: SubpingSize.medium14,
+                                  )
+                                ]);
+                              })))
+                      : SizedBox(
+                          height: 140,
+                          child: ListView(
+                              padding: const EdgeInsets.only(
+                                  left: 20, top: 10, bottom: 10),
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                Row(children: [
+                                  const CalendarDate(empty: true),
+                                  Space(
+                                    size: SubpingSize.medium14,
+                                  )
+                                ])
+                              ])),
                   Space(size: SubpingSize.medium14),
                   Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: ScrollablePositionedList.builder(
-                        padding: const EdgeInsets.only(top: 10),
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemCount: sortedDates.length,
-                        itemBuilder: (context, index) {
-                          final date = sortedDates[index];
-                          final schedulesOfDate = schedules[date];
+                    child: sortedDates.isNotEmpty
+                        ? Container(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: ScrollablePositionedList.builder(
+                              padding: const EdgeInsets.only(top: 10),
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              itemCount: sortedDates.length,
+                              itemBuilder: (context, index) {
+                                final date = sortedDates[index];
+                                final schedulesOfDate = schedules[date];
 
-                          return Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 60,
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: SubpingText(
-                                    "${DateTime.parse(date).day}일",
-                                    size: SubpingFontSize.title5,
-                                    fontWeight: SubpingFontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
+                                return Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: List.generate(
-                                      schedulesOfDate.length, (index) {
-                                    final schedule = schedulesOfDate[index];
-
-                                    return Column(children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: SubpingColor.back20,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        padding: const EdgeInsets.all(10),
-                                        child: Column(
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    ClipOval(
-                                                      child: Image.network(
-                                                        schedule.serviceLogoUrl,
-                                                        width: 25,
-                                                        height: 25,
-                                                      ),
-                                                    ),
-                                                    Space(
-                                                        size:
-                                                            SubpingSize.tiny5),
-                                                    SubpingText(
-                                                        schedule.serviceName,
-                                                        size: SubpingFontSize
-                                                            .title6)
-                                                  ],
-                                                ),
-                                                TimeLineStatus(
-                                                  status: schedule.status,
-                                                )
-                                              ],
-                                            ),
-                                            Space(size: SubpingSize.medium14),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Expanded(
-                                                  child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: List.generate(
-                                                          schedule.productName
-                                                              .length, (index) {
-                                                        return Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Expanded(
-                                                              child:
-                                                                  SubpingText(
-                                                                "${schedule.productName[index]}",
-                                                                size:
-                                                                    SubpingFontSize
-                                                                        .body1,
-                                                                color:
-                                                                    SubpingColor
-                                                                        .black80,
-                                                              ),
-                                                            ),
-                                                            Space(
-                                                              size: SubpingSize
-                                                                  .large20,
-                                                            ),
-                                                            Container(
-                                                                width: 2,
-                                                                height: 25,
-                                                                color:
-                                                                    SubpingColor
-                                                                        .black30),
-                                                            Space(
-                                                              size: SubpingSize
-                                                                  .large20,
-                                                            )
-                                                          ],
-                                                        );
-                                                      })),
-                                                ),
-                                                SubpingText(
-                                                  "${Helper.setComma(schedule.totalPrice)}원",
-                                                  size: SubpingFontSize.body1,
-                                                  fontWeight:
-                                                      SubpingFontWeight.bold,
-                                                )
-                                              ],
-                                            ),
-                                          ],
+                                  children: [
+                                    SizedBox(
+                                      width: 60,
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: SubpingText(
+                                          "${DateTime.parse(date).day}일",
+                                          size: SubpingFontSize.title5,
+                                          fontWeight: SubpingFontWeight.bold,
                                         ),
                                       ),
-                                      Space(
-                                        size: SubpingSize.medium10,
-                                      )
-                                    ]);
-                                  }),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: List.generate(
+                                            schedulesOfDate.length, (index) {
+                                          final schedule =
+                                              schedulesOfDate[index];
+
+                                          return Column(children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  color: SubpingColor.back20,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                              padding: const EdgeInsets.all(10),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          ClipOval(
+                                                            child:
+                                                                Image.network(
+                                                              schedule
+                                                                  .serviceLogoUrl,
+                                                              width: 25,
+                                                              height: 25,
+                                                            ),
+                                                          ),
+                                                          Space(
+                                                              size: SubpingSize
+                                                                  .tiny5),
+                                                          SubpingText(
+                                                              schedule
+                                                                  .serviceName,
+                                                              size:
+                                                                  SubpingFontSize
+                                                                      .title6)
+                                                        ],
+                                                      ),
+                                                      TimeLineStatus(
+                                                        status: schedule.status,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Space(
+                                                      size:
+                                                          SubpingSize.medium14),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: List.generate(
+                                                                schedule
+                                                                    .productName
+                                                                    .length,
+                                                                (index) {
+                                                              return Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child:
+                                                                        SubpingText(
+                                                                      "${schedule.productName[index]}",
+                                                                      size: SubpingFontSize
+                                                                          .body1,
+                                                                      color: SubpingColor
+                                                                          .black80,
+                                                                    ),
+                                                                  ),
+                                                                  Space(
+                                                                    size: SubpingSize
+                                                                        .large20,
+                                                                  ),
+                                                                  Container(
+                                                                      width: 2,
+                                                                      height:
+                                                                          25,
+                                                                      color: SubpingColor
+                                                                          .black30),
+                                                                  Space(
+                                                                    size: SubpingSize
+                                                                        .large20,
+                                                                  )
+                                                                ],
+                                                              );
+                                                            })),
+                                                      ),
+                                                      schedule.totalPrice !=
+                                                              null
+                                                          ? SubpingText(
+                                                              "${Helper.setComma(schedule.totalPrice)}원",
+                                                              size:
+                                                                  SubpingFontSize
+                                                                      .body1,
+                                                              fontWeight:
+                                                                  SubpingFontWeight
+                                                                      .bold,
+                                                            )
+                                                          : Container()
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Space(
+                                              size: SubpingSize.medium10,
+                                            )
+                                          ]);
+                                        }),
+                                      ),
+                                    )
+                                  ],
+                                );
+                              },
+                              itemScrollController:
+                                  subscribeManageViewModel.itemScrollController,
+                              itemPositionsListener: subscribeManageViewModel
+                                  .itemPositionsListener,
+                            ),
+                          )
+                        : Column(
+                            children: [
+                              Space(
+                                size: SubpingSize.medium10,
+                              ),
+                              HorizontalPadding(
+                                child: Container(
+                                  width: double.infinity,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 33),
+                                  decoration: BoxDecoration(
+                                      color: SubpingColor.back20,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: SubpingText(
+                                      "${subscribeManageViewModel.focusedMonth}월엔 구독 상품이 없어요 😢",
+                                      size: SubpingFontSize.body1,
+                                      color: SubpingColor.black80,
+                                      fontWeight: SubpingFontWeight.medium,
+                                    ),
+                                  ),
                                 ),
                               )
                             ],
-                          );
-                        },
-                        itemScrollController:
-                            subscribeManageViewModel.itemScrollController,
-                        itemPositionsListener:
-                            subscribeManageViewModel.itemPositionsListener,
-                      ),
-                    ),
+                          ),
                   )
                 ],
               ),

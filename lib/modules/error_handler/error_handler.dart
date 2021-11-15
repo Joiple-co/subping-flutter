@@ -337,6 +337,51 @@ class ErrorHandler {
             ]));
         break;
 
+      case "CancelSubscribeException":
+        Get.dialog(AlertDialog(
+            title: const Text("확인이 필요해요!"),
+            content: const Text("구독 취소에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
+      case "PauseSubscribeException":
+        Get.dialog(AlertDialog(
+            title: const Text("확인이 필요해요!"),
+            content: const Text("구독 일시정지에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
+      case "CancelPauseSubscribeException":
+        Get.dialog(AlertDialog(
+            title: const Text("확인이 필요해요!"),
+            content: const Text("구독 일시정지 취소에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
       default:
         Get.dialog(AlertDialog(
             title: const Text("확인이 필요해요!"),

@@ -37,14 +37,15 @@ class SubscribeModel {
   void updateSubscribeModel(SubscribeModel subscribe) {
     id = subscribe.id ?? id;
     subscribeDate = subscribe.subscribeDate ?? subscribeDate;
-    expiredDate = subscribe.expiredDate ?? expiredDate;
-    reSubscribeDate = subscribe.reSubscribeDate ?? reSubscribeDate;
+    // 데이터베이스상 nullable 항목이라 업데이트 반영을 위해 무조건 새로운 값으로 대입
+    expiredDate = subscribe.expiredDate;
+    reSubscribeDate = subscribe.reSubscribeDate;
     period = subscribe.period ?? period;
     userCardId = subscribe.userCardId ?? userCardId;
     addressId = subscribe.addressId ?? addressId;
     serviceId = subscribe.serviceId ?? serviceId;
     subscribeItems = subscribe.subscribeItems ?? subscribeItems;
-    subscribeReserved = subscribe.subscribeReserved ?? subscribeReserved;
+    subscribeReserved = subscribe.subscribeReserved;
     payments = subscribe.payments ?? payments;
     serviceLogoUrl = subscribe.serviceLogoUrl ?? serviceLogoUrl;
     serviceName = subscribe.serviceName ?? serviceName;
@@ -126,6 +127,16 @@ class SubscribeModel {
     DateTime nextPayment = payments[0].paymentDate;
 
     if (payments[0].paymentFailure) {
+      return null;
+    }
+
+    return nextPayment;
+  }
+
+  DateTime getLastPaymentDate() {
+    DateTime nextPayment = payments[1].paymentDate;
+
+    if (payments[1].paymentFailure) {
       return null;
     }
 

@@ -14,10 +14,13 @@ class SubscribeDetailManageViewModel extends GetxController
 
   final RxMap<String, int> _initProducts = <String, int>{}.obs;
   final RxMap<String, int> _selectedProducts = <String, int>{}.obs;
+  final RxInt _selcectedPauseTimes = 1.obs;
   final RxBool _isChangedProduct = false.obs;
   final RxBool _isCancelItemChangeLoading = false.obs;
   final RxBool _isPeriodUpdateLoading = false.obs;
   final RxBool _isSubscribeItemUpdateLoading = false.obs;
+  final RxBool _isSubscribeCancelLoading = false.obs;
+  final RxBool _isSubscribePauseLoading = false.obs;
 
   final RxInt _index = 0.obs;
 
@@ -31,6 +34,18 @@ class SubscribeDetailManageViewModel extends GetxController
     return _index.value;
   }
 
+  void checkIsChangedProduct() {
+    bool isChangedInit = false;
+
+    _selectedProducts.forEach((key, value) {
+      if (_initProducts[key] != value) {
+        isChangedInit = true;
+      }
+    });
+
+    _isChangedProduct.value = isChangedInit;
+  }
+
   void initSelectedProducts(
     List<SubscribeItem> products,
   ) {
@@ -42,6 +57,7 @@ class SubscribeDetailManageViewModel extends GetxController
     }
 
     _selectedProducts.refresh();
+    checkIsChangedProduct();
   }
 
   void onSelectProduct(String productId, int amount, {bool customizable}) {
@@ -63,16 +79,7 @@ class SubscribeDetailManageViewModel extends GetxController
     }
 
     _selectedProducts.refresh();
-
-    bool isChangedInit = false;
-
-    _selectedProducts.forEach((key, value) {
-      if (_initProducts[key] != value) {
-        isChangedInit = true;
-      }
-    });
-
-    _isChangedProduct.value = isChangedInit;
+    checkIsChangedProduct();
   }
 
   Future<void> updateSubscribeItems(
@@ -125,6 +132,26 @@ class SubscribeDetailManageViewModel extends GetxController
     }
   }
 
+  Future<void> cancelSubscribe(String subscribeId) async {
+    _isSubscribeCancelLoading.value = true;
+
+    final result = await _subscribeRepository.cancelSubscribe(subscribeId);
+
+    if (result == "success") {
+      final _subscribeViewModel = Get.find<SubscribeViewModel>();
+      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
+
+      _subscribeViewModel.getSubscribes();
+      _subscribeManageViewModel.updateSubscribeSchedule();
+
+      _isSubscribeCancelLoading.value = false;
+      Get.back();
+    } else {
+      _isSubscribeCancelLoading.value = false;
+      ErrorHandler.errorHandler("CancelSubscribeException");
+    }
+  }
+
   Future<void> updatePeriod(
       String serviceId, String subscribeId, Period period) async {
     _isPeriodUpdateLoading.value = true;
@@ -145,6 +172,53 @@ class SubscribeDetailManageViewModel extends GetxController
       _isPeriodUpdateLoading.value = false;
       ErrorHandler.errorHandler("PeriodUpdateException");
     }
+  }
+
+  Future<void> updatePauseSubscribe(String subscribeId, String serviceId,
+      {bool cancel = false}) async {
+    _isSubscribePauseLoading.value = true;
+
+    String result;
+
+    if (cancel) {
+      result = await _subscribeRepository.cancelPauseSubscribe(
+          subscribeId: subscribeId);
+    } else {
+      result = await _subscribeRepository.pauseSubscribe(
+          subscribeId: subscribeId, pauseTimes: _selcectedPauseTimes.value);
+    }
+
+    if (result == "success") {
+      final _subscribeViewModel = Get.find<SubscribeViewModel>();
+      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
+
+      _subscribeViewModel.updateSubscribe(serviceId);
+      _subscribeManageViewModel.updateSubscribeSchedule();
+
+      _isSubscribePauseLoading.value = false;
+
+      if (!cancel) {
+        Get.back();
+      }
+    } else {
+      _isSubscribePauseLoading.value = false;
+
+      if (cancel) {
+        if (result == "PaymentException") {
+          ErrorHandler.errorHandler(result);
+        } else {
+          ErrorHandler.errorHandler("CancelPauseSubscribeException");
+        }
+      } else {
+        Get.back();
+
+        ErrorHandler.errorHandler("PauseSubscribeException");
+      }
+    }
+  }
+
+  void onClickPauseRadio(int times) {
+    _selcectedPauseTimes.value = times;
   }
 
   int getSelectedTotalCount() {
@@ -199,5 +273,17 @@ class SubscribeDetailManageViewModel extends GetxController
 
   bool get isSubscribeItemUpdateLoading {
     return _isSubscribeItemUpdateLoading.value;
+  }
+
+  bool get isSubscribeCancelLoading {
+    return _isSubscribeCancelLoading.value;
+  }
+
+  bool get isSubscribePauseLoading {
+    return _isSubscribePauseLoading.value;
+  }
+
+  int get selcectedPauseTimes {
+    return _selcectedPauseTimes.value;
   }
 }

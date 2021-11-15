@@ -148,7 +148,7 @@ class SubscribeManageSelectProduct extends StatelessWidget {
                                     );
                                   }),
                                 )
-                              : const Expanded(child: SubpingLoading()),
+                              : const SubpingLoading(),
                         ),
                       ),
                       SquareButton(

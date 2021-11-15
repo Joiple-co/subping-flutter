@@ -31,7 +31,6 @@ class SubscribeDetail extends StatelessWidget {
       }
 
       return SingleChildScrollView(
-        padding: const EdgeInsets.only(top: 72),
         child: Column(
           children: [
             Container(
@@ -62,6 +61,7 @@ class SubscribeDetail extends StatelessWidget {
                                     text: "취소하기",
                                     loading: subscribeDetailManageViewModel
                                         .isCancelItemChangeLoading,
+                                    warning: true,
                                     onPressed: () =>
                                         subscribeDetailManageViewModel
                                             .cancelSubscribeItemChange(
@@ -356,11 +356,14 @@ class SubscribeDetail extends StatelessWidget {
                             fontSize: SubpingFontSize.title6,
                             fontWeight: SubpingFontWeight.medium),
                         SubpingTextSpan(
-                            text: "구독 주기 변경이 가능해요",
+                            text: subscribe.reSubscribeDate != null
+                                ? "일시정지 중에는 변경이 불가능해요"
+                                : "구독 주기 변경이 가능해요",
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
                       MiniSquareButton(
+                        disabled: subscribe.reSubscribeDate != null,
                         text: "변경하기",
                         loading: subscribeDetailManageViewModel
                             .isPeriodUpdateLoading,

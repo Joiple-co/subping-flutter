@@ -42,95 +42,59 @@ class SubscribeDetailManage extends StatelessWidget {
             body: NestedScrollView(
               headerSliverBuilder: (context, index) {
                 return [
-                  SliverToBoxAdapter(
-                      child: Image.network(subscribe.serviceLogoUrl,
-                          fit: BoxFit.cover)),
-                  SliverOverlapAbsorber(
-                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                        context),
-                    sliver: SliverPersistentHeader(
+                  SliverPersistentHeader(
                       pinned: true,
                       delegate: _SliverAppBarDelegate(
-                          minHeight: 72,
-                          maxHeight: 72,
-                          child: Container(
-                            color: SubpingColor.white100,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              child: Obx(
-                                () => TabBar(
-                                  labelPadding: EdgeInsets.zero,
-                                  isScrollable: false,
-                                  indicatorSize: TabBarIndicatorSize.label,
-                                  controller: subscribeDetailManageViewModel
-                                      .tabController,
-                                  labelStyle: TextStyle(
-                                      fontSize: SubpingFontSize.title6,
-                                      fontWeight: SubpingFontWeight.medium),
-                                  labelColor: SubpingColor.white100,
-                                  unselectedLabelColor: SubpingColor.black100,
-                                  indicator: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  tabs: [
-                                    Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                    3 -
-                                                20,
-                                        decoration: BoxDecoration(
-                                            color:
-                                                subscribeDetailManageViewModel
-                                                            .index ==
-                                                        0
-                                                    ? SubpingColor.subping100
-                                                    : SubpingColor.back20,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                        child: const Tab(
-                                            child:
-                                                SubpingText("구독", size: null))),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                              3 -
-                                          20,
-                                      decoration: BoxDecoration(
-                                          color: subscribeDetailManageViewModel
-                                                      .index ==
-                                                  1
-                                              ? SubpingColor.subping100
-                                              : SubpingColor.back20,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child: const Tab(
-                                          child: SubpingText("결제", size: null)),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width /
-                                              3 -
-                                          20,
-                                      decoration: BoxDecoration(
-                                          color: subscribeDetailManageViewModel
-                                                      .index ==
-                                                  2
-                                              ? SubpingColor.subping100
-                                              : SubpingColor.back20,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child: const Tab(
-                                          child: SubpingText("배송", size: null)),
-                                    ),
-                                  ],
+                        minHeight: 72,
+                        maxHeight: 72,
+                        child: Container(
+                          color: SubpingColor.white100,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            child: TabBar(
+                              labelPadding: EdgeInsets.zero,
+                              isScrollable: false,
+                              indicatorSize: TabBarIndicatorSize.label,
+                              controller:
+                                  subscribeDetailManageViewModel.tabController,
+                              labelStyle: TextStyle(
+                                  fontSize: SubpingFontSize.title6,
+                                  fontWeight: SubpingFontWeight.medium),
+                              labelColor: SubpingColor.white100,
+                              unselectedLabelColor: SubpingColor.black100,
+                              indicator: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: SubpingColor.subping100),
+                              tabs: [
+                                Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 3 -
+                                            20,
+                                    padding: const EdgeInsets.only(top: 4),
+                                    child: const Tab(
+                                        child: SubpingText("구독", size: null))),
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 3 -
+                                      20,
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: const Tab(
+                                      child: SubpingText("결제", size: null)),
                                 ),
-                              ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 3 -
+                                      20,
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: const Tab(
+                                      child: SubpingText("배송", size: null)),
+                                ),
+                              ],
                             ),
-                          )),
-                    ),
-                  ),
+                          ),
+                        ),
+                      )),
                 ];
               },
               body: TabBarView(
-                  physics: const NeverScrollableScrollPhysics(),
                   controller: subscribeDetailManageViewModel.tabController,
                   children: [
                     SubscribeDetail(
