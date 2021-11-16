@@ -13,6 +13,7 @@ import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:subping/amplifyconfiguration.dart';
 import 'package:subping/binding/add_card_bindings.dart';
@@ -77,7 +78,10 @@ void main() async {
   Hive.registerAdapter(RecentServiceAdapter());
   await Hive.openBox<RecentService>("recentView");
 
-  runApp(SubpingApp());
+  SentryFlutter.init((options) {
+    options.dsn =
+        'https://96c995252e6c4076a07d0748c8c8bb3c@o1070181.ingest.sentry.io/6065812';
+  }, appRunner: () => runApp(SubpingApp()));
 }
 
 class SubpingApp extends StatefulWidget {

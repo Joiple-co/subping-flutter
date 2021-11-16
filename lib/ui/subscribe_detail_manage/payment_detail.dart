@@ -106,7 +106,7 @@ class PaymentDetail extends StatelessWidget {
                       ])),
                       MiniSquareButton(
                           disabled: subscribe.reSubscribeDate != null,
-                          text: "취소하기",
+                          text: "해지하기",
                           onPressed: () async {
                             await subscribeDetailManageViewModel
                                 .cancelSubscribe(subscribe.id);
