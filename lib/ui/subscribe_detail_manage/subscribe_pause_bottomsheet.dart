@@ -127,7 +127,7 @@ class SubscribePauseBottomSheet extends StatelessWidget {
                         "${(selctedDatetime.month < 10 ? "0" : "") + selctedDatetime.month.toString()}월 ${(selctedDatetime.day < 10 ? "0" : "") + selctedDatetime.day.toString()}일에 구독 재시작하기",
                     onPressed: () =>
                         subscribeDetailManageViewModel.updatePauseSubscribe(
-                            subscribe.id, subscribe.serviceId)),
+                            subscribe.serviceId, subscribe.id)),
                 Space(
                   size: SubpingSize.large20,
                 )

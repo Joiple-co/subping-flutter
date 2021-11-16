@@ -107,6 +107,26 @@ class SubscribeRepository {
     }
   }
 
+  Future<String> updatePaymentCard(String subscribeId, String cardId) async {
+    try {
+      final rawResponse = await API.post("user", "/updateSubscribe", body: {
+        "card": cardId,
+        "subscribeId": subscribeId,
+      });
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
+      if (response.success) {
+        return "success";
+      } else {
+        return response.message;
+      }
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
   Future<String> cancelSubscribe(String subscribeId) async {
     try {
       final rawResponse = await API.post("user", "/cancelSubscribe", body: {

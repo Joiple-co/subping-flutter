@@ -4,6 +4,7 @@ import 'package:subping/const/const.dart';
 import 'package:subping/modules/design_system/shape/card_icon.dart';
 import 'package:subping/modules/design_system/subping_ui.dart';
 import 'package:subping/modules/helper/helper.dart';
+import 'package:subping/ui/subscribe_detail_manage/payment_card_bottomsheet.dart';
 import 'package:subping/ui/subscribe_detail_manage/subscribe_pause_bottomsheet.dart';
 import 'package:subping/ui/subscribe_detail_manage/subscribe_pause_indicator.dart';
 import 'package:subping/viewmodel/global/subscribe_viewmodel.dart';
@@ -12,10 +13,8 @@ import 'package:subping/viewmodel/local/subsctibe_detail_manage/subscribe_detail
 
 class PaymentDetail extends StatelessWidget {
   final String serviceId;
-  final String subscribeId;
 
-  const PaymentDetail({Key key, this.serviceId, this.subscribeId})
-      : super(key: key);
+  const PaymentDetail({Key key, this.serviceId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +66,7 @@ class PaymentDetail extends StatelessWidget {
                           onPressed: () async {
                             if (subscribe.reSubscribeDate != null) {
                               await subscribeDetailManageViewModel
-                                  .updatePauseSubscribe(
-                                      subscribeId, subscribeId,
+                                  .updatePauseSubscribe(serviceId, subscribe.id,
                                       cancel: true);
                             } else {
                               Get.bottomSheet(SubscribePauseBottomSheet(
@@ -132,10 +130,23 @@ class PaymentDetail extends StatelessWidget {
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
-                      MiniSquareButton(text: "변경하기", onPressed: () {})
+                      MiniSquareButton(
+                          text: "변경하기",
+                          loading: subscribeDetailManageViewModel
+                              .isPaymentCardUpdateLoading,
+                          onPressed: () =>
+                              Get.bottomSheet(PaymentCardBottomSheet(
+                                cards: userViewModel.cards,
+                                selectedCardId: subscribe.userCardId,
+                                onSelectCard: (String cardId) async {
+                                  await subscribeDetailManageViewModel
+                                      .updatePaymentCard(
+                                          serviceId, subscribe.id, cardId);
+                                },
+                              )))
                     ],
                   ),
-                  Space(size: SubpingSize.large32),
+                  Space(size: SubpingSize.large20),
                   Row(
                     children: [
                       CardIcon(
@@ -180,7 +191,7 @@ class PaymentDetail extends StatelessWidget {
                           fontWeight: SubpingFontWeight.medium),
                     ],
                   ),
-                  Space(size: SubpingSize.large32),
+                  Space(size: SubpingSize.large20),
                   Column(
                     children: List.generate(subscribe.payments.length, (index) {
                       final payment = subscribe.payments[index];

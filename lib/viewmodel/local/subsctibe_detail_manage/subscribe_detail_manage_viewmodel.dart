@@ -21,10 +21,14 @@ class SubscribeDetailManageViewModel extends GetxController
   final RxBool _isSubscribeItemUpdateLoading = false.obs;
   final RxBool _isSubscribeCancelLoading = false.obs;
   final RxBool _isSubscribePauseLoading = false.obs;
+  final RxBool _isPaymentCardUpdateLoading = false.obs;
 
   final RxInt _index = 0.obs;
 
   final SubscribeRepository _subscribeRepository = SubscribeRepository();
+  final SubscribeViewModel _subscribeViewModel = Get.find<SubscribeViewModel>();
+  final SubscribeManageViewModel _subscribeManageViewModel =
+      Get.find<SubscribeManageViewModel>();
 
   TabController get tabController {
     return _tabController;
@@ -95,9 +99,6 @@ class SubscribeDetailManageViewModel extends GetxController
         subscribeItems: subscribeItems);
 
     if (result == "success") {
-      final _subscribeViewModel = Get.find<SubscribeViewModel>();
-      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
-
       _subscribeViewModel.updateSubscribe(serviceId);
       _subscribeManageViewModel.updateSubscribeSchedule();
 
@@ -118,9 +119,6 @@ class SubscribeDetailManageViewModel extends GetxController
         serviceId, subscribeId);
 
     if (result == "success") {
-      final _subscribeViewModel = Get.find<SubscribeViewModel>();
-      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
-
       _subscribeViewModel.updateSubscribe(serviceId);
       _subscribeManageViewModel.updateSubscribeSchedule();
 
@@ -138,9 +136,6 @@ class SubscribeDetailManageViewModel extends GetxController
     final result = await _subscribeRepository.cancelSubscribe(subscribeId);
 
     if (result == "success") {
-      final _subscribeViewModel = Get.find<SubscribeViewModel>();
-      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
-
       _subscribeViewModel.getSubscribes();
       _subscribeManageViewModel.updateSubscribeSchedule();
 
@@ -161,20 +156,34 @@ class SubscribeDetailManageViewModel extends GetxController
         period: periodInnerString[period]);
 
     if (result == "success") {
-      final _subscribeViewModel = Get.find<SubscribeViewModel>();
-      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
-
       _subscribeViewModel.updateSubscribe(serviceId);
       _subscribeManageViewModel.updateSubscribeSchedule();
 
       _isPeriodUpdateLoading.value = false;
     } else {
       _isPeriodUpdateLoading.value = false;
-      ErrorHandler.errorHandler("PeriodUpdateException");
+      ErrorHandler.errorHandler("UpdatePeriodException");
     }
   }
 
-  Future<void> updatePauseSubscribe(String subscribeId, String serviceId,
+  Future<void> updatePaymentCard(
+      String serviceId, String subscribeId, String cardId) async {
+    _isPaymentCardUpdateLoading.value = true;
+
+    final result =
+        await _subscribeRepository.updatePaymentCard(subscribeId, cardId);
+
+    if (result == "success") {
+      _subscribeViewModel.updateSubscribe(serviceId);
+
+      _isPaymentCardUpdateLoading.value = false;
+    } else {
+      _isPaymentCardUpdateLoading.value = false;
+      ErrorHandler.errorHandler("UpdatePaymentCardException");
+    }
+  }
+
+  Future<void> updatePauseSubscribe(String serviceId, String subscribeId,
       {bool cancel = false}) async {
     _isSubscribePauseLoading.value = true;
 
@@ -189,9 +198,6 @@ class SubscribeDetailManageViewModel extends GetxController
     }
 
     if (result == "success") {
-      final _subscribeViewModel = Get.find<SubscribeViewModel>();
-      final _subscribeManageViewModel = Get.find<SubscribeManageViewModel>();
-
       _subscribeViewModel.updateSubscribe(serviceId);
       _subscribeManageViewModel.updateSubscribeSchedule();
 
@@ -211,7 +217,6 @@ class SubscribeDetailManageViewModel extends GetxController
         }
       } else {
         Get.back();
-
         ErrorHandler.errorHandler("PauseSubscribeException");
       }
     }
@@ -281,6 +286,10 @@ class SubscribeDetailManageViewModel extends GetxController
 
   bool get isSubscribePauseLoading {
     return _isSubscribePauseLoading.value;
+  }
+
+  bool get isPaymentCardUpdateLoading {
+    return _isPaymentCardUpdateLoading.value;
   }
 
   int get selcectedPauseTimes {

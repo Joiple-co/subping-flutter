@@ -322,7 +322,7 @@ class ErrorHandler {
             ]));
         break;
 
-      case "PeriodUpdateException":
+      case "UpdatePeriodException":
         Get.dialog(AlertDialog(
             title: const Text("확인이 필요해요!"),
             content: const Text("구독 주기 변경에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
@@ -371,6 +371,21 @@ class ErrorHandler {
         Get.dialog(AlertDialog(
             title: const Text("확인이 필요해요!"),
             content: const Text("구독 일시정지 취소에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: SubpingText("확인",
+                      size: SubpingFontSize.body1,
+                      color: SubpingColor.subping100))
+            ]));
+        break;
+
+      case "UpdatePaymentCardException":
+        Get.dialog(AlertDialog(
+            title: const Text("확인이 필요해요!"),
+            content: const Text("결제카드 변경에 실패했어요.\n잠시뒤에 다시 시도해주세요."),
             actions: [
               TextButton(
                   onPressed: () {
