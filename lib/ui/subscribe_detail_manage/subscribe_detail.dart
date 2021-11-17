@@ -223,11 +223,14 @@ class SubscribeDetail extends StatelessWidget {
                                 fontSize: SubpingFontSize.title6,
                                 fontWeight: SubpingFontWeight.medium),
                             SubpingTextSpan(
-                                text: "구독중인 상품의 내역입니다",
+                                text: subscribe.expiredDate != null
+                                    ? "해지 예약 중에는 변경할 수 없어요"
+                                    : "구독중인 상품의 내역입니다",
                                 fontSize: SubpingFontSize.body3,
                                 color: SubpingColor.black60)
                           ])),
                           MiniSquareButton(
+                              disabled: subscribe.expiredDate != null,
                               text: "변경하기",
                               onPressed: () {
                                 if (service.value.customizable) {
@@ -356,14 +359,17 @@ class SubscribeDetail extends StatelessWidget {
                             fontSize: SubpingFontSize.title6,
                             fontWeight: SubpingFontWeight.medium),
                         SubpingTextSpan(
-                            text: subscribe.reSubscribeDate != null
-                                ? "일시정지 중에는 변경이 불가능해요"
-                                : "구독 주기 변경이 가능해요",
+                            text: subscribe.expiredDate != null
+                                ? "해지 예약 중에는 변경할 수 없어요"
+                                : subscribe.reSubscribeDate != null
+                                    ? "일시정지 중에는 변경이 불가능해요"
+                                    : "구독 주기 변경이 가능해요",
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
                       MiniSquareButton(
-                        disabled: subscribe.reSubscribeDate != null,
+                        disabled: subscribe.reSubscribeDate != null ||
+                            subscribe.expiredDate != null,
                         text: "변경하기",
                         loading: subscribeDetailManageViewModel
                             .isPeriodUpdateLoading,

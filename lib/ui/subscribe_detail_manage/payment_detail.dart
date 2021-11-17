@@ -50,13 +50,16 @@ class PaymentDetail extends StatelessWidget {
                             fontSize: SubpingFontSize.title6,
                             fontWeight: SubpingFontWeight.medium),
                         SubpingTextSpan(
-                            text: subscribe.reSubscribeDate != null
-                                ? "결제를 잠깐 쉬고 있어요!"
-                                : "결제를 잠깐 쉴 수 있어요",
+                            text: subscribe.expiredDate != null
+                                ? "해지 예약중에는 정지할 수 없어요"
+                                : subscribe.reSubscribeDate != null
+                                    ? "결제를 잠깐 쉬고 있어요!"
+                                    : "결제를 잠깐 쉴 수 있어요",
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
                       MiniSquareButton(
+                          disabled: subscribe.expiredDate != null,
                           warning: subscribe.reSubscribeDate != null,
                           loading: subscribeDetailManageViewModel
                               .isSubscribePauseLoading,
@@ -104,10 +107,16 @@ class PaymentDetail extends StatelessWidget {
                       ])),
                       MiniSquareButton(
                           disabled: subscribe.reSubscribeDate != null,
-                          text: "해지하기",
+                          text: subscribe.expiredDate != null ? "취소하기" : "해지하기",
                           onPressed: () async {
-                            await subscribeDetailManageViewModel
-                                .cancelSubscribe(subscribe.id);
+                            if (subscribe.expiredDate != null) {
+                              await subscribeDetailManageViewModel
+                                  .cancelCancelSubscribe(
+                                      serviceId, subscribe.id);
+                            } else {
+                              await subscribeDetailManageViewModel
+                                  .cancelSubscribe(serviceId, subscribe.id);
+                            }
                           },
                           warning: true,
                           loading: subscribeDetailManageViewModel
@@ -115,6 +124,21 @@ class PaymentDetail extends StatelessWidget {
                     ],
                   ),
                   Space(size: SubpingSize.large20),
+                  subscribe.expiredDate != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SubpingText("해지 예정일", size: SubpingFontSize.body1),
+                            SubpingText(
+                                Helper.dateTimeToString(
+                                    DateTime.parse(subscribe.expiredDate)),
+                                size: SubpingFontSize.body1),
+                          ],
+                        )
+                      : Container(),
+                  subscribe.expiredDate != null
+                      ? Space(size: SubpingSize.large20)
+                      : Container(),
                   Container(height: 2, color: SubpingColor.back20),
                   Space(size: SubpingSize.large20),
                   Row(
@@ -126,11 +150,14 @@ class PaymentDetail extends StatelessWidget {
                             fontSize: SubpingFontSize.title6,
                             fontWeight: SubpingFontWeight.medium),
                         SubpingTextSpan(
-                            text: "결제할 카드를 변경할 수 있어요",
+                            text: subscribe.expiredDate != null
+                                ? "해지 예약 중에는 변경할 수 없어요"
+                                : "결제할 카드를 변경할 수 있어요",
                             fontSize: SubpingFontSize.body3,
                             color: SubpingColor.black60)
                       ])),
                       MiniSquareButton(
+                          disabled: subscribe.expiredDate != null,
                           text: "변경하기",
                           loading: subscribeDetailManageViewModel
                               .isPaymentCardUpdateLoading,

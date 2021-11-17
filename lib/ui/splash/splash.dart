@@ -14,8 +14,8 @@ class Splash extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         body: const Center(
             child: Image(
-          image: AssetImage("assets/logoWithName.png"),
-          width: 80,
+          image: AssetImage("assets/logo.jpeg"),
+          width: 150,
         )));
   }
 }

@@ -136,6 +136,20 @@ class SubscribeRepository {
       final decodedResponse = utf8.decode(rawResponse.data);
       BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
 
+      return response.message;
+    } catch (e) {
+      return "UnknownException";
+    }
+  }
+
+  Future<String> cancelCancelSubscribe(String subscribeId) async {
+    try {
+      final rawResponse = await API.post("user", "/cancelSubscribe",
+          body: {"subscribeId": subscribeId, "cancel": true});
+
+      final decodedResponse = utf8.decode(rawResponse.data);
+      BodyModel response = BodyModel.fromJson(jsonDecode(decodedResponse));
+
       if (response.success) {
         return "success";
       } else {
@@ -164,7 +178,7 @@ class SubscribeRepository {
     }
   }
 
-  Future<String> cancelPauseSubscribe({String subscribeId}) async {
+  Future<String> cancelPauseSubscribe(String subscribeId) async {
     try {
       final rawResponse = await API.post("user", "/pauseSubscribe", body: {
         "cancelPause": true,

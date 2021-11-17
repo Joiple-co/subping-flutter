@@ -130,17 +130,52 @@ class SubscribeDetailManageViewModel extends GetxController
     }
   }
 
-  Future<void> cancelSubscribe(String subscribeId) async {
+  Future<void> cancelSubscribe(String serviceId, String subscribeId) async {
     _isSubscribeCancelLoading.value = true;
+
+    final subscribe = _subscribeViewModel.subscribe[serviceId];
+
+    if (subscribe.subscribeReserved.isNotEmpty) {
+      final result = await _subscribeRepository.cancelSubscribeItemsChange(
+          serviceId, subscribeId);
+
+      if (result != "success") {
+        _isSubscribeCancelLoading.value = false;
+        ErrorHandler.errorHandler("CancelSubscribeException");
+      }
+    }
 
     final result = await _subscribeRepository.cancelSubscribe(subscribeId);
 
-    if (result == "success") {
+    if (result == "SubscribeCanceled") {
       _subscribeViewModel.getSubscribes();
       _subscribeManageViewModel.updateSubscribeSchedule();
 
       _isSubscribeCancelLoading.value = false;
       Get.back();
+    } else if (result == "SubscribeCancelReserved") {
+      _subscribeViewModel.getSubscribes();
+      _subscribeManageViewModel.updateSubscribeSchedule();
+
+      _isSubscribeCancelLoading.value = false;
+    } else {
+      _isSubscribeCancelLoading.value = false;
+      ErrorHandler.errorHandler("CancelSubscribeException");
+    }
+  }
+
+  Future<void> cancelCancelSubscribe(
+      String serviceId, String subscribeId) async {
+    _isSubscribeCancelLoading.value = true;
+
+    final result =
+        await _subscribeRepository.cancelCancelSubscribe(subscribeId);
+
+    if (result == "success") {
+      _subscribeViewModel.updateSubscribe(serviceId);
+      _subscribeManageViewModel.updateSubscribeSchedule();
+
+      _isSubscribeCancelLoading.value = false;
     } else {
       _isSubscribeCancelLoading.value = false;
       ErrorHandler.errorHandler("CancelSubscribeException");
@@ -190,8 +225,7 @@ class SubscribeDetailManageViewModel extends GetxController
     String result;
 
     if (cancel) {
-      result = await _subscribeRepository.cancelPauseSubscribe(
-          subscribeId: subscribeId);
+      result = await _subscribeRepository.cancelPauseSubscribe(subscribeId);
     } else {
       result = await _subscribeRepository.pauseSubscribe(
           subscribeId: subscribeId, pauseTimes: _selcectedPauseTimes.value);
